@@ -1,0 +1,76 @@
+{% extends "main.html" %}
+
+{#
+
+The main Sheffield lab theme template. This template is based on the original MkDocs Theme.
+ 
+Any theme customizations should override this file to redefine blocks defined in
+the various templates. The custom theme should only need to define a main.html
+which `{% extends "base.html" %}` and defines various blocks which will replace
+the blocks defined in base.html and its included child templates.
+#}
+
+{%- block site_name %}
+{% if config.site_logo %}
+<a class="navbar-brand" href="{{ nav.homepage.url|url }}"><img src="{{ config.site_logo | url }}" class="navlogo"></a>
+{% else %}
+<a class="navbar-brand" href="{{ nav.homepage.url|url }}">{{ config.site_name }}</a>
+{% endif %}
+{%- endblock %}
+
+
+{%- block styles %}
+<link href="{{ 'css/bootstrap.min.css'|url }}" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+{%- if config.theme.highlightjs %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{ config.theme.hljs_style }}.min.css">
+{%- endif %}
+{%- for path in config['extra_css'] %}
+<link href="{{ path|url }}" rel="stylesheet">
+{%- endfor %}
+<link href="{{ 'css/extra.css'|url }}" rel="stylesheet">
+<link href="{{ 'extra.css'|url }}" rel="stylesheet">
+<link href="{{ 'jumbo.css'|url }}" rel="stylesheet">
+{%- endblock %}
+
+
+{%- block wholepage %}
+
+	<div class="header-container jumbotron">
+	    <div class="container">
+	        <h1>Portable Encapsulated Projects</h1>
+	        <p>An open structure and toolkit for organizing large-scale, sample-intensive biological research projects.
+	          </p>
+	        <p><a class="btn btn-primary btn-lg" href="specification" role="button">Learn more</a></p>
+	    </div>
+	</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="header-light regular-pad">What is a PEP?</h2>
+            <blockquote>
+              <p>A <i>PEP</i>, or <i>Portable Encapsulated Project</i>, is a dataset that subscribes to the PEP structure for organizing metadata. It is written using a simple <b>yaml + tsv</b> format that can be read by tools in the pep toolkit, including universal R and Python packages. pepkit is your one-stop solution to <b>metadata management</b> across data analysis environments.</p>
+            </blockquote>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="/pep_center.svg" alt="" class="img-responsive">
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 class="text-center"><i class="fa fa-bar-chart" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Data analysts</h3>
+            <p>Start by describing your project metadata in PEP format, and immediately benefit from metadata organization tools written in either R or Python.</p>
+        </div>
+        <div class="col-sm-6">
+            <h1 class="text-center"><i class="fa fa-wrench" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Software developers</h3>
+            <p>Outsource sample metadata formatting and parsing by using our R or Python APIs, making your tool immediately applicable to any PEP-compliant project.</p>
+        </div>
+    </div>
+</div>
+{%- endblock %}

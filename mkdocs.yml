@@ -1,0 +1,51 @@
+site_name: PEP specification
+site_logo: img/pep.svg
+site_url: http://pep.databio.org/
+repo_url: http://github.com/pepkit/pep_spec
+
+nav:
+  - Getting Started: 
+    - PEP specification: specification.md
+    - Rationale: rationale.md
+  - Detailed how-to guides:
+      - Specify multiple inputs: howto_multiple_inputs.md
+      - Eliminate paths from sample table: howto_eliminate_paths.md
+      - Remove genome from sample table: howto_genome_id.md
+      - Store many projects in one file: howto_subprojects.md
+      - Create automatic sample groups: howto_automatic_groups.md
+      - Mix & match amendments on the fly: howto_mixmatch.md
+      - Create a PEP from GEO or SRA: howto_geofetch.md
+      - Write my own PEP schema: howto_schema.md
+  - Implmementations:
+    - "Python package: peppy": peppy.md
+    - "R package: pepr": pepr.md
+  - PEP in practice:
+    - Projects using PEP: projects.md
+    - Software using PEP: software.md
+    - Support: https://github.com/pepkit/pepkit.github.io/issues
+    - Contributing: contributing.md
+    - Team: team.md
+    - Changelog: changelog.md
+
+theme:
+  name: databio
+  custom_dir: theme_dir
+
+plugins:
+- databio:
+    jupyter_source: "docs_jupyter"
+    jupyter_build: "docs_jupyter/build"
+    autodoc_build: "docs/autodoc_build"
+    autodoc_package: "refgenconf"
+    no_top_level: true
+- search
+
+
+navbar:
+  left:
+  - text: Specification
+    icon: fa-file-alt
+    href: specification
+  - text: Team
+    icon: fa-users
+    href: team
