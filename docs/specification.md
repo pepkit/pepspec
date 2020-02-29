@@ -159,7 +159,7 @@ sample_modifiers:
 
 This example will take any sample with `organism` attribute set to the string "human" and add attributes of `genome` (with value "hg38") and `macs_genome_size` (with value "hs"). This example shows only 1 implication, but you can include as many as you like.
 
-Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [implied attributes](/docs/implied_attributes).
+Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to remove project-level attributes from sample table](/howto_genome_id.md).
 
 #### *sample_modifiers.derive*
 
@@ -179,7 +179,7 @@ sample_modifiers:
 
 In this example, the samples should already have attributes named `read1`, `read2`, and `data_1`, which are flagged as attributes to derive. These attribute values should originally be set to one of the keys in the `sources` section: `key1`, `key2`, or `key3`. The `derive` modifier will replace any samples set as `key1` with the specified string (`"/path/to/{sample_name}_{sample_type}.bam"`), but with variables like `{sample_name}` populated with the values of other sample attributes. The variables in the file paths are formatted as `{variable}`, and are populated by sample attributes (columns in the sample annotation sheet). For example, your files may be stored in `/path/to/{sample_name}.fastq`, where `{sample_name}` will be populated individually for each sample in your PEP. You can also use shell environment variables (like ``${HOME}``).
 
-Using `derive` is a powerful and flexible way to point to data files on disk. This enables you to point to more than one input file for each sample. For more details and a complete example, see [derived attributes](/docs/derived_attributes).
+Using `derive` is a powerful and flexible way to point to data files on disk. This enables you to point to more than one input file for each sample. For more details and a complete example, see [how to elimanate paths from the sample table](howto_eliminate_paths.md).
 
 ### Project attribute: `amendments`
 
@@ -196,7 +196,7 @@ amendments:
   my_project3:
     sample_table: annotation3.csv
 ...
-````
+```
 
 If you load this configuration file, by default it sets `sample_table` to `annotation.csv`. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specified in the `my_project2` amendment.
 
