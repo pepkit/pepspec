@@ -6,7 +6,7 @@ The `amendments` section of the config file allows you to include multiple varia
 
 ## Example
 
-```
+```yaml
 sample_table: annotation.csv
 amendments:
   my_project2:
@@ -14,7 +14,7 @@ amendments:
   my_project3:
     sample_table: annotation3.csv
 ...
-````
+```
 
 If you load this configuration file, it will by default use the `annotation.csv` file specified in the `sample_table` attribute, as you would expect. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specifed in the `my_project2` amendment.
 
