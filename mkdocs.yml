@@ -1,7 +1,7 @@
 site_name: PEP specification
 site_logo: img/pep.svg
 site_url: http://pep.databio.org/
-repo_url: http://github.com/pepkit/pep_spec
+repo_url: http://github.com/pepkit/pepspec
 
 nav:
   - Getting Started: 
