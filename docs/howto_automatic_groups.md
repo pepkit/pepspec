@@ -3,6 +3,8 @@ title: Create automatic sample groups
 redirect_from: "/docs/implied_attributes/"
 ---
 
+# How to create automatic sample groups
+
 The `imply` modifier lets you set global, group-level attributes at the project level instead of duplicating that information for every sample that belongs to a group of samples. This makes your project more portable and does a better job conceptually with separating sample attributes from project attributes.
 
 ### Example

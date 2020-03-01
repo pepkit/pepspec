@@ -3,6 +3,8 @@ title: Remove genome from sample table
 redirect_from: "/docs/implied_attributes/"
 ---
 
+# How to remove genome from a sample table
+
 Many sample tables include identifiers like a genome or transcriptome assembly (*e.g.* `hg38`) that really are an aspect of an analysis, rather than an attribute of a particular sample. Encoding these attributes within the sample table reduces its portability. Alternatively, if you encode these type of variables in the project configuration file, the sample table could be re-used across projects with different analysis settings.
 
 One way to solve this is to use an `append` modifier to add a `genome` attribute to each sample from the project config file.

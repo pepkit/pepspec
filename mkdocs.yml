@@ -23,8 +23,7 @@ nav:
     - Projects using PEP: projects.md
     - Software using PEP: software.md
     - Support: https://github.com/pepkit/pepkit.github.io/issues
-    - Contributing: contributing.md
-    - Team: team.md
+    - Team and Contributing: team.md
     - Changelog: changelog.md
 
 theme:

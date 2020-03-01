@@ -2,6 +2,8 @@
 title: Store many projects in one file
 ---
 
+# How to store many projects in one file
+
 The `amendments` section of the config file allows you to include multiple variations of a project within one file. When a PEP is parsed, you may specify one or more included amendments, which will amend the values in the processed PEP. This is a powerful function that can be used for many purposes, such as *on the fly* tweaks or embedding multiple subprojects within a parent project.
 
 ## Example
