@@ -4,7 +4,7 @@
   color: #fff;
   background-size: cover;
   background-position: center 36%;
-  margin-top: -37px; }
+  margin-top: -17px; }
 
 .header-container h1 {
     color: #fff; }
@@ -36,7 +36,11 @@
       .jumbotron h1,
       .jumbotron .h1 {
         font-size: 72px; } }
-
+        
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 22px;
+    margin-bottom: 11px;
+}
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -48,3 +52,10 @@ h1, h2, h3, h4, h5, h6,
 body {
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+blockquote {
+  padding: 11px 22px;
+  margin: 0 0 22px;
+  font-size: 19px;
+  border-left: 1px solid #ddd;
+  color: #6f6f6f; }

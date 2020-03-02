@@ -5,24 +5,7 @@ redirect_from: "/docs/derived_attributes/"
 
 # How to eliminate paths from a sample table
 
-The `derive` sample modifier, allows you to add new sample attributes that are derived from existing sample attributes.
-
-## Example
-
-```
-sample_modifiers:
-  derive: 
-    attributes: [file_path]
-    sources:
-      source1: /data/lab/project/{organism}_{time}h.fastq
-      source2: /path/from/collaborator/weirdNamingScheme_{external_id}.fastq
-```
-
-In this example, the samples' `file_path` attribute will be derived with one of two different paths, depending on the original value of the attribute (`source1` or `source2`). 
-
-## Rationale
-
-Sample tables often point to an input file or files for each sample. Of course, you could just add a column with the file path, like ``/path/to/input/file.fastq.gz``. For example:
+Sample tables often need to point to one or more input files for each sample. Of course, you could just add a column with the file path, like `/path/to/input/file.fastq.gz`. For example:
 
 ```
 "sample_name", "library", "organism", "time", "file_path"
@@ -32,9 +15,13 @@ Sample tables often point to an input file or files for each sample. Of course, 
 "frog_1h", "RRBS", "frog", "1", "/data/lab/project/frog_1h.fastq"
 ```
 
+
 This is common, but what if the data get moved, the filesystem changes, or you switch servers? Will this data still be there in 2 years? Do you want long file paths cluttering your sample table? What if you have 2 or 3 input files? Do you want to manually manage these unwieldy absolute paths?
 
-The PEP specification makes it really easy to do better with the `derived` section of `sample_modifiers`. Derived attributes allow you to populate sample attributes based on a source template you specify in the `derived_sources` attribute. What was originally `/long/path/to/sample.fastq.gz` as a derived attribute would instead contain just a key, like `source1`. Here's an example of the same sample table using a `derived attribute` for `file_path`:
+## Using a derived column
+
+
+The PEP specification makes it really easy to do better with the `derive` sample modifier. The `derive` sample modifier adds new sample attributes that are derived from existing sample attributes. What was originally `/long/path/to/sample.fastq.gz` would instead contain just a key, like `source1`, and then a systematic formula for how to construct the path programatically is included in the project config file. Here's an example of the same sample table using a `derived attribute` for `file_path`:
 
 ```
 "sample_name", "library", "organism", "time", "file_path"
@@ -44,8 +31,7 @@ The PEP specification makes it really easy to do better with the `derived` secti
 "frog_1h", "RRBS", "frog", "1", "source1"
 ```
 
-To do this, your project config file must specify two things: First, which attributes are derived (in this case, `file_path`); and second, a `derived_sources` section mapping keys to strings that will construct your path from other sample or project attributes, like this:
-
+And here's the project config file that will derive that path correctly:
 
 ```
 sample_modifiers:
@@ -55,6 +41,10 @@ sample_modifiers:
       source1: /data/lab/project/{sample_name}.fastq
       source2: /path/from/collaborator/weirdNamingScheme_{external_id}.fastq
 ```
+
+
+In this example, the samples' `file_path` attribute will be derived with one of two different paths, depending on the original value of the attribute (`source1` or `source2`). To do this, your project config file must specify two things: First, which attributes are derived (in this case, `file_path`); and second, a `derived_sources` section mapping keys to strings that will construct your path from other sample or project attributes.
+
 
 That's it! The source string can use other sample attributes (columns) using braces, as in `{sample_name}`. The attributes will be automatically populated separately for each sample. To take this a step further, you'd get the same result with this config file, which substitutes `{sample_name}` for other sample attributes, `{organism}` and `{time}`:
 

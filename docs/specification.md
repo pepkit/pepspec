@@ -16,11 +16,16 @@ Table of contents:
 
 Organizing and annotating sample data is an important task in data-intensive bioinformatics, but each dataset is typically annotated uniquely. Furthermore, data processing tools typically expect a unique format for sample annotation. There is no standard way to represent metadata that spans projects and tools. This restricts the portability and reusability of annotated datasets and software that processes them.
 
-*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable by specifying a metadata structure. PEPs are typically data-intensive bioinformatics projects with many samples (which could be individual experiments, organisms, cell lines, *etc.*). However, the concepts are generic and could be applied to any collection of metadata represented in tabular form. The PEP specification also provides features that make metadata more portable across both computing environments and processing tools.
+*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable by specifying a metadata structure. PEPs can be made from any collection of metadata represented in tabular form and are typically data-intensive bioinformatics projects with many samples, such as individual experiments, organisms, or cell lines. In addition to standardization, PEPs also have other features that make metadata more portable across both computing environments and processing tools.
 
-## Terminology and components of a PEP
+## Definitions of terms and components of a PEP
 
-In PEP parlance, **a *project* is a collection of metadata that annotates a set of samples.** A **sample** is loosely defined as a unit that can be collected into a project and usually corresponds to one or more data files. The **PEP specification** is a way to organize project and sample *meta*data in files, and a **PEP** is a project that follows the specification. The PEP specification divides metadata into two components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These two components are stored in separate files. A complete PEP consists of up to 3 files:
+- **Project**: a collection of metadata that annotates a set of samples.
+- **Sample**: loosely defined; a unit that can be collected into a project, usually with one or more data files.
+- **PEP specification**: the a way to organize project and sample *meta*data in files using a `yaml` + `tsv` format.
+- **PEP**: a project that follows the PEP specification.
+
+The PEP specification divides metadata into two components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These two components are stored in separate files. A complete PEP consists of up to 3 files:
 
 - **Project config file** - REQUIRED. a `yaml` file containing project-level metadata
 - **Sample table** - RECOMMENDED. a `csv` file of sample metadata, with 1 row per sample
@@ -40,13 +45,13 @@ The PEP specification has 2 primary goals:
 
 ## Validating a PEP
 
-This document describes a specification for a generic PEP, which is formally described with a schema at [schema.databio.org/PEP/pep_v2.yaml](https://schema.databio.org/PEP/pep_v2.yaml). You can validate a PEP against a PEP schema using the `peppy` Python package, which is also the reference implementation of the PEP specification. Validate a generic PEP like this:
+The formal PEP spec is described as a schema at [schema.databio.org/pep/2.0.0.yaml](https://schema.databio.org/pep/2.0.0.yaml). You can validate a PEP against a PEP schema using the [peppy Python package](http://peppy.databio.org) like this:
 
 ```
-peppy validate path/to/your/PEP_config.yaml -s https://schema.databio.org/PEP/pep_v2.yaml
+peppy validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
 ```
 
-PEP schemas use an extended version of the [JSON-schema](https://json-schema.org/) vocabulary. The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [How to guide for PEP validation](howto_schema.md).
+PEP schemas use an extended [JSON-schema](https://json-schema.org/) vocabulary. The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [How to guide for PEP validation](howto_schema.md).
 
 ## Project config file specification
 
@@ -107,9 +112,7 @@ The `subsample_table` is a path (string) to the subsample csv file. Like with th
 
 ### Project attribute: `sample_modifiers`
 
-The sample modifiers allows you to modify sample attributes from within the project configuration file. You can use this to add new attributes to samples in a variety of ways, including attributes whose value varies depending on values of existing attributes, or whose values are composed of existing attribute values. This is a key feature of PEP that allows you to make the sample tables more portable. There are 4 subsections corresponding to 4 types of sample modifier: `append`, `duplicate`, `imply`, and `derive`.
-
-The samples will be modified in this order: append, duplicate, imply, derive. Within each modifiers, samples will be modified in the order in which the commands are listed.
+The sample modifiers allows you to modify sample attributes from within the project configuration file. You can use this to add new attributes to samples in a variety of ways, including attributes whose value varies depending on values of existing attributes, or whose values are composed of existing attribute values. This is a key feature of PEP that allows you to make the sample tables more portable. There are 4 subsections corresponding to 4 types of sample modifier: `append`, `duplicate`, `imply`, and `derive`; and the samples will be modified in that order. Within each modifier, samples will be modified in the order in which the commands are listed.
 
 #### *sample_modifiers.append*
 
@@ -123,12 +126,12 @@ sample_modifiers:
     read_type: SINGLE
 ```
 
-This example would add an attribute named `read_type` to each sample, and the value would be `SINGLE` for all samples. This modifier is useful alone to add constant attributes, and can also be  combined with `derive` and/or `imply`.
+This example adds a `read_type` attribute to each sample, with the value `SINGLE` for all samples. This modifier is useful on its own to add constant attributes, and can also be  combined with `derive` and/or `imply`.
 
 
 #### *sample_modifiers.duplicate*
 
-The `duplicate` modifier copies an existing sample attribute to a new attributes with a different name. This can be useful if you need to tweak a PEP to work under a different tool that specifies a different schema for the same data.
+The `duplicate` modifier copies an existing sample attribute to a new attribute with a different name. This can be useful if you need to tweak a PEP to work under a different tool that specifies a different schema for the same data.
 
 Example:
 
@@ -143,7 +146,7 @@ This example would copy the value of `old_attribute_name` to a new attribute cal
 
 #### *sample_modifiers.imply*
 
-The `imply` modifier adds sample attributes with values that depends on the *value* of an existing attribute. Under the `imply` keyword is a list of items. Each item has an `if` section and an `then` section. The `if` section defines one or more attributes, each with one or more possible values. If *all* attributes listed have *any* of the values in the list for that attribute, then the sample passes the conditional and the new attributes will be implied. One or more attributes to imply are listed under the `then` section, with the key specifying the name of the attribute and the value its value.
+The `imply` modifier adds sample attributes with values that depends on the *value* of an existing attribute. Under the `imply` keyword is a list of items. Each item has an `if` section and a `then` section. The `if` section defines one or more attributes, each with one or more possible values. If *all* attributes listed have *any* of the values in the list for that attribute, then the sample passes the conditional and the implied attributes will be added. One or more attributes to imply are listed under the `then` section as `key: value` pairs.
 
 Example:
 
@@ -159,11 +162,11 @@ sample_modifiers:
 
 This example will take any sample with `organism` attribute set to the string "human" and add attributes of `genome` (with value "hg38") and `macs_genome_size` (with value "hs"). This example shows only 1 implication, but you can include as many as you like.
 
-Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to remove project-level attributes from sample table](howto_genome_id.md).
+Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to remove project-level attributes from a sample table](howto_genome_id.md).
 
 #### *sample_modifiers.derive*
 
-The `derive` sample modifier provides converts existing sample attribute values into new values derived from other existing sample attribute values. It contains two sections; in `attributes` is a list of existing attributes that should be derived; in `sources` is a mapping of key-value pairs that defines the templates used to derive the new attribute values.
+The `derive` sample modifier converts existing sample attribute values into new values derived from other existing sample attribute values. It contains two sections; in `attributes` is a list of existing attributes that should be derived; in `sources` is a mapping of key-value pairs that defines the templates used to derive the new attribute values.
 
 Example:
 
@@ -177,13 +180,13 @@ sample_modifiers:
       key3: "${HOME}/{test_id}.fastq"
 ```
 
-In this example, the samples should already have attributes named `read1`, `read2`, and `data_1`, which are flagged as attributes to derive. These attribute values should originally be set to one of the keys in the `sources` section: `key1`, `key2`, or `key3`. The `derive` modifier will replace any samples set as `key1` with the specified string (`"/path/to/{sample_name}_{sample_type}.bam"`), but with variables like `{sample_name}` populated with the values of other sample attributes. The variables in the file paths are formatted as `{variable}`, and are populated by sample attributes (columns in the sample annotation sheet). For example, your files may be stored in `/path/to/{sample_name}.fastq`, where `{sample_name}` will be populated individually for each sample in your PEP. You can also use shell environment variables (like ``${HOME}``).
+In this example, the samples should already have attributes named `read1`, `read2`, and `data_1`, which are flagged as attributes to derive. These attribute values should originally be set to one of the keys in the `sources` section: `key1`, `key2`, or `key3`. The `derive` modifier will replace any samples set as `key1` with the specified string (`"/path/to/{sample_name}_{sample_type}.bam"`), but with variables like `{sample_name}` populated with the values of other sample attributes. The variables in the file paths are formatted as `{variable}`, and are populated by sample attributes (columns in the sample annotation sheet). For example, your files may be stored in `/path/to/{sample_name}.fastq`, where `{sample_name}` will be populated individually for each sample in your PEP. You can also use shell environment variables (like ``${HOME}``) or wildcards (like `*`).
 
 Using `derive` is a powerful and flexible way to point to data files on disk. This enables you to point to more than one input file for each sample. For more details and a complete example, see [how to eliminate paths from the sample table](howto_eliminate_paths.md).
 
 ### Project attribute: `amendments`
 
-The `amendments` project attribute specifies variations of a project within one file. When a PEP is parsed, you may specify one or more included amendments, which will amend the values in the processed PEP.
+The `amendments` project attribute specifies multiple variations of a project within one file. When a PEP is parsed, you may specify one or more included amendments, which will amend the values in the processed PEP.
 
 For example:
 
@@ -200,12 +203,12 @@ amendments:
 
 If you load this configuration file, by default it sets `sample_table` to `annotation.csv`. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specified in the `my_project2` amendment.
 
-Amendments are useful to define multiple similar projects within a single project config file. Under the amendments key, you specify names of amendments, and then underneath these you specify any project config variables that you want to override for that particular amendment. It is also possible to activate more than one amendment in priority order, which allows you to combine different project features on-the-fly. For more details, see [how to mix and match amendments](howto_mixmatch).
+Amendments are useful to define multiple similar projects within a single project config file. Under the amendments key, you specify names of amendments, and then underneath these you specify any project config variables that you want to override for that particular amendment. It is also possible to activate more than one amendment in priority order, which allows you to combine different project features on-the-fly. For more details, see [how to mix and match amendments](howto_mixmatch.md).
 
 
 ### Project attribute: `imports`
 
-The `imports` key allows the config file to import other PEP config files. The values in the imported files will be overridden by the corresponding entries in the current config file. Imports are recursive, so an imported file that imports another file is allowed; the imports are resolved in cascading order with the most distant imports happening first, so the closest configuration options override the more distant ones.
+The `imports` key allows the config file to import other external PEP config files. The values in the imported files will be overridden by the corresponding entries in the current config file. Imports are recursive, so an imported file that imports another file is allowed; the imports are resolved in cascading order with the most distant imports happening first, so the closest configuration options override the more distant ones.
 
 Example:
 
@@ -214,9 +217,11 @@ imports:
   - path/to/parent_project_config.yaml
 ```
 
+Imports can be used to record and manage complex analysis relationships among analysis components. In a sense, imports are the opposite of amendments, because they allow combining multiple PEP files into one. When used in combination with amendments, they make it possible to orchestrate very powerful analysis. For more information, see [How to integrate imports and amendments](howto_integrate.md).
+
 ## Sample table specification
 
-The `sample_table` is a `.csv` file containing information about all samples (or pieces of data) in a project. **One row corresponds to one sample**. A sample table may contain any number of columns with any column names. Each columns corresponds to an attribute of a sample. For this reason, we sometimes use the word `column` and `attribute` interchangeably. 
+The `sample_table` is a `.csv` file containing information about all samples (or pieces of data) in a project. **One row corresponds to one sample**. A sample table may contain any number of columns with any column names. Each column corresponds to an attribute of a sample. For this reason, we sometimes use the word `column` and `attribute` interchangeably. 
 
 The only requirement for the column names is that the table **MUST** include a column named `sample_name`, which should specify a **unique** string identifying each sample. This should be a string without whitespace (space, tabs, etc...). Any additional columns become attributes of your sample and will be part of the project's metadata for the samples. 
 
@@ -233,9 +238,11 @@ The only requirement for the column names is that the table **MUST** include a c
 "frog_3h", "RRBS", "frog", "", "", "frog_data"
 ```
 
+A sample table with no attributes satisfies the generic PEP requriement, but it isn't really useful for an actual analysis. Therefore, tools that use PEPs should make use of the PEP validation framework to specify further requirements. For more details, see the [How to guide for PEP validation](howto_schema.md).
+
 ## Subsample table specification
 
-The `subsample_table` is a `.csv` file that annotates multi-value sample attributes. Multiple values for an attribute are specified as multiple rows with the same sample name. The subsample table contains a column named `sample_name` that **must** map to the column of the same name in the sample table.
+Samples that have more than one value for a particular attribute cannot be accommodated easily in tabular form. FOr this, PEP provides the `subsample_table`, which is a `.csv` file that annotates multi-value sample attributes. Multiple values for an attribute are specified as multiple rows with the same sample name. The subsample table contains a column named `sample_name` that **must** map to the column of the same name in the sample table.
 
 Here's a simple example. If you define the `sample_table` like this:
 

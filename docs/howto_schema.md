@@ -6,15 +6,15 @@ title: "Write my own PEP schema"
 
 ## Validating a generic PEP
 
-You can validate a PEP for the generic PEP format like this:
+You can validate a PEP against a PEP schema using the [peppy Python package](http://peppy.databio.org) like this:
 
-```console
-peppy validate path/to/project_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
+```
+peppy validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
 ```
 
 ## Validating a PEP for a specific tool
 
-Now, most tools will require more information than is provided by a generic, minimal PEP. For example, a particular tool may require the `genome` attribute is set for each sample. So, more useful than validating a generic PEP is to validate a PEP against a more strict schema, like one for a particular pipeline or workflow. You would do this in the same way, just using the more specialized schema:
+Most tools will require more attributes than a base PEP provides. For example, a tool may require a `genome` attribute for each sample and we need to validate a PEP against a stricter schema. You would do this in the same way, just using the more specialized schema:
 
 ```console
 peppy validate path/to/project_config.yaml -s SCHEMA
@@ -22,13 +22,10 @@ peppy validate path/to/project_config.yaml -s SCHEMA
 
 Where SCHEMA is a URL or local file. The author of the tool you are using should provide this schema so that you can make sure you are providing the correct metadata for the tool.
 
-If you are a tool developer and want to write your own schema, here's how to do it:
 
 ## Writing a PEP schema
 
-We recommend that workflow authors write a PEP schema that describes what sample and project attributes are required for their tool to work.
-
-PEP schemas use the [JSON-schema](https://json-schema.org/) vocabulary. Like the PEP itself, the schema is divided into two sections, one for the project config, and one for the samples. So, the base PEP schema defines an object with two components: `samples` array, and a `config` object:
+If you are a tool developer, we recommend you write a PEP schema that describes what sample and project attributes are required for your tool to work. PEP schemas use the [JSON-schema](https://json-schema.org/) vocabulary. Like the PEP itself, the schema is divided into two sections, one for the project config, and one for the samples. So, the base PEP schema defines an object with two components: a `config` object, and a `samples` array:
 
 ```yaml
 description: A example schema for a pipeline.
@@ -43,7 +40,7 @@ required:
   - config
 ```
 
-Let's say you're writing a tool that reads PEPs and requires 3 arguments: `read1`, `read2`, and `genome`. It also offers optional argument called `read_length`.  A project that validates with the generic PEP specification will not necessarily contain the attributes needed by your pipeline, so you want to write an extended schema to validate more strictly. Starting from the base above, we're not changing the `config` section so we can drop that out, and we add new parameters for the required sample attributes like this:
+Let's say you're writing a PEP-compatible tool that requires 3 arguments: `read1`, `read2`, and `genome`, and also offers optional argument, `read_length`.  Validating the generic PEP specification will not confirm all required attributes, so you want to write an extended schema. Starting from the base above, we're not changing the `config` section so we can drop that, and we add new parameters for the required sample attributes like this:
 
 ```yaml
 description: A example schema for a pipeline.

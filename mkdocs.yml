@@ -14,6 +14,7 @@ nav:
       - Store many projects in one file: howto_subprojects.md
       - Create automatic sample groups: howto_automatic_groups.md
       - Mix & match amendments on the fly: howto_mixmatch.md
+      - Integrate imports and amendments: howto_mixmatch.md
       - Create a PEP from GEO or SRA: howto_geofetch.md
       - Write my own PEP schema: howto_schema.md
   - Implmementations:

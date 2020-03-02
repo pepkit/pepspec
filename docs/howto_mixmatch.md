@@ -4,29 +4,38 @@ title: Mix & match amendments on the fly
 
 # How to mix and match amendments on the fly
 
-The `amendments` section of the config file allows you to include multiple variations of a project within one file. When a PEP is parsed, you may specify one or more included amendments, which will amend the values in the processed PEP. This is a powerful function that can be used for many purposes, such as *on the fly* tweaks or embedding multiple subprojects within a parent project.
+At times you will want to create two projects that are very similar, but differ just in one or two attributes. For example, you may define a project with one set of samples, and then want an identical project but using a different sample annotation sheet. Or, you may define a project to run on a particular reference genome, and want to define a second project that is identical, but uses a different reference genome.
+
+You could simply define 2 complete PEPs, but this would duplicate information and make it harder to maintain. Instead, you can use *amendments*, which allow you to encode additional similar projects all within the original `project_config.yaml` file. Amendments are like mini embedded `project_config.yaml` files that can be *activated* by software. When a PEP is parsed, you may specify one or more included amendments, which will amend the values in the processed PEP. This is a powerful function that can be used for many purposes, such as *on the fly* tweaks or embedding multiple subprojects within a parent project.
 
 ## Example
 
 ```{yaml}
 sample_table: annotation.csv
+genome: hg38
 amendments:
   my_project2:
     sample_table: annotation2.csv
   my_project3:
     sample_table: annotation3.csv
+  hg19_analysis:
+  	genome: hg19
 ...
 ```
 
-If you load this configuration file, it will by default use the `annotation.csv` file specified in the `sample_table` attribute, as you would expect. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specifed in the `my_project2` amendment.
+If you load this configuration file, it will by default use the `annotation.csv` file, and the `genome` attribute will be set to "hg38". There are 3 amendments available: `my_project2`, `my_project3`,a nd `hg19_analysis`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv` -- still run on "hg38". To run two amendments, you could issue `ammendments=my_project2,hg19_analysis`, which will result in this config file:
+
+
+```{yaml}
+sample_table: annotation2.csv
+genome: hg19
+amendments:
+  ...
+
+```
 
 Practically what happens under the scenes is that the primary project is first loaded, and then, if an amendment is activated, it overrides any attributes with those specified in the amendment.
 
-## Rationale
-
-At times you will want to create two projects that are very similar, but differ just in one or two attributes. For example, you may define a project with one set of samples, and then want an identical project but using a different sample annotation sheet. Or, you may define a project to run on a particular reference genome, and want to define a second project that is identical, but uses a different reference genome.
-
-You could simply define 2 complete PEPs, but this would duplicate information and make it harder to maintain. Instead, you can use *amendments*, which allow you to encode additional similar projects all within the original `project_config.yaml` file. Amendments are like mini embedded `project_config.yaml` files that can be *activated* by software. 
 
 ## How do you activate an amendment?
 

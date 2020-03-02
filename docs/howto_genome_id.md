@@ -5,7 +5,7 @@ redirect_from: "/docs/implied_attributes/"
 
 # How to remove genome from a sample table
 
-Many sample tables include identifiers like a genome or transcriptome assembly (*e.g.* `hg38`) that really are an aspect of an analysis, rather than an attribute of a particular sample. Encoding these attributes within the sample table reduces its portability. Alternatively, if you encode these type of variables in the project configuration file, the sample table could be re-used across projects with different analysis settings.
+Many sample tables include identifiers like a genome or transcriptome assembly (*e.g.* `hg38`) that really are an aspect of an analysis, rather than an attribute of a particular sample. If you store these attributes within the sample table, you reduce its portability because those attributes only apply to that particular analysis. If samples are only used for as single analysis, that's fine, but the point of PEP is to encourage re-use of data, so we'd like our sample tables to be as portable as possible. Instead, if you store these variables in the project configuration file, *the sample table could be re-used across projects with different analysis settings*. 
 
 One way to solve this is to use an `append` modifier to add a `genome` attribute to each sample from the project config file.
 
@@ -15,7 +15,7 @@ sample_modifiers
     genome: "hg38"
 ```
 
-Here's how you could combine this with an amendment to have 2 different analyses in one project:
+This way, we've moved the 'genome' attribute out of the sample table. Another analysis that could run on this same set of input data could now use the sample table without issue. In fact, we could even include these two analyses in the same project config file using an amendment:
 
 ```
 sample_modifiers
