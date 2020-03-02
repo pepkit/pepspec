@@ -22,7 +22,7 @@ Organizing and annotating sample data is an important task in data-intensive bio
 
 - **Project**: a collection of metadata that annotates a set of samples.
 - **Sample**: loosely defined; a unit that can be collected into a project, usually with one or more data files.
-- **PEP specification**: the a way to organize project and sample *meta*data in files using a `yaml` + `tsv` format.
+- **PEP specification**: the way to organize project and sample *meta*data in files using a `yaml` + `tsv` format.
 - **PEP**: a project that follows the PEP specification.
 
 The PEP specification divides metadata into two components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These two components are stored in separate files. A complete PEP consists of up to 3 files:
