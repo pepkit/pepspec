@@ -1,8 +1,6 @@
----
-title: "R package: pepr"
----
+# R package: pepr
 
-<img src="/img/logo_R.svg" alt="" style="float:left; margin:20px">
+<!-- <img src="/img/logo_R.svg" alt="" style="float:left; margin:20px"> -->
 
 `pepr` is an R package for reading Portable Encapsulated Projects. It will read PEP projects, loading all project and sample metadata into R with a single line of code. `pepr` is currently in alpha mode and should not be used production projects. It is made available for conceptual and testing purposes only.
 

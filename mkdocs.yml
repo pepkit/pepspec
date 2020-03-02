@@ -21,8 +21,7 @@ nav:
     - "Python package: peppy": peppy.md
     - "R package: pepr": pepr.md
   - PEP in practice:
-    - Projects using PEP: projects.md
-    - Software using PEP: software.md
+    - Projects and software using PEP: pep_in_practice.md
     - Support: https://github.com/pepkit/pepkit.github.io/issues
     - Team and Contributing: team.md
     - Changelog: changelog.md
