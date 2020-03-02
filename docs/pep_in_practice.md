@@ -33,7 +33,7 @@ Examples of real projects:
 
 If your project is PEP-compatible, please add it to this list with a [pull request](https://github.com/pepkit/pepkit.github.io/blob/master/_docs/tools.md) and use this shield to showcase PEP:
 
-<img src="/PEP-compatible-green.svg" alt="PEP compatible" style="float:left; margin:10px"><br clear="all"/>
+<img src="http://pepkit.github.io/img/PEP-compatible-green.svg" alt="PEP compatible" style="float:left; margin:10px"><br clear="all"/>
 
 Here's `markdown` (for use on GitHub READMEs):
 ```
