@@ -3,6 +3,8 @@ title: Eliminate paths from sample table
 redirect_from: "/docs/derived_attributes/"
 ---
 
+# How to eliminate paths from a sample table
+
 The `derive` sample modifier, allows you to add new sample attributes that are derived from existing sample attributes.
 
 ## Example

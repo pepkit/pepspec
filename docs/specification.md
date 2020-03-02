@@ -16,11 +16,11 @@ Table of contents:
 
 Organizing and annotating sample data is an important task in data-intensive bioinformatics, but each dataset is typically annotated uniquely. Furthermore, data processing tools typically expect a unique format for sample annotation. There is no standard way to represent metadata that spans projects and tools. This restricts the portability and reusability of annotated datasets and software that processes them.
 
-*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable by specifying a metadata structure. PEPs are typically data-intensive bioinformatics projects with many samples (which could be individual experiments, organisms, cell lines, *etc.*). However, the concepts are generic and could be applied to any collection of metadata represented in tabular form. The PEP specification also provides features that make metadata more portable, across both computing environments and processing tools. 
+*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable by specifying a metadata structure. PEPs are typically data-intensive bioinformatics projects with many samples (which could be individual experiments, organisms, cell lines, *etc.*). However, the concepts are generic and could be applied to any collection of metadata represented in tabular form. The PEP specification also provides features that make metadata more portable across both computing environments and processing tools.
 
 ## Terminology and components of a PEP
 
-In PEP parlance, **a *project* is a collection of metadata that annotates a set of samples.** A **sample** is loosely defined as any unit that can be collected together in a project. The **PEP specification** is a way to organize project and sample metadata in files, and a **PEP** is a project that follows the specification. The PEP specification divides metadata into two components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These two components are stored in separate files. A complete PEP consists of up to 3 files:
+In PEP parlance, **a *project* is a collection of metadata that annotates a set of samples.** A **sample** is loosely defined as a unit that can be collected into a project and usually corresponds to one or more data files. The **PEP specification** is a way to organize project and sample *meta*data in files, and a **PEP** is a project that follows the specification. The PEP specification divides metadata into two components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These two components are stored in separate files. A complete PEP consists of up to 3 files:
 
 - **Project config file** - REQUIRED. a `yaml` file containing project-level metadata
 - **Sample table** - RECOMMENDED. a `csv` file of sample metadata, with 1 row per sample
@@ -28,7 +28,7 @@ In PEP parlance, **a *project* is a collection of metadata that annotates a set 
 
 This document describes each of these 3 files in detail.
 
-## Goals and benefits of using a PEP
+<!-- ## Goals and benefits of using a PEP
 
 The PEP specification has 2 primary goals:
 
@@ -36,7 +36,7 @@ The PEP specification has 2 primary goals:
 
 2. To make software that analyzes multi-sample datasets more reusable. applying tools to external data. 
 
-3. To provide a way to formalize required metadata and validate it. The PEP specification provides a generic schema and an easy to way to extend it so that tool developers can formally describe what sample and project metadata their tool requires. Users can then use validation to identify which software is compatible with their data.
+3. To provide a way to formalize required metadata and validate it. The PEP specification provides a generic schema and an easy to way to extend it so that tool developers can formally describe what sample and project metadata their tool requires. Users can then use validation to identify which software is compatible with their data. -->
 
 ## Validating a PEP
 
@@ -46,7 +46,7 @@ This document describes a specification for a generic PEP, which is formally des
 peppy validate path/to/your/PEP_config.yaml -s https://schema.databio.org/PEP/pep_v2.yaml
 ```
 
-PEP schemas use an extended version of the [JSON-schema](https://json-schema.org/) vocabulary. The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [How to guide for PEP validation](/docs/validation).
+PEP schemas use an extended version of the [JSON-schema](https://json-schema.org/) vocabulary. The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [How to guide for PEP validation](howto_schema.md).
 
 ## Project config file specification
 
@@ -159,7 +159,7 @@ sample_modifiers:
 
 This example will take any sample with `organism` attribute set to the string "human" and add attributes of `genome` (with value "hg38") and `macs_genome_size` (with value "hs"). This example shows only 1 implication, but you can include as many as you like.
 
-Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [implied attributes](/docs/implied_attributes).
+Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to remove project-level attributes from sample table](howto_genome_id.md).
 
 #### *sample_modifiers.derive*
 
@@ -179,7 +179,7 @@ sample_modifiers:
 
 In this example, the samples should already have attributes named `read1`, `read2`, and `data_1`, which are flagged as attributes to derive. These attribute values should originally be set to one of the keys in the `sources` section: `key1`, `key2`, or `key3`. The `derive` modifier will replace any samples set as `key1` with the specified string (`"/path/to/{sample_name}_{sample_type}.bam"`), but with variables like `{sample_name}` populated with the values of other sample attributes. The variables in the file paths are formatted as `{variable}`, and are populated by sample attributes (columns in the sample annotation sheet). For example, your files may be stored in `/path/to/{sample_name}.fastq`, where `{sample_name}` will be populated individually for each sample in your PEP. You can also use shell environment variables (like ``${HOME}``).
 
-Using `derive` is a powerful and flexible way to point to data files on disk. This enables you to point to more than one input file for each sample. For more details and a complete example, see [derived attributes](/docs/derived_attributes).
+Using `derive` is a powerful and flexible way to point to data files on disk. This enables you to point to more than one input file for each sample. For more details and a complete example, see [how to eliminate paths from the sample table](howto_eliminate_paths.md).
 
 ### Project attribute: `amendments`
 
@@ -200,7 +200,7 @@ amendments:
 
 If you load this configuration file, by default it sets `sample_table` to `annotation.csv`. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specified in the `my_project2` amendment.
 
-Amendments are useful to define multiple similar projects within a single project config file. Under the amendments key, you specify names of amendments, and then underneath these you specify any project config variables that you want to override for that particular amendment. It is also possible to activate more than one amendment in priority order, which allows you to combine different project features on-the-fly. For more details, see [amendments](/docs/amendments).
+Amendments are useful to define multiple similar projects within a single project config file. Under the amendments key, you specify names of amendments, and then underneath these you specify any project config variables that you want to override for that particular amendment. It is also possible to activate more than one amendment in priority order, which allows you to combine different project features on-the-fly. For more details, see [how to mix and match amendments](howto_mixmatch).
 
 
 ### Project attribute: `imports`

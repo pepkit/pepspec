@@ -2,6 +2,8 @@
 title: Specify multiple input files
 ---
 
+# How to specify multiple input files
+
 Occasionally, a sample needs to have more than one value for an attribute. This doesn't fit naturally into a tabular data format because it requires a one-to-many relationship that is better handled by a relational database. For these kinds of attributes, the PEP specification uses a second table called `subsample_table`, which is added as an attribute in the project config file. To explain how this works, we'll use the most common example case of needing it: a single sample with multiple input files.
 
 Sometimes you have multiple input files for one sample. For example, perhaps you have technical replicates that you want merged before running a pipeline. Or, a common use case is a single library that was spread across multiple sequencing lanes, yielding multiple input files. Rather than putting multiple lines in your sample table, which causes conceptual and analytical challenges there are two ways to do this:
