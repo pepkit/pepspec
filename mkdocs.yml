@@ -17,7 +17,7 @@ nav:
       - Integrate imports and amendments: howto_integrate.md
       - Create a PEP from GEO or SRA: howto_geofetch.md
       - Write my own PEP schema: howto_schema.md
-  - Implmementations:
+  - Implementations:
     - "Python package: peppy": peppy.md
     - "R package: pepr": pepr.md
   - PEP in practice:
