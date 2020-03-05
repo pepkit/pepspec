@@ -12,6 +12,8 @@
 
 <ul>
 <li><a href="https://cemm.at/research/groups/christoph-bock-group/">Christoph Bock</a>, Center for Molecular Medicine, Vienna, Austria</li>
+  <li><a href="https://johanneskoester.bitbucket.io/">Johannes Köster</a>, University of Duisburg-Essen, Germany</li>
+
 </ul>
 
 ## Contributing
