@@ -29,7 +29,7 @@ The PEP specification divides metadata into two components: sample metadata, whi
 
 - **Project config file** - REQUIRED. a `yaml` file containing project-level metadata
 - **Sample table** - RECOMMENDED. a `csv` file of sample metadata, with 1 row per sample
-- **Subsample table** - OPTIONAL. A `csv` file of sample  with multiple rows for each sample, used to specify sample attributes with multiple values.
+- **Subsample table** - OPTIONAL. A `csv` file of sample  with multiple rows for each sample, used to specify sample attributes with multiple values (*e.g.* used to point to inputs in sequencing experiments when split across multiple files).
 
 This document describes each of these 3 files in detail.
 
@@ -242,7 +242,7 @@ A sample table with no attributes satisfies the generic PEP requriement, but it 
 
 ## Subsample table specification
 
-Samples that have more than one value for a particular attribute cannot be accommodated easily in tabular form. FOr this, PEP provides the `subsample_table`, which is a `.csv` file that annotates multi-value sample attributes. Multiple values for an attribute are specified as multiple rows with the same sample name. The subsample table contains a column named `sample_name` that **must** map to the column of the same name in the sample table.
+Samples that have more than one value for a particular attribute cannot be accommodated easily in tabular form. For this, PEP provides the `subsample_table`, which is a `.csv` file that annotates multi-value sample attributes. Multiple values for an attribute are specified as multiple rows with the same sample name. The subsample table contains a column named `sample_name` that **must** map to the column of the same name in the sample table. One common use case for subsample tables is for when samples have multiple input files of the same type. For example, in a sequence experiment, it's common to split samples across multiple sequencing *lanes*, which each yield a separate file. Subsample tables are one way to associate many files to a single sample attribute.
 
 Here's a simple example. If you define the `sample_table` like this:
 
