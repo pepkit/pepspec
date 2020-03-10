@@ -1,12 +1,12 @@
 ---
-title: PEP specification
+title: PEP specification version 2.0.0
 ---
 
 <!-- Table of contents: 
 * The generated Toc will be an unordered list
 {:toc} -->
 
-<h1>PEP specification</h1>
+<h1>PEP specification version 2.0.0</h1>
 
 Table of contents:
 
