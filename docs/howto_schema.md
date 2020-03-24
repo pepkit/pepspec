@@ -6,10 +6,17 @@ title: "Write my own PEP schema"
 
 ## Validating a generic PEP
 
-You can validate a PEP against a PEP schema using the [peppy Python package](http://peppy.databio.org) like this:
+
+<figure>
+<img src="/img/validation.svg" width="275">
+<figcaption>You can validate any PEP against any Schema</figcaption>
+</figure>
+
+
+You can validate a PEP against a PEP schema using the [eido Python package](http://eido.databio.org) like this:
 
 ```
-peppy validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
+eido validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
 ```
 
 ## Validating a PEP for a specific tool
@@ -17,7 +24,7 @@ peppy validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.
 Most tools will require more attributes than a base PEP provides. For example, a tool may require a `genome` attribute for each sample and we need to validate a PEP against a stricter schema. You would do this in the same way, just using the more specialized schema:
 
 ```console
-peppy validate path/to/project_config.yaml -s SCHEMA
+eido validate path/to/project_config.yaml -s SCHEMA
 ```
 
 Where SCHEMA is a URL or local file. The author of the tool you are using should provide this schema so that you can make sure you are providing the correct metadata for the tool.
