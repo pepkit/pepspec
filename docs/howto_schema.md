@@ -8,7 +8,7 @@ title: "Write my own PEP schema"
 
 
 <figure>
-<img src="/img/validation.svg" width="275">
+<img src="../img/validation.svg" width="275">
 <figcaption>You can validate any PEP against any Schema</figcaption>
 </figure>
 

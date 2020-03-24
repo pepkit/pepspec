@@ -29,7 +29,7 @@ Organizing and annotating sample data is an important task in data-intensive bio
 The PEP specification divides metadata into components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These components are stored in separate files. 
 
 <figure>
-<img src="/img/pep_contents.svg" width="275">
+<img src="../img/pep_contents.svg" width="275">
 <figcaption>A PEP consists of 3 components</figcaption>
 </figure>
 
@@ -124,7 +124,7 @@ The `subsample_table` is a path (string) to the subsample csv file. Like with th
 ### Project attribute: `sample_modifiers`
 
 <figure>
-<img src="/img/cartoon_sample_modifiers.svg" width="250">
+<img src="../img/cartoon_sample_modifiers.svg" width="250">
 <figcaption>Sample modifiers are project settings that modify samples.</figcaption>
 </figure>
 
@@ -134,7 +134,7 @@ The sample modifiers allows you to modify sample attributes from within the proj
 #### *sample_modifiers.append*
 
 <figure>
-<img src="/img/cartoon_append.svg" width="180">
+<img src="../img/cartoon_append.svg" width="180">
 <figcaption><i>Append</i> adds a constant attribute to all samples.</figcaption>
 </figure>
 
@@ -155,7 +155,7 @@ This example adds a `read_type` attribute to each sample, with the value `SINGLE
 #### *sample_modifiers.duplicate*
 
 <figure>
-<img src="/img/cartoon_duplicate.svg" width="180">
+<img src="../img/cartoon_duplicate.svg" width="180">
 <figcaption><i>Duplicate</i> copies an attribute to a new name.</figcaption>
 </figure>
 The `duplicate` modifier copies an existing sample attribute to a new attribute with a different name. This can be useful if you need to tweak a PEP to work under a different tool that specifies a different schema for the same data.
@@ -174,7 +174,7 @@ This example would copy the value of `old_attribute_name` to a new attribute cal
 #### *sample_modifiers.imply*
 
 <figure>
-<img src="/img/cartoon_imply.svg" width="180">
+<img src="../img/cartoon_imply.svg" width="180">
 <figcaption><i>Imply</i> depends on other attribute values.</figcaption>
 </figure>
 
@@ -199,7 +199,7 @@ Implied attributes can be useful for pipeline arguments. For instance, it may th
 #### *sample_modifiers.derive*
 
 <figure>
-<img src="/img/cartoon_derive.svg" width="180">
+<img src="../img/cartoon_derive.svg" width="180">
 <figcaption><i>Derive</i> builds new attributes from existing values.</figcaption>
 </figure>
 
@@ -224,7 +224,7 @@ Using `derive` is a powerful and flexible way to point to data files on disk. Th
 ### Project attribute: `amendments`
 
 <figure>
-<img src="/img/cartoon_amendments.svg" width="250">
+<img src="../img/cartoon_amendments.svg" width="250">
 <figcaption><i>Amendments</i> specify project variations within one file.</figcaption>
 </figure>
 
@@ -251,7 +251,7 @@ Amendments are useful to define multiple similar projects within a single projec
 ### Project attribute: `imports`
 
 <figure>
-<img src="/img/cartoon_imports.svg" width="250">
+<img src="../img/cartoon_imports.svg" width="250">
 <figcaption><i>Imports</i> include external PEP config files.</figcaption>
 </figure>
 

@@ -5,7 +5,7 @@ title: Rationale
 # Rationale
 
 <figure>
-<img src="/img/data-munging.svg" width="300">
+<img src="../img/data-munging.svg" width="300">
 <figcaption>PEP specifies a universal format</figcaption>
 </figure>
 
