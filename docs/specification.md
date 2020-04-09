@@ -14,27 +14,34 @@ Table of contents:
 
 ## Introduction
 
-Organizing and annotating sample data is an important task in data-intensive bioinformatics, but each dataset is typically annotated uniquely. Furthermore, data processing tools typically expect a unique format for sample annotation. There is no standard way to represent metadata that spans projects and tools. This restricts the portability and reusability of annotated datasets and software that processes them.
+Organizing and annotating sample data is an important task in data-intensive bioinformatics, but each dataset is typically annotated in a unique way. Furthermore, data processing tools typically expect a unique format for sample annotation. There is no standard way to represent metadata that spans projects and tools. This restricts the portability and reusability of annotated datasets and software that processes them.
 
-*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable by specifying a metadata structure. PEPs can be made from any collection of metadata represented in tabular form and are typically data-intensive bioinformatics projects with many samples, such as individual experiments, organisms, or cell lines. In addition to standardization, PEPs also have other features that make metadata more portable across both computing environments and processing tools.
+*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable. PEP does this by providing *metadata standarization*, *metadata validation*, and *portability modifiers*.
+
+## How PEP improves sample annotation portability
+
+PEP provides 3 features to improve portability: 
+
+1. **A standardized metadata structure**. The PEP specification is a standardized way to represent sample annotation information. This allows tools and pipelines to read data from different sources more easily.
+2. **A validation framework**. The PEP specification provides a way to construct formal validation schemas. This allows us to validate that a project or sample complies with a requirements for an arbitrary tool. PEP uses an [extended JSON-schema system](howto_schema.md) with added features specific to the sample annotation use case.
+3. **Project and sample modifiers**. The PEP specification provides a powerful framework to *programatically modify* sample- and project-level metadata. This makes it easy to systematize metadata so that one input source can be easily used with multiple tools.
 
 ## Definitions of terms and components of a PEP
+
+A PEP can be made from any collection of metadata represented in tabular form. Typically, a PEP represents a data-intensive bioinformatics project with many samples, like individuals or cell lines. The key terms are:
 
 - **Project**: a collection of metadata that annotates a set of samples.
 - **Sample**: loosely defined; a unit that can be collected into a project, usually with one or more data files.
 - **PEP specification**: the way to organize project and sample *meta*data in files using a `yaml` + `tsv` format.
 - **PEP**: a project that follows the PEP specification.
 
-
-The PEP specification divides metadata into components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These components are stored in separate files. 
-
 <figure>
 <img src="../img/pep_contents.svg" width="275">
 <figcaption>A PEP consists of 3 components</figcaption>
 </figure>
 
-A complete PEP consists of up to 3 files:
 
+The PEP specification divides metadata into components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These components are stored in separate files. A complete PEP consists of up to 3 files:
 
 - **Project config file** - REQUIRED. a `yaml` file containing project-level metadata
 - **Sample table** - RECOMMENDED. a `csv` file of sample metadata, with 1 row per sample
