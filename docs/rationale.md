@@ -4,7 +4,11 @@ title: Rationale
 
 # Rationale
 
-<img src="/img/data-munging.svg" alt="" style="float:right; margin-left:10px" width="300px">
+<figure>
+<img src="../img/data-munging.svg" width="300">
+<figcaption>PEP specifies a universal format</figcaption>
+</figure>
+
 
 In a data analysis project, we frequently want to run many different tools on the same input data. Too often, this requires structuring the data uniquely for each tool. This makes it difficult to test multiple tools because each connection structure must be defined manually.
 
