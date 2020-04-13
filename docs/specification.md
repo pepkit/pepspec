@@ -69,7 +69,7 @@ The formal PEP spec is described as a schema at [schema.databio.org/pep/2.0.0.ya
 eido validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
 ```
 
-PEP schemas use an extended [JSON-schema](https://json-schema.org/) vocabulary. The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [How to guide for PEP validation](howto_schema.md).
+PEP schemas use an extended [JSON-schema](https://json-schema.org/) vocabulary. The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [How-to guide for PEP validation](howto_schema.md).
 
 ## Project config file specification
 
@@ -293,7 +293,7 @@ The only requirement for the column names is that the table **MUST** include a c
 "frog_3h", "RRBS", "frog", "", "", "frog_data"
 ```
 
-A sample table with no attributes satisfies the generic PEP requriement, but it isn't really useful for an actual analysis. Therefore, tools that use PEPs should make use of the PEP validation framework to specify further requirements. For more details, see the [How to guide for PEP validation](howto_schema.md).
+A sample table with no attributes satisfies the generic PEP requriement, but it isn't really useful for an actual analysis. Therefore, tools that use PEPs should make use of the PEP validation framework to specify further requirements. For more details, see the [How-to guide for PEP validation](howto_schema.md).
 
 ## Subsample table specification
 
