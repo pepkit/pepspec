@@ -103,8 +103,8 @@ sample_modifiers:
   derive:
     attributes: [read1, read2, other_attr]
     sources:
-      key1: "path/to/derived/value/{sample.attribute}/{project.attribute}"
-      key2: "path/to/derived/value/{sample.attribute}/{project.attribute}"
+      key1: "path/to/derived/value/{sample_attribute}"
+      key2: "path/to/derived/value/{sample_attribute}"
 project_modifiers:
   amend:
     variant1:
