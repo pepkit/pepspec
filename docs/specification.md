@@ -32,7 +32,7 @@ A PEP can be made from any collection of metadata represented in tabular form. T
 
 - **Project**: a collection of metadata that annotates a set of samples.
 - **Sample**: loosely defined; a unit that can be collected into a project, usually with one or more data files.
-- **PEP specification**: the way to organize project and sample *meta*data in files using a `yaml` + `tsv` format.
+- **PEP specification**: the way to organize project and sample *meta*data in files using a `yaml` + `csv` format.
 - **PEP**: a project that follows the PEP specification.
 
 <figure>
@@ -73,14 +73,13 @@ PEP schemas use an extended [JSON-schema](https://json-schema.org/) vocabulary. 
 
 ## Project config file specification
 
-The project config file is the source of project-level information. It is the only required file and must be in `yaml` format. The config file includes six recognized project attributes, most being optional:
+The project config file is the source of project-level information. It is the only required file and must be in `yaml` format. The config file includes five recognized project attributes, most being optional:
 
 - `pep_format_version` - REQUIRED
 - `sample_table`- RECOMMENDED
 - `subsample_table`- OPTIONAL
 - `sample_modifiers` - OPTIONAL
-- `amendments` - OPTIONAL
-- `imports` - OPTIONAL
+- `project_modifiers` - OPTIONAL
 
 These attributes may appear in any order.
 
@@ -106,14 +105,13 @@ sample_modifiers:
     sources:
       key1: "path/to/derived/value/{sample.attribute}/{project.attribute}"
       key2: "path/to/derived/value/{sample.attribute}/{project.attribute}"
-
-amendments:
-  variant1:
-    sample_table: "path/to/alternative_table.csv"
-
-imports:
-  - external_pep.yaml
-  - http://url.com/pep.yaml
+project_modifiers:
+  amend:
+    variant1:
+      sample_table: "path/to/alternative_table.csv"
+  import:
+    - external_pep.yaml
+    - http://url.com/pep.yaml
 ```
 
 ### Project attribute: `pep_version`
@@ -220,7 +218,7 @@ sample_modifiers:
     attributes: [read1, read2, data_1]
     sources:
       key1: "/path/to/{sample_name}_{sample_type}.bam"
-      key2: "/path/from/collaborator/weirdNamingScheme_{external_id}.fastq"
+      key2: "/from/collaborator/weirdNamingScheme_{ext_id}.fastq"
       key3: "${HOME}/{test_id}.fastq"
 ```
 
@@ -228,51 +226,55 @@ In this example, the samples should already have attributes named `read1`, `read
 
 Using `derive` is a powerful and flexible way to point to data files on disk. This enables you to point to more than one input file for each sample. For more details and a complete example, see [how to eliminate paths from the sample table](howto_eliminate_paths.md).
 
-### Project attribute: `amendments`
+### Project attribute: `project_modifiers`
 
-<figure>
-<img src="../img/cartoon_amendments.svg" width="250">
-<figcaption><i>Amendments</i> specify project variations within one file.</figcaption>
-</figure>
+The project modifiers allows you to modify *project-level* attributes from within the project configuration file. There are 2 subsections corresponding to 2 types of project modifier: `import` and `amend`. Imports run first, followed by amendments.
 
-The `amendments` project attribute specifies multiple variations of a project within one file. When a PEP is parsed, you may specify one or more included amendments, which will amend the values in the processed PEP.
-
-For example:
-
-
-```yaml
-sample_table: annotation.csv
-amendments:
-  my_project2:
-    sample_table: annotation2.csv
-  my_project3:
-    sample_table: annotation3.csv
-...
-```
-
-If you load this configuration file, by default it sets `sample_table` to `annotation.csv`. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specified in the `my_project2` amendment.
-
-Amendments are useful to define multiple similar projects within a single project config file. Under the amendments key, you specify names of amendments, and then underneath these you specify any project config variables that you want to override for that particular amendment. It is also possible to activate more than one amendment in priority order, which allows you to combine different project features on-the-fly. For more details, see [how to mix and match amendments](howto_mixmatch.md).
-
-
-### Project attribute: `imports`
+#### *project_modifiers.import*
 
 <figure>
 <img src="../img/cartoon_imports.svg" width="250">
 <figcaption><i>Imports</i> include external PEP config files.</figcaption>
 </figure>
 
-
-The `imports` key allows the config file to import other external PEP config files. The values in the imported files will be overridden by the corresponding entries in the current config file. Imports are recursive, so an imported file that imports another file is allowed; the imports are resolved in cascading order with the most distant imports happening first, so the closest configuration options override the more distant ones.
+The `import` project modifier allows the config file to import other external PEP config files. The values in the imported files will be overridden by the corresponding entries in the current config file. Imports are recursive, so an imported file that imports another file is allowed; the imports are resolved in cascading order with the most distant imports happening first, so the closest configuration options override the more distant ones.
 
 Example:
 
 ```yaml
-imports:
-  - path/to/parent_project_config.yaml
+project_modifiers:
+  import:
+    - path/to/parent_project_config.yaml
 ```
 
 Imports can be used to record and manage complex analysis relationships among analysis components. In a sense, imports are the opposite of amendments, because they allow combining multiple PEP files into one. When used in combination with amendments, they make it possible to orchestrate very powerful analysis. For more information, see [How to integrate imports and amendments](howto_integrate.md).
+
+#### *project_modifiers.amend*
+
+<figure>
+<img src="../img/cartoon_amendments.svg" width="250">
+<figcaption><i>Amendments</i> specify project variations within one file.</figcaption>
+</figure>
+
+The `amend` project modifier specifies multiple variations of a project within one file. When a PEP is parsed, you may select one or more included amendments, which will amend the values in the processed PEP. Unlike all other sample or project modifiers, amendments are optional and must be activated individually when the PEP is loaded.
+
+For example:
+
+
+```yaml
+sample_table: annotation.csv
+project_modifiers:
+  amend:
+    my_project2:
+      sample_table: annotation2.csv
+    my_project3:
+      sample_table: annotation3.csv
+...
+```
+
+If you load this configuration file, by default it sets `sample_table` to `annotation.csv`. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specified in the `my_project2` amendment.
+
+Amendments are useful to define multiple similar projects within a single project config file. Under the amendments key, you specify names of amendments, and then underneath these you specify any project config variables that you want to override for that particular amendment. It is also possible to activate more than one amendment in priority order, which allows you to combine different project features on-the-fly. For more details, see [how to mix and match amendments](howto_mixmatch.md).
 
 ## Sample table specification
 
@@ -282,15 +284,15 @@ The only requirement for the column names is that the table **MUST** include a c
 
 **Example:**
 ```
-"sample_name", "protocol", "organism", "flowcell", "lane",  "data_source"
-"albt_0h", "RRBS", "albatross", "BSFX0190", "1", "bsf_sample"
-"albt_1h", "RRBS", "albatross", "BSFX0190", "1", "bsf_sample"
-"albt_2h", "RRBS", "albatross", "BSFX0190", "1", "bsf_sample"
-"albt_3h", "RRBS", "albatross", "BSFX0190", "1", "bsf_sample"
-"frog_0h", "RRBS", "frog", "", "", "frog_data"
-"frog_1h", "RRBS", "frog", "", "", "frog_data"
-"frog_2h", "RRBS", "frog", "", "", "frog_data"
-"frog_3h", "RRBS", "frog", "", "", "frog_data"
+"sample_name","protocol","organism","flowcell","lane", "data_source"
+"albt_0h","RRBS","albatross","BSFX0190","1","bsf_sample"
+"albt_1h","RRBS","albatross","BSFX0190","1","bsf_sample"
+"albt_2h","RRBS","albatross","BSFX0190","1","bsf_sample"
+"albt_3h","RRBS","albatross","BSFX0190","1","bsf_sample"
+"frog_0h","RRBS","frog","","","frog_data"
+"frog_1h","RRBS","frog","","","frog_data"
+"frog_2h","RRBS","frog","","","frog_data"
+"frog_3h","RRBS","frog","","","frog_data"
 ```
 
 A sample table with no attributes satisfies the generic PEP requriement, but it isn't really useful for an actual analysis. Therefore, tools that use PEPs should make use of the PEP validation framework to specify further requirements. For more details, see the [How to guide for PEP validation](howto_schema.md).

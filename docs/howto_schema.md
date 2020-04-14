@@ -4,14 +4,14 @@ title: "Write my own PEP schema"
 
 # How to write my own PEP schema
 
-## Validating a generic PEP
-
-
 <figure>
 <img src="../img/validation.svg" width="275">
 <figcaption>You can validate any PEP against any Schema</figcaption>
 </figure>
 
+PEP is very flexible and can be used to annotate metadata for many different types of analysis. The basic PEP specification is described using a [generic schema](https://schema.databio.org/pep/2.0.0.yaml) that specifies the required and optional fields that must be specified in the PEP. This generic schema is very basic and flexible. This flexibility is nice, but also means two PEPs can represent very different data types, and therefore means they will work correctly with a particular tool, even if it is PEP-compatible. To allow PEP to be extended to specific use cases and establish these more detailed compatibilities, PEP provides a powerful validation framework. This allows tool authors to define a *schema* that describes specifically which attributes the sample and project must have, which are optional, what their types are, which attributes point to input files, and so on.
+
+## Validating a generic PEP
 
 You can validate a PEP against a PEP schema using the [eido Python package](http://eido.databio.org) like this:
 
