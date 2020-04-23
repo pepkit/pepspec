@@ -103,8 +103,8 @@ sample_modifiers:
   derive:
     attributes: [read1, read2, other_attr]
     sources:
-      key1: "path/to/derived/value/{sample_attribute}"
-      key2: "path/to/derived/value/{sample_attribute}"
+      key1: "path/to/derived/value/{sample.attribute}/{project.attribute}"
+      key2: "path/to/derived/value/{sample.attribute}/{project.attribute}"
 project_modifiers:
   amend:
     variant1:
@@ -134,7 +134,29 @@ The `subsample_table` is a path (string) to the subsample csv file. Like with th
 </figure>
 
 
-The sample modifiers allows you to modify sample attributes from within the project configuration file. You can use this to add new attributes to samples in a variety of ways, including attributes whose value varies depending on values of existing attributes, or whose values are composed of existing attribute values. This is a key feature of PEP that allows you to make the sample tables more portable. There are 4 subsections corresponding to 4 types of sample modifier: `append`, `duplicate`, `imply`, and `derive`; and the samples will be modified in that order. Within each modifier, samples will be modified in the order in which the commands are listed.
+The sample modifiers allows you to modify sample attributes from within the project configuration file. You can use this to add new attributes to samples in a variety of ways, including attributes whose value varies depending on values of existing attributes, or whose values are composed of existing attribute values. This is a key feature of PEP that allows you to make the sample tables more portable. There are 5 subsections corresponding to 5 types of sample modifier: `remove`, `append`, `duplicate`, `imply`, and `derive`; and the **samples will be modified in that order**. Within each modifier, samples will be modified in the order in which the commands are listed.
+
+#### *sample_modifiers.remove*
+
+<figure>
+<img src="../img/cartoon_append.svg" width="180">
+<figcaption><i>Remove</i> eliminates attribute from all samples.</figcaption>
+</figure>
+
+
+The `remove` modifier elimiantes one or more sample attributes. 
+
+Example:
+
+```yaml
+sample_modifiers:
+  remove: 
+    - read_type
+    - organism
+```
+
+This example eliminates `read_type` and `organism` attributes from each sample. This modifier is useful when one is in need to override an attribute with another on-the-fly. `remove` modifier allows to that without editing the annotation sheet by hand.
+
 
 #### *sample_modifiers.append*
 
