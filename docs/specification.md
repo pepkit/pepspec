@@ -139,7 +139,7 @@ The sample modifiers allows you to modify sample attributes from within the proj
 #### *sample_modifiers.remove*
 
 <figure>
-<img src="../img/cartoon_append.svg" width="180">
+<img src="../img/cartoon_remove.svg" width="180">
 <figcaption><i>Remove</i> eliminates attribute from all samples.</figcaption>
 </figure>
 
@@ -155,7 +155,7 @@ sample_modifiers:
     - organism
 ```
 
-This example eliminates `read_type` and `organism` attributes from each sample. This modifier is useful when one is in need to override an attribute with another on-the-fly. `remove` modifier allows to that without editing the annotation sheet by hand.
+This example eliminates `read_type` and `organism` attributes from each sample. This modifier is useful when one is in need to override an attribute with another on-the-fly. This allows that without editing the annotation sheet by hand.
 
 
 #### *sample_modifiers.append*
