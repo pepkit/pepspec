@@ -208,7 +208,7 @@ Implied attributes can be useful for pipeline arguments. For instance, it may th
 <figcaption><i>Derive</i> builds new attributes from existing values.</figcaption>
 </figure>
 
-The `derive` sample modifier converts existing sample attribute values into new values derived from other existing sample attribute values. It contains two sections; in `attributes` is a list of existing attributes that should be derived; in `sources` is a mapping of key-value pairs that defines the templates used to derive the new attribute values.
+The `derive` sample modifier converts existing sample attribute values into new values derived from other existing sample attribute values. It contains two sections; in `attributes` is a list of existing attributes that should be derived; in `sources` is a mapping of key-value pairs that defines the templates used to derive the new attribute values. The `sources` templates are available for *all*  entires under `attributes` .
 
 Example:
 
