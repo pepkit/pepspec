@@ -36,9 +36,10 @@ If you are a tool developer, we recommend you write a PEP schema that describes 
 
 ```yaml
 description: A example schema for a pipeline.
-imports: http://schema.databio.org/pep/2.0.0.yaml
+imports: 
+  - http://schema.databio.org/pep/2.0.0.yaml
 properties:
-  config
+  config:
     type: object
   samples:
     type: array
@@ -47,11 +48,12 @@ required:
   - config
 ```
 
-Let's say you're writing a PEP-compatible tool that requires 3 arguments: `read1`, `read2`, and `genome`, and also offers optional argument, `read_length`.  Validating the generic PEP specification will not confirm all required attributes, so you want to write an extended schema. Starting from the base above, we're not changing the `config` section so we can drop that, and we add new parameters for the required sample attributes like this:
+Let's say you're writing a PEP-compatible tool that requires 3 arguments: `read1`, `read2`, and `genome`, and also offers optional argument `read_length`.  Validating the generic PEP specification will not confirm all required attributes, so you want to write an extended schema. Starting from the base above, we're not changing the `config` section so we can drop that, and we add new parameters for the required sample attributes like this:
 
 ```yaml
 description: A example schema for a pipeline.
-imports: http://schema.databio.org/pep/2.0.0.yaml
+imports: 
+  - http://schema.databio.org/pep/2.0.0.yaml
 properties:
   samples:
     type: array
@@ -79,3 +81,47 @@ required:
 ```
 
 This document defines the required an optional sample attributes for this pipeline. That's all you need to do, and your users can validate an existing PEP to see if it meets the requirements of your tool.
+
+## Validating input files
+
+Eido extends JSON Schema with the ability to specify which attributes should point to files. Eido provides two ways to do it: `input_attrs` and `required_input_attrs`. The basic `input_attrs` is simply used to specify which attributes point to files, which may or may not exist. This is useful for tools that want to calculate the total size of inputs, for example. The `required_input_attrs` list specifies that these attributes *must* point to files that *must exist*, otherwise the PEP doesn't validate. Here's an example of specifying an optional and required input attribute:
+
+```yaml
+description: A PEP for ATAC-seq samples for the PEPATAC pipeline.
+imports:
+  - http://schema.databio.org/pep/2.0.0.yaml
+properties:
+  samples:
+    type: array
+    items:
+      type: object
+      properties:
+        sample_name: 
+          type: string
+          description: "Name of the sample"
+        organism: 
+          type: string
+          description: "Organism"
+        protocol: 
+          type: string
+          description: "Must be an ATAC-seq or DNAse-seq sample"
+        genome:
+          type: string
+          description: "Refgenie genome registry identifier"
+        read_type:
+          type: string
+          description: "Is this single or paired-end data?"
+          enum: ["SINGLE", "PAIRED"]
+        read1:
+          type: string
+          description: "Fastq file for read 1"
+        read2:
+          type: string
+          description: "Fastq file for read 2 (for paired-end experiments)"
+      required_input_attrs:
+        - read1
+      input_attrs:
+        - read1
+        - read2
+```
+
