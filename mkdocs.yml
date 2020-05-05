@@ -16,7 +16,7 @@ nav:
       - Mix & match amendments on the fly: howto_mixmatch.md
       - Integrate imports and amendments: howto_integrate.md
       - Create a PEP from GEO or SRA: howto_geofetch.md
-      - Write my own PEP schema: howto_schema.md
+      - Validate a PEP: howto_validate.md
   - Implementations:
     - "Python package: peppy": peppy.md
     - "R package: pepr": pepr.md

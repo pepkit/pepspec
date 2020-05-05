@@ -22,9 +22,9 @@ Organizing and annotating sample data is an important task in data-intensive bio
 
 PEP provides 3 features to improve portability: 
 
-1. **A standardized metadata structure**. The PEP specification is a standardized way to represent sample annotation information. This allows tools and pipelines to read data from different sources more easily.
-2. **A validation framework**. The PEP specification provides a way to construct formal validation schemas. This allows us to validate that a project or sample complies with a requirements for an arbitrary tool. PEP uses an [extended JSON-schema system](howto_schema.md) with added features specific to the sample annotation use case.
-3. **Project and sample modifiers**. The PEP specification provides a powerful framework to *programatically modify* sample- and project-level metadata. This makes it easy to systematize metadata so that one input source can be easily used with multiple tools.
+1. **A standardized metadata structure**. PEP standardizes sample metadata formats. This allows tools and pipelines to read data from different sources more easily.
+2. **A validation framework**. PEP provides formal validation schemas. This allows us to confirm that a PEP complies with a requirements for an arbitrary tool. 
+3. **Project and sample modifiers**. PEP provides a powerful framework to *programatically modify* sample- and project-level metadata. This allows us to systematize metadata so one input source can span multiple tools.
 
 ## Definitions of terms and components of a PEP
 
@@ -63,13 +63,13 @@ The PEP specification has 2 primary goals:
 
 ## Validating a PEP
 
-The formal PEP spec is described as a schema at [schema.databio.org/pep/2.0.0.yaml](https://schema.databio.org/pep/2.0.0.yaml). You can validate a PEP against a PEP schema using the [eido Python package](http://eido.databio.org) like this:
+PEP uses an extended JSON Schema vocabulary with novel sample metadata features. The formal PEP spec is described as a schema at [schema.databio.org/pep/2.0.0.yaml](https://schema.databio.org/pep/2.0.0.yaml). You can validate a PEP against any PEP schema using the [eido Python package](http://eido.databio.org) like this:
 
 ```
 eido validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
 ```
 
-PEP schemas use an extended [JSON-schema](https://json-schema.org/) vocabulary. The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [How-to guide for PEP validation](howto_schema.md).
+The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [how-to guide for PEP validation](howto_validate.md).
 
 ## Project config file specification
 
@@ -221,7 +221,7 @@ sample_modifiers:
 
 This example will take any sample with `organism` attribute set to the string "human" and add attributes of `genome` (with value "hg38") and `macs_genome_size` (with value "hs"). This example shows only 1 implication, but you can include as many as you like.
 
-Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to remove project-level attributes from a sample table](howto_genome_id.md).
+Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to eliminate project-level attributes from a sample table](howto_genome_id.md).
 
 #### *sample_modifiers.derive*
 
@@ -269,7 +269,7 @@ project_modifiers:
     - path/to/parent_project_config.yaml
 ```
 
-Imports can be used to record and manage complex analysis relationships among analysis components. In a sense, imports are the opposite of amendments, because they allow combining multiple PEP files into one. When used in combination with amendments, they make it possible to orchestrate very powerful analysis. For more information, see [How to integrate imports and amendments](howto_integrate.md).
+Imports can be used to record and manage complex analysis relationships among analysis components. In a sense, imports are the opposite of amendments, because they allow combining multiple PEP files into one. When used in combination with amendments, they make it possible to orchestrate very powerful analysis. For more information, see [how to integrate imports and amendments](howto_integrate.md).
 
 #### *project_modifiers.amend*
 
@@ -317,7 +317,7 @@ The only requirement for the column names is that the table **MUST** include a c
 "frog_3h","RRBS","frog","","","frog_data"
 ```
 
-A sample table with no attributes satisfies the generic PEP requriement, but it isn't really useful for an actual analysis. Therefore, tools that use PEPs should make use of the PEP validation framework to specify further requirements. For more details, see the [How-to guide for PEP validation](howto_schema.md).
+A sample table with no attributes satisfies the generic PEP requirement, but it isn't really useful for an actual analysis. Therefore, tools that use PEPs should make use of the PEP validation framework to specify further requirements. For more details, see the [how-to guide for PEP validation](howto_validate.md).
 
 ## Subsample table specification
 
