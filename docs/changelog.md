@@ -9,7 +9,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - It is now possible to specify more than one amendment (which replaced subprojects).
 
 ### Changed
-- Added a sample modifiers section to house 4 modifiers: append, duplicate, imply, and derive
+- The structure changed (no more *metadata* section, new sections for sample and project modifiers, config, etc).
+- Added a sample_modifiers section to house 5 modifiers: remove, append, duplicate, imply, and derive
+- Added a project_modifiers section to house *amend* and *import*
 - The structure for 'imply' now uses an if-then format instead of the previous format that was not readily interpretable
 - Subprojects are renamed amendments
 - Tool-specific sections for looper have been removed.
