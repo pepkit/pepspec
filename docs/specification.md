@@ -136,7 +136,7 @@ The `subsample_table` is a path (string) to the subsample csv file. Like with th
 
 The sample modifiers allows you to modify sample attributes from within the project configuration file. You can use this to add new attributes to samples in a variety of ways, including attributes whose value varies depending on values of existing attributes, or whose values are composed of existing attribute values. This is a key feature of PEP that allows you to make the sample tables more portable. There are 5 subsections corresponding to 5 types of sample modifier: `remove`, `append`, `duplicate`, `imply`, and `derive`; and the **samples will be modified in that order**. Within each modifier, samples will be modified in the order in which the commands are listed.
 
-#### *sample_modifiers.remove*
+#### Sample modifier: remove
 
 <figure>
 <img src="../img/cartoon_remove.svg" width="180">
@@ -158,7 +158,7 @@ sample_modifiers:
 This example eliminates `read_type` and `organism` attributes from each sample. This modifier is useful when one is in need to override an attribute with another on-the-fly. This allows that without editing the annotation sheet by hand.
 
 
-#### *sample_modifiers.append*
+#### Sample modifier: append
 
 <figure>
 <img src="../img/cartoon_append.svg" width="180">
@@ -179,7 +179,7 @@ sample_modifiers:
 This example adds a `read_type` attribute to each sample, with the value `SINGLE` for all samples. This modifier is useful on its own to add constant attributes, and can also be  combined with `derive` and/or `imply`.
 
 
-#### *sample_modifiers.duplicate*
+#### Sample modifier: duplicate
 
 <figure>
 <img src="../img/cartoon_duplicate.svg" width="180">
@@ -198,7 +198,7 @@ sample_modifiers:
 This example would copy the value of `old_attribute_name` to a new attribute called `new_attribute_name`.
 
 
-#### *sample_modifiers.imply*
+#### Sample modifier: imply
 
 <figure>
 <img src="../img/cartoon_imply.svg" width="180">
@@ -223,7 +223,7 @@ This example will take any sample with `organism` attribute set to the string "h
 
 Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to eliminate project-level attributes from a sample table](howto_genome_id.md).
 
-#### *sample_modifiers.derive*
+#### Sample modifier: derive
 
 <figure>
 <img src="../img/cartoon_derive.svg" width="180">
@@ -252,7 +252,7 @@ Using `derive` is a powerful and flexible way to point to data files on disk. Th
 
 The project modifiers allows you to modify *project-level* attributes from within the project configuration file. There are 2 subsections corresponding to 2 types of project modifier: `import` and `amend`. Imports run first, followed by amendments.
 
-#### *project_modifiers.import*
+#### Project modifier: import
 
 <figure>
 <img src="../img/cartoon_imports.svg" width="250">
@@ -271,7 +271,7 @@ project_modifiers:
 
 Imports can be used to record and manage complex analysis relationships among analysis components. In a sense, imports are the opposite of amendments, because they allow combining multiple PEP files into one. When used in combination with amendments, they make it possible to orchestrate very powerful analysis. For more information, see [how to integrate imports and amendments](howto_integrate.md).
 
-#### *project_modifiers.amend*
+#### Project modifier: amend
 
 <figure>
 <img src="../img/cartoon_amendments.svg" width="250">
