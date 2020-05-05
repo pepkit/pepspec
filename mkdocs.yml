@@ -11,7 +11,7 @@ nav:
       - Specify multiple inputs: howto_multiple_inputs.md
       - Eliminate paths from sample table: howto_eliminate_paths.md
       - Remove genome from sample table: howto_genome_id.md
-      - Store many projects in one file: howto_subprojects.md
+      - Store many projects in one file: howto_amendments.md
       - Create automatic sample groups: howto_automatic_groups.md
       - Mix & match amendments on the fly: howto_mixmatch.md
       - Integrate imports and amendments: howto_integrate.md

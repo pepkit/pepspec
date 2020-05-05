@@ -13,13 +13,14 @@ You could simply define 2 complete PEPs, but this would duplicate information an
 ```{yaml}
 sample_table: annotation.csv
 genome: hg38
-amendments:
-  my_project2:
-    sample_table: annotation2.csv
-  my_project3:
-    sample_table: annotation3.csv
-  hg19_analysis:
-  	genome: hg19
+project_modifiers:
+  amend:
+    my_project2:
+      sample_table: annotation2.csv
+    my_project3:
+      sample_table: annotation3.csv
+    hg19_analysis:
+      genome: hg19
 ...
 ```
 
@@ -29,8 +30,9 @@ If you load this configuration file, it will by default use the `annotation.csv`
 ```{yaml}
 sample_table: annotation2.csv
 genome: hg19
-amendments:
-  ...
+project_modifiers:
+  amend:
+    ...
 
 ```
 
