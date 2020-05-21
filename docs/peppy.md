@@ -5,7 +5,7 @@
 ### Code and documentation
 
 * [User documentation and vignettes](http://peppy.databio.org/)
-* [peppy API](http://peppy.databio.org/en/latest/api.html)
+* [peppy API](http://peppy.databio.org/en/latest/autodoc_build/peppy/)
 * [Source code at Github](https://github.com/pepkit/peppy)
 
 ### Quick start 
@@ -22,4 +22,5 @@ import peppy
 
 my_project = peppy.Project("path/to/project_config.yaml")
 my_samples = my_project.samples
+sample_table = my_project.sample_table
 ```
