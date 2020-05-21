@@ -5,6 +5,7 @@ repo_url: http://github.com/pepkit/pepspec
 
 nav:
   - Getting Started: 
+    - A simple example: simple_example.md
     - PEP specification: specification.md
     - Rationale: rationale.md
   - Detailed how-to guides:
