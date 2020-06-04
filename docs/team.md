@@ -18,7 +18,7 @@
 
 ## Funding
 
-The PEP spec and tookit are funded by the National Institutes of Health (NIH), Institute for General Medical Sciencies (NIGMS), MIRA award R35GM128636 to Nathan C. Sheffield, which runs from 1-AUG-2018 to 31-JUL-2023.
+The PEP spec and tookit are funded by the National Institutes of Health (NIH), Institute for General Medical Sciences (NIGMS), MIRA award R35GM128636 to Nathan C. Sheffield, which runs from 1-AUG-2018 to 31-JUL-2023.
 
 
 ## Contributing
