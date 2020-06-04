@@ -32,4 +32,4 @@ Where SCHEMA is a URL or local file. The author of the tool you are using should
 
 ## Writing a schema
 
-If you developing a PEP-compatible tool, we recommend you write a PEP schema that describes what sample and project attributes are required for your tool to work. A detailed guide for writing your own schema can be found in the [eido documentation](http://eido.databio.org/en/master/writing-a-schema/).
+If you developing a PEP-compatible tool, we recommend you write a PEP schema that describes what sample and project attributes are required for your tool to work. A detailed guide for writing your own schema can be found in the [eido documentation](http://eido.databio.org/en/latest/writing-a-schema/).
