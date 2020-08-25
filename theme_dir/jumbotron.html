@@ -50,10 +50,19 @@ the blocks defined in base.html and its included child templates.
         <div class="col-md-6">
             <h1 class="header-light regular-pad">What is a PEP?</h1>
             <blockquote>
-              <p>A <i>PEP</i>, or <i>Portable Encapsulated Project</i>, is a dataset that subscribes to the PEP structure for organizing metadata. It is written using a simple <b>yaml + csv</b> format that can be read by tools in the pep toolkit, including universal R and Python packages. pepkit is your one-stop solution to <b>metadata management</b> across data analysis environments.</p>
+              <p><i>PEP</i>, or <i>Portable Encapsulated Projects</i>, is a <b>community effort to make sample metadata reusable</b>. PEPs decouple metadata from analysis by providing:
+                <ol>
+              <li>a standardized metadata structure;</li>
+              <li>a metadata validation framework; and</li>
+              <li>programatic metadata modifiers.</li>
+              </ol>
+               A PEP is written using a familiar <b>yaml + csv</b> format that can be read by our R and Python packages, and well as by workflow frameworks. PEP is your metadata solution for sample-intensive research projects.</p>
+
+              
             </blockquote>
         </div>
         <div class="col-md-6 text-center">
+            <br><br>
             <img src="pep_center.svg" alt="" class="img-responsive">
         </div>
     </div>
@@ -64,13 +73,15 @@ the blocks defined in base.html and its included child templates.
         <div class="col-sm-6">
             <h1 class="text-center"><i class="fa fa-chart-bar" aria-hidden="true"></i></h1>
             <h3 class="text-center">Data analysts</h3>
-            <p>Start by describing your project metadata in PEP format, and immediately benefit from metadata organization tools written in either R or Python.</p>
+            <p>Start by writing your metadata in PEP format, and immediately benefit from metadata organization tools written in R and Python.</p>
         </div>
         <div class="col-sm-6">
             <h1 class="text-center"><i class="fa fa-wrench" aria-hidden="true"></i></h1>
             <h3 class="text-center">Software developers</h3>
-            <p>Outsource sample metadata formatting and parsing by using our R or Python APIs, making your tool immediately applicable to any PEP-compliant project.</p>
+            <p>Handle input sample metadata formatting, parsing, and validation with our R or Python APIs, making your tool able to process PEP-compliant projects.</p>
         </div>
     </div>
+
+
 </div>
 {%- endblock %}
