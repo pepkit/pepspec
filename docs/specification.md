@@ -88,7 +88,7 @@ Example
 ```
 pep_version: 2.0.0
 sample_table: "path/to/sample_table.csv"
-subsample_table: "path/to/subsample_table.csv"
+subsample_table: ["path/to/subsample_table.csv", "path/to/subsample_table2.csv"]
 sample_modifiers:
   append:
     attribute1: value
@@ -124,7 +124,7 @@ The `sample_table` is a path (string) to the sample csv file. It can be absolute
 
 ### Project attribute: `subsample_table`
 
-The `subsample_table` is a path (string) to the subsample csv file. Like with the sample_table attribute, relative paths are assumed relative to the location of the `project_config.yaml` file. The target file is expected to comply with the PEP specification for the subsample table.
+The `subsample_table` is a path (string) to the subsample csv file or, in case the subsamples are dispersed across multiple annotation sheets, a collection of paths (array of strings). Like with the sample_table attribute, relative paths are assumed relative to the location of the `project_config.yaml` file. The target file is expected to comply with the PEP specification for the subsample table.
 
 ### Project attribute: `sample_modifiers`
 

@@ -2,31 +2,35 @@
 
 <!-- <img src="/img/logo_R.svg" alt="" style="float:left; margin:20px"> -->
 
-`pepr` is an R package for reading Portable Encapsulated Projects. It will read PEP projects, loading all project and sample metadata into R with a single line of code. `pepr` is currently in alpha mode and should not be used production projects. It is made available for conceptual and testing purposes only.
+`pepr` is an R package for reading Portable Encapsulated Projects. It will read PEP projects, loading all project and sample metadata into R with a single line of code. `pepr` is currently in alpha mode and should not be used production projects.
 
 ### Code and documentation
 
 * [User documentation and vignettes](http://code.databio.org/pepr/)
+* [`pepr` API](https://code.databio.org/pepr/reference/index.html)
 * [Source code at Github](https://github.com/pepkit/pepr)
 
 ### Quick start
 
-Install with 
+Install from [CRAN](https://cran.rstudio.com/web/packages/pepr/index.html):
 
-```
-devtools::install_github("pepkit/pepr")
-```
-
-Load up your project like this:
-
-
-```
-p = pepr::Project(file="project_config.yaml")
+```R
+install.packages("pepr")
 ```
 
-Now you can retrieve all your configuration information or sample metadata with easy getter functions:
+Load a project and explore metadata like this:
 
-```
+```R
+library("pepr")
+cfgPath = system.file(
+    "extdata",
+    paste0("example_peps-master"),
+    "example_basic",
+    "project_config.yaml",
+    package = "pepr"
+  )
+p = Project(file = cfgPath)
+
 sampleTable(p)
 config(p)
 ```
