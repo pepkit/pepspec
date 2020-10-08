@@ -25,7 +25,6 @@ nav:
     - Projects and software using PEP: pep_in_practice.md
     - Support: https://github.com/pepkit/pepkit.github.io/issues
     - Team and Contributing: team.md
-    - Changelog: changelog.md
 
 theme:
   name: databio
@@ -45,6 +44,9 @@ navbar:
   - text: Specification
     icon: fa-file-alt
     href: specification
+  - text: Changelog
+    icon: fa-history
+    href: changelog
   - text: Team
     icon: fa-users
     href: team
