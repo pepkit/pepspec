@@ -2,11 +2,12 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format. 
 
-## [2.0.0] - Unreleased
+## [[2.0.0](http://pep.databio.org/en/2.0.0/)] - 2020-05-26
 
 ### Added
 - Imports section allows linking to external PEP config files.
 - It is now possible to specify more than one amendment (which replaced subprojects).
+- Support for multiple subsample tables
 
 ### Changed
 - The structure changed (no more *metadata* section, new sections for sample and project modifiers, config, etc).
