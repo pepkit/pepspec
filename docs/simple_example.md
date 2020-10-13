@@ -29,7 +29,7 @@ The `sample_table` key points to the second part of a *PEP*, a comma-separated v
 "frog_4", "RNA-seq", "frog4.fq.gz"
 ```
 
-With those two simple files, you are ready to use the pepkit tools! With a single line of code, you could load this into R using pepr, into python using [peppy](http://peppy.databio.org), or run each sample through an arbitrary command-line pipeline using [looper](http://looper.databio.org). If you make a habit of describing all your projects like this, you'll never parse another sample annotation sheet again. You'll never write another pipeline submission loop.
+With those two simple files, you are ready to use the pepkit tools! With a single line of code, you could load this into R using [pepr](http://github.com/pepkit/pepr), into python using [peppy](http://peppy.databio.org), or run each sample through an arbitrary command-line pipeline using [looper](http://looper.databio.org). You can use this formulation to run a workflow written in [CWL](http://commonwl.org) or using [SnakeMake](http://snakemake.readthedocs.io). If you make a habit of describing all your projects like this, you'll never parse another sample annotation sheet again. You'll never write another pipeline submission loop.
 
 This simple example presents a minimal functioning PEP. In practice, there are many advanced features of PEP structure. For instance, you can add additional sections to tailor your project for specific tools. But at its core, PEP is simple and generic; this way, you can start with the basics, and only add more complexity as you need it.
 

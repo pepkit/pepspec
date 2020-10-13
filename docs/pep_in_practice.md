@@ -4,12 +4,12 @@
 
 Publicly available software that builds on PEP:
 
-* [PEPATAC](http://pepatac.databio.org/) - An ATAC-seq pipeline.
+* [PEPATAC](http://pepatac.databio.org/) - An ATAC-seq pipeline. 
 * [PEPPRO](http://peppro.databio.org/) - An nascent RNA profiling pipeline (PRO-seq, GRO-seq, ChRO-seq).
 * [peppy](https://github.com/pepkit/peppy)
 * [pepr](https://github.com/pepkit/pepr)
 * [geofetch](https://github.com/pepkit/geofetch) - Converts GEO or SRA accessions into PEP projects.
-* [pepenv](https://github.com/pepkit/pepenv)
+* [divcfg](https://github.com/pepkit/divcfg)
 * [pifaces](https://github.com/pepkit/pifaces)
 * [pypiper](https://github.com/databio/pypiper)
 * [dnameth_pipelines](https://github.com/databio/dnameth_pipelines)
