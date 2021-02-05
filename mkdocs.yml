@@ -1,7 +1,8 @@
 site_name: PEP specification
 site_logo: img/pep.svg
-site_url: http://pep.databio.org/
+site_url: http://pep.databio.org/en/latest/
 repo_url: http://github.com/pepkit/pepspec
+paper_link: https://doi.org/10.1101/2020.10.08.331322 
 
 nav:
   - Getting Started: 
