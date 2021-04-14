@@ -25,6 +25,12 @@ PEP makes it easy to:
 
 This web page outlines the PEP specification. Once you have a PEP, you will be able to process that metadata using tools in *pepkit*. You can find tools to use at [PEP in practice](pep_in_practice.md).
 
+# PEP formats
+
+A PEP is made up of two files: 1) a `csv` file containing tabular metadata associated with units in your analysis; and 2) a `yaml` file containing structured metadata associated with the project in general. The rationale for this dual-format is that large-scale analysis projects frequently have two fundamentally different types of metadata, sample-level data and project-level data. Sample-level data is often naturally conceptualized as a table, but project-level data is much less structured. The unification of these two brings power, providing ways to describe and configure a project and making a sample table more reusable.
+
+We chose CSV and YAML formats because they are universal and both human- and computer- readable. This makes it possible to easily create a PEP by hand using existing software that users are already familiar with. It's not difficult to edit a project configuration file in a text editor or on GitHub, and a sample table can likewise be edited using any spreadsheet program or even a basic text editor.
+
 # User stories
 
 Here are a few example scenarios that describe the type of users and use cases for which *PEP* can be useful. 
