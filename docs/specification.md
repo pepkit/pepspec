@@ -43,7 +43,7 @@ A PEP can be made from any collection of metadata represented in tabular form. T
 
 The PEP specification divides metadata into components: sample metadata, which can vary by sample, and project metadata, which applies to all samples. These components are stored in separate files. A complete PEP consists of up to 3 files:
 
-- **Project config file** - REQUIRED. a `yaml` file containing project-level metadata
+- **Project config file** - RECOMMENDED. a `yaml` file containing project-level metadata
 - **Sample table** - RECOMMENDED. a `csv` file of sample metadata, with 1 row per sample
 - **Subsample table** - OPTIONAL. A `csv` file of sample  with multiple rows for each sample, used to specify sample attributes with multiple values (*e.g.* used to point to inputs in sequencing experiments when split across multiple files).
 
@@ -85,7 +85,7 @@ These attributes may appear in any order.
 
 Example
 
-```
+```yaml
 pep_version: 2.0.0
 sample_table: "path/to/sample_table.csv"
 subsample_table: ["path/to/subsample_table.csv", "path/to/subsample_table2.csv"]
@@ -300,9 +300,9 @@ Amendments are useful to define multiple similar projects within a single projec
 
 ## Sample table specification
 
-The `sample_table` is a `.csv` file containing information about all samples (or pieces of data) in a project. **One row corresponds to one sample**. A sample table may contain any number of columns with any column names. Each column corresponds to an attribute of a sample. For this reason, we sometimes use the word `column` and `attribute` interchangeably. 
+The `sample_table` is a `.csv` file containing information about all samples (or pieces of data) in a project. Typically, **one row corresponds to one sample**. A sample table may contain any number of columns with any column names. Each column corresponds to an attribute of a sample. For this reason, we sometimes use the word `column` and `attribute` interchangeably. 
 
-The only requirement for the column names is that the table **MUST** include a column named `sample_name`, which should specify a **unique** string identifying each sample. This should be a string without whitespace (space, tabs, etc...). Any additional columns become attributes of your sample and will be part of the project's metadata for the samples. 
+Typically, the sample table includes a column named `sample_name`, which specifies unique strings identifying each sample. This should be a string without whitespace.
 
 **Example:**
 ```
@@ -318,6 +318,32 @@ The only requirement for the column names is that the table **MUST** include a c
 ```
 
 A sample table with no attributes satisfies the generic PEP requirement, but it isn't really useful for an actual analysis. Therefore, tools that use PEPs should make use of the PEP validation framework to specify further requirements. For more details, see the [how-to guide for PEP validation](howto_validate.md).
+
+### Sample table index
+
+By default, PEP uses `sample_name` column as the index for the sample table. This is how samples within a project are identified. However, it is possible to use a custom column as the sample table index, which can be specifed with `sample_table_index` attribute or on-the-fly at the project creation stage.
+
+This is the sample table index selection priority order:
+
+1. _Project_ constructor specified
+2. Config specified
+3. Deafult value (`sample_name`)
+### Auto-sample merging
+
+Typically, samples have unique values in the sample table index column. Otherwise, samples which share the same value in the sample table index column are merged. The resulting sample will only have the unique values for each attribute.
+
+For example, project created based on the sample table below, where `sample_name` column conists of duplicated `albt_1h` value would effectively have just 3 samples even though there are 4 rows in the table. The samlpe identified by `albt_1h` value would have the following attributes:
+- organism: `albatross`
+- flowcell: `BSFX0190`
+- lane: `1`, `2`
+
+```
+"sample_name","organism","flowcell","lane"
+"albt_0h","albatross","BSFX0190","1"
+"albt_1h","albatross","BSFX0190","1"
+"albt_1h","albatross","BSFX0190","2"
+"albt_2h","albatross","BSFX0190","1"
+```
 
 ## Subsample table specification
 
@@ -343,3 +369,13 @@ frog_2,data/frog2b_data.txt
 ```
 
 This sets up a simple relational database that maps multiple files to each sample. You can also combine a subsample table with derived attributes; attributes will first be derived and then merged, leading to a very flexible way to point to many files of a given type for single sample.
+
+### Subsample table index
+
+By default, PEP uses `subsample_name` and `sample_name` columns as the indexes for the subsample table. However, it is possible to use a custom column as the sample table index, which can be specifed with `subsample_table_index` attribute or on-the-fly at the project creation stage.
+
+This is the subsample table index selection priority order:
+
+1. _Project_ constructor specified
+2. Config specified
+3. Deafult value (`subsample_name` and `sample_name`)

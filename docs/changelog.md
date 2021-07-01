@@ -2,6 +2,16 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format. 
 
+
+## [[2.1.0](http://pep.databio.org/en/2.1.0/)] - unreleased
+
+### Added
+- The possibility to create a PEP with no YAML configuration file -- just with a CSV sample table
+- Automatic sample merging if there are any duplicates in sample table index column
+- new project attributes:
+    - `sample_table_index`
+    - `subsample_table_index`
+
 ## [[2.0.0](http://pep.databio.org/en/2.0.0/)] - 2020-05-26
 
 ### Added
