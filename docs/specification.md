@@ -333,9 +333,10 @@ This is the sample table index selection priority order:
 Typically, samples have unique values in the sample table index column. Otherwise, samples which share the same value in the sample table index column are merged. The resulting sample will only have the unique values for each attribute.
 
 For example, project created based on the sample table below, where `sample_name` column conists of duplicated `albt_1h` value would effectively have just 3 samples even though there are 4 rows in the table. The samlpe identified by `albt_1h` value would have the following attributes:
-- organism: `albatross`
-- flowcell: `BSFX0190`
-- lane: `1`, `2`
+
+* organism: `albatross`
+* flowcell: `BSFX0190`
+* lane: `1`, `2`
 
 ```
 "sample_name","organism","flowcell","lane"
