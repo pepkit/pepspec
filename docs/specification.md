@@ -1,12 +1,12 @@
 ---
-title: PEP specification version 2.0.0
+title: PEP specification version 2.1.0
 ---
 
 <!-- Table of contents: 
 * The generated Toc will be an unordered list
 {:toc} -->
 
-<h1>PEP specification version 2.0.0</h1>
+<h1>PEP specification version 2.1.0</h1>
 
 Table of contents:
 
@@ -63,10 +63,10 @@ The PEP specification has 2 primary goals:
 
 ## Validating a PEP
 
-PEP uses an extended JSON Schema vocabulary with novel sample metadata features. The formal PEP spec is described as a schema at [schema.databio.org/pep/2.0.0.yaml](https://schema.databio.org/pep/2.0.0.yaml). You can validate a PEP against any PEP schema using the [eido Python package](http://eido.databio.org) like this:
+PEP uses an extended JSON Schema vocabulary with novel sample metadata features. The formal PEP spec is described as a schema at [schema.databio.org/pep/2.1.0.yaml](https://schema.databio.org/pep/2.1.0.yaml). You can validate a PEP against any PEP schema using the [eido Python package](http://eido.databio.org) like this:
 
 ```
-eido validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.0.0.yaml
+eido validate path/to/your/PEP_config.yaml -s https://schema.databio.org/pep/2.1.0.yaml
 ```
 
 The generic schema may be easily extended into a more specific schema that adds new requirements or optional attributes, requires input files, and so forth. You can find more detail about how to extend and use these schemas in the [how-to guide for PEP validation](howto_validate.md).
@@ -86,7 +86,7 @@ These attributes may appear in any order.
 Example
 
 ```yaml
-pep_version: 2.0.0
+pep_version: 2.1.0
 sample_table: "path/to/sample_table.csv"
 subsample_table: ["path/to/subsample_table.csv", "path/to/subsample_table2.csv"]
 sample_modifiers:
@@ -116,7 +116,7 @@ project_modifiers:
 
 ### Project attribute: `pep_version`
 
-The only required project attribute, which documents the version of the PEP specification this PEP complies with. For PEP version 2.0.0, this must be the string `"2.0.0"`.
+The only required project attribute, which documents the version of the PEP specification this PEP complies with. For PEP version 2.1.0, this must be the string `"2.1.0"`.
 
 ### Project attribute: `sample_table`
 
