@@ -15,6 +15,7 @@ Publicly available software that builds on PEP:
 * [dnameth_pipelines](https://github.com/databio/dnameth_pipelines) - a set of pypiper pielines
 * [projectInit](https://github.com/databio/projectInit) - R package that helps you load a project-specific R workspace
 * [ngstoolkit](https://github.com/afrendeiro/toolkit) - NGS analysis toolkit
+* [Snakemake](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuring-scientific-experiments-via-peps) - A tool to create reproducible and scalable data analyses workflows.
 
 
 ## Demo data using PEP
