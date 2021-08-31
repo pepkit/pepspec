@@ -35,6 +35,12 @@ Publicly available software that builds on PEP:
 
 ## Publications that use PEP software:
 
+Molder et al.
+2021.
+Sustainable data analysis with Snakemake
+*F1000Res*
+[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8114187/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8114187/)
+
 Sheffield et al.
 2020.
 Linking big biomedical datasets to modular analysis with Portable Encapsulated Projects.
