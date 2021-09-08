@@ -72,7 +72,7 @@ frog_2,data/frog2a_R1.txt,data/frog2a_R2.txt
 frog_2,data/frog2b_R1.txt,data/frog2b_R2.txt
 ```
 
-You can find more examples of projects that use merging in the [example PEPs list](/docs/example_PEPs).
+You can find more examples of projects that use merging in the examples at [PEP in practice](pep_in_practice.md).
 
 A few tidbits you may need to consider when using subsample_table tables:
 

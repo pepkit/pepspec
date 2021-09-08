@@ -75,7 +75,7 @@ The generic schema may be easily extended into a more specific schema that adds 
 
 The project config file is the source of project-level information. It is the only required file and must be in `yaml` format. The config file includes five recognized project attributes, most being optional:
 
-- `pep_format_version` - REQUIRED
+- `pep_version` - REQUIRED
 - `sample_table`- RECOMMENDED
 - `subsample_table`- OPTIONAL
 - `sample_modifiers` - OPTIONAL
