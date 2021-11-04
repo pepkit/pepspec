@@ -27,6 +27,7 @@ Publicly available software that builds on PEP:
 
 ## Real datasets organized in PEP format:
 
+- [https://github.com/ChangLab/TCGA_PEPATAC](https://github.com/ChangLab/TCGA_PEPATAC) - ATAC-seq data from cancer samples from TCGA.
 - [https://github.com/ccrobertson/t1d-immunochip-2020/tree/master/scripts/caqtl/pepatac_files](https://github.com/ccrobertson/t1d-immunochip-2020/tree/master/scripts/caqtl/pepatac_files) - Analysis of caQTLs in Type I diabetes
 - [https://github.com/databio/bedshift_analysis](https://github.com/databio/bedshift_analysis) - Analysis of perturbation of genomic intervals.
 - [https://github.com/epigen/crop-seq](https://github.com/epigen/crop-seq) - Pooled CRISPR screening with single-cell transcriptome readout | PEP1.0.0. 
