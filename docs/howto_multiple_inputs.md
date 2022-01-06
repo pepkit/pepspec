@@ -6,7 +6,7 @@ title: Specify multiple input files
 
 Occasionally, a sample needs to have more than one value for an attribute. This doesn't fit naturally into a tabular data format because it requires a one-to-many relationship that is better handled by a relational database. For these kinds of attributes, the PEP specification uses a second table called `subsample_table`, which is added as an attribute in the project config file. To explain how this works, we'll use the most common example case of needing it: a single sample with multiple input files.
 
-Sometimes you have multiple input files for one sample. For example, perhaps you have technical replicates that you want merged before running a pipeline. Or, a common use case is a single library that was spread across multiple sequencing lanes, yielding multiple input files. Rather than putting multiple lines in your sample table, which causes conceptual and analytical challenges there are two ways to do this:
+Sometimes you have multiple input files for one sample. For example, perhaps you have technical replicates that you want merged before running a pipeline. Or, a common use case is a single library that was spread across multiple sequencing lanes, yielding multiple input files. Rather than putting multiple lines in your sample table, which causes conceptual and analytical challenges, there are two ways to do this:
 
 1. Use shell expansion characters (like `*` or `[]`) in your `derived.source` definition or filename (good for simple merges)
 2. Specify a *subsample table* (formerly called a *merge table*), which maps input files to samples for samples with more than one input file (infinitely customizable for more complicated merges).
@@ -17,22 +17,24 @@ Sometimes you have multiple input files for one sample. For example, perhaps you
 To do the first option, just change your data source specifications, like this:
 
 ```{yaml}
-derived:
+derive:
   sources:
     data_R1: "${DATA}/{id}_S{nexseq_num}_L00*_R1_001.fastq.gz"
     data_R2: "${DATA}/{id}_S{nexseq_num}_L00*_R2_001.fastq.gz"
 ```
 
+This only works if the attribute with multiple values is a file, and if you can process them with a shell wildcard. Other cases can be accommodated by the subsample table option.
+
 ## Option 2: the subsample table
 
-To do the second option, just provide a subsample table) in your project config:
+A subsample table is a table with *one row per attribute* -- so a single sample appears multiple times in the table. Just provide a subsample table in your project config:
 
 ```{yaml}
 sample_table: annotation.csv
 subsample_table: subsample_table.csv
 ```
 
-Make sure the `sample_name` column of this table matches, and then include any columns you need to point to the data. `PEP` will automatically include all of these files as appropriate. 
+Make sure the `sample_name` column of this table matche the `sample_name` column in your sample_table, and then include any columns that require multiple values. `PEP` will automatically include all of these values as appropriate. 
 
 Here's a simple example of a PEP that uses subsamples. If you define `annotation.csv` like this:
 

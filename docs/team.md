@@ -12,7 +12,14 @@
 
 <ul>
 <li><a href="https://cemm.at/research/groups/christoph-bock-group/">Christoph Bock</a>, Center for Molecular Medicine, Vienna, Austria</li>
+  <li><a href="https://johanneskoester.bitbucket.io/">Johannes Köster</a>, University of Duisburg-Essen, Germany</li>
+
 </ul>
+
+## Funding
+
+The PEP spec and tookit are funded by the National Institutes of Health (NIH), Institute for General Medical Sciences (NIGMS), MIRA award R35GM128636 to Nathan C. Sheffield, which runs from 1-AUG-2018 to 31-JUL-2023.
+
 
 ## Contributing
 

@@ -22,11 +22,12 @@ sample_modifiers
   append:
     genome: "hg38"
 
-amendments:
-  hg19_alignment:
-    sample_modifiers:
-      append:
-        genome: "hg19"
+project_modifiers:
+  amend:
+    hg19_alignment:
+      sample_modifiers:
+        append:
+          genome: "hg19"
 ```
 
 Now, when loading this project, if you run `amendments=hg19_alignment`, the project will align to hg19 instead of hg38.

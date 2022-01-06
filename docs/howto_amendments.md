@@ -10,11 +10,12 @@ The `amendments` section of the config file allows you to include multiple varia
 
 ```yaml
 sample_table: annotation.csv
-amendments:
-  my_project2:
-    sample_table: annotation2.csv
-  my_project3:
-    sample_table: annotation3.csv
+project_modifiers:
+  amend:
+    my_project2:
+      sample_table: annotation2.csv
+    my_project3:
+      sample_table: annotation3.csv
 ...
 ```
 
