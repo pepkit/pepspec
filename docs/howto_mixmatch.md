@@ -4,7 +4,7 @@ title: Mix & match amendments on the fly
 
 # How to mix and match amendments on the fly
 
-At times you will want to create two projects that are very similar, but differ just in one or two attributes. For example, you may define a project with one set of samples, and then want an identical project but using a different sample annotation sheet. Or, you may define a project to run on a particular reference genome, and want to define a second project that is identical, but uses a different reference genome.
+At times you will want to create two projects that are very similar, but differ just in one or two attributes. For example, you may define a project with one set of samples, and then want an identical project but using a different sample table. Or, you may define a project to run on a particular reference genome, and want to define a second project that is identical, but uses a different reference genome.
 
 You could simply define 2 complete PEPs, but this would duplicate information and make it harder to maintain. Instead, you can use *amendments*, which allow you to encode additional similar projects all within the original `project_config.yaml` file. Amendments are like mini embedded `project_config.yaml` files that can be *activated* by software. When a PEP is parsed, you may specify one or more included amendments, which will amend the values in the processed PEP. This is a powerful function that can be used for many purposes, such as *on the fly* tweaks or embedding multiple subprojects within a parent project.
 
