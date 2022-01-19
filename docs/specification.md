@@ -144,7 +144,7 @@ The sample modifiers allows you to modify sample attributes from within the proj
 </figure>
 
 
-The `remove` modifier elimiantes one or more sample attributes. 
+The `remove` modifier eliminates one or more sample attributes. 
 
 Example:
 
