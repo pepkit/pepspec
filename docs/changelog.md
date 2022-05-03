@@ -3,16 +3,16 @@
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format. 
 
 
-## [[2.1.0](http://pep.databio.org/en/2.1.0/)] - unreleased
+## [[2.1.0](http://pep.databio.org/en/2.1.0/specification/)] - 2022-05-03
+
+Version 2.1.0 relaxes a few constraints and adds a few new features. It is backwards-compatible with 2.1.0 so updated parsers should continue to work with old sample tables. No existing features were changed, only a few new options were added.
 
 ### Added
-- The possibility to create a PEP with no YAML configuration file -- just with a CSV sample table
-- Automatic sample merging if there are any duplicates in sample table index column
-- new project attributes:
-    - `sample_table_index`
-    - `subsample_table_index`
+- **CSV-only PEPs**: A `YAML` project configuration file is **no longer required**. A PEP may now be specified with only a CSV sample table file.
+- **Multi-row samples**. Originally, PEP required each row to correspond to a single sample, and attributes with multiple values for a sample were specified using subsample tables. Furthermore, samples tables required  `sample_name` as the index column. In PEP `2.1.0`, multi-value attributes may now be accomplished without subsample tables by specifying multiple rows with the same identifier. These rows will be automatically merged, and unique attribute values will be retained. 
+- Sample index and subsample index columns may now be specified using new project attributes: `sample_table_index` and `subsample_table_index`.
 
-## [[2.0.0](http://pep.databio.org/en/2.0.0/)] - 2020-05-26
+## [[2.0.0](http://pep.databio.org/en/2.0.0/specification/)] - 2020-05-26
 
 ### Added
 - Imports section allows linking to external PEP config files.
