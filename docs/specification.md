@@ -12,9 +12,9 @@ Table of contents:
 
 [TOC]
 
-## Introduction
+## Introduction and motivation
 
-Organizing and annotating sample data is an important task in data-intensive bioinformatics, but each dataset is typically annotated in a unique way. Furthermore, data processing tools typically expect a unique format for sample annotation. There is no standard way to represent metadata that spans projects and tools. This restricts the portability and reusability of annotated datasets and software that processes them.
+Bioinformatics projects often start from a *sample table*, a spreadsheet of samples as rows with attributes of those samples in columns. For example, the some attributes may include file paths to raw data, sample annotation like organism or treatment, and other experimental details. Unfortunately, each project is usually done differently -- there is little standardization of these file formats and column names across projects. The downstream processing tools that consume the sample table typically expect specific way of formatting the table, such as requiring certain columns, expecting certain file formats, and so on. These assumptions are often inherent in the tools, but rarely explained. And even where they are explained, they tend to be unique for each tool. There is no standard way to represent metadata that spans projects and tools. This restricts the portability and reusability of annotated datasets and software that processes them.
 
 *Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable. PEP does this by providing *metadata standarization*, *metadata validation*, and *portability modifiers*.
 
@@ -321,18 +321,19 @@ A sample table with no attributes satisfies the generic PEP requirement, but it 
 
 ### Sample table index
 
-By default, PEP uses `sample_name` column as the index for the sample table. This is how samples within a project are identified. However, it is possible to use a custom column as the sample table index, which can be specifed with `sample_table_index` attribute or on-the-fly at the project creation stage.
+By default, PEP uses `sample_name` column as the index for the sample table. This is how samples within a project are identified. However, it is possible to use a custom column as the sample table index, which can be specified with `sample_table_index` attribute or on-the-fly at the project creation stage.
 
 This is the sample table index selection priority order:
 
-1. _Project_ constructor specified
-2. Config specified
-3. Deafult value (`sample_name`)
+1. Value specified in _Project_ constructor
+2. Value specified in Config
+3. Default value (`sample_name`)
+
 ### Auto-sample merging
 
 Typically, samples have unique values in the sample table index column. Otherwise, samples which share the same value in the sample table index column are merged. The resulting sample will only have the unique values for each attribute.
 
-For example, project created based on the sample table below, where `sample_name` column conists of duplicated `albt_1h` value would effectively have just 3 samples even though there are 4 rows in the table. The samlpe identified by `albt_1h` value would have the following attributes:
+For example, project created based on the sample table below, where `sample_name` column consists of duplicated `albt_1h` value would effectively have just 3 samples even though there are 4 rows in the table. The sample identified by `albt_1h` value would have the following attributes:
 
 * organism: `albatross`
 * flowcell: `BSFX0190`
@@ -373,10 +374,10 @@ This sets up a simple relational database that maps multiple files to each sampl
 
 ### Subsample table index
 
-By default, PEP uses `subsample_name` and `sample_name` columns as the indexes for the subsample table. However, it is possible to use a custom column as the sample table index, which can be specifed with `subsample_table_index` attribute or on-the-fly at the project creation stage.
+By default, PEP uses `subsample_name` and `sample_name` columns as the indexes for the subsample table. However, it is possible to use a custom column as the sample table index, which can be specified with `subsample_table_index` attribute or on-the-fly at the project creation stage.
 
 This is the subsample table index selection priority order:
 
-1. _Project_ constructor specified
-2. Config specified
-3. Deafult value (`subsample_name` and `sample_name`)
+1. Value specified in _Project_ constructor
+2. Value specified in Config
+3. Default value (`subsample_name` and `sample_name`)
