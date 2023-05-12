@@ -26,6 +26,7 @@ nav:
     - Projects and software using PEP: pep_in_practice.md
     - Support: https://github.com/pepkit/pepkit.github.io/issues
     - Team and Contributing: team.md
+    - PEP with workflows: workflows.md
 
 theme:
   name: databio
