@@ -1,54 +1,281 @@
-site_name: PEP specification
-site_logo: img/pep.svg
-site_url: http://pep.databio.org/en/2.1.0/
-repo_url: http://github.com/pepkit/pepspec
-paper_link: https://doi.org/10.1101/2020.10.08.331322 
-
-nav:
-  - Getting Started: 
-    - A simple example: simple_example.md
-    - PEP specification: specification.md
-    - Rationale: rationale.md
-  - Detailed how-to guides:
-      - Specify multiple inputs: howto_multiple_inputs.md
-      - Eliminate paths from sample table: howto_eliminate_paths.md
-      - Remove genome from sample table: howto_genome_id.md
-      - Store many projects in one file: howto_amendments.md
-      - Create automatic sample groups: howto_automatic_groups.md
-      - Mix & match amendments on the fly: howto_mixmatch.md
-      - Integrate imports and amendments: howto_integrate.md
-      - Create a PEP from GEO or SRA: howto_geofetch.md
-      - Validate a PEP: howto_validate.md
-  - Implementations:
-    - "Python package: peppy": peppy.md
-    - "R package: pepr": pepr.md
-  - PEP in practice:
-    - Projects and software using PEP: pep_in_practice.md
-    - Support: https://github.com/pepkit/pepkit.github.io/issues
-    - Team and Contributing: team.md
-    - PEP with workflows: workflows.md
+site_name: "PEPkit: the bio data management toolkit"
 
 theme:
-  name: databio
-  custom_dir: theme_dir
-
-plugins:
-- databio:
-    jupyter_source: "docs_jupyter"
-    jupyter_build: "docs_jupyter/build"
-    autodoc_build: "docs/autodoc_build"
-    no_top_level: true
-- search
+  logo: img/pep.png
+  favicon: img/pep.png
+  name: material
+  custom_dir: overrides
 
 
-navbar:
-  left:
-  - text: Specification
-    icon: fa-file-alt
-    href: specification
-  - text: Changelog
-    icon: fa-history
-    href: changelog
-  - text: Team
-    icon: fa-users
-    href: team
+
+
+  palette:
+
+    # # Palette toggle for dark mode
+    # - media: "(prefers-color-scheme: dark)"
+    #   scheme: slate
+    #   toggle:
+    #     icon: material/brightness-4
+    #     name: Switch to system preference
+    # # Palette toggle for light mode
+    # - media: "(prefers-color-scheme: light)"
+    #   scheme: material
+    #   toggle:
+    #     icon: material/brightness-7
+    #     name: Switch to dark mode
+
+
+
+  features:
+    - header.autohide
+    - navigation.sections
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes 
+    - toc.follow
+    - content.action.edit
+    - content.action.view
+    - navigation.tabs
+    - navigation.top
+
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  generator: false  # turn off theme link
+  
+copyright: >
+    <a class="" href="http://databio.org/">
+      <img src="https://databio.org/images/logo/logo_databio_long.svg"
+        style="height:60px;"
+        alt="Databio logo">
+    </a>
+
+nav:
+  - PEP specification:
+    - Getting started: 
+      - A simple example: pepspec/simple_example.md
+      - PEP specification: pepspec/specification.md
+      - Rationale: pepspec/rationale.md
+    - Detailed how-to guides:
+        - Specify multiple inputs: pepspec/howto_multiple_inputs.md
+        - Eliminate paths from table: pepspec/howto_eliminate_paths.md
+        - Remove genome from table: pepspec/howto_genome_id.md
+        - Store many projects in one file: pepspec/howto_amendments.md
+        - Create automatic groups: pepspec/howto_automatic_groups.md
+        - Mix & match amendments: pepspec/howto_mixmatch.md
+        - Import plus amendments: pepspec/howto_integrate.md
+        - Create a PEP from GEO/SRA: pepspec/howto_geofetch.md
+        - Validate a PEP: pepspec/howto_validate.md
+    - Implementations:
+      - "Python package: peppy": pepspec/peppy.md
+      - "R package: pepr": pepspec/pepr.md
+    - Reference:
+      - How to cite: citations.md
+      - Changelog: pepspec/changelog.md
+      - PEPkit usage statistics: statistics.md
+      - Support: https://github.com/pepkit/pepkit.github.io/issues
+      - Team and Contributing: pepspec/team.md
+  - Eido:
+    - Eido: eido/README.md
+    - Getting started:
+      - Install and configure: eido/install.md
+    - How-to guides:
+      - "Tutorial: eido in Python": eido/code/demo.md
+      - "Tutorial: eido in a shell": eido/code/cli.md
+      - Using eido filters: eido/filters.md
+      - Writing a custom filter: eido/writing-a-filter.md
+      - Writing a schema: eido/writing-a-schema.md
+    - Reference:
+      - How to cite: citations.md
+      - Example schemas: eido/example-schemas.md
+      - Eido Python API: eido/code/python-api.md
+      - Built-in filters API: eido/plugin_api_docs.md
+      - Support: https://github.com/pepkit/eido/issues
+      - Contributing: eido/contributing.md
+      - Changelog: eido/changelog.md
+  - GEOfetch:
+    - GEOfetch: geofetch/README.md
+    - Getting started:
+      - Install and configure: geofetch/install.md
+      - SRA convert: geofetch/sra_convert.md
+    - Tutorials:
+      - Tutorial for processed data: geofetch/code/processed-data-downloading.md
+      - Tutorial for raw data: geofetch/code/raw-data-downloading.md
+      - geofetch from within Python: geofetch/code/python-usage.md
+      - GSE Finder: geofetch/gse_finder.md
+    - How-to guides:
+      - Specifying samples to download: geofetch/file-specification.md
+      - Set SRA data download location: geofetch/howto-location.md
+      - Run SRA convert: geofetch/code/how_to_convert_fastq_from_sra.md
+    - Reference:
+      - How to cite: citations.md
+      - API: geofetch/code/python-api.md
+      - Metadata output: geofetch/metadata_output.md
+      - Usage: geofetch/usage.md
+      - FAQ: geofetch/faq.md
+      - Support: http://github.com/pepkit/geofetch/issues
+      - Contributing: geofetch/contributing.md
+      - Changelog: geofetch/changelog.md
+  - Looper:
+    - Looper: looper/README.md
+    - Getting started:
+        - Features at-a-glance: looper/features.md
+        - Hello world: looper/code/hello-world.md
+    - How-to guides:
+        - Defining a project: looper/defining-a-project.md
+        - Running a pipeline: looper/running-a-pipeline.md
+        - Initializing a repository: looper/initialize.md
+        - Using pipestat: looper/pipestat.md
+        - Parameterizing pipelines: looper/parameterizing-pipelines.md
+        - Running on a cluster: looper/running-on-a-cluster.md
+        - Grouping many jobs into one: looper/grouping-jobs.md
+        - Running jobs in containers: looper/containers.md
+        - Handling multiple input files: looper/how-to-merge-inputs.md
+        - Running multiple pipelines: looper/multiple-pipelines.md
+        - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
+        - Using looper config: looper/looper-config.md
+        - Using geofetch: looper/using-geofetch.md
+        - Browsable HTML Reports: looper/looper-report.md
+    - Using divvy:
+        - Introduction: divvy/README.md
+        - Configuring divvy: divvy/configuration.md
+        - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
+        - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
+        - Configuring containers: divvy/containers.md
+        - Configuring connection with client software: divvy/adapters.md
+        - Default packages: divvy/default-packages.md
+        - DIVCFG examples: http://github.com/pepkit/divcfg
+    - Reference:
+        - How to cite: citations.md
+        - Pipeline interface specification: looper/pipeline-interface-specification.md
+        - Pipeline tiers: looper/pipeline-tiers.md
+        - Concentric templates: looper/concentric-templates.md
+        - Pre-submission hooks system: looper/pre-submission-hooks.md
+        - Looper variable namespaces: looper/variable-namespaces.md
+        - Usage: looper/usage.md
+        - Configuration files: looper/config-files.md
+        - API: looper/code/python-api.md
+        - FAQ: looper/faq.md
+        - Support: looper/support.md
+        - Contributing: looper/contributing.md
+        - Changelog: looper/changelog.md
+  - PEPhub:
+    - PEPhub: pephub/README.md
+    - User guide:
+      - Authentication: pephub/authentication.md
+      - Semantic search: pephub/semantic-search.md
+      - PEPhubClient: 
+        - PEPhubClient: pephub/pephubclient/README.md
+        - Changelog: pephub/pephubclient/changelog.md
+    - Developer guide:
+      - Deployment: pephub/deployment.md
+      - Development: pephub/development.md
+      - Server settings: pephub/server-settings.md
+      - pepdbagent:
+        - pepdbagent: pephub/pepdbagent/README.md
+        - Database tutorial: pephub/pepdbagent/db_tutorial.md
+        - Changelog: pephub/pepdbagent/changelog.md
+    - Reference:
+      - Schema registry: https://schema.databio.org
+      - How to cite: citations.md
+      - Changelog: pephub/changelog.md
+
+
+  - Peppy:
+    - Peppy: peppy/README.md
+    - Getting started:
+      - Installing and Hello World: peppy/hello-world.md
+    - How-to guides:
+      - How to initialize a Project: peppy/initialize.md
+      - How to use peppy: peppy/code/tutorial.md
+      - How to use subsample table: peppy/code/feature4_subsample_table.md
+      - How to use amendments: peppy/code/feature5_amend.md
+      - How to use append sample modifier: peppy/code/feature1_append.md
+      - How to use imply sample modifier: peppy/code/feature2_imply.md
+      - How to validate a PEP: peppy/validating.md
+    - Reference:
+      - How to cite: citations.md
+      - API: peppy/code/python-api.md
+      - Support: peppy/support.md
+      - Contributing: peppy/contributing.md
+      - Changelog: peppy/changelog.md
+  - Pipestat:
+    - Pipestat: pipestat/README.md
+    - Getting started:
+      - Install and configure: pipestat/install.md
+    - How-to guides:
+      - Quickstart: pipestat/code/api_quickstart.md
+      - Use Python API: pipestat/code/python_api.md
+      - Use command line interface: pipestat/code/cli.md
+      - Configure pipestat: pipestat/configuration.md
+    - Reference:
+      - How to cite: citations.md
+      - CLI usage: pipestat/usage.md
+      - Configuration format: pipestat/config.md
+      - Environment variables: pipestat/env_vars.md
+      - Pipestat specification: pipestat/pipestat_specification.md
+      - Python API: pipestat/code/python-api.md
+      - Support: https://github.com/pepkit/pipestat/issues
+      - Contributing: pipestat/contributing.md
+      - Changelog: pipestat/changelog.md
+  - Pypiper:
+    - Pypiper: pypiper/README.md
+    - Getting started: 
+      - Philosophy: pypiper/philosophy.md
+      - Features at-a-glance: pypiper/features.md
+      - Hello world: pypiper/code/hello-world.md
+    - Developer guides:    
+      - Building a basic pipeline: pypiper/code/basic-pipeline.md
+      - Using the run method: pypiper/advanced-run-method.md
+      - Automatic command-line arguments: pypiper/cli.md
+      - Configuring pipelines: pypiper/configuration.md
+      - Reporting statistics: pypiper/report.md
+      - Reporting statistics with pipestat: pypiper/pipestat.md
+      - Cleaning up intermediate files: pypiper/clean.md
+      - Best practices: pypiper/best-practices.md
+    - Toolkits:
+      - "NGSTk: the NGS toolkit": pypiper/ngstk_intro.md    
+    - Reference:
+      - How to cite: citations.md
+      - Catalog of pipeline outputs: pypiper/outputs.md
+      - Pypiper API: pypiper/code/python-api.md
+      - NGSTk API: pypiper/code/ngstk.md
+      - FAQ: pypiper/faq.md
+      - Support: pypiper/support.md
+      - Contributing: pypiper/contributing.md
+      - Changelog: pypiper/changelog.md
+  - How to cite: citations.md
+  - Stats: statistics.md
+
+lucidoc:
+  peppy: peppy/code/python-api.md
+  looper: looper/code/python-api.md
+  pipestat: pipestat/code/python-api.md
+  pypiper: pypiper/code/python-api.md
+  ngstk: pypiper/code/ngstk.md
+  eido: eido/code/python-api.md
+  geofetch: geofetch/code/python-api.md
+
+jupyter:
+  - in: eido/notebooks
+    out: eido/code
+  - in: geofetch/notebooks
+    out: geofetch/code
+  - in: looper/notebooks
+    out: looper/code
+  - in: peppy/notebooks
+    out: peppy/code
+  - in: pipestat/notebooks
+    out: pipestat/code
+  - in: pypiper/notebooks
+    out: pypiper/code

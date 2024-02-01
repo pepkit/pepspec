@@ -1,0 +1,88 @@
+{% extends "main.html" %}
+{% block tabs %}
+  {{ super() }}
+  <style>.md-header{position:initial}.md-main__inner{margin:0}.md-content{display:none}@media screen and (min-width:60em){.md-sidebar--secondary{display:none}}@media screen and (min-width:76.25em){.md-sidebar--primary{display:none}}</style>
+  <section class="mdx-container">
+    <div class="header-container jumbotron">
+	    <div class="md-grid md-typeset">
+        <div class="mdx-hero">
+          <div class="mdx-hero__content">
+            <h1 style="margin-bottom:0.5em">Portable Encapsulated Projects</h1>
+            <p>An open structure and toolkit for organizing large-scale, sample-intensive biological research projects.
+	          </p>
+            <a href="pepspec/simple_example" class="md-button md-button--primary">
+              Quick start
+            </a>
+          </div>
+        </div>
+
+	    </div>
+	  </div>
+  </section>
+
+  <div class="md-grid md-typeset">
+    <div class="row" style="display:flex">
+        <div class="col-md-6" style="flex: 0 0 50%; padding: 20px">
+            <h1 class="header-light regular-pad">What is a PEP?</h1>
+            <p>
+              <p><i>PEP</i>, or <i>Portable Encapsulated Projects</i>, is a <b>community effort to make sample metadata reusable</b>. PEPs decouple metadata from analysis by providing:
+                <ol>
+              <li>a standardized metadata structure;</li>
+              <li>a metadata validation framework; and</li>
+              <li>programatic metadata modifiers.</li>
+              </ol>
+               A PEP is written using a familiar <b>yaml + csv</b> format that can be read by our R and Python packages, and well as by workflow frameworks. PEP is your metadata solution for sample-intensive research projects.</p>
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <br><br>
+            <img src="img/pep_center.svg" alt="" class="img-responsive img-white-bg">
+        </div>
+    </div>
+    <hr>
+    <div class="row"  style="display:flex">
+        <div class="col-sm-6" style="flex: 0 0 50%">
+            <h1 class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Validation framework</h3>
+            A PEP can be validated using a generic JSON schema, or you can define your own custom schema for a more specific analysis.
+             <div class="row">
+                <div class="col-sm-6 text-center" style="border:0px solid black; margin-top:3em">
+                    <img src="img/json-schema-logo.svg" style="height:30px"> <a href="https://json-schema.org/"><span style="font-size:1.5em">JSON-Schema</span></a>
+                </div>
+                <div class="col-sm-6 text-center" style="border:0px solid black">
+                    <a href="https://eido.databio.org"><img src="img/eido_vertical.svg" style="height:140px"></a>
+                </div>
+            </div>
+                 
+        </div>
+        <div class="col-sm-6"  style="flex: 0 0 50%">
+            <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Workflow systems</h3>
+            A PEP description can be a starting point for many workflow systems, with more on the way!
+            <div class="row">
+                <div class="col-sm-6" style="border:0px solid black">
+                <a href="http://commonwl.org"><img src="img/CWL-Logo-nofonts.svg"  style="height:130px"></a>
+                </div>
+                <div class="col-sm-6" style="border:0px solid black">
+                <a href="https://snakemake.readthedocs.io"><img src="img/logo_snakemake.svg" style="height:60px"></a>
+                <a href="http://looper.databio.org"><img src="img/logo_looper.svg"  style="height:70px"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 class="text-center"><i class="fa fa-chart-bar" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Data analysts</h3>
+            <p>Start by writing your metadata in PEP format, and immediately benefit from metadata organization tools written in R and Python.</p>
+        </div>
+        <div class="col-sm-6">
+            <h1 class="text-center"><i class="fa fa-wrench" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Software developers</h3>
+            <p>Handle input sample metadata formatting, parsing, and validation with our R or Python APIs, making your tool able to process PEP-compliant projects.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,7 @@
-template: jumbotron.html
-extra_css: [extra.css]
+---
+hide:
+  - navigation
+template: home.html
+title: "PEPkit: the bio data management toolkit"
+---
 
-Wwhat??

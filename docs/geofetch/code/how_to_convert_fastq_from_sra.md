@@ -1,0 +1,555 @@
+## How to extract fastq files from SRA
+
+
+```bash
+geofetch --version
+```
+
+    geofetch 0.12.4
+
+
+1) Download SRA files and PEP using GEOfetch
+
+Add flags: 
+a) `--add-convert-modifier` (To add looper configurations for conversion)
+b) `--discard-soft` (To delete soft files. We don't need them :D)
+
+
+```bash
+geofetch -i GSE67303 -n red_algae -m `pwd` --add-convert-modifier --discard-soft
+```
+
+    Metadata folder: /home/bnt4me/virginia/repos/geofetch/docs_jupyter/red_algae
+    Trying GSE67303 (not a file) as accession...
+    Skipped 0 accessions. Starting now.
+    [38;5;200mProcessing accession 1 of 1: 'GSE67303'[0m
+    Processed 4 samples.
+    Expanding metadata list...
+    Found SRA Project accession: SRP056574
+    Downloading SRP056574 sra metadata
+    Parsing SRA file to download SRR records
+    Getting SRR: SRR1930183  in (GSE67303)
+    
+    2023-08-01T17:04:12 prefetch.2.11.3: Current preference is set to retrieve SRA Normalized Format files with full base quality scores.
+    2023-08-01T17:04:12 prefetch.2.11.3: 1) Downloading 'SRR1930183'...
+    2023-08-01T17:04:12 prefetch.2.11.3: SRA Normalized Format file is being retrieved, if this is different from your preference, it may be due to current file availability.
+    2023-08-01T17:04:12 prefetch.2.11.3:  Downloading via HTTPS...
+    2023-08-01T17:04:14 prefetch.2.11.3:  HTTPS download succeed
+    2023-08-01T17:04:15 prefetch.2.11.3:  'SRR1930183' is valid
+    2023-08-01T17:04:15 prefetch.2.11.3: 1) 'SRR1930183' was downloaded successfully
+    2023-08-01T17:04:15 prefetch.2.11.3: 'SRR1930183' has 0 unresolved dependencies
+    Getting SRR: SRR1930184  in (GSE67303)
+    
+    2023-08-01T17:04:15 prefetch.2.11.3: Current preference is set to retrieve SRA Normalized Format files with full base quality scores.
+    2023-08-01T17:04:16 prefetch.2.11.3: 1) Downloading 'SRR1930184'...
+    2023-08-01T17:04:16 prefetch.2.11.3: SRA Normalized Format file is being retrieved, if this is different from your preference, it may be due to current file availability.
+    2023-08-01T17:04:16 prefetch.2.11.3:  Downloading via HTTPS...
+    2023-08-01T17:04:17 prefetch.2.11.3:  HTTPS download succeed
+    2023-08-01T17:04:18 prefetch.2.11.3:  'SRR1930184' is valid
+    2023-08-01T17:04:18 prefetch.2.11.3: 1) 'SRR1930184' was downloaded successfully
+    2023-08-01T17:04:18 prefetch.2.11.3: 'SRR1930184' has 0 unresolved dependencies
+    Getting SRR: SRR1930185  in (GSE67303)
+    
+    2023-08-01T17:04:19 prefetch.2.11.3: Current preference is set to retrieve SRA Normalized Format files with full base quality scores.
+    2023-08-01T17:04:19 prefetch.2.11.3: 1) Downloading 'SRR1930185'...
+    2023-08-01T17:04:19 prefetch.2.11.3: SRA Normalized Format file is being retrieved, if this is different from your preference, it may be due to current file availability.
+    2023-08-01T17:04:19 prefetch.2.11.3:  Downloading via HTTPS...
+    2023-08-01T17:04:22 prefetch.2.11.3:  HTTPS download succeed
+    2023-08-01T17:04:22 prefetch.2.11.3:  'SRR1930185' is valid
+    2023-08-01T17:04:22 prefetch.2.11.3: 1) 'SRR1930185' was downloaded successfully
+    2023-08-01T17:04:22 prefetch.2.11.3: 'SRR1930185' has 0 unresolved dependencies
+    Getting SRR: SRR1930186  in (GSE67303)
+    
+    2023-08-01T17:04:22 prefetch.2.11.3: Current preference is set to retrieve SRA Normalized Format files with full base quality scores.
+    2023-08-01T17:04:23 prefetch.2.11.3: 1) Downloading 'SRR1930186'...
+    2023-08-01T17:04:23 prefetch.2.11.3: SRA Normalized Format file is being retrieved, if this is different from your preference, it may be due to current file availability.
+    2023-08-01T17:04:23 prefetch.2.11.3:  Downloading via HTTPS...
+    2023-08-01T17:04:25 prefetch.2.11.3:  HTTPS download succeed
+    2023-08-01T17:04:25 prefetch.2.11.3:  'SRR1930186' is valid
+    2023-08-01T17:04:25 prefetch.2.11.3: 1) 'SRR1930186' was downloaded successfully
+    2023-08-01T17:04:25 prefetch.2.11.3: 'SRR1930186' has 0 unresolved dependencies
+    Finished processing 1 accession(s)
+    Cleaning soft files ...
+    Creating complete project annotation sheets and config file...
+    [92mSample annotation sheet: /home/bnt4me/virginia/repos/geofetch/docs_jupyter/red_algae/GSE67303_PEP/GSE67303_PEP_raw.csv . Saved![0m
+    [92mFile has been saved successfully[0m
+      Config file: /home/bnt4me/virginia/repos/geofetch/docs_jupyter/red_algae/GSE67303_PEP/GSE67303_PEP.yaml
+
+
+Let's see if files were downloaded:
+
+
+```bash
+ls
+```
+
+    [0m[01;34mbuild[0m                             python-usage.ipynb          [01;34mSRR1930184[0m
+    [01;34mcode[0m                              raw-data-downloading.ipynb  [01;34mSRR1930185[0m
+    how_to_fastq_from_sra.ipynb       [01;34mred_algae[0m                   [01;34mSRR1930186[0m
+    processed-data-downloading.ipynb  [01;34mSRR1930183[0m
+
+
+now let's check how does our config file looks like:
+
+
+```bash
+cat ./red_algae/GSE67303_PEP/GSE67303_PEP.yaml
+```
+
+    # Autogenerated by geofetch
+    
+    name: GSE67303
+    pep_version: 2.1.0
+    sample_table: GSE67303_PEP_raw.csv
+    
+    "experiment_metadata":
+      "series_contact_address": "930 N University Ave"
+      "series_contact_city": "Ann Arbor"
+      "series_contact_country": "USA"
+      "series_contact_department": "Chemistry"
+      "series_contact_email": "mtardu@umich.edu"
+      "series_contact_institute": "University of Michigan"
+      "series_contact_laboratory": "Koutmou Lab"
+      "series_contact_name": "mehmet,,tardu"
+      "series_contact_state": "MI"
+      "series_contact_zip_postal_code": "48109"
+      "series_contributor": "Mehmet,,Tardu + Ugur,M,Dikbas + Ibrahim,,Baris + Ibrahim,H,Kavakli"
+      "series_geo_accession": "GSE67303"
+      "series_last_update_date": "May 15 2019"
+      "series_overall_design": "Identification of blue light and red light regulated genes\
+        \ by deep sequencing in biological duplicates. qRT-PCR was performed to verify\
+        \ the RNA-seq results."
+      "series_platform_id": "GPL19949"
+      "series_platform_organism": "Cyanidioschyzon merolae strain 10D"
+      "series_platform_taxid": "280699"
+      "series_pubmed_id": "27614431"
+      "series_relation": "BioProject: https://www.ncbi.nlm.nih.gov/bioproject/PRJNA279462\
+        \ + SRA: https://www.ncbi.nlm.nih.gov/sra?term=SRP056574"
+      "series_sample_id": "GSM1644066 + GSM1644067 + GSM1644068 + GSM1644069"
+      "series_sample_organism": "Cyanidioschyzon merolae strain 10D"
+      "series_sample_taxid": "280699"
+      "series_status": "Public on Sep 01 2016"
+      "series_submission_date": "Mar 26 2015"
+      "series_summary": "Light is one of the main environmental cues that affects the\
+        \ physiology and behavior of many organisms. The effect of light on genome-wide\
+        \ transcriptional regulation has been well-studied in green algae and plants,\
+        \ but not in red algae. Cyanidioschyzon merolae is used as a model red algae,\
+        \ and is suitable for studies on transcriptomics because of its compact genome\
+        \ with a relatively small number of genes. In addition, complete genome sequences\
+        \ of the nucleus, mitochondrion, and chloroplast of this organism have been determined.\
+        \ Together, these attributes make C. merolae an ideal model organism to study\
+        \ the response to light stimuli at the transcriptional and the systems biology\
+        \ levels. Previous studies have shown that light significantly affects cell signaling\
+        \ in this organism, but there are no reports on its blue light- and red light-mediated\
+        \ transcriptional responses. We investigated the direct effects of blue and red\
+        \ light at the transcriptional level using RNA-seq. Blue and red light were found\
+        \ to regulate 35% of the total genes in C. merolae. Blue light affected the transcription\
+        \ of genes involved protein synthesis while red light specifically regulated the\
+        \ transcription of genes involved in photosynthesis and DNA repair. Blue or red\
+        \ light regulated genes involved in carbon metabolism and pigment biosynthesis.\
+        \ Overall, our data showed that red and blue light regulate the majority of the\
+        \ cellular, cell division, and repair processes in C. merolae."
+      "series_supplementary_file": "ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE67nnn/GSE67303/suppl/GSE67303_DEG_cuffdiff.xlsx"
+      "series_title": "RNA-seq analysis of the transcriptional response to blue and red\
+        \ light in the extremophilic red alga, Cyanidioschyzon merolae"
+      "series_type": "Expression profiling by high throughput sequencing"
+    
+    
+    
+    sample_modifiers:
+      append:
+        # Project metadata:
+        sample_treatment_protocol_ch1: "Cells were exposed to blue-light (15 µmole m-2s-1) for 30 minutes"
+        sample_growth_protocol_ch1: "Cyanidioschyzon merolae cells were grown in 2xMA media"
+        sample_extract_protocol_ch1: "Dark kept and blue-light exposed C.merolae cells were removed and RNA was harvested using Trizol reagent. Illumina TruSeq RNA Sample Prep Kit (Cat#RS-122-2001) was used with 1 ug of total RNA for the construction of sequencing libraries., RNA libraries were prepared for sequencing using standard Illumina protocols"
+        sample_data_processing: "The purified cDNA library was sequenced on Illumina''s MiSeq sequencing platform following vendor''s instruction for running the instrument., Sequenced reads were trimmed for adaptor sequence, and masked for low-complexity or low-quality sequence, then mapped to Cyanidioschyzon merolae 10D reference genome (assembly ID:ASM9120v1) using TopHat (v2.0.5)., Differential expression analysis was conducted by using cuffdiff tool in cufflink suite (v2.2)"
+        supplementary_files_format_and_content: "Excel spreadsheet includes FPKM values for Darkness and Blue-Light exposed samples with p and q values of cuffdiff output."
+        # End of project metadata
+        
+    
+        # Adding sra convert looper pipeline
+        SRR_files: SRA
+    
+      derive:
+        attributes: [read1, read2, SRR_files]
+        sources:
+          SRA: "${SRABAM}/{srr}.bam"
+          FQ: "${SRAFQ}/{srr}.fastq.gz"
+          FQ1: "${SRAFQ}/{srr}_1.fastq.gz"
+          FQ2: "${SRAFQ}/{srr}_2.fastq.gz"
+      imply:
+        - if:
+            organism: "Mus musculus"
+          then:
+            genome: mm10
+        - if:
+            organism: "Homo sapiens"
+          then:
+            genome: hg38
+        - if:
+            read_type: "PAIRED"
+          then:
+            read1: FQ1
+            read2: FQ2
+        - if:
+            read_type: "SINGLE"
+          then:
+            read1: FQ1
+    
+    project_modifiers:
+      amend:
+        sra_convert:
+          looper:
+            results_subdir: sra_convert_results
+          sample_modifiers:
+            append:
+              SRR_files: SRA
+              pipeline_interfaces: ${CODE}/geofetch/pipeline_interface_convert.yaml
+            derive:
+              attributes: [read1, read2, SRR_files]
+              sources:
+                SRA: "${SRARAW}/{srr}/{srr}.sra"
+                FQ: "${SRAFQ}/{srr}.fastq.gz"
+                FQ1: "${SRAFQ}/{srr}_1.fastq.gz"
+                FQ2: "${SRAFQ}/{srr}_2.fastq.gz"
+    
+    
+    
+    
+
+
+To run pipeline, you should set up few enviromental variables:
+1) SRARAW - folder where SRA files were downloaded
+2) SRAFQ -folder where fastq should be produced
+3) CODE - (first you should clone geofetch), and $CODE is where geofetch folder is located
+
+
+```bash
+# Set SRARAW env
+export SRARAW=`pwd`
+```
+
+
+```bash
+# Create folder where you want to store fq
+mkdir fq_folder
+```
+
+
+```bash
+# Set SRAFQ env
+export SRAFQ=`pwd`/fq_folder
+```
+
+
+```bash
+# Unfortunately you have to pull gefetch folder from github, and set CODE variable:
+mkdir code && cd code && git clone https://github.com/pepkit/geofetch.git && export CODE=`pwd` && cd ..
+```
+
+
+```bash
+ls
+```
+
+    [0m[01;34mbuild[0m                        processed-data-downloading.ipynb  [01;34mSRR1930183[0m
+    [01;34mcode[0m                         python-usage.ipynb                [01;34mSRR1930184[0m
+    [01;34mfq_folder[0m                    raw-data-downloading.ipynb        [01;34mSRR1930185[0m
+    how_to_fastq_from_sra.ipynb  [01;34mred_algae[0m                         [01;34mSRR1930186[0m
+
+
+### Now install looper if you don't have it
+
+
+```bash
+looper --version
+```
+
+    looper 1.4.3
+    [0m
+
+
+
+```bash
+ls red_algae
+```
+
+    [0m[01;34mGSE67303_PEP[0m
+
+
+
+```bash
+looper run red_algae/GSE67303_PEP/GSE67303_PEP.yaml -a sra_convert -p local --output-dir .
+```
+
+    Looper version: 1.4.3
+    Command: run
+    Using default config. No config found in env var: ['DIVCFG']
+    Using amendments: sra_convert
+    Activating compute package 'local'
+    Pipestat compatible: False
+    [36m## [1 of 4] sample: cm_bluelight_rep1; pipeline: sra_convert[0m
+    Writing script to /home/bnt4me/virginia/repos/geofetch/docs_jupyter/submission/sra_convert_cm_bluelight_rep1.sub
+    Job script (n=1; 0.06Gb): ./submission/sra_convert_cm_bluelight_rep1.sub
+    Compute node: bnt4me-Precision-5560
+    Start time: 2023-08-01 13:06:42
+    Using outfolder: ./sra_convert_results/SRR1930183
+    ### Pipeline run code and environment:
+    
+    *              Command:  `/home/bnt4me/virginia/venv/jupyter/bin/sraconvert --srr /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930183/SRR1930183.sra -O ./sra_convert_results`
+    *         Compute host:  bnt4me-Precision-5560
+    *          Working dir:  /home/bnt4me/virginia/repos/geofetch/docs_jupyter
+    *            Outfolder:  ./sra_convert_results/SRR1930183/
+    *  Pipeline started at:   (08-01 13:06:42) elapsed: 0.0 _TIME_
+    
+    ### Version log:
+    
+    *       Python version:  3.10.6
+    *          Pypiper dir:  `/home/bnt4me/virginia/venv/jupyter/lib/python3.10/site-packages/pypiper`
+    *      Pypiper version:  0.12.3
+    *         Pipeline dir:  `/home/bnt4me/virginia/venv/jupyter/bin`
+    *     Pipeline version:  None
+    
+    ### Arguments passed to pipeline:
+    
+    *          `bamfolder`:  ``
+    *        `config_file`:  `sraconvert.yaml`
+    *             `format`:  `fastq`
+    *           `fqfolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder`
+    *           `keep_sra`:  `False`
+    *             `logdev`:  `False`
+    *               `mode`:  `convert`
+    *      `output_parent`:  `./sra_convert_results`
+    *            `recover`:  `False`
+    *        `sample_name`:  `None`
+    *             `silent`:  `False`
+    *          `srafolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter`
+    *                `srr`:  `['/home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930183/SRR1930183.sra']`
+    *          `verbosity`:  `None`
+    
+    ----------------------------------------
+    
+    Processing 1 of 1 files: SRR1930183
+    Target to produce: `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder/SRR1930183_1.fastq.gz`  
+    
+    > `fasterq-dump /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930183/SRR1930183.sra -O /home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder` (744928)
+    <pre>
+    spots read      : 1,068,319
+    reads read      : 2,136,638
+    reads written   : 2,136,638
+    </pre>
+    Command completed. Elapsed time: 0:00:02. Running peak memory: 0.08GB.  
+      PID: 744928;	Command: fasterq-dump;	Return code: 0;	Memory used: 0.08GB
+    
+    Already completed files: []
+    
+    ### Pipeline completed. Epilogue
+    *        Elapsed time (this run):  0:00:02
+    *  Total elapsed time (all runs):  0:00:02
+    *         Peak memory (this run):  0.0803 GB
+    *        Pipeline completed time: 2023-08-01 13:06:44
+    [36m## [2 of 4] sample: cm_bluelight_rep2; pipeline: sra_convert[0m
+    Writing script to /home/bnt4me/virginia/repos/geofetch/docs_jupyter/submission/sra_convert_cm_bluelight_rep2.sub
+    Job script (n=1; 0.04Gb): ./submission/sra_convert_cm_bluelight_rep2.sub
+    Compute node: bnt4me-Precision-5560
+    Start time: 2023-08-01 13:06:44
+    Using outfolder: ./sra_convert_results/SRR1930184
+    ### Pipeline run code and environment:
+    
+    *              Command:  `/home/bnt4me/virginia/venv/jupyter/bin/sraconvert --srr /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930184/SRR1930184.sra -O ./sra_convert_results`
+    *         Compute host:  bnt4me-Precision-5560
+    *          Working dir:  /home/bnt4me/virginia/repos/geofetch/docs_jupyter
+    *            Outfolder:  ./sra_convert_results/SRR1930184/
+    *  Pipeline started at:   (08-01 13:06:45) elapsed: 0.0 _TIME_
+    
+    ### Version log:
+    
+    *       Python version:  3.10.6
+    *          Pypiper dir:  `/home/bnt4me/virginia/venv/jupyter/lib/python3.10/site-packages/pypiper`
+    *      Pypiper version:  0.12.3
+    *         Pipeline dir:  `/home/bnt4me/virginia/venv/jupyter/bin`
+    *     Pipeline version:  None
+    
+    ### Arguments passed to pipeline:
+    
+    *          `bamfolder`:  ``
+    *        `config_file`:  `sraconvert.yaml`
+    *             `format`:  `fastq`
+    *           `fqfolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder`
+    *           `keep_sra`:  `False`
+    *             `logdev`:  `False`
+    *               `mode`:  `convert`
+    *      `output_parent`:  `./sra_convert_results`
+    *            `recover`:  `False`
+    *        `sample_name`:  `None`
+    *             `silent`:  `False`
+    *          `srafolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter`
+    *                `srr`:  `['/home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930184/SRR1930184.sra']`
+    *          `verbosity`:  `None`
+    
+    ----------------------------------------
+    
+    Processing 1 of 1 files: SRR1930184
+    Target to produce: `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder/SRR1930184_1.fastq.gz`  
+    
+    > `fasterq-dump /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930184/SRR1930184.sra -O /home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder` (744973)
+    <pre>
+    spots read      : 762,229
+    reads read      : 1,524,458
+    reads written   : 1,524,458
+    </pre>
+    Command completed. Elapsed time: 0:00:02. Running peak memory: 0.012GB.  
+      PID: 744973;	Command: fasterq-dump;	Return code: 0;	Memory used: 0.012GB
+    
+    Already completed files: []
+    
+    ### Pipeline completed. Epilogue
+    *        Elapsed time (this run):  0:00:02
+    *  Total elapsed time (all runs):  0:00:02
+    *         Peak memory (this run):  0.0118 GB
+    *        Pipeline completed time: 2023-08-01 13:06:47
+    [36m## [3 of 4] sample: cm_darkness_rep1; pipeline: sra_convert[0m
+    Writing script to /home/bnt4me/virginia/repos/geofetch/docs_jupyter/submission/sra_convert_cm_darkness_rep1.sub
+    Job script (n=1; 0.09Gb): ./submission/sra_convert_cm_darkness_rep1.sub
+    Compute node: bnt4me-Precision-5560
+    Start time: 2023-08-01 13:06:47
+    Using outfolder: ./sra_convert_results/SRR1930185
+    ### Pipeline run code and environment:
+    
+    *              Command:  `/home/bnt4me/virginia/venv/jupyter/bin/sraconvert --srr /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930185/SRR1930185.sra -O ./sra_convert_results`
+    *         Compute host:  bnt4me-Precision-5560
+    *          Working dir:  /home/bnt4me/virginia/repos/geofetch/docs_jupyter
+    *            Outfolder:  ./sra_convert_results/SRR1930185/
+    *  Pipeline started at:   (08-01 13:06:47) elapsed: 0.0 _TIME_
+    
+    ### Version log:
+    
+    *       Python version:  3.10.6
+    *          Pypiper dir:  `/home/bnt4me/virginia/venv/jupyter/lib/python3.10/site-packages/pypiper`
+    *      Pypiper version:  0.12.3
+    *         Pipeline dir:  `/home/bnt4me/virginia/venv/jupyter/bin`
+    *     Pipeline version:  None
+    
+    ### Arguments passed to pipeline:
+    
+    *          `bamfolder`:  ``
+    *        `config_file`:  `sraconvert.yaml`
+    *             `format`:  `fastq`
+    *           `fqfolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder`
+    *           `keep_sra`:  `False`
+    *             `logdev`:  `False`
+    *               `mode`:  `convert`
+    *      `output_parent`:  `./sra_convert_results`
+    *            `recover`:  `False`
+    *        `sample_name`:  `None`
+    *             `silent`:  `False`
+    *          `srafolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter`
+    *                `srr`:  `['/home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930185/SRR1930185.sra']`
+    *          `verbosity`:  `None`
+    
+    ----------------------------------------
+    
+    Processing 1 of 1 files: SRR1930185
+    Target to produce: `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder/SRR1930185_1.fastq.gz`  
+    
+    > `fasterq-dump /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930185/SRR1930185.sra -O /home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder` (745021)
+    <pre>
+    spots read      : 1,707,508
+    reads read      : 3,415,016
+    reads written   : 3,415,016
+    </pre>
+    Command completed. Elapsed time: 0:00:03. Running peak memory: 0.079GB.  
+      PID: 745021;	Command: fasterq-dump;	Return code: 0;	Memory used: 0.079GB
+    
+    Already completed files: []
+    
+    ### Pipeline completed. Epilogue
+    *        Elapsed time (this run):  0:00:03
+    *  Total elapsed time (all runs):  0:00:03
+    *         Peak memory (this run):  0.0793 GB
+    *        Pipeline completed time: 2023-08-01 13:06:50
+    [36m## [4 of 4] sample: cm_darkness_rep2; pipeline: sra_convert[0m
+
+
+    Writing script to /home/bnt4me/virginia/repos/geofetch/docs_jupyter/submission/sra_convert_cm_darkness_rep2.sub
+    Job script (n=1; 0.07Gb): ./submission/sra_convert_cm_darkness_rep2.sub
+    Compute node: bnt4me-Precision-5560
+    Start time: 2023-08-01 13:06:50
+    Using outfolder: ./sra_convert_results/SRR1930186
+    ### Pipeline run code and environment:
+    
+    *              Command:  `/home/bnt4me/virginia/venv/jupyter/bin/sraconvert --srr /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930186/SRR1930186.sra -O ./sra_convert_results`
+    *         Compute host:  bnt4me-Precision-5560
+    *          Working dir:  /home/bnt4me/virginia/repos/geofetch/docs_jupyter
+    *            Outfolder:  ./sra_convert_results/SRR1930186/
+    *  Pipeline started at:   (08-01 13:06:51) elapsed: 0.0 _TIME_
+    
+    ### Version log:
+    
+    *       Python version:  3.10.6
+    *          Pypiper dir:  `/home/bnt4me/virginia/venv/jupyter/lib/python3.10/site-packages/pypiper`
+    *      Pypiper version:  0.12.3
+    *         Pipeline dir:  `/home/bnt4me/virginia/venv/jupyter/bin`
+    *     Pipeline version:  None
+    
+    ### Arguments passed to pipeline:
+    
+    *          `bamfolder`:  ``
+    *        `config_file`:  `sraconvert.yaml`
+    *             `format`:  `fastq`
+    *           `fqfolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder`
+    *           `keep_sra`:  `False`
+    *             `logdev`:  `False`
+    *               `mode`:  `convert`
+    *      `output_parent`:  `./sra_convert_results`
+    *            `recover`:  `False`
+    *        `sample_name`:  `None`
+    *             `silent`:  `False`
+    *          `srafolder`:  `/home/bnt4me/virginia/repos/geofetch/docs_jupyter`
+    *                `srr`:  `['/home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930186/SRR1930186.sra']`
+    *          `verbosity`:  `None`
+    
+    ----------------------------------------
+    
+    Processing 1 of 1 files: SRR1930186
+    Target to produce: `/home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder/SRR1930186_1.fastq.gz`  
+    
+    > `fasterq-dump /home/bnt4me/virginia/repos/geofetch/docs_jupyter/SRR1930186/SRR1930186.sra -O /home/bnt4me/virginia/repos/geofetch/docs_jupyter/fq_folder` (745069)
+    <pre>
+    spots read      : 1,224,029
+    reads read      : 2,448,058
+    reads written   : 2,448,058
+    </pre>
+    Command completed. Elapsed time: 0:00:02. Running peak memory: 0.081GB.  
+      PID: 745069;	Command: fasterq-dump;	Return code: 0;	Memory used: 0.081GB
+    
+    Already completed files: []
+    
+    ### Pipeline completed. Epilogue
+    *        Elapsed time (this run):  0:00:02
+    *  Total elapsed time (all runs):  0:00:02
+    *         Peak memory (this run):  0.0813 GB
+    *        Pipeline completed time: 2023-08-01 13:06:53
+    
+    Looper finished
+    Samples valid for job generation: 4 of 4
+    Commands submitted: 4 of 4
+    Jobs submitted: 4
+    [0m
+
+
+### Check if everything worked:
+
+
+```bash
+cd fq_folder
+```
+
+
+```bash
+ls
+```
+
+    SRR1930183_1.fastq  SRR1930184_1.fastq  SRR1930185_1.fastq  SRR1930186_1.fastq
+    SRR1930183_2.fastq  SRR1930184_2.fastq  SRR1930185_2.fastq  SRR1930186_2.fastq
+

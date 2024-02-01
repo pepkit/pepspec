@@ -1,0 +1,5 @@
+# Usage reference
+
+Pipestat offers a CLI that can be access via the `pipestat` command in the shell. It offers complete control over reporting, inspecting, etc, via a series of subcommands.
+
+Here you can see the command-line usage instructions for the main command and for each subcommand:
