@@ -222,6 +222,8 @@ nav:
       - How to cite: citations.md
       - CLI usage: pipestat/usage.md
       - Configuration format: pipestat/config.md
+      - Optional dependencies: pipestat/optional_dependencies.md
+      - Testing configuration: pipestat/testing.md
       - Environment variables: pipestat/env_vars.md
       - Pipestat specification: pipestat/pipestat_specification.md
       - Python API: pipestat/code/python-api.md

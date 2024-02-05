@@ -23,6 +23,10 @@ The changes reported using the `report` method of `PipestatManger` will be secur
 2. a **PostgreSQL database** (pass a path to the pipestat config to the constructor)
 This option gives the user the possibility to use a fully fledged database to back `PipestatManager`. 
 
+Note: Beginning with v0.6.0 if you wish to use the database backend, you must install the optional dependencies via: 
+```bash
+pip install pipestat['dbbackend']
+```
 
 ## Initializing a pipestat session
 
