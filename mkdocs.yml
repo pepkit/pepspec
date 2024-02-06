@@ -189,8 +189,8 @@ nav:
       - Schema registry: https://schema.databio.org
       - How to cite: citations.md
       - Changelog: pephub/changelog.md
-
-
+  - PEPembed:
+    - PEPembed: pepembed/README.md
   - Peppy:
     - Peppy: peppy/README.md
     - Getting started:
