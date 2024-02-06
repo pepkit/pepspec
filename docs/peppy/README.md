@@ -1,4 +1,3 @@
-[![PEP compatible](http://pepkit.github.io/img/PEP-compatible-green.svg)](http://pepkit.github.io)
 [![pypi-badge](https://img.shields.io/pypi/v/peppy)](https://pypi.org/project/peppy)
 [![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/peppy)
 

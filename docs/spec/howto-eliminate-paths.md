@@ -1,6 +1,5 @@
 ---
 title: Eliminate paths from sample table
-redirect_from: "/docs/derived_attributes/"
 ---
 
 # How to eliminate paths from a sample table

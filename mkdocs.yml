@@ -63,28 +63,28 @@ copyright: >
 nav:
   - PEP specification:
     - Getting started: 
-      - A simple example: pepspec/simple_example.md
-      - PEP specification: pepspec/specification.md
-      - Rationale: pepspec/rationale.md
+      - A simple example: spec/simple-example.md
+      - PEP specification: spec/specification.md
+      - Rationale: spec/rationale.md
     - Detailed how-to guides:
-        - Specify multiple inputs: pepspec/howto_multiple_inputs.md
-        - Eliminate paths from table: pepspec/howto_eliminate_paths.md
-        - Remove genome from table: pepspec/howto_genome_id.md
-        - Store many projects in one file: pepspec/howto_amendments.md
-        - Create automatic groups: pepspec/howto_automatic_groups.md
-        - Mix & match amendments: pepspec/howto_mixmatch.md
-        - Import plus amendments: pepspec/howto_integrate.md
-        - Create a PEP from GEO/SRA: pepspec/howto_geofetch.md
-        - Validate a PEP: pepspec/howto_validate.md
+        - Specify multi-value attributes: spec/howto-multi-value-attributes.md
+        - Eliminate paths from table: spec/howto-eliminate-paths.md
+        - Remove genome from table: spec/howto-genome-id.md
+        - Store many projects in one file: spec/howto-amendments.md
+        - Create automatic groups: spec/howto-automatic-groups.md
+        - Mix & match amendments: spec/howto-mixmatch.md
+        - Import plus amendments: spec/howto-integrate.md
+        - Create a PEP from GEO/SRA: spec/howto-geofetch.md
+        - Validate a PEP: spec/howto-validate.md
     - Implementations:
-      - "Python package: peppy": pepspec/peppy.md
-      - "R package: pepr": pepspec/pepr.md
+      - "Python package: peppy": spec/peppy.md
+      - "R package: pepr": spec/pepr.md
     - Reference:
       - How to cite: citations.md
-      - Changelog: pepspec/changelog.md
+      - Changelog: spec/changelog.md
       - PEPkit usage statistics: statistics.md
       - Support: https://github.com/pepkit/pepkit.github.io/issues
-      - Team and Contributing: pepspec/team.md
+      - Team and Contributing: spec/team.md
   - Eido:
     - Eido: eido/README.md
     - Getting started:
