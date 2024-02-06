@@ -22,7 +22,7 @@ pepembed \
 ## Architecture
 
 <p align="center">
-  <img src="docs/imgs/architecture.png" alt="pepembed architecture" width="800px" />
+  <img src="./img/architecture.png" alt="pepembed architecture" width="800px" />
 </p>
 
 `pepembed` works in four steps: 1) Download PEPs from pephub, 2) Extract metadata from these PEPs, 3) Compute embeddings on these PEPs using a [sentence transformer](https://www.sbert.net/), and 4) inserts these PEPs into a [qdrant](https://qdrant.tech/) instance.
@@ -36,8 +36,8 @@ Once the PEPs are downloaded, we then extract any relevant metadata from them. T
 <p align="center">
   <img
     alt="Sample modifiers in a configuration file" 
-    src="docs/imgs/cartoon_sample_modifiers.svg" 
-    height="250px" 
+    src="./img/cartoon_sample_modifiers.svg"
+    width="400px"
   />
 </p>
 
