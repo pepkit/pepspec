@@ -139,4 +139,5 @@ NamespaceReturnModel(count=1,
 
 
 # Example PEPs
-To populate database with example peps use function written in manual tests: [Manual test](../manual_tests.py)
+
+To populate database with example peps use function written in `manual_tests.py`.

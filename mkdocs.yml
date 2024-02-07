@@ -121,7 +121,7 @@ nav:
       - How to cite: citations.md
       - API: geofetch/code/python-api.md
       - Metadata output: geofetch/metadata-output.md
-      - Usage: geofetch/usage.md
+      - CLI usage: geofetch/code/usage.md
       - FAQ: geofetch/faq.md
       - Support: http://github.com/pepkit/geofetch/issues
       - Contributing: geofetch/contributing.md
@@ -175,6 +175,7 @@ nav:
     - PEPhub: pephub/README.md
     - User guide:
       - Authentication: pephub/authentication.md
+      - Authentication Device: pephub/authentication-device.md
       - Semantic search: pephub/semantic-search.md
       - PEPhubClient: 
         - PEPhubClient: pephub/pephubclient/README.md
@@ -254,7 +255,7 @@ nav:
       - How to cite: citations.md
       - Catalog of pipeline outputs: pypiper/outputs.md
       - Pypiper API: pypiper/code/python-api.md
-      - NGSTk API: pypiper/code/ngstk.md
+      - NGSTk API: pypiper/code/ngstk-api.md
       - FAQ: pypiper/faq.md
       - Support: pypiper/support.md
       - Contributing: pypiper/contributing.md
@@ -271,6 +272,12 @@ lucidoc_kwargs:
     outfile: docs/pipestat/code/python-api.md
   - pkg: pypiper
     outfile: docs/pypiper/code/python-api.md
+    whitelist:
+      - PipelineManager
+  - pkg: pypiper
+    outfile: docs/pypiper/code/ngstk-api.md
+    whitelist:
+      - NGSTk
   - pkg: geofetch
     outfile: docs/geofetch/code/python-api.md
   - pkg: eido
@@ -288,7 +295,6 @@ lucidoc_kwargs:
       - csv_pep_filter
       - yaml_samples_pep_filter
 
-
 jupyter:
   - in: eido/notebooks
     out: eido/code
@@ -302,3 +308,9 @@ jupyter:
     out: pipestat/code
   - in: pypiper/notebooks
     out: pypiper/code
+
+cli_usage:
+  - template: docs/geofetch/usage-template.md.tpl
+    outfile: docs/geofetch/code/usage.md
+    commands:
+      - geofetch --help

@@ -20,7 +20,7 @@ docker build -t pephub.databio.org .
 
 ### Run
 
-PEPhub requires many parameters to run. You can read more about those [here](https://github.com/pepkit/pephub/blob/master/docs/server-settings.md). These must be injected as environment variables. You can manually do this and inject one-by-one. There is an example script in this repo called [launch_docker.sh](launch_docker.sh).
+PEPhub requires many parameters to run. You can read more about those [here](https://github.com/pepkit/pephub/blob/master/docs/server-settings.md). These must be injected as environment variables. You can manually do this and inject one-by-one. There is an example script in the repo called `launch_docker.sh`.
 
 ```
 launch_docker.sh

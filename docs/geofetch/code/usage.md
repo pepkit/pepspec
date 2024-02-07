@@ -1,11 +1,13 @@
-# <img src="./img/geofetch_logo.svg" class="img-header">  usage reference
+# <img src="../../img/geofetch_logo.svg" class="img-header" style="height:70px">  usage reference
 
 `geofetch` command-line usage instructions:
 
 
 
 `geofetch --help`
-```{console}
+
+
+```console
 usage: geofetch [<args>]
 
 The example how to use geofetch (to download GSE573030 just metadata):
@@ -16,7 +18,7 @@ To download all processed data of GSE57303:
 
 Automatic GEO and SRA data downloader
 
-options:
+optional arguments:
   -h, --help            show this help message and exit
   -V, --version         show program's version number and exit
   -i INPUT, --input INPUT
@@ -124,4 +126,5 @@ raw:
                         out metadata.
   --add-convert-modifier
                         Add looper SRA convert modifier to config file.
+
 ```
