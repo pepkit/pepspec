@@ -1,6 +1,5 @@
 ---
 title: Remove genome from sample table
-redirect_from: "/docs/implied_attributes/"
 ---
 
 # How to remove genome from a sample table

@@ -1,5 +1,6 @@
+# PEP specification: A simple example
 
-# How do I create my own PEP? A simple example
+How do I create my own PEP? 
 
 <img src="../img/pep_contents.svg" alt="" style="float:right; margin-left:20px" width="250px">
 

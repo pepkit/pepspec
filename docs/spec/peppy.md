@@ -4,7 +4,7 @@
 
 ### Code and documentation
 
-* [User documentation and vignettes](http://peppy.databio.org/)
+* [User documentation and vignettes](/peppy)
 * [peppy API](http://peppy.databio.org/en/latest/autodoc_build/peppy/)
 * [Source code at Github](https://github.com/pepkit/peppy)
 

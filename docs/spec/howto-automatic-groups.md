@@ -1,6 +1,5 @@
 ---
 title: Create automatic sample groups
-redirect_from: "/docs/implied_attributes/"
 ---
 
 # How to create automatic sample groups
