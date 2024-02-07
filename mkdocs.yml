@@ -181,6 +181,8 @@ nav:
       - Deployment: pephub/deployment.md
       - Development: pephub/development.md
       - Server settings: pephub/server-settings.md
+      - PEPembed:
+        - PEPembed: pephub/pepembed/README.md
       - pepdbagent:
         - pepdbagent: pephub/pepdbagent/README.md
         - Database tutorial: pephub/pepdbagent/db_tutorial.md
@@ -189,8 +191,6 @@ nav:
       - Schema registry: https://schema.databio.org
       - How to cite: citations.md
       - Changelog: pephub/changelog.md
-  - PEPembed:
-    - PEPembed: pepembed/README.md
   - Peppy:
     - Peppy: peppy/README.md
     - Getting started:
