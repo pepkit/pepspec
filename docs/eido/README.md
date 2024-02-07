@@ -35,8 +35,8 @@ An eido schema is written using the JSON Schema vocabulary, plus a few additiona
 
 ## How to use eido
 
-- [Use eido to validate data from the command line](cli.md)
-- [Use eido to validate data from Python](demo.md)
+- [Use eido to validate data from the command line](code/cli.md)
+- [Use eido to validate data from Python](code/demo.md)
 - [Write your own schema](writing-a-schema.md)
 
 ---

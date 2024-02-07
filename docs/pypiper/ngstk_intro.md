@@ -19,4 +19,4 @@ cmd = ngstk.index_bam("sample.bam")
 pm.run(cmd, target="sample.bam")
 ```
 
-A complete list of functions is in the [API](../autodoc_build/pypiper) or in the [source code for NGSTk](https://github.com/databio/pypiper/blob/master/pypiper/ngstk.py).
+A complete list of functions is in the [API](code/ngstk.md) or in the [source code for NGSTk](https://github.com/databio/pypiper/blob/master/pypiper/ngstk.py).

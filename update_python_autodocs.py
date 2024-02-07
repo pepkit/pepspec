@@ -10,17 +10,18 @@ with open("mkdocs.yml") as stream:
 	cfg = yaml.safe_load(stream)
 
 # Process auto-documented Python code
-if "lucidoc" in cfg:
-	for pkg, dest in cfg["lucidoc"].items():
-		print(f"Documenting '{pkg}' at {dest}")
-		lucidoc.run_lucidoc(pkg, "rst", outfile=f"docs/{dest}")
+if "lucidoc_kwargs" in cfg:
+	for bundle in cfg["lucidoc_kwargs"]:
+		print(f"Documenting kwargs '{bundle['pkg']}' at {bundle['outfile']}")
+		lucidoc.run_lucidoc(parse_style="rst", **bundle)
+
 
 import glob
 import nbconvert
 import os
 from pathlib import Path
 
-# Render Juptyer notebooks to markdown
+# # Render Juptyer notebooks to markdown
 if "jupyter" in cfg:
 	for item in cfg["jupyter"]:
 		files = glob.glob(f"docs/{item['in']}/*.ipynb")

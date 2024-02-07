@@ -1744,7 +1744,7 @@ undergo is trimming of any space characters from each end.
 
 
 ```python
-def check_all_commands(cmds, get_bad_result=<function <lambda> at 0x7fd2d57840d0>, handle=None)
+def check_all_commands(cmds, get_bad_result=<function <lambda> at 0x7f2b0d6c50d0>, handle=None)
 ```
 
 Determine whether all commands are callable
@@ -1768,7 +1768,7 @@ Determine whether all commands are callable
 
 
 ```python
-def determine_uncallable(commands, transformations=((<function <lambda> at 0x7fd2d57841f0>, <function <lambda> at 0x7fd2d5784280>),), accumulate=False)
+def determine_uncallable(commands, transformations=((<function <lambda> at 0x7f2b0d6c51f0>, <function <lambda> at 0x7f2b0d6c5280>),), accumulate=False)
 ```
 
 Determine which commands are not callable.

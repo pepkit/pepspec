@@ -99,8 +99,6 @@ Now, this is the `sample_table`, but the `sample_name` column is not unique -- t
 
 ## Further thoughts
 
-- You can find more examples of multi-valued attributes in the examples at [PEP in practice](pep_in_practice.md).
-
 - There are pros and cons to each of these approaches. Representing a single sample with multiple rows in the sample table can cause conceptual and analytical challenges. There is value in the simplicity of being able to see each row as a separate sample, which is preserved in the subsample table approach. However, this leads to the requirement of an additional file to represent samples, which can be problematic in other settings. One advantage of PEP is that either approach can be used, so you can use the approach that fits your situation best.
 
 - Subsample tables are intended to handle multiple values *of the same type*. To handle different *classes* of input files, like read1 and read2, these are *not* the same type, and are therefore *not* put into a subsample table. Instead, these should be handled as different columns in the main sample annotation sheet (and therefore different arguments to the pipeline). It is possible that you will want to have read1 and read2, and then each of these could have multiple inputs, which would then be placed in the subsample table.

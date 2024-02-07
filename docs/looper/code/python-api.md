@@ -141,6 +141,61 @@ def description(self)
 
 
 ```python
+def from_dict(cls, pep_dictionary: dict)
+```
+
+Init a peppy project instance from a dictionary representation of an already processed PEP.
+#### Parameters:
+
+- `pep_dictionary` (`Dict[Any]`):  dict,_samples: list | dict, _subsamples: list[list | dict]}
+
+
+
+
+```python
+def from_pandas(cls, samples_df: pandas.core.frame.DataFrame, sub_samples_df: List[pandas.core.frame.DataFrame]=None, config: dict=None)
+```
+
+Init a peppy project instance from a pandas Dataframe
+#### Parameters:
+
+- `samples_df` (``):  in-memory pandas DataFrame object of samples
+- `sub_samples_df` (``):  in-memory list of pandas DataFrame objects of sub-samples
+- `config` (``):  dict of yaml file
+
+
+
+
+```python
+def from_pep_config(cls, cfg: str=None, amendments: Union[str, Iterable[str]]=None, sample_table_index: Union[str, Iterable[str]]=None, subsample_table_index: Union[str, Iterable[str]]=None, defer_samples_creation: bool=False)
+```
+
+Init a peppy project instance from a yaml file
+#### Parameters:
+
+- `cfg` (`str`):  Project config file (YAML) or sample table (CSV/TSV)with one row per sample to constitute project
+- `sample_table_index` (`str | Iterable[str]`):  name of the columns to setthe sample_table index to
+- `subsample_table_index` (`str | Iterable[str]`):  name of the columns to setthe subsample_table index to
+- `amendments` (`str | Iterable[str]`):  names of the amendments to activate
+- `amendments` (`Iterable[str]`):  amendments to use within configuration file
+- `defer_samples_creation` (`bool`):  whether the sample creation should be skipped
+
+
+
+
+```python
+def from_sample_yaml(cls, yaml_file: str)
+```
+
+Init a peppy project instance from a yaml file
+#### Parameters:
+
+- `yaml_file` (`str`):  path to yaml file
+
+
+
+
+```python
 def get_pipestat_managers(self, sample_name=None, project_level=False)
 ```
 

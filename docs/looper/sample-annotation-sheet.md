@@ -45,3 +45,130 @@ sample_name, library, organism, flowcell, lane, BSF_name, data_source
 
 <sup>1</sup> The sample name should contain no whitespace. If it does, an error will be thrown.
 Similarly, `looper` will not allow any duplicate entries under sample_name.
+
+
+# Derived columns
+
+On your sample sheet, you will need to point to the input file or files for each sample.
+Of course, you could just add a column with the file path, like `/path/to/input/file.fastq.gz`. For example:
+
+A ***bad* example**:
+
+```CSV
+sample_name,library,organism,time,file_path
+pig_0h,RRBS,pig,0,/data/lab/project/pig_0h.fastq
+pig_1h,RRBS,pig,1,/data/lab/project/pig_1h.fastq
+frog_0h,RRBS,frog,0,/data/lab/project/frog_0h.fastq
+frog_1h,RRBS,frog,1,/data/lab/project/frog_1h.fastq
+```
+
+This is common, and it works in a pinch with Looper, but what if the data get moved, or your filesystem changes, or you switch servers or move institutes?
+Will this data still be there in 2 years? Do you want long file paths cluttering your annotation sheet?
+What if you have 2 or 3 input files? Do you want to manually manage these unwieldy absolute paths?
+
+Looper makes it really easy to do better. You can make one or your annotation columns into a flexible *derived column*
+that will be populated based on a source template you specify in the project configuration file.
+What was originally `/long/path/to/sample.fastq.gz` would instead contain just a key, like `source1`.
+Columns that use a key like this are called *derived columns*.
+Here's an example of the same sheet using a derived column (`file_path`):
+
+A ***good* example**:
+```CSV
+sample_name,library,organism,time,file_path
+pig_0h,RRBS,pig,0,source1
+pig_1h,RRBS,pig,1,source1
+frog_0h,RRBS,frog,0,source1
+frog_1h,RRBS,frog,1,source1
+```
+
+For this to succeed, your project config file must specify two things:
+- Which columns are to be derived (in this case, ``file_path``)
+- A `data_sources` section mapping keys to strings that will construct your path, like this:
+    ```yaml
+    derived_columns: [file_path]
+    data_sources:
+      source1: /data/lab/project/{sample_name}.fastq
+      source2: /path/from/collaborator/weirdNamingScheme_{external_id}.fastq
+    ```
+
+That's it! The source string can use other sample attributes (columns) using braces, as in `{sample_name}`.
+The attributes will be automatically populated separately for each sample.
+To take this a step further, you'd get the same result with this config file,
+which substitutes `{sample_name}` for other sample attributes, `{organism}` and `{time}`:
+
+```yaml
+derived_columns: [file_path]
+data_sources:
+  source1: /data/lab/project/{organism}_{time}h.fastq
+  source2: /path/from/collaborator/weirdNamingScheme_{external_id}.fastq
+```
+
+As long as your file naming system is systematic, you can easily deal with any external naming scheme, no problem at all.
+The idea is this: don't put *absolute* paths to files in your annotation sheet.
+Instead, specify a data source and then provide a regex in the config file.
+
+Then if your data change locations (which happens more often than we would like), or you change servers,
+or you want to share or publish the project, you just have to change the config file and not update paths in the annotation sheet.
+This makes the annotation sheet universal across environments, users, publication, etc. The whole project is now portable.
+
+You can specify as many derived columns as you want. An expression including any sample attributes (using `{attribute}`) will be populated for each of those columns.
+
+Think of each sample as belonging to a certain type (for simple experiments, the type will be the same).
+Then define the location of these samples in the project configuration file.
+As a side bonus, you can easily include samples from different locations, and you can also use the same sample annotation sheet on different environments
+(i.e. servers or users) by having multiple project config files (or, better yet, by defining a `subproject` for each environment).
+The only thing you have to change is the project-level expression describing the location, not any sample attributes.
+Plus, you get to eliminate those annoying `long/path/arguments/in/your/sample/annotation/sheet`.
+
+Check out the complete working example in the [`microtest` repository](https://github.com/databio/microtest/tree/master/config).
+
+
+# Implied columns
+
+At some point, you may have a situation where you need a single sample attribute (or column)
+to populate several different pipeline arguments with different values.
+In other words, the value of a given attribute may *imply* values for other attributes.
+It would be nice if you didn't have to enumerate all of these secondary, implied attributes,
+and could instead just infer them from the value of the original attribute.
+
+For example, if my `organism` attribute is `human`, this implies a few other secondary attributes
+(which may be project-specific): For one project, I want to set `genome` to `hg38` and `macs_genome_size` to `hs`.
+Of course, I could just define columns called `genome` and `macs_genome_size`, but these would be constant across samples, so it feels inefficient and unwieldy.
+Plus, changing the aligned genome would require changing the sample annotation sheet (every sample, in fact).
+You can certainly do this with `looper`, but a better way is to handle these things at the project level.
+
+As a more elegant alternative, in a project config file `looper` will recognize a section called `implied_columns`.
+Instead of hard-coding `genome` and `macs_genome_size` in the sample annotation sheet,
+you can simply specify that the attribute `organism` *implies* additional attribute-value pairs
+(which may vary by sample based on the value of the `organism` attribute).
+This lets you specify assemblies, genome size, and other similar variables all in your project config file.
+
+To do this, just add an `implied_columns` section to your project_config.yaml file. Example:
+
+```yaml
+implied_columns:
+  organism:
+    human:
+      genome: "hg38"
+      macs_genome_size: "hs"
+    mouse:
+      genome: "mm10"
+      macs_genome_size: "mm"
+```
+
+There are 3 levels in the `implied_columns` hierarchy.
+The first (directly under `implied_columns`; here, `organism`), are primary columns from which new attributes will be inferred.
+The second layer (here, `human` or `mouse`) are possible values your samples may take in the primary column.
+The third layer (`genome` and `macs_genome_size`) are the key-value pair of new, implied columns
+for any samples with the required value for that primary column.
+
+In this example, any samples with organism set to `"human"` will automatically also have attributes for `genome` (`"hg38"`) and for `macs_genome_size` (`"hs"`).
+Any samples with `organism` set to `"mouse"` will have the corresponding values.
+A sample with `organism` set to `"frog"` would lack attributes for `genome` and `macs_genome_size`, since those columns are not implied by `"frog"`.
+
+This system essentially lets you set global, species-level attributes at the project level instead of duplicating
+that information for every sample that belongs to a species.
+Even better, it's generic, so you can do this for any partition of samples (just replace `organism` with whatever you like).
+
+This makes your project more portable and does a better job conceptually with separating sample attributes from project attributes.
+After all, a reference assembly is not a property of a sample, but is part of the broader project context.

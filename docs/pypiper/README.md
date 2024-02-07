@@ -21,7 +21,7 @@ With Pypiper, **simplicity is paramount**. Prerequisites are few: base python an
 2. easy to modify, so they are simple to update and maintain;
 3. simple to understand for an outsider, so they can be approached by others.
 
-These traits make pypiper ideally suited for **pipelines under active development**. Read more about the [pypiper philosophy](philosophy).
+These traits make pypiper ideally suited for **pipelines under active development**. Read more about the [pypiper philosophy](philosophy.md).
 
 ## Installing
 

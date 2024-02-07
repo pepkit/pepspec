@@ -45,7 +45,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+          format: "!!python/name:pymdownx.superfences.fence_code_format"
 
 extra_css:
   - stylesheets/extra.css
@@ -99,7 +99,7 @@ nav:
       - How to cite: citations.md
       - Example schemas: eido/example-schemas.md
       - Eido Python API: eido/code/python-api.md
-      - Built-in filters API: eido/plugin_api_docs.md
+      - Built-in filters API: eido/code/plugin-api-docs.md
       - Support: https://github.com/pepkit/eido/issues
       - Contributing: eido/contributing.md
       - Changelog: eido/changelog.md
@@ -133,6 +133,7 @@ nav:
         - Hello world: looper/code/hello-world.md
     - How-to guides:
         - Defining a project: looper/defining-a-project.md
+        - Details of a project: looper/sample-annotation-sheet.md
         - Running a pipeline: looper/running-a-pipeline.md
         - Initializing a repository: looper/initialize.md
         - Using pipestat: looper/pipestat.md
@@ -162,6 +163,7 @@ nav:
         - Concentric templates: looper/concentric-templates.md
         - Pre-submission hooks system: looper/pre-submission-hooks.md
         - Looper variable namespaces: looper/variable-namespaces.md
+        - Advanced features: looper/advanced.md
         - Usage: looper/usage.md
         - Configuration files: looper/config-files.md
         - API: looper/code/python-api.md
@@ -204,6 +206,7 @@ nav:
       - How to use imply sample modifier: peppy/code/feature2_imply.md
       - How to validate a PEP: peppy/validating.md
     - Reference:
+      - Project models: peppy/models.md
       - How to cite: citations.md
       - API: peppy/code/python-api.md
       - Support: peppy/support.md
@@ -259,14 +262,32 @@ nav:
   - How to cite: citations.md
   - Stats: statistics.md
 
-lucidoc:
-  peppy: peppy/code/python-api.md
-  looper: looper/code/python-api.md
-  pipestat: pipestat/code/python-api.md
-  pypiper: pypiper/code/python-api.md
-  ngstk: pypiper/code/ngstk.md
-  eido: eido/code/python-api.md
-  geofetch: geofetch/code/python-api.md
+lucidoc_kwargs:
+  - pkg: peppy
+    outfile: docs/peppy/code/python-api.md
+  - pkg: looper
+    outfile: docs/looper/code/python-api.md
+  - pkg: pipestat
+    outfile: docs/pipestat/code/python-api.md
+  - pkg: pypiper
+    outfile: docs/pypiper/code/python-api.md
+  - pkg: geofetch
+    outfile: docs/geofetch/code/python-api.md
+  - pkg: eido
+    outfile: docs/eido/code/python-api.md
+    blacklist: 
+      - basic_pep_filter
+      - yaml_pep_filter
+      - csv_pep_filter
+      - yaml_samples_pep_filter
+  - outfile: docs/eido/code/plugin-api-docs.md
+    pkg: eido
+    whitelist: 
+      - basic_pep_filter
+      - yaml_pep_filter
+      - csv_pep_filter
+      - yaml_samples_pep_filter
+
 
 jupyter:
   - in: eido/notebooks
