@@ -12,7 +12,7 @@
 
   - Download either raw or processed data from either [SRA](https://www.ncbi.nlm.nih.gov/sra) or [GEO](https://www.ncbi.nlm.nih.gov/geo/)
   - Produce a standardized [PEP](http://pepkit.github.io) sample table. This makes it really easy to run [looper](https://pepkit.github.io/docs/looper/)-compatible pipelines on public datasets by handling data acquisition and metadata formatting and standardization for you.
-  - Prepare a project to run with [sraconvert](sra_convert.md) to convert SRA files into FASTQ files.
+  - Prepare a project to run with [sraconvert](sra-convert.md) to convert SRA files into FASTQ files.
 
 ![](./img/pipeline.svg)
 
@@ -85,8 +85,8 @@ find_gse = Finder(filters='bed')
 # get all projects that were found:
 gse_list = find_gse.get_gse_all()
 ```
-Find more information here: [GSE Finder](./gse_finder.md)
+Find more information here: [GSE Finder](./gse-finder.md)
 
 
-For more details, check out the [usage](usage.md) reference, [installation instructions](install.md), or head on over to the [tutorial for raw data](raw-data-downloading.md) and [tutorial for processed data](processed-data-downloading.md) for a detailed walkthrough.
+For more details, check out the [usage](usage.md) reference, [installation instructions](install.md), or head on over to the [tutorial for raw data](code/raw-data-downloading.md) and [tutorial for processed data](code/processed-data-downloading.md) for a detailed walkthrough.
 

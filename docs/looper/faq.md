@@ -3,7 +3,7 @@
 
 ## What kind of pipelines can `looper` run?
 
-`Looper` can run samples through *any pipeline that runs on the command line*. The flexible [pipeline interface](../pipeline-interface) file allows `looper` to execute arbitrary shell commands. A pipeline may consist of scripts in languages like Perl, Python, or bash, or it may be built with a particular framework. Typically, we use Python pipelines built using the [`pypiper` package](http://pypiper.readthedocs.io), which provides some additional power to `looper`, but that's optional.
+`Looper` can run samples through *any pipeline that runs on the command line*. The flexible [pipeline interface](pipeline-interface-specification.md) file allows `looper` to execute arbitrary shell commands. A pipeline may consist of scripts in languages like Perl, Python, or bash, or it may be built with a particular framework. Typically, we use Python pipelines built using the [`pypiper` package](http://pypiper.readthedocs.io), which provides some additional power to `looper`, but that's optional.
 
 
 ## Why isn't the `looper` executable available on `PATH`?
@@ -26,7 +26,7 @@ When using the `run` subcommand, for each sample being processed `looper` first 
 
 If you do in fact want to re-rerun a sample (maybe you've updated the pipeline, or you want to run restart a failed attempt), you can do so by just passing to `looper` at startup the `--ignore-flags` option; this will skip the flag check **for *all* samples**. If you only want to re-run or restart a few samples, it's best to just delete the flag files for the samples you want to restart, then use `looper run` as normal.
 
-You may be interested in the [usage docs](../usage) for the `looper rerun` command, which runs any failed samples.
+You may be interested in the [usage docs](usage.md) for the `looper rerun` command, which runs any failed samples.
 
 ## How can I resubmit a subset of jobs that failed?
 

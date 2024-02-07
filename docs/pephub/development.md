@@ -14,7 +14,7 @@ There are two components to PEPhub: a FastAPI backend, and a React frontend. As 
 uvicorn pephub.main:app --reload
 ```
 
-The backend server should now be running at http://localhost:8000. If you wish to debug the backend server, we've provided a [`launch.json`](../.vscode/launch.json) file for VSCode. You can use this to debug the backend server.
+The backend server should now be running at http://localhost:8000. If you wish to debug the backend server, the repository contains a `launch.json` file for VSCode. You can use this to debug the backend server.
 
 ## Frontend development
 *Before begining, ensure you are using a `nodejs` version > 16.* To manage `node` versions, most people recommend [`nvm`](https://github.com/nvm-sh/nvm).

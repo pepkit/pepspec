@@ -25,7 +25,7 @@ def my_custom_filter(p, **kwargs):
         out = re.sub('\n', '\n  ', yaml.safe_dump(s.to_dict(), default_flow_style=False))
         sys.stdout.write(out + "\n")
 ```
-For reference you can check the signatures of the functions in [Built-in `eido` Plugins Documentation](plugin_api_docs.md). Importantly, if the function *requires* any arguments (always provided via `**kwargs`), the creator of the function should take care of handling missing/faulty input.
+For reference you can check the signatures of the functions in [Built-in `eido` Plugins Documentation](code/plugin-api-docs.md). Importantly, if the function *requires* any arguments (always provided via `**kwargs`), the creator of the function should take care of handling missing/faulty input.
 
 Next, we need to link that function in to the `eido` filter plugin system.
 

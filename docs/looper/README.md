@@ -57,4 +57,4 @@ cd hello_looper-master
 looper run project/project_config.yaml
 ```
 
-Detailed explanation of results is in the [Hello world tutorial](hello-world.md).
+Detailed explanation of results is in the [Hello world tutorial](code/hello-world.md).

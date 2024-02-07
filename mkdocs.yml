@@ -107,20 +107,20 @@ nav:
     - GEOfetch: geofetch/README.md
     - Getting started:
       - Install and configure: geofetch/install.md
-      - SRA convert: geofetch/sra_convert.md
+      - SRA convert: geofetch/sra-convert.md
     - Tutorials:
       - Tutorial for processed data: geofetch/code/processed-data-downloading.md
       - Tutorial for raw data: geofetch/code/raw-data-downloading.md
       - geofetch from within Python: geofetch/code/python-usage.md
-      - GSE Finder: geofetch/gse_finder.md
+      - GSE Finder: geofetch/gse-finder.md
     - How-to guides:
       - Specifying samples to download: geofetch/file-specification.md
       - Set SRA data download location: geofetch/howto-location.md
-      - Run SRA convert: geofetch/code/how_to_convert_fastq_from_sra.md
+      - Run SRA convert: geofetch/code/howto-sra-to-fastq.md
     - Reference:
       - How to cite: citations.md
       - API: geofetch/code/python-api.md
-      - Metadata output: geofetch/metadata_output.md
+      - Metadata output: geofetch/metadata-output.md
       - Usage: geofetch/usage.md
       - FAQ: geofetch/faq.md
       - Support: http://github.com/pepkit/geofetch/issues
@@ -218,7 +218,7 @@ nav:
       - Install and configure: pipestat/install.md
     - How-to guides:
       - Quickstart: pipestat/code/api_quickstart.md
-      - Use Python API: pipestat/code/python_api.md
+      - Use Python API: pipestat/code/python-tutorial.md
       - Use command line interface: pipestat/code/cli.md
       - Configure pipestat: pipestat/configuration.md
     - Reference:
