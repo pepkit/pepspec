@@ -1,5 +1,9 @@
-# This will auto-generate documentation for any packages listed in
-# the lucidoc section of the mkdocs.yml file.
+# This script will auto-generate documentation for Python code, CLI usage, and Jupyter notebooks
+# It is intended to be run as a pre-build step in a MkDocs project
+# It will read the mkdocs.yml file for configuration
+# It will use the lucidoc package to auto-generate documentation for Python code
+# It will use the subprocess package to run CLI commands and capture the output
+# It will use the nbconvert package to convert Jupyter notebooks to markdown
 
 import lucidoc
 import yaml
@@ -43,10 +47,16 @@ with open("mkdocs.yml") as stream:
     cfg = yaml.safe_load(stream)
 
 
+if "autodoc" not in cfg:
+    print("No autodoc configuration found in mkdocs.yml")
+    exit(1)
+else:
+    cfg = cfg["autodoc"]
+
 # Process auto-documented Python code
-if args["x_lucidoc"] is False and "lucidoc_kwargs" in cfg:
-    for bundle in cfg["lucidoc_kwargs"]:
-        print(f"Documenting kwargs '{bundle['pkg']}' at {bundle['outfile']}")
+if args["x_lucidoc"] is False and "lucidoc" in cfg:
+    for bundle in cfg["lucidoc"]:
+        print(f"Documenting lucidoc '{bundle['pkg']}' at {bundle['outfile']}")
         lucidoc.run_lucidoc(parse_style="rst", **bundle)
 else:
     print("Skipping lucidoc")

@@ -668,7 +668,7 @@ Pipestat standardizes reporting of pipeline results and pipeline status manageme
 
 
 ```python
-def __init__(self, project_name: Union[str, NoneType]=None, record_identifier: Union[str, NoneType]=None, schema_path: Union[str, NoneType]=None, results_file_path: Union[str, NoneType]=None, database_only: Union[bool, NoneType]=True, config_file: Union[str, NoneType]=None, config_dict: Union[dict, NoneType]=None, flag_file_dir: Union[str, NoneType]=None, show_db_logs: bool=False, pipeline_type: Union[str, NoneType]=None, pipeline_name: Union[str, NoneType]='default_pipeline_name', result_formatter: staticmethod=<function default_formatter at 0x7f2df0115d30>, multi_pipelines: bool=False, output_dir: Union[str, NoneType]=None)
+def __init__(self, project_name: Union[str, NoneType]=None, record_identifier: Union[str, NoneType]=None, schema_path: Union[str, NoneType]=None, results_file_path: Union[str, NoneType]=None, database_only: Union[bool, NoneType]=True, config_file: Union[str, NoneType]=None, config_dict: Union[dict, NoneType]=None, flag_file_dir: Union[str, NoneType]=None, show_db_logs: bool=False, pipeline_type: Union[str, NoneType]=None, pipeline_name: Union[str, NoneType]='default_pipeline_name', result_formatter: staticmethod=<function default_formatter at 0x7f71aa3cdb80>, multi_pipelines: bool=False, output_dir: Union[str, NoneType]=None)
 ```
 
 Initialize the PipestatManager object

@@ -263,54 +263,53 @@ nav:
   - How to cite: citations.md
   - Stats: statistics.md
 
-lucidoc_kwargs:
-  - pkg: peppy
-    outfile: docs/peppy/code/python-api.md
-  - pkg: looper
-    outfile: docs/looper/code/python-api.md
-  - pkg: pipestat
-    outfile: docs/pipestat/code/python-api.md
-  - pkg: pypiper
-    outfile: docs/pypiper/code/python-api.md
-    whitelist:
-      - PipelineManager
-  - pkg: pypiper
-    outfile: docs/pypiper/code/ngstk-api.md
-    whitelist:
-      - NGSTk
-  - pkg: geofetch
-    outfile: docs/geofetch/code/python-api.md
-  - pkg: eido
-    outfile: docs/eido/code/python-api.md
-    blacklist: 
-      - basic_pep_filter
-      - yaml_pep_filter
-      - csv_pep_filter
-      - yaml_samples_pep_filter
-  - outfile: docs/eido/code/plugin-api-docs.md
-    pkg: eido
-    whitelist: 
-      - basic_pep_filter
-      - yaml_pep_filter
-      - csv_pep_filter
-      - yaml_samples_pep_filter
-
-jupyter:
-  - in: eido/notebooks
-    out: eido/code
-  - in: geofetch/notebooks
-    out: geofetch/code
-  - in: looper/notebooks
-    out: looper/code
-  - in: peppy/notebooks
-    out: peppy/code
-  - in: pipestat/notebooks
-    out: pipestat/code
-  - in: pypiper/notebooks
-    out: pypiper/code
-
-cli_usage:
-  - template: docs/geofetch/usage-template.md.tpl
-    outfile: docs/geofetch/code/usage.md
-    commands:
-      - geofetch --help
+autodoc:
+  lucidoc:
+    - pkg: peppy
+      outfile: docs/peppy/code/python-api.md
+    - pkg: looper
+      outfile: docs/looper/code/python-api.md
+    - pkg: pipestat
+      outfile: docs/pipestat/code/python-api.md
+    - pkg: pypiper
+      outfile: docs/pypiper/code/python-api.md
+      whitelist:
+        - PipelineManager
+    - pkg: pypiper
+      outfile: docs/pypiper/code/ngstk-api.md
+      whitelist:
+        - NGSTk
+    - pkg: geofetch
+      outfile: docs/geofetch/code/python-api.md
+    - pkg: eido
+      outfile: docs/eido/code/python-api.md
+      blacklist: 
+        - basic_pep_filter
+        - yaml_pep_filter
+        - csv_pep_filter
+        - yaml_samples_pep_filter
+    - outfile: docs/eido/code/plugin-api-docs.md
+      pkg: eido
+      whitelist: 
+        - basic_pep_filter
+        - yaml_pep_filter
+        - csv_pep_filter
+        - yaml_samples_pep_filter
+  jupyter:
+    - in: eido/notebooks
+      out: eido/code
+    - in: geofetch/notebooks
+      out: geofetch/code
+    - in: looper/notebooks
+      out: looper/code
+    - in: peppy/notebooks
+      out: peppy/code
+    - in: pipestat/notebooks
+      out: pipestat/code
+    - in: pypiper/notebooks
+      out: pypiper/code
+  cli_usage:
+    - template: docs/geofetch/usage-template.md.tpl
+      outfile: docs/geofetch/code/usage.md
+      commands:
+        - geofetch --help

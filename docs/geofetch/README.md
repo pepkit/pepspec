@@ -88,5 +88,5 @@ gse_list = find_gse.get_gse_all()
 Find more information here: [GSE Finder](./gse-finder.md)
 
 
-For more details, check out the [usage](usage.md) reference, [installation instructions](install.md), or head on over to the [tutorial for raw data](code/raw-data-downloading.md) and [tutorial for processed data](code/processed-data-downloading.md) for a detailed walkthrough.
+For more details, check out the [usage](code/usage.md) reference, [installation instructions](install.md), or head on over to the [tutorial for raw data](code/raw-data-downloading.md) and [tutorial for processed data](code/processed-data-downloading.md) for a detailed walkthrough.
 
