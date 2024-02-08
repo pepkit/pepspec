@@ -8,6 +8,8 @@ PEPhub is a database, web interface, and API for sharing, retrieving, and valida
 
 ---
 
+**Deployed public instance**: <a href="https://pephub.databio.org/" target="_blank">https://pephub.databio.org/</a>
+
 **API**: <a href="https://pephub-api.databio.org/api/v1/docs" target="_blank">https://pephub-api.databio.org/api/v1/docs</a>
 
 **Documentation**: <a href="https://pep.databio.org/pephub" target="_blank">https://pep.databio.org/pephub</a>
@@ -51,11 +53,12 @@ PEPhub doesn't store actual files in the database. Because of this, if you want 
 Example: `geofetch -i GSE95654 --processed`, where `--processed` indicates that you want to download processed data, not SRA. More information about PEP can be found on the official website [GEOfetch](https://geofetch.databio.org/en/latest/).
 
 
-# PEPHubClient (phc)
+## PEPHubClient (phc)
 
 PEPhub provides an additional command-line tool and Python API, connecting Python to the PEPhub. The dedicated Python package for this integration is called PEPHubClient, and it is compatible with Linux, Windows, and Mac systems.
 
 Key features of PEPHubClient include:
+
 - **Authorization**: Users can log in to PEPhub using PEPHubClient, enabling the loading of private projects and the ability to upload projects to PEPhub.
 - **Load and Download**: PEPHubClient facilitates the loading and downloading of PEPs directly from PEPhub.
 - **Push**: Users can push PEPs from their local environment to PEPhub.
