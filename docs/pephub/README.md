@@ -1,7 +1,7 @@
 [![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/pephub)
 
 
-<h1 align="center"><img src="img/pephub_logo.svg" class="img-header "> </h1>
+<h1 align="center"><img src="img/pephub_logo_big.svg" class="img-header "> </h1>
 
 
 PEPhub is a database, web interface, and API for sharing, retrieving, and validating sample metadata. PEPhub takes advantage of the Portable Encapsulated Projects (PEP) biological metadata standard to store, edit, and access your PEPs in one place. You can view the deployed public instance at <https://pephub.databio.org>.

@@ -183,6 +183,7 @@ nav:
         - Python API: pephub/pephubclient/python-api.md
         - CLI usage: pephub/pephubclient/cli.md
     - Developer guide:
+      - Organization: pephub/organization.md
       - Deployment: pephub/deployment.md
       - Development: pephub/development.md
       - Server settings: pephub/server-settings.md
