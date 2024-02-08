@@ -190,6 +190,7 @@ nav:
         - pepdbagent: pephub/pepdbagent/README.md
         - Database tutorial: pephub/pepdbagent/db_tutorial.md
         - Changelog: pephub/pepdbagent/changelog.md
+      - geopephub: pephub/geopephub.md
     - Reference:
       - Schema registry: https://schema.databio.org
       - How to cite: citations.md

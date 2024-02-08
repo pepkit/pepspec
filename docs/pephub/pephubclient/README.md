@@ -11,9 +11,10 @@
 
 `PEPHubClient` is a tool to provide Python API and CLI for [PEPhub](https://pephub.databio.org).
 
-`pephubclient` features: 
-1) `push` (upload) projects)
-2) `pull` (download projects)
+`pephubclient` features:
+
+- `push` (upload projects)
+- `pull` (download projects)
 
 Additionally, our client supports pephub authorization.
 The authorization process is based on pephub device authorization protocol.

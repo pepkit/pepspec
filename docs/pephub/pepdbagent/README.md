@@ -1,7 +1,5 @@
 <h1 align="center">pepdbagent</h1>
 
-<p align="center">
-
 [![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](https://pep.databio.org/)
 ![Run pytests](https://github.com/pepkit/pepdbagent/workflows/Run%20pytests/badge.svg)
 [![pypi-badge](https://img.shields.io/pypi/v/pepdbagent?color=%2334D058)](https://pypi.org/project/pepdbagent)
@@ -9,7 +7,6 @@
 [![Downloads](https://static.pepy.tech/badge/pepdbagent)](https://pepy.tech/project/pepdbagent)
 [![Github badge](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/pepdbagent)
 
-</p>
 
 ---
 
