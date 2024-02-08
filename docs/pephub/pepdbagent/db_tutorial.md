@@ -1,6 +1,6 @@
-# pep_db
+# Database setup
 
-### pep_db installation: 
+### container installation: 
 
 
 0) Go to [pep_db](../pep_db)  directory and then run the following lines
