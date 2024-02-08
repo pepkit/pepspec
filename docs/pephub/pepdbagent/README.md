@@ -1,5 +1,3 @@
-<h1 align="center">pepdbagent</h1>
-
 [![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](https://pep.databio.org/)
 ![Run pytests](https://github.com/pepkit/pepdbagent/workflows/Run%20pytests/badge.svg)
 [![pypi-badge](https://img.shields.io/pypi/v/pepdbagent?color=%2334D058)](https://pypi.org/project/pepdbagent)
@@ -8,9 +6,13 @@
 [![Github badge](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/pepdbagent)
 
 
+
+<h1 align="center">pepdbagent</h1>
+
+
 ---
 
-**Documentation**: <a href="https://pep.databio.org" target="_blank">https://pep.databio.org</a>
+**Documentation**: <a href="https://pep.databio.org/pephub/pepdbagent" target="_blank">https://pep.databio.org/pephub/pepdbagent</a>
 
 **Source Code**: <a href="https://github.com/pepkit/pepdbagent" target="_blank">https://github.com/pepkit/pepdbagent</a>
 

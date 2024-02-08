@@ -177,9 +177,11 @@ nav:
       - Authentication: pephub/authentication.md
       - Authentication Device: pephub/authentication-device.md
       - Semantic search: pephub/semantic-search.md
-      - PEPhubClient: 
+      - PEPHubClient:
         - PEPhubClient: pephub/pephubclient/README.md
         - Changelog: pephub/pephubclient/changelog.md
+        - Python API: pephub/pephubclient/python-api.md
+        - CLI usage: pephub/pephubclient/cli.md
     - Developer guide:
       - Deployment: pephub/deployment.md
       - Development: pephub/development.md
