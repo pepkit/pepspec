@@ -19,7 +19,7 @@ docker run \
 ```
 
 You should now have a pephub-compatible postgres instance running at http://localhost:5432.
-You can use [load_db.py](scripts/load_db.py) to load a directory of PEPs into the database.
+You can use [load_db.py](https://github.com/pepkit/pephub/blob/master/scripts/load_db.py) to load a directory of PEPs into the database.
 
 ### 2. `pephub` API setup
 
@@ -45,7 +45,7 @@ _pephub_ may be run in several ways. In every case, pephub requires configuratio
 - `GH_CLIENT_SECRET`: Client secret for the GitHub application that authenticates users
 - `BASE_URI`: A BASE URI of the PEPhub (e.g. localhost:8000)
 
-You must set these environment variables prior to running PEPhub. We've provided `env` files inside [`environment`](./environment) which you may `source` to load your environment. Alternatively, you may store them locally in a `.env` file. This file will get loaded and exported to your environment when the server starts up. We've included an [example](environment/template.env) `.env` file with this repository. You can read more about server settings and configuration [here](docs/server-settings.md).
+You must set these environment variables prior to running PEPhub. We've provided `env` files inside [`environment`](https://github.com/pepkit/pephub/tree/master/environment) which you may `source` to load your environment. Alternatively, you may store them locally in a `.env` file. This file will get loaded and exported to your environment when the server starts up. We've included an [example](https://github.com/pepkit/pephub/blob/master/environment/template.env) `.env` file with this repository. You can read more about server settings and configuration [here](./server-settings.md).
 
 Once the configuration variables are set, run pephub natively with:
 
@@ -79,7 +79,7 @@ _pephub_ uses GitHub for namespacing and authentication. As such, a GitHub appli
 
 ### 4. (_Optional_) Vector Database Setup
 
-We've added [semantic-search](https://huggingface.co/course/chapter5/6?fw=tf#using-embeddings-for-semantic-search) capabilities to pephub. Optionally, you may host an instance of the [qdrant](https://qdrant.tech/) **vector database** to store embeddings computed using a sentence transformer that has mined and processed any relevant metadata from PEPs. If no qdrant connection settings are supplied, pephub will default to SQL search. Read more [here](docs/semantic-search.md). To run qdrant locally, simply run the following:
+We've added [semantic-search](https://huggingface.co/course/chapter5/6?fw=tf#using-embeddings-for-semantic-search) capabilities to pephub. Optionally, you may host an instance of the [qdrant](https://qdrant.tech/) **vector database** to store embeddings computed using a sentence transformer that has mined and processed any relevant metadata from PEPs. If no qdrant connection settings are supplied, pephub will default to SQL search. Read more [here](./semantic-search.md). To run qdrant locally, simply run the following:
 
 ```
 docker pull qdrant/qdrant
@@ -95,7 +95,7 @@ docker run -p 6333:6333 \
 If you already have a public database instance running, you can choose to build and run the server container only. **A note to Apple Silicon (M1/M2) users**: If you have issues running, try setting your default docker platform with `export DOCKER_DEFAULT_PLATFORM=linux/amd64` to get the container to build and run properly. See [this issue](https://github.com/pepkit/pephub/issues/87) for more information.
 
 **1. Environment:**
-Ensure that you have your [environment](docs/server-settings.md) properly configured. To manage secrets in your environment, we leverage `pass` and curated [`.env` files](environment/production.env). You can use our `launch_docker.sh` script to start your container with these `.env` files.
+Ensure that you have your [environment](./server-settings.md) properly configured. To manage secrets in your environment, we leverage `pass` and curated [`.env` files](https://github.com/pepkit/pephub/blob/master/environment/production.env). You can use our `launch_docker.sh` script to start your container with these `.env` files.
 
 **2. Build and start container:**
 
@@ -134,7 +134,7 @@ The server has been Dockerized and packaged with a [postgres](https://hub.docker
 You can start a development environment in two steps:
 
 **1. Curate your environment:**
-Since we are running in `docker`, we need to supply environment variables to the container. The `docker-compose.yaml` file is written such that you can supply a `.env` file at the root with your configurations. See the [example env file](environment/template.env) for reference. See [here](docs/server-settings.md) for a detailed explanation of all configurable server settings. For now, you can simply copy the `env` file:
+Since we are running in `docker`, we need to supply environment variables to the container. The `docker-compose.yaml` file is written such that you can supply a `.env` file at the root with your configurations. See the [example env file](https://github.com/pepkit/pephub/blob/master/environment/template.env) for reference. See [here](./server-settings.md) for a detailed explanation of all configurable server settings. For now, you can simply copy the `env` file:
 
 ```
 cp environment/template.env .env
@@ -149,7 +149,7 @@ docker compose up --build
 `pephub` now runs/listens on http://localhost:8000  
 `postgres` now runs/listens on http://localhost:5432
 
-**3. (_Optional_) Utilize the [`load_db`](scripts/load_db.py) script to populate the database with `examples/`:**
+**3. (_Optional_) Utilize the [`load_db`](https://github.com/pepkit/pephub/blob/master/scripts/load_db.py) script to populate the database with `examples/`:**
 
 ```console
 cd scripts
@@ -166,7 +166,7 @@ _pephub_ uses GitHub for namespacing and authentication. As such, a GitHub appli
 
 **5. (_Optional_) Vector Database Setup**
 
-We've added [semantic-search](https://huggingface.co/course/chapter5/6?fw=tf#using-embeddings-for-semantic-search) capabilities to pephub. Optionally, you may host an instance of the [qdrant](https://qdrant.tech/) **vector database** to store embeddings computed using a sentence transformer that has mined and processed any relevant metadata from PEPs. If no qdrant connection settings are supplied, pephub will default to SQL search. Read more [here](docs/semantic-search.md). To run qdrant locally, simply run the following:
+We've added [semantic-search](https://huggingface.co/course/chapter5/6?fw=tf#using-embeddings-for-semantic-search) capabilities to pephub. Optionally, you may host an instance of the [qdrant](https://qdrant.tech/) **vector database** to store embeddings computed using a sentence transformer that has mined and processed any relevant metadata from PEPs. If no qdrant connection settings are supplied, pephub will default to SQL search. Read more [here](./semantic-search.md). To run qdrant locally, simply run the following:
 
 ```
 docker pull qdrant/qdrant
