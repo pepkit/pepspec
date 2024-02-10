@@ -1,6 +1,6 @@
 [![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](https://pepkit.github.io)
 ![Run pytests](https://github.com/pepkit/geofetch/workflows/Run%20pytests/badge.svg)
-[![docs-badge](https://readthedocs.org/projects/geofetch/badge/?version=latest)](https://geofetch.databio.org/en/latest/)
+[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/geofetch/README.html)
 [![pypi-badge](https://img.shields.io/pypi/v/geofetch)](https://pypi.org/project/geofetch)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/geofetch)
@@ -55,6 +55,10 @@ geofetch -i GSE95654 --just-metadata
 ```console
 geofetch -i GSE95654 --processed --just-metadata
 ```
+
+
+&#8291;**Note:** We ensure that GEOfetch is compatible with Unix, Linux, and Mac OS X. 
+However, due to dependencies, some features of GEOfetch may not be available on Windows.
 
 ### Check out what exactly argument you want to use to download data:
 
