@@ -1,11 +1,13 @@
-[![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](http://pepkit.github.io)
-![Run pytests](https://github.com/pepkit/eido/workflows/Run%20pytests/badge.svg)
-[![codecov](https://codecov.io/gh/pepkit/eido/branch/master/graph/badge.svg)](https://codecov.io/gh/pepkit/eido)
-[![pypi-badge](https://img.shields.io/pypi/v/eido)](https://pypi.org/project/eido)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/eido)
 
-# <img src="img/eido.svg" alt="eido" style="height:70px"/>
+# <img src="img/eido.svg" alt="eido" class="img-header"/>
+
+<p align="center">
+<a href="https://pep.databio.org" alt="PEP compatible"><img src="https://pepkit.github.io/img/PEP-compatible-green.svg"/></a>
+<a href="https://github.com/pepkit/eido/actions/workflows/run-pytest.yml" alt="Run pytests"><img src="https://github.com/pepkit/eido/workflows/Run%20pytests/badge.svg"/></a>
+<a href="https://codecov.io/gh/pepkit/eido" alt="codecov"><img src="https://codecov.io/gh/pepkit/eido/branch/master/graph/badge.svg"/></a>
+<a href="https://pypi.org/project/eido" alt="PyPI badge"><img src="https://img.shields.io/pypi/v/eido"/></a>
+<a href="https://github.com/pepkit/eido" alt="GitHub source code"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"/></a>
+</p>
 
 ## Introduction
 

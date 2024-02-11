@@ -2,6 +2,7 @@
 
 <p align="center">
 <a href="https://pepkit.github.io/img/PEP-compatible-green.svg"><img src="https://pepkit.github.io/img/PEP-compatible-green.svg"></a>
+<a href="https://github.com/pepkit/looper/actions/workflows/run-pytest.yml" alt="Run pytests"><img src="https://github.com/pepkit/looper/workflows/Run%20pytests/badge.svg"/></a>
 <a href="https://img.shields.io/pypi/v/looper"><img src="https://img.shields.io/pypi/v/looper"></a>
 <a href="https://github.com/pepkit/looper"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"></a>
 </p>

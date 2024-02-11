@@ -1,12 +1,12 @@
+# <img src="https://raw.githubusercontent.com/pepkit/pipestat/master/docs/img/pipestat_logo.svg?sanitize=true" alt="pipestat" class="img-header"/>
 
-
-<img src="https://raw.githubusercontent.com/pepkit/pipestat/master/docs/img/pipestat_logo.svg?sanitize=true" alt="pipestat" class="img-header"/><br>
-
-
-![Run pytests](https://github.com/pepkit/pipestat/workflows/Run%20pytests/badge.svg)
-[![codecov](https://codecov.io/gh/pepkit/pipestat/branch/master/graph/badge.svg?token=O07MXSQZ32)](https://codecov.io/gh/pepkit/pipestat)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/pipestat)
+<p align="center">
+<a href="https://pep.databio.org" alt="PEP compatible"><img src="https://pepkit.github.io/img/PEP-compatible-green.svg"/></a>
+<a href="https://github.com/pepkit/pipestat/actions/workflows/run-pytest.yml" alt="Run pytests"><img src="https://github.com/pepkit/pipestat/workflows/Run%20pytests/badge.svg"/></a>
+<a href="https://codecov.io/gh/pepkit/pipestat" alt="codecov"><img src="https://codecov.io/gh/pepkit/pipestat/branch/master/graph/badge.svg"/></a>
+<a href="https://pypi.org/project/pipestat" alt="PyPI badge"><img src="https://img.shields.io/pypi/v/eido"/></a>
+<a href="https://github.com/pepkit/pipestat" alt="GitHub source code"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"/></a>
+</p>
 
 
 ## What is pipestat?

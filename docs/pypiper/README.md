@@ -1,12 +1,13 @@
+# <img src="img/pypiper_logo.svg" class="img-header">
 
-[![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](https://pepkit.github.io)
-[![pypi-badge](https://img.shields.io/pypi/v/piper)](https://pypi.org/project/piper)
-[![Documentation Status](https://readthedocs.org/projects/pypiper/badge/?version=latest)](https://pypiper.readthedocs.org/en/latest/?badge=latest)
-[![Build Status](https://github.com/databio/pypiper/actions/workflows/run-pytest.yml/badge.svg)](https://github.com/databio/pypiper/actions/workflows/run-pytest.yml)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/databio/pypiper)
+<p align="center">
+<a href="https://pep.databio.org" alt="PEP compatible"><img src="https://pepkit.github.io/img/PEP-compatible-green.svg"/></a>
+<a href="https://github.com/databio/pypiper/actions/workflows/run-pytest.yml" alt="Run pytests"><img src="https://github.com/databio/pypiper/workflows/Run%20pytests/badge.svg"/></a>
+<a href="https://pypi.org/project/piper" alt="PyPI badge"><img src="https://img.shields.io/pypi/v/piper"/></a>
+<a href="https://github.com/pepkit/piper" alt="GitHub source code"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"/></a>
+</p>
 
-# <img src="img/pypiper_logo.svg" class="img-header" style="height:70px">
+
 
 ## What is pypiper?
 
