@@ -11,14 +11,14 @@
 
 ## What is pypiper?
 
-`Pypiper` is a **development-oriented** pipeline framework. It is a python package that helps you write robust pipelines directly in python, handling mundane tasks like restartability, monitoring for time and memory use, monitoring job status, copious log output, robust error handling, easy debugging tools, and guaranteed file output integrity.
+`Pypiper` is a **development-oriented** pipeline framework. It is a Python package that helps you write robust pipelines directly in Python, handling mundane tasks like restartability, monitoring for time and memory use, monitoring job status, copious log output, robust error handling, easy debugging tools, and guaranteed file output integrity.
 
 
 
 ## What makes pypiper better? 
-With Pypiper, **simplicity is paramount**. Prerequisites are few: base python and 2 common packages (`pyyaml` and `psutil`). It should take fewer than 15 minutes to build your first pipeline and only an hour or two to learn the advanced features. Pypiper pipelines are:
+With Pypiper, **simplicity is paramount**. Prerequisites are few: base Python and 2 common packages (`pyyaml` and `psutil`). It should take fewer than 15 minutes to build your first pipeline and only an hour or two to learn the advanced features. Pypiper pipelines are:
 
-1. written in pure python, so they do not require learning a new language;
+1. written in pure Python, so they do not require learning a new language;
 2. easy to modify, so they are simple to update and maintain;
 3. simple to understand for an outsider, so they can be approached by others.
 
@@ -29,12 +29,12 @@ These traits make pypiper ideally suited for **pipelines under active developmen
 Releases are posted as [GitHub releases](https://github.com/databio/pypiper/releases), or you can install from PyPI using `pip`:
 
 Global scope for single user:
-```{console}
+```console
 pip install --user --upgrade piper
 ```
 
 Within an active virtual environment:
-```{console}
+```console
 pip install --upgrade piper
 ```
 
@@ -42,7 +42,7 @@ pip install --upgrade piper
 
 To employ pypiper, you build something like a shell script, but pass the commands through the `run` method on a `PipelineManager` object. Build your pipeline in **pure python**:
 
-```{python}
+```python
 #!/usr/bin/env python
 
 import pypiper
@@ -64,7 +64,7 @@ pm.stop_pipeline()
 
 Then invoke your pipeline via the command-line:
 
-```{console}
+```console
 python my_pipeline.py --help
 ```
 
