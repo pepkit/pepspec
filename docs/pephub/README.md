@@ -5,12 +5,20 @@
 <a href="https://github.com/pepkit/eido" alt="GitHub source code"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"/></a>
 </p>
 
+
+
 PEPhub is a database, web interface, and API for sharing, retrieving, and validating sample metadata. PEPhub takes advantage of the Portable Encapsulated Projects (PEP) biological metadata standard to store, edit, and access your PEPs in one place. PEPhub consists of two components:
 
 - **Deployed public user interface**: <a href="https://pephub.databio.org/" target="_blank">https://pephub.databio.org/</a>
 - **API**: <a href="https://pephub-api.databio.org/api/v1/docs" target="_blank">https://pephub-api.databio.org/api/v1/docs</a>
 
 ----
+
+<p align="center" valign="center">
+<img src="/img/under_construction.svg"/ width="40px" style="vertical-align:middle" > This documentation is under construction.
+</p>
+
+
 ## Overview
 
 ### What is PEP?
