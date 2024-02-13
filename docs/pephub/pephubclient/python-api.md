@@ -1,6 +1,4 @@
-### PEPHubClient as Python API
-
-# Example of usage of the pephubclient modules:
+# Using the PEPHubClient Python API
 
 ```python
 from pephubclient import PEPHubClient
@@ -19,7 +17,7 @@ print(example_pep)
 ## 6 samples: 4-1_11102016, 3-1_11102016, 2-2_11102016, 2-1_11102016, 8-3_11152016, 8-1_11152016
 ## Sections: pep_version, sample_table, name, description
 
-# To upload project use next command:
+# To upload a project:
 phc.upload(example_pep, namespace="databio", name="example", force=True)
 
 ```

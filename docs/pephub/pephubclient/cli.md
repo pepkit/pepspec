@@ -1,6 +1,6 @@
-# PEPHubClient (phc)
+# PEPHubClient CLI (phc)
 
-PEPHubClient CLI is avaliable as `phc` command. It provides a set of commands to interact with PEPhub.
+Installing PEPHubClient provides a CLI through the `phc` command. It provides a set of commands to interact with PEPhub.
 
 ```text
 $ phc --help

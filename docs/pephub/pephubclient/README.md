@@ -8,41 +8,51 @@
 
 # PEPHubClient
 
-`PEPHubClient` is a tool to provide Python API and CLI for [PEPhub](https://pephub.databio.org).
+`PEPHubClient` is a CLI and Python API for PEPhub. Key features are:
 
-Key features of PEPHubClient include:
-- **Authorization**: Users can log in to PEPhub using PEPHubClient, enabling the loading of private projects and the ability to upload projects to PEPhub.
-- **Load and Download**: PEPHubClient facilitates the loading and downloading of PEPs directly from PEPhub.
-- **Push**: Users can upload PEPs from their local environment to PEPhub.
+- **Download**: Users can download public PEPs via CLI or Python API.
+- **Authorization**: Users can log in to PEPhub using PEPHubClient via CLI, providing download access to private projects.
+- **Upload**: Authenticated users can also upload PEPs to PEPhub.
 
-PEPHubClient supports pephub authorization.
-The authorization process is based on pephub device authorization protocol.
-To upload projects or to download private projects, user must be authorized through pephub.
+PEPHubClient uses PEPhub's device authorization protocol. To upload projects or to download private projects, user must be authorized through PEPhub.
 
 ---
 ### Installation
 
-PEPHubClient is available on PyPI, and the source code can be accessed on GitHub: [https://github.com/pepkit/pephubclient](https://github.com/pepkit/pephubclient)
+To install PEPHubClient from PyPI, use the following command:
 
-To install PEPHubClient from PyPi, use the following command:
 ```bash
 pip install pephubclient
 ```
 
-To install `pephubclient` from the GitHub repository, use the following command:
+To install `pephubclient` from the [GitHub repository](https://github.com/pepkit/pephubclient), use the following command:
+
 ```bash
 pip install git+https://github.com/pepkit/pephubclient.git
 ```
 
 ---
-### How to specify url for pephub instance
-If you want to use your own pephub instance, you can specify it by setting `PEPHUB_BASE_URL` environment variable.
-e.g. 
+### How to specify URL for PEPhub instance
+
+If you want to use your own PEPhub instance, you can specify it by setting the `PEPHUB_BASE_URL` environment variable. e.g. 
+
 ```bash
 export PEPHUB_BASE_URL=http://localhost:8000/
 ```
 
-To login, use the `login` argument; to logout, use `logout`.
+## Authentication
+
+To login, use the `login` command:
+
+```
+phc login
+```
+
+To logout, use `logout`:
+
+```
+phc logout
+```
 
 
 ### Example 
