@@ -34,10 +34,18 @@ export PIPESTAT_RECORD_IDENTIFIER=my_record
 export PIPESTAT_RESULTS_FILE=results_file.yaml
 ```
 Note: When setting environment variables as in the above example, you will need to provide an output_schema.yaml file in your current working directory with the following example data:
-```
-result_name:
-  type: string
-  description: "Result Name"
+```yaml
+title: An example Pipestat output schema
+description: A pipeline that uses pipestat to report sample and project level results.
+type: object
+properties:
+  pipeline_name: "default_pipeline_name"
+  samples:
+    type: object
+    properties:
+        result_name:
+          type: string
+          description: "ResultName"
 ```
 
 ## Pipeline results reporting and retrieval
