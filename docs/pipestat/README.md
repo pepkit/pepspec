@@ -17,26 +17,56 @@ Pipestat standardizes reporting of pipeline results. It provides 1) a standard s
 
 A pipeline author defines all the outputs produced by a pipeline by writing a JSON-schema. The pipeline then uses pipestat to report pipeline outputs as the pipeline runs, either via the Python API or command line interface. The user configures results to be stored either in a [YAML-formatted file](https://yaml.org/spec/1.2/spec.html) or a [PostgreSQL database](https://www.postgresql.org/). The results are recorded according to the pipestat specification, in a standard, pipeline-agnostic way. This way, downstream software can use this specification to create universal tools for analyzing, monitoring, and visualizing pipeline results that will work with any pipeline or workflow.
 
+<!-- TODO: This needs a graphical representation here. -->
 
-# Quick start
 
-## Install pipestat
+## Installing pipestat
 
-```console
+### Minimal install for file backend
+
+Install pipestat from PyPI with `pip`: 
+
+```
 pip install pipestat
 ```
 
-## Set environment variables (optional)
+Confirm installation by calling `pipestat -h` on the command line. If the `pipestat` executable is not in your `$PATH`, append this to your `.bashrc` or `.profile` (or `.bash_profile` on macOS):
+
+```console
+export PATH=~/.local/bin:$PATH
+```
+
+### Optional dependencies for database backend
+
+Pipestat can use either a file or a database as the backend for recording results. The default installation only provides file backend. To install dependencies required for the database backend:
+
+```
+pip install pipestat['dbbackend']
+```
+
+### Optional dependencies for pipestat reader
+
+To install dependencies for the included `pipestatreader` submodule:
+
+```
+pip install pipestat['pipestatreader']
+```
+
+## Set environment variables
+
+<!-- TODO: What is going on here? This needs a sentence of explanation before jumping into a code block -->
 
 ```console
 export PIPESTAT_RESULTS_SCHEMA=output_schema.yaml
 export PIPESTAT_RECORD_IDENTIFIER=my_record
 export PIPESTAT_RESULTS_FILE=results_file.yaml
 ```
-Note: When setting environment variables as in the above example, you will need to provide an output_schema.yaml file in your current working directory with the following example data:
+
+When setting environment variables like this, you will need to provide an `output_schema.yaml` file in your current working directory with the following example data:
+
 ```yaml
 title: An example Pipestat output schema
-description: A pipeline that uses pipestat to report sample and project level results.
+description: A pipeline using pipestat to report sample and project results.
 type: object
 properties:
   pipeline_name: "default_pipeline_name"
@@ -49,74 +79,58 @@ properties:
 ```
 
 ## Pipeline results reporting and retrieval
-### For these examples below, it is assumed that the proper environment variables (see above) have been set.
 
-### Report a result
+These examples assume the above environment variables are set.
 
-From command line:
+### Command-line usage
 
 ```console
+# Report a result:
 pipestat report -i result_name -v 1.1
-```
 
-From Python:
-
-```python
-import pipestat
-
-psm = pipestat.PipestatManager()
-psm.report(values={"result_name": 1.1})
-```
-
-### Retrieve a result
-
-From command line:
-
-```console
+# Retrieve the result:
 pipestat retrieve -r my_record
 ```
 
-From Python:
+### Python usage
 
 ```python
 import pipestat
 
+# Report a result
+psm = pipestat.PipestatManager()
+psm.report(values={"result_name": 1.1})
+
+# Retrieve a result
 psm = pipestat.PipestatManager()
 psm.retrieve_one(result_identifier="result_name")
 ```
 
 ## Pipeline status management
 
-## Set status
+### From command line:
 
-From command line:
+
 
 ```console
+# Set status
 pipestat status set running
-```
 
-From Python:
-
-```python
-import pipestat
-
-psm = pipestat.PipestatManager()
-psm.set_status(status_identifier="running")
-```
-
-## Get status
-
-From command line:
-
-```console
+# Get status
 pipestat status get
 ```
 
-From Python:
+### Python usage
+
 
 ```python
 import pipestat
 
+# Set status
+psm = pipestat.PipestatManager()
+psm.set_status(status_identifier="running")
+
+# Get status
 psm = pipestat.PipestatManager()
 psm.get_status()
 ```

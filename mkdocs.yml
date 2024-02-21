@@ -219,10 +219,9 @@ nav:
       - Changelog: peppy/changelog.md
   - Pipestat:
     - Pipestat: pipestat/README.md
-    - Getting started:
-      - Install and configure: pipestat/install.md
     - How-to guides:
       - Quickstart: pipestat/code/api_quickstart.md
+      - Write a pipestat schema: pipestat/pipestat-schema.md
       - Use Python API: pipestat/code/python-tutorial.md
       - Use command line interface: pipestat/code/cli.md
       - Configure pipestat: pipestat/configuration.md
@@ -230,10 +229,9 @@ nav:
       - How to cite: citations.md
       - CLI usage: pipestat/usage.md
       - Configuration format: pipestat/config.md
-      - Optional dependencies: pipestat/optional_dependencies.md
       - Testing configuration: pipestat/testing.md
       - Environment variables: pipestat/env_vars.md
-      - Pipestat specification: pipestat/pipestat_specification.md
+      - Pipestat specification: pipestat/pipestat-specification.md
       - Python API: pipestat/code/python-api.md
       - Support: https://github.com/pepkit/pipestat/issues
       - Contributing: pipestat/contributing.md
