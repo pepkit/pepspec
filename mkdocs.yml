@@ -220,17 +220,18 @@ nav:
   - Pipestat:
     - Pipestat: pipestat/README.md
     - How-to guides:
-      - Quickstart: pipestat/code/api_quickstart.md
+      - Quickstart: pipestat/code/api-quickstart.md
       - Write a pipestat schema: pipestat/pipestat-schema.md
       - Use Python API: pipestat/code/python-tutorial.md
       - Use command line interface: pipestat/code/cli.md
+      - Report objects as results: pipestat/code/reporting-objects.md
       - Configure pipestat: pipestat/configuration.md
     - Reference:
       - How to cite: citations.md
       - CLI usage: pipestat/usage.md
       - Configuration format: pipestat/config.md
       - Testing configuration: pipestat/testing.md
-      - Environment variables: pipestat/env_vars.md
+      - Environment variables: pipestat/env-vars.md
       - Pipestat specification: pipestat/pipestat-specification.md
       - Python API: pipestat/code/python-api.md
       - Support: https://github.com/pepkit/pipestat/issues
