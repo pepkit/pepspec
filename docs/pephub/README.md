@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://pep.databio.org" alt="PEP compatible"><img src="https://pepkit.github.io/img/PEP-compatible-green.svg"/></a>
-<a href="https://github.com/pepkit/eido" alt="GitHub source code"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"/></a>
+<a href="https://github.com/pepkit/pephub" alt="GitHub source code"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"/></a>
 </p>
 
 
