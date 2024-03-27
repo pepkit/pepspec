@@ -18,7 +18,7 @@ To download all processed data of GSE57303:
 
 Automatic GEO and SRA data downloader
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -V, --version         show program's version number and exit
   -i INPUT, --input INPUT

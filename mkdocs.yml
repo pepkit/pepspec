@@ -177,10 +177,13 @@ nav:
       - Authentication: pephub/authentication.md
       - Authentication Device: pephub/authentication-device.md
       - Semantic search: pephub/semantic-search.md
-      - PEPhubClient: 
+      - PEPHubClient:
         - PEPhubClient: pephub/pephubclient/README.md
         - Changelog: pephub/pephubclient/changelog.md
+        - Python API: pephub/pephubclient/python-api.md
+        - CLI usage: pephub/pephubclient/cli.md
     - Developer guide:
+      - Organization: pephub/organization.md
       - Deployment: pephub/deployment.md
       - Development: pephub/development.md
       - Server settings: pephub/server-settings.md
@@ -190,6 +193,7 @@ nav:
         - pepdbagent: pephub/pepdbagent/README.md
         - Database tutorial: pephub/pepdbagent/db_tutorial.md
         - Changelog: pephub/pepdbagent/changelog.md
+      - geopephub: pephub/geopephub.md
     - Reference:
       - Schema registry: https://schema.databio.org
       - How to cite: citations.md
@@ -215,21 +219,20 @@ nav:
       - Changelog: peppy/changelog.md
   - Pipestat:
     - Pipestat: pipestat/README.md
-    - Getting started:
-      - Install and configure: pipestat/install.md
     - How-to guides:
-      - Quickstart: pipestat/code/api_quickstart.md
+      - Quickstart: pipestat/code/api-quickstart.md
+      - Write a pipestat schema: pipestat/pipestat-schema.md
       - Use Python API: pipestat/code/python-tutorial.md
       - Use command line interface: pipestat/code/cli.md
+      - Report objects as results: pipestat/code/reporting-objects.md
       - Configure pipestat: pipestat/configuration.md
     - Reference:
       - How to cite: citations.md
       - CLI usage: pipestat/usage.md
       - Configuration format: pipestat/config.md
-      - Optional dependencies: pipestat/optional_dependencies.md
       - Testing configuration: pipestat/testing.md
-      - Environment variables: pipestat/env_vars.md
-      - Pipestat specification: pipestat/pipestat_specification.md
+      - Environment variables: pipestat/env-vars.md
+      - Pipestat specification: pipestat/pipestat-specification.md
       - Python API: pipestat/code/python-api.md
       - Support: https://github.com/pepkit/pipestat/issues
       - Contributing: pipestat/contributing.md

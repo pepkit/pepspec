@@ -1,62 +1,7 @@
-[![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](https://pepkit.github.io)
-![Run pytests](https://github.com/pepkit/pephubclient/workflows/Run%20pytests/badge.svg)
-[![codecov](https://codecov.io/gh/pepkit/pephubclient/branch/dev/graph/badge.svg)](https://codecov.io/gh/pepkit/pephubclient)
-[![pypi-badge](https://img.shields.io/pypi/v/pephubclient)](https://pypi.org/project/pephubclient)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/pephubclient)
+# PEPHubClient CLI (phc)
 
+Installing PEPHubClient provides a CLI through the `phc` command. It provides a set of commands to interact with PEPhub.
 
-# PEPHubClient
-
-`PEPHubClient` is a CLI and Python API for PEPhub. Key features are:
-
-- **Download**: Users can download public PEPs via CLI or Python API.
-- **Authorization**: Users can log in to PEPhub using PEPHubClient via CLI, providing download access to private projects.
-- **Upload**: Authenticated users can also upload PEPs to PEPhub.
-
-PEPHubClient uses PEPhub's device authorization protocol. To upload projects or to download private projects, user must be authorized through PEPhub.
-
----
-### Installation
-
-To install PEPHubClient from PyPI, use the following command:
-
-```bash
-pip install pephubclient
-```
-
-To install `pephubclient` from the [GitHub repository](https://github.com/pepkit/pephubclient), use the following command:
-
-```bash
-pip install git+https://github.com/pepkit/pephubclient.git
-```
-
----
-### How to specify URL for PEPhub instance
-
-If you want to use your own PEPhub instance, you can specify it by setting the `PEPHUB_BASE_URL` environment variable. e.g. 
-
-```bash
-export PEPHUB_BASE_URL=http://localhost:8000/
-```
-
-## Authentication
-
-To login, use the `login` command:
-
-```
-phc login
-```
-
-To logout, use `logout`:
-
-```
-phc logout
-```
-
-
-### Example 
-----
 ```text
 $ phc --help
                                                                                                                    

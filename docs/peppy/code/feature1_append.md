@@ -14,10 +14,10 @@ sample_table_ori = examples_dir + "sample_table_pre.csv"
 %cat $sample_table_ori | column -t -s, | cat
 ```
 
-    sample_name  organism  time  read_type
-    pig_0h       pig       0     SINGLE
-    pig_1h       pig       1     SINGLE
-    frog_0h      frog      0     SINGLE
+    
+    
+    
+    
     frog_1h      frog      1     SINGLE
 
 
@@ -48,11 +48,11 @@ sample_table = examples_dir + "sample_table.csv"
 %cat $sample_table | column -t -s, | cat
 ```
 
-    sample_name  organism  time 
-    pig_0h       pig       0
-    pig_1h       pig       1
-    frog_0h      frog      0
-    frog_1h      frog      1
+    
+    
+    
+    
+    
 
 
 ## Code

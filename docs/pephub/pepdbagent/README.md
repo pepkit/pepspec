@@ -1,20 +1,61 @@
-[![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/pepdbagent)
+[![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](https://pep.databio.org/)
+![Run pytests](https://github.com/pepkit/pepdbagent/workflows/Run%20pytests/badge.svg)
+[![pypi-badge](https://img.shields.io/pypi/v/pepdbagent?color=%2334D058)](https://pypi.org/project/pepdbagent)
+[![pypi-version](https://img.shields.io/pypi/pyversions/pepdbagent.svg?color=%2334D058)](https://pypi.org/project/pepdbagent)
+[![Downloads](https://static.pepy.tech/badge/pepdbagent)](https://pepy.tech/project/pepdbagent)
+[![Github badge](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/pepdbagent)
 
-# pepdbagent
 
-`pepdbagent` is a Python package for uploading, updating, and retrieving [PEP](http://pep.databio.org/en/latest/) metadata from a Postgres database.
 
-The pepdbagent provides a core class called **PEPDatabaseAgent**. This class has 3 modules, divided 
-to increase readability, maintainability, and user experience of pepdbagent, which are: **Projects**, 
-**Project Annotations**, and **Namespace Annotations**.  Below, we describe each module in detail:
+<h1 align="center">pepdbagent</h1>
 
-## PEPDatabaseAgent
-PEPDatabaseAgent is the primary class that you will use. It connects to the database (using **BaseConnection** class).
 
-Example: Instiantiate a PEPDatabaseAgent object and connect to database:
+---
+
+**Documentation**: <a href="https://pep.databio.org/pephub/pepdbagent" target="_blank">https://pep.databio.org/pephub/pepdbagent</a>
+
+**Source Code**: <a href="https://github.com/pepkit/pepdbagent" target="_blank">https://github.com/pepkit/pepdbagent</a>
+
+---
+
+`pepdbagent` is a Python library and toolkit that gives a user-friendly 
+interface to connect, upload, update and retrieve information from pep database. This library is designed to work 
+to be used by PEPhub, but it can be used for any other purpose, to manage data in pep database.
+
+pepdbagent creates a connection to the database and creates table schemas for the PEPhub database if necessary.
+Core database is `postgres` database, but it can be easily extended to other relational databases.
+To use `pepdbagent`, you need to have a database instance running with it's credentials.
+If the version of the database schema is not compatible with the version of `pepdbagent`, it will throw an exception.
+
+## Installation
+To install `pepdbagent` use this command: 
+```
+pip install pepdbagent
+```
+or install the latest version from the GitHub repository:
+```
+pip install git+https://github.com/pepkit/pepdbagent.git
+```
+
+---
+## Overview:
+
+The pepdbagent provides a core class called **PEPDatabaseAgent**. This class has 4 modules, divided 
+to increase readability, maintainability, and user experience of pepdbagent, which are:
+
+**The `pepdbagent` consists of 6 main modules:**
+- <u>Namespace</u>: Includes methods for searching namespaces, retrieving statistics, and fetching information.
+- <u>Project</u>: Provides functionality for retrieving, uploading, updating, and managing projects.
+- <u>Annotation</u>: Offers features for searching projects in the database and namespaces, retrieving annotations, and other related information.
+- <u>Sample</u>: Handles the creation, modification, and deletion of samples, without modification of the entire project.
+- <u>View</u>: Manages the creation, modification, and deletion of views for specific projects.
+- <u>User</u>: Contains user-related information such as favorites and other user-related data.
+
+## Example:
+
+#### Instiantiate a PEPDatabaseAgent object and connect to database:
 
 ```python
-
 import pepdbagent
 # 1) By providing credentials and connection information:
 agent = pepdbagent.PEPDatabaseAgent(user="postgres", password="docker", )
@@ -22,13 +63,7 @@ agent = pepdbagent.PEPDatabaseAgent(user="postgres", password="docker", )
 agent = pepdbagent.PEPDatabaseAgent(dsn="postgresql://postgres:docker@localhost:5432/pep-db")
 ```
 
-This `agent` object will provide 3 sub-modules, corresponding to the 3 main entity types stored in PEPhub: `agent.project`,  `agent.annotation`, and `agent.namespace`.
-
-## Project
-
-The `.project` module is used to create, update, retrieve, and delete projects.
-
-Example:
+#### Example of usage of the pepdbagent modules:
 
 ```python
 import peppy
@@ -41,34 +76,22 @@ name = "basic_project"
 tag = None
 agent.project.create(prj_obj, namespace, name, tag)
 
-# updating record in database (project)
-# To update record in the db user should provide `update_dict`,
-# that can contains any of 4 keys: [project, is_private, name, tag]
-# examples of update_dict:
-update_dict1 = {"is_private" = True}
-update_dict2 = {"is_private" = True, name = "new_name"}
-update_dict3 = {"project" = prj_obj, "is_private" = True}
-update_dict4 = {"project" = prj_obj}
-update_dict4 = {"tag" = "new_tag"}
-
+update_dict = {"is_private" = True}
 # after creation of the dict, update record by providing update_dict and namespace, name and tag:
-agent.project.update(update_dict, namespace, name, tag, )
-
-# retrieve a project
-agent.project.get(namespace, name, tag)
-
-# delete a project
-agent.project.delete(namespace, name, tag)
+agent.project.update(update_dict, namespace, name, tag)
 ```
 
-## Annotation
+
+#### Annotation example:
+
 
 The `.annotation` module provides an interface to PEP annotations. 
 PEP annotations refers to the information *about* the PEPs (or, the PEP metadata). 
 Retrieved information contains: [number of samples, submission date, last update date,
 is private, PEP description, digest, namespace, name, tag]
 
-Example:
+```python
+
 ```python
 # Get annotation of one project:
 agent.annotation.get(namespace, name, tag)
@@ -93,26 +116,9 @@ agent.annotation.get_by_rp(["namespace1/project1:tag1", "namespace2/project2:tag
 # For example:
 agent.annotation.get(query='search_pattern', admin=['databio', 'ncbi'])
 ```
-Return Example:
-```python
-# annotation.get return type is pydantic model - AnnotationRetrunModel
-AnnotationRetrunModel(count=1,
-                      limit=100, 
-                      offset=0,
-                      results=[AnnotationModel(namespace='databio', 
-                                               name='test', 
-                                               tag='default', 
-                                               is_private=False, 
-                                               number_of_samples=8, 
-                                               description=None, 
-                                               last_update_date='2022-11-09', 
-                                               submission_date='2023-01-09', 
-                                               digest='36bb973f2eca3706ed9852abddd',
-                                               pep_schema="bedmake")])
-```
 
 
-# Namespace
+#### Namespace
 The `.namespace` module contains search namespace functionality that helps to find namespaces in database 
 and retrieve information: `number of samples`, `number of projects`.
 
@@ -128,16 +134,7 @@ agent.namespace.get(query='Namespace')
 # For example:
 agent.namespace.get(query='search_pattern', admin=['databio', 'geo', 'ncbi'])
 ```
-Return Example:
-```python
-# namespace.get return type is pydantic model - NamespaceReturnModel
-NamespaceReturnModel(count=1, 
-                     limit=100, 
-                     offset=0, 
-                     results=[NamespaceResultModel(namespace='databio', number_of_projects=6, number_of_samples=470)])
-```
-
-
-# Example PEPs
-
-To populate database with example peps use function written in `manual_tests.py`.
+For more information, developers should use `pepdbagent pytest` as documentation due to its natural language syntax and the 
+ability to write tests that serve as executable examples. 
+This approach not only provides detailed explanations but also ensures that code examples are kept 
+up-to-date with the latest changes in the codebase.

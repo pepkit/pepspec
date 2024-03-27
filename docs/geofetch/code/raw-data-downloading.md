@@ -137,7 +137,7 @@ Calling geofetch will do 4 tasks:
 2. produce a PEP-compatible sample table, `PROJECT_NAME_annotation.csv`, in your metadata folder.
 3. produce a PEP-compatible project configuration file, `PROJECT_NAME_config.yaml`, in your metadata folder.
 
-Complete details about geofetch outputs is cataloged in the [metadata outputs reference](metadata_output.md).
+Complete details about geofetch outputs is cataloged in the [metadata outputs reference](../metadata_output.md).
 
 ## Download the data
 
@@ -278,9 +278,6 @@ cat red_algae/GSE67303_config.yaml
                 FQ: "${SRAFQ}/{SRR}.fastq.gz"
                 FQ1: "${SRAFQ}/{SRR}_1.fastq.gz"
                 FQ2: "${SRAFQ}/{SRR}_2.fastq.gz"
-    
-    
-    
 
 
 There are two important things to note in his file: First, see in the PEP that `sample_table` points to the csv file produced by geofetch. Second, look at the amendment called `sra_convert`. This adds a pipeline interface to the sra conversion pipeline, and adds derived attributes for SRA files and fastq files that rely on environment variables called `$SRARAW` and `$SRAFQ`. These environment variables should point to folders where you store your raw .sra files and the converted fastq files.

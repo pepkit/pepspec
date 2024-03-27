@@ -1,11 +1,11 @@
-[![PEP compatible](https://pepkit.github.io/img/PEP-compatible-green.svg)](https://pepkit.github.io)
-![Run pytests](https://github.com/pepkit/geofetch/workflows/Run%20pytests/badge.svg)
-[![docs-badge](https://readthedocs.org/projects/geofetch/badge/?version=latest)](https://geofetch.databio.org/en/latest/)
-[![pypi-badge](https://img.shields.io/pypi/v/geofetch)](https://pypi.org/project/geofetch)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![GitHub source](https://img.shields.io/badge/source-github-354a75?logo=github)](https://github.com/pepkit/geofetch)
+# <img src="img/geofetch_logo.svg" class="img-header">
 
-# <img src="img/geofetch_logo.svg" class="img-header" style="height:70px">
+<p align="center">
+<a href="https://pep.databio.org" alt="PEP compatible"><img src="https://pepkit.github.io/img/PEP-compatible-green.svg"/></a>
+<a href="https://github.com/pepkit/geofetch/actions/workflows/run-pytest.yml" alt="Run pytests"><img src="https://github.com/pepkit/geofetch/workflows/Run%20pytests/badge.svg"/></a>
+<a href="https://pypi.org/project/geofetch" alt="PyPI badge"><img src="https://img.shields.io/pypi/v/geofetch"/></a>
+<a href="https://github.com/pepkit/geofetch" alt="GitHub source code"><img src="https://img.shields.io/badge/source-github-354a75?logo=github"/></a>
+</p>
 
 
 `geofetch` is a command-line tool that downloads and organizes data and metadata from GEO and SRA. When given one or more GEO/SRA accessions, `geofetch` will:
@@ -55,6 +55,10 @@ geofetch -i GSE95654 --just-metadata
 ```console
 geofetch -i GSE95654 --processed --just-metadata
 ```
+
+
+&#8291;**Note:** We ensure that GEOfetch is compatible with Unix, Linux, and MacOS. 
+However, due to dependencies, some features of GEOfetch may not be available on Windows.
 
 ### Check out what exactly argument you want to use to download data:
 

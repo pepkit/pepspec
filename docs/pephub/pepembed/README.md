@@ -79,7 +79,7 @@ This will give you a qdrant instance served at http://localhost:6333. You can pa
 *Unless you are running this for production, you most likely do not need to specify any of these.*
 
 **3. Keywords:**  
-Finally, we need a keywords file. This is technically optional, and `pepembed` comes with [default keywords](pepembed/const.py), but you may supply your own as a plain text file. This can be supplied only as command-line args:
+Finally, we need a keywords file. This is technically optional, and `pepembed` comes with [default keywords](https://github.com/pepkit/pepembed/blob/master/pepembed/const.py), but you may supply your own as a plain text file. This can be supplied only as command-line args:
 * `KEYWORDS_FILE`
 
 There are many other options as well (like specifying the transformer model to use), but the defaults work great for a first try. Use `pepembed --help` to see all options. If you are like me, and like to keep your secrets in a `.env` file, you can export them easily to the environment with `export $(cat .env | xargs)`
