@@ -39,6 +39,7 @@ theme:
     - navigation.top
 
 markdown_extensions:
+  - attr_list
   - pymdownx.highlight:
       use_pygments: true
   - pymdownx.superfences:
@@ -174,26 +175,36 @@ nav:
   - PEPhub:
     - PEPhub: pephub/README.md
     - User guide:
-      - Authentication: pephub/authentication.md
-      - Authentication Device: pephub/authentication-device.md
-      - Semantic search: pephub/semantic-search.md
-      - PEPHubClient:
-        - PEPhubClient: pephub/pephubclient/README.md
-        - Changelog: pephub/pephubclient/changelog.md
-        - Python API: pephub/pephubclient/python-api.md
-        - CLI usage: pephub/pephubclient/cli.md
+      - Getting started: pephub/user/getting-started.md
+      - Creating an account and logging in: pephub/user/accounts.md
+      - Uploading your first PEP: pephub/user/uploading.md
+      - Editing a PEP: pephub/user/editing.md
+      - Sharing your PEP: pephub/user/sharing.md
+      - Use a PEP in an existing pipeline: pephub/user/pipelines.md
+      - Validating PEPs: pephub/user/validation.md
+      - Version control: pephub/user/version-control.md
+      - Semantic search: pephub/user/semantic-search.md
+      - Building POPs: pephub/user/pops.md
     - Developer guide:
-      - Organization: pephub/organization.md
-      - Deployment: pephub/deployment.md
-      - Development: pephub/development.md
-      - Server settings: pephub/server-settings.md
+      - Setup: pephub/developer/organization.md
+      - Deployment: pephub/developer/deployment.md
+      - Development: pephub/developer/development.md
+      - Authentication: pephub/developer/authentication.md
+      - Authentication Device: pephub/developer/authentication-device.md
+      - Semantic search: pephub/developer/semantic-search.md
+      - PEPHubClient:
+        - PEPhubClient: pephub/developer/pephubclient/README.md
+        - Changelog: pephub/developer/pephubclient/changelog.md
+        - Python API: pephub/developer/pephubclient/python-api.md
+        - CLI usage: pephub/developer/pephubclient/cli.md
+      - Server settings: pephub/developer/server-settings.md
       - PEPembed:
-        - PEPembed: pephub/pepembed/README.md
+        - PEPembed: pephub/developer/pepembed/README.md
       - pepdbagent:
-        - pepdbagent: pephub/pepdbagent/README.md
-        - Database tutorial: pephub/pepdbagent/db_tutorial.md
-        - Changelog: pephub/pepdbagent/changelog.md
-      - geopephub: pephub/geopephub.md
+        - pepdbagent: pephub/developer/pepdbagent/README.md
+        - Database tutorial: pephub/developer/pepdbagent/db_tutorial.md
+        - Changelog: pephub/developer/pepdbagent/changelog.md
+      - geopephub: pephub/developer/geopephub.md
     - Reference:
       - Schema registry: https://schema.databio.org
       - How to cite: citations.md
