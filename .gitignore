@@ -1,2 +1,5 @@
 site
 venv/
+.venv/
+
+.DS_Store

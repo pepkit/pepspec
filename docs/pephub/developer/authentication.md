@@ -13,7 +13,7 @@ PEPhub has a specific authorization flow to support software that integrates wit
 ### Obtaining a JWT
 Obtaining a JWT for a user happens in three steps: 1) Login request with PEPhub, 2) Redirect with authorization code, 3) Exchange authorization code for a JWT. Details and examples of each step are given below:
 
-![PEPhub authorization code flow](img/auth-flow.png)
+![PEPhub authorization code flow](../img/auth-flow.png)
 
 #### Login request with PEPhub
 The first step is to request authorization from the user, so your app can access to PEPhub resources on behalf of that user. To do so, your application must build and send a `GET` request to the `/auth/login` endpoint. An optional `client_redirect_uri` query parameter may be supplied so PEPhub knows where to redirect the request once an authorization code has been generated.

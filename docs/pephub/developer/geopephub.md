@@ -37,7 +37,7 @@ The `geopephub` consists of 4 main functionalities:
 
 More information about these processes can be found in the flowcharts and overview below.
 
-![geopephub](img/populator_overview.svg)
+![geopephub](../img/populator_overview.svg)
 
 ## Queuer Flowchart:
 ```mermaid
