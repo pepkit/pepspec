@@ -22,13 +22,13 @@ We have two types of documentation for PEPhub: **user** and **developer** docume
 - **[Getting started](user/getting-started.md)**: Learn how to create an account, log in, and upload your first PEP.
 - **[Creating an account and logging in](user/accounts.md)**: Learn how to create an account and log in to PEPhub.
 - **[Uploading your first PEP](user/uploading.md)**: Learn how to upload your first PEP to PEPhub.
-- **[Editing a PEP](user/editing.md)**: Learn how to edit a PEP in PEPhub.
-- **[Sharing your PEP](user/sharing.md)**: Learn how to share your PEP via the PEPhub API.
+<!-- - **[Editing a PEP](user/editing.md)**: Learn how to edit a PEP in PEPhub.
+- **[Sharing your PEP](user/sharing.md)**: Learn how to share your PEP via the PEPhub API. -->
 - **[Use a PEP in an existing pipeline](user/pipelines.md)**: Learn how to incorporate PEPhub into an existing pipeline.
-- **[Validating PEPs](user/validation.md)**: Learn how to validate PEPs in PEPhub.
+<!-- - **[Validating PEPs](user/validation.md)**: Learn how to validate PEPs in PEPhub.
 - **[Version control](user/version-control.md)**: Learn how to use version control in PEPhub.
 - **[Semantic search](user/semantic-search.md)**: Learn how to use the semantic search functionality in PEPhub.
-- **[Building POPs](user/pops.md)**: Learn how to build a PEP of PEPs (POP) in PEPhub.
+- **[Building POPs](user/pops.md)**: Learn how to build a PEP of PEPs (POP) in PEPhub. -->
 
 ### Developers
 - **[Setup](developer/organization.md)**: Learn how to set up the PEPhub development environment.
