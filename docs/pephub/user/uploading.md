@@ -12,6 +12,6 @@ Navigate to your PEPhub namespace (`https://pephub.databio.org/{github username}
 ![Submission form for a new PEP](../img/add-pep-form.png)
 
 ## Ready to edit your PEP
-Once you have uploaded or created a PEP, you can now start editing it!
+Once you have uploaded or created a PEP, you can now start using it in pipelines!
 
-[Editing your PEP](/pephub/user/editing){ .md-button .md-button--primary }
+[Use your PEP in a pipeline](/pephub/user/pipelines){ .md-button .md-button--primary }
