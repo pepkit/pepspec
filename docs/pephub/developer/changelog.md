@@ -274,7 +274,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Changed
 
 - Reimplemented web interface in React.js
-- New deploymnet strategy that uses `uvicorn` instead of `pip install .`
+- New deployment strategy that uses `uvicorn` instead of `pip install .`
 
 ## [0.6.0] - 2022-03-06
 

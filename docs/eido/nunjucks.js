@@ -1344,7 +1344,7 @@ function print(str, indent, inline) {
     var nl = i === lines.length - 1 ? '' : '\n';
     process.stdout.write("" + line + nl);
   });
-} // Print the AST in a nicely formatted tree format for debuggin
+} // Print the AST in a nicely formatted tree format for debugging
 
 
 function printNodes(node, indent) {
@@ -5855,7 +5855,7 @@ if (typeof BrowserMutationObserver === "function") {
 // Internet Explorer 10 is the only browser that has setImmediate but does
 // not have MutationObservers.
 // Although setImmediate yields to the browser's renderer, it would be
-// preferrable to falling back to setTimeout since it does not have
+// preferable to falling back to setTimeout since it does not have
 // the minimum 4ms penalty.
 // Unfortunately there appears to be a bug in Internet Explorer 10 Mobile (and
 // Desktop to a lesser extent) that renders both setImmediate and
@@ -5940,7 +5940,7 @@ function makeRequestCallFromTimer(callback) {
     return function requestCall() {
         // We dispatch a timeout with a specified delay of 0 for engines that
         // can reliably accommodate that request. This will usually be snapped
-        // to a 4 milisecond delay, but once we're flushing, there's no delay
+        // to a 4 millisecond delay, but once we're flushing, there's no delay
         // between events.
         var timeoutHandle = setTimeout(handleTimer, 0);
         // However, since this timer gets frequently dropped in Firefox
@@ -6830,7 +6830,7 @@ function lengthFilter(val) {
     }
 
     if (lib.isObject(value) && !(value instanceof r.SafeString)) {
-      // Objects (besides SafeStrings), non-primative Arrays
+      // Objects (besides SafeStrings), non-primitive Arrays
       return lib.keys(value).length;
     }
 

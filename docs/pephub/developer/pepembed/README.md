@@ -31,7 +31,7 @@ pepembed \
 **1. Download PEPs:**  
 `pepembed` downloads all PEPS from pephub. This is the most time-consuming process. Currently there is no way to parametrize this, but in the future we should. We should also allow for generating embeddings straight from files on disc.
 
-**2. Extract Metadata from PEPs adn embeddings:**  
+**2. Extract Metadata from PEPs and embeddings:**  
 Once the PEPs are downloaded, we then extract any relevant metadata from them. This is done by looking for **keywords** in the [**project-level** attributes](https://pep.databio.org/en/latest/specification/#project-attribute-sample_modifiers). For each PEP, a pseudo-description is built by looking for these keywords and building a string. Some example keyword attributes might be: `cell_type`, `protocol`, `procedure`, `institution`, etc. You can specify your own keywords to `pepembed` if you wish.
 
 <p align="center">
@@ -42,7 +42,7 @@ Once the PEPs are downloaded, we then extract any relevant metadata from them. T
   />
 </p>
   
-Once the pseudo-descriptions are mined, we can then utilize a `sentence-transformer` to generate low-dimensional representations of these descriptions. By defauly, we use a [state-of-the-art transformer](https://arxiv.org/abs/1908.10084) trained for the semantic textual similarity task (*Reimers & Gurevych, 2019*). The embeddings are linked back to the original PEP registry path, along with other information like the mined pseudo-description and the row id in the database.
+Once the pseudo-descriptions are mined, we can then utilize a `sentence-transformer` to generate low-dimensional representations of these descriptions. By default, we use a [state-of-the-art transformer](https://arxiv.org/abs/1908.10084) trained for the semantic textual similarity task (*Reimers & Gurevych, 2019*). The embeddings are linked back to the original PEP registry path, along with other information like the mined pseudo-description and the row id in the database.
 
 **3. Insert Embeddings:**  
 Finally, we insert the embeddings into a [qdrant](https://qdrant.tech/) instance. qdrant is a **vector database** that is designed to store embeddings as first-class data types as well as supporting native graph-based indexing of these embeddings. The allows for near-instant search and retrieval of nearest embeddings neighbors given a new embedding (say an encoded search query on a web application). qdrant supports arming the embeddings with a [**payload**](https://qdrant.tech/documentation/payload/) where we store basic information on that PEP like registry path, row id, and its description.

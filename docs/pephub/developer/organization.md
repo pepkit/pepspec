@@ -34,7 +34,7 @@ pip install -r requirements/requirements-all.txt
 
 #### Running
 
-_pephub_ may be run in several ways. In every case, pephub requires configuration. Configuration settings are supplied to pephub through environment variables. The following settings are **required**. While pephub has built-in defaults for these settings, you should provide them to ensure compatability:
+_pephub_ may be run in several ways. In every case, pephub requires configuration. Configuration settings are supplied to pephub through environment variables. The following settings are **required**. While pephub has built-in defaults for these settings, you should provide them to ensure compatibility:
 
 - `POSTGRES_HOST`: The hostname of the PEPhub database server
 - `POSTGRES_DB`: The name of the database inside the postgres server

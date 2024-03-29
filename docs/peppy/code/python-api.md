@@ -502,7 +502,7 @@ via `sample_table_index` field.
 That's the sample table index selection priority order:
 1. Constructor specified
 2. Config specified
-3. Deafult: `sample_table`
+3. Default: `sample_table`
 #### Returns:
 
 - `str`:  name of the column that consist of sample identifiers
@@ -547,7 +547,7 @@ via `subsample_table_index` field.
 That's the subsample table indexes selection priority order:
 1. Constructor specified
 2. Config specified
-3. Deafult: `[subasample_name, sample_name]`
+3. Default: `[subasample_name, sample_name]`
 #### Returns:
 
 - `List[str]`:  names of the columns that consist of sample and subsample identifiers

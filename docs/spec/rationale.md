@@ -67,4 +67,4 @@ Carlos has downloaded some public transcription factor binding microarray data a
 
 ### How pepkit solves the problem
 
-Since Carlos' package imports `pepr`, his tool can immediately work on any PEP-compatible project. He can therefoer use `geofetch` to download the public GEO data and create a PEP, which can load right into his tool Any of his colleagues that want to use his tool can, as well. By testing a bunch of different datasets, Carlos has made his tool much more useful.
+Since Carlos' package imports `pepr`, his tool can immediately work on any PEP-compatible project. He can therefor use `geofetch` to download the public GEO data and create a PEP, which can load right into his tool Any of his colleagues that want to use his tool can, as well. By testing a bunch of different datasets, Carlos has made his tool much more useful.

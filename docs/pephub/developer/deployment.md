@@ -1,6 +1,6 @@
 # Deployment
 
-We provide a [publically available instance of pephub](https://pephub.databio.org) free to use. However, there are many reasons why you might wish to deploy your own instance. Because of this, we provide detailed instructions and docker containers to spin up your own instance of pephub.
+We provide a [publicly available instance of pephub](https://pephub.databio.org) free to use. However, there are many reasons why you might wish to deploy your own instance. Because of this, we provide detailed instructions and docker containers to spin up your own instance of pephub.
 
 
 ### Build the container

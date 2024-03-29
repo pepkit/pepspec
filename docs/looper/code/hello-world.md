@@ -160,7 +160,7 @@ The 3 folders (`data`, `project`, and `pipeline`) are modular; there is no need 
 
 ## Looper config
 
-The [looper config](looper-config.md) contains paths to the project config, the output_dir as well as any dfine pipeline interfaces. 
+The [looper config](looper-config.md) contains paths to the project config, the output_dir as well as any define pipeline interfaces. 
 
 
 ```python

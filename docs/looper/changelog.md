@@ -120,7 +120,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Input schemas and output schemas
 - `--settings` argument to specify compute resources as a YAML file
 - Option to preset CLI options in a dotfile
-- `--command-extra` and `--command-extra-override` arguments that append specified string to pipeline commands. These functions supercede the previous `pipeline_config` and `pipeline_args` sections, which are now deprecated. The new method is more universal, and can accomplish the same functionality but more simply, using the built-in PEP machinery to selectively apply commands to samples.
+- `--command-extra` and `--command-extra-override` arguments that append specified string to pipeline commands. These functions supersede the previous `pipeline_config` and `pipeline_args` sections, which are now deprecated. The new method is more universal, and can accomplish the same functionality but more simply, using the built-in PEP machinery to selectively apply commands to samples.
 - Option to specify destination of sample YAML in pipeline interface
 - `--pipeline_interfaces` argument that allows pipeline interface specification via CLI
 
@@ -236,7 +236,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - On `PipelineInterface`, iteration over pipelines now is with `iterpipes`.
 - Rename `parse_arguments` to `build_parser`, which returns `argparse.ArgumentParser` object
 - Integers in HTML reports are made more human-readable by including commas.
-- Column headers in HTML reports are now stricly for sorting; there's a separate list for plottable columns.
+- Column headers in HTML reports are now strictly for sorting; there's a separate list for plottable columns.
 - More informative error messages
 - HTML samples list is fully populated.
 - Existence of an object lacking an anchor image is no longer problematic for `summarize`.

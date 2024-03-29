@@ -190,7 +190,7 @@ percentage_of_things:
   description: "Percentage of things"
 log_file:
   type: file
-  descripton: "Path to the log file"
+  description: "Path to the log file"
   highlight: true
 ```
 
@@ -227,7 +227,7 @@ As depicted above the top-level attributes are the status identifiers. Within ea
 
 # Backends
 
-The pipestat specification describes two backend types for storing results: a [YAML-formatted file](https://yaml.org/spec/1.2/spec.html) or a [PostgreSQL database](https://www.postgresql.org/). This flexibility makes pipestat useful for a wide variety of use cases. Some users just need a simple text file for smaller-scale needs, which is convenient and universal, requiring no database infrastructure. For larger-scale systems, a database back-end is necssary. The pipestat specification provides a layer that spans the two possibilities, so that reports can be made in the same way, regardless of which back-end is used in a particular use case.
+The pipestat specification describes two backend types for storing results: a [YAML-formatted file](https://yaml.org/spec/1.2/spec.html) or a [PostgreSQL database](https://www.postgresql.org/). This flexibility makes pipestat useful for a wide variety of use cases. Some users just need a simple text file for smaller-scale needs, which is convenient and universal, requiring no database infrastructure. For larger-scale systems, a database back-end is necessary. The pipestat specification provides a layer that spans the two possibilities, so that reports can be made in the same way, regardless of which back-end is used in a particular use case.
 
 By using the `pipestat` package to write results, the pipeline author need not be concerned with database connections or dealing with racefree file writing, as these tasks are already implemented. The user who runs the pipeline will simply configure the pipestat backend as required.
 

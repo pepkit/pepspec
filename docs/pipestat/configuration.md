@@ -21,7 +21,7 @@ properties:
 - **backend info**: either path to a YAML-formatted file or pipestat config with PostgreSQL database login credentials. Note that the config file can also contain a path to the yaml-formatted results file:
 ```yaml
 schema_path: sample_output_schema.yaml
-#The config can contain either a results_file_path (file backend) or a databse connection (database backend)
+#The config can contain either a results_file_path (file backend) or a database connection (database backend)
 # results_file_path takes priority and will create a PipestatManager with a file backend
 results_file_path: results_file.yaml 
 database:
