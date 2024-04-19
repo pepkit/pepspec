@@ -469,6 +469,8 @@ looper run red_algae/GSE67303_PEP/GSE67303_PEP.yaml -a sra_convert -p local --ou
     *         Peak memory (this run):  0.0793 GB
     *        Pipeline completed time: 2023-08-01 13:06:50
     [36m## [4 of 4] sample: cm_darkness_rep2; pipeline: sra_convert[0m
+
+
     Writing script to /home/bnt4me/virginia/repos/geofetch/docs_jupyter/submission/sra_convert_cm_darkness_rep2.sub
     Job script (n=1; 0.07Gb): ./submission/sra_convert_cm_darkness_rep2.sub
     Compute node: bnt4me-Precision-5560
