@@ -2,6 +2,21 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.9.0] - 2024-04-19
+### Fixed
+- Bug with rm_record for filebackend
+- Bug when using record_identifier via env variable and the CLI
+### Added
+- Added results history and history retrieval for both file and db backends via `retrieve_history` [#177](https://github.com/pepkit/pipestat/issues/177).
+- Added `remove_record` to Pipestat manager object (it is no longer only on backend classes)
+- Added `meta` key to each record for the file backend
+- db backend will now create an additional sql history table
+- Reporting history is toggleable
+### Changed
+- Removing the last result no longer removes the entire record.
+- `pipestat_created_time, and `pipestat_modified_time` now live under the `meta` key.
+- `history` lives under the `meta` key for the filebackend.
+
 ## [0.8.2] - 2024-02-22
 ### Changed
 - Changed yacman requirement and using FutureYamlConfigManager.
