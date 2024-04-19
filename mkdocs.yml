@@ -237,6 +237,7 @@ nav:
       - Use command line interface: pipestat/code/cli.md
       - Report objects as results: pipestat/code/reporting-objects.md
       - Configure pipestat: pipestat/configuration.md
+      - Multi pipelines and result files: pipestat/multi.md
     - Reference:
       - How to cite: citations.md
       - CLI usage: pipestat/usage.md
