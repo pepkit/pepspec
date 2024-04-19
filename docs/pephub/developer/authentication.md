@@ -196,7 +196,7 @@ This flow should be identical to the flow that GitHub uses to protect repositori
 
 ### Submitting a new PEP
 
-There are two scenerios for PEP submission: 1) A user submits to their namespace, and 2) A user submits to an organization. Both cases must require authentication. A user may freely submit PEPs to their own namespace. However, only **members** of an organization may submit PEPs to that organization. See below chart:
+There are two scenarios for PEP submission: 1) A user submits to their namespace, and 2) A user submits to an organization. Both cases must require authentication. A user may freely submit PEPs to their own namespace. However, only **members** of an organization may submit PEPs to that organization. See below chart:
 
 ```mermaid
 flowchart LR
