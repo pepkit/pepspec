@@ -244,7 +244,7 @@ Creates all directories in a path if it does not exist.
 
 #### Raises:
 
-- `Exception`:  if the path creation attempt hits an error witha code indicating a cause other than pre-existence.
+- `Exception`:  if the path creation attempt hits an error with code indicating a cause other than pre-existence.
 
 
 
@@ -272,7 +272,7 @@ def process_counter(self)
 Increments process counter with regard to the follow state: if currently executed command is a follow function of another one, the counter is not incremented.
 #### Returns:
 
-- `str | int`:  current counter state, a number if the counter has beed incremented or a numberof the previous process plus "f" otherwise
+- `str | int`:  current counter state, a number if the counter has been incremented or a number of the previous process plus "f" otherwise
 
 
 

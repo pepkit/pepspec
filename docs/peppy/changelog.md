@@ -106,7 +106,7 @@ _Due to the changes mentioned above, a few functionalities may be disabled. For 
 ### Added
 
 - Implementation of `__eq__` for the `peppy.Project` class such that two instances of the class can be compared using python's equality operators (`==`, `!=`).
-- New `from_dict` function that lets a user instatiate a new `peppy.Project` object using an in-memory representation of a PEP (a `dict`). This supports database storage of PEPs.
+- New `from_dict` function that lets a user instantiate a new `peppy.Project` object using an in-memory representation of a PEP (a `dict`). This supports database storage of PEPs.
 - New `extended` flag for the `to_dict` method on `peppy.Project` objects. This creates a **richer** dictionary representation of PEPs.
 - Better sample parsing
 

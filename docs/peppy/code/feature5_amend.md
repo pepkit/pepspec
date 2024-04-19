@@ -94,7 +94,7 @@ from peppy import Project
 p = Project(project_config_file)
 ```
 
-An appropriate message is displayed, which informs you what are the names of the amendments that you have defined in the `project_config.yaml` file. Nontheless, just the main project is "active".
+An appropriate message is displayed, which informs you what are the names of the amendments that you have defined in the `project_config.yaml` file. Nonetheless, just the main project is "active".
 
 Let's inspect it:
 

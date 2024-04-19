@@ -80,7 +80,7 @@
 
 ## [0.11.2] -- 2019-06-06
 ### Fixed
-- Elevate `attmap` depdendency bound to require inclusion of improved path expansion behavior.
+- Elevate `attmap` dependency bound to require inclusion of improved path expansion behavior.
 
 ## [0.11.1] -- 2019-05-30
 ### Fixed
@@ -91,7 +91,7 @@
 - Fixed a bug with cleanup scripts in `dirty` mode
 - Restructured profile output with hash and processID, and made lock paths relative
 - Streamlined some logging outputs
-- Allows nested parenthesies and braces for piped commands
+- Allows nested parentheses and braces for piped commands
 - Fixed a bug that would have split a pipe within a braced command
 - Some performance improvements for ngstk functions
 - Allow `ngstk.input_to_fastq` to yield gzipped fastq files

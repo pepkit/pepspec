@@ -1,6 +1,6 @@
 # Command-line arguments
 
-Your final pypiper pipeline will be a python script that a pipeline user will invoke on the command-line. You will likely need to allow the user to change some parameters on the command line, and to take full advantage of Pypiper (make your pipeline recoverable, etc.), you wil need to add command-line options to your pipeline that change pypiper's settings as well. Pypiper uses the typical Python [argparse module](https://docs.python.org/2/library/argparse.html) to define command-line arguments to your pipeline, and offers a series of built-in functions to help you populate your pipeline's `ArgumentParser` with pypiper-specific options.
+Your final pypiper pipeline will be a python script that a pipeline user will invoke on the command-line. You will likely need to allow the user to change some parameters on the command line, and to take full advantage of Pypiper (make your pipeline recoverable, etc.), you will need to add command-line options to your pipeline that change pypiper's settings as well. Pypiper uses the typical Python [argparse module](https://docs.python.org/2/library/argparse.html) to define command-line arguments to your pipeline, and offers a series of built-in functions to help you populate your pipeline's `ArgumentParser` with pypiper-specific options.
 
 You can use an ArgumentParser as usual, adding whatever arguments you like. Then, you add Pypiper args to your parser with the function `add_pypiper_args()`, and pass command-line options and arguments to your `PipelineManager`, like this:
 
@@ -60,7 +60,7 @@ Individual arguments that are understood and used by pypiper:
 
 - `-R, --recover`: for a failed pipeline run, start off at the last successful step. 
 - `-N, --new-start`: Just recreate everything, even if it exists.
-- `-D, --dirty`: Disables automatic cleaning of temporary files, so all intermediate files will still exist after a pipeline run (either sucessful or failed). Useful for debugging a pipeline even if it succeeds.
+- `-D, --dirty`: Disables automatic cleaning of temporary files, so all intermediate files will still exist after a pipeline run (either successful or failed). Useful for debugging a pipeline even if it succeeds.
 - `-F, --follow`: Runs all `follow-functions`, regardless of whether the accompanying command is run.
 - `-C, --config`: Pypiper pipeline config yaml file.
 

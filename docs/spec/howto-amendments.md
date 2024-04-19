@@ -19,7 +19,7 @@ project_modifiers:
 ...
 ```
 
-If you load this configuration file, it will by default use the `annotation.csv` file specified in the `sample_table` attribute, as you would expect. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specifed in the `my_project2` amendment.
+If you load this configuration file, it will by default use the `annotation.csv` file specified in the `sample_table` attribute, as you would expect. If you don't activate any amendments, they are ignored. But if you choose, you may activate one of the two amendments, which are called `my_project2` and `my_project3`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv`. All other project settings will be the same as if no amendment was activated because there are no other values specified in the `my_project2` amendment.
 
 Practically what happens under the scenes is that the primary project is first loaded, and then, if an amendment is activated, it overrides any attributes with those specified in the amendment.
 

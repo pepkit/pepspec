@@ -1,0 +1,6 @@
+[files]
+extend-exclude = ["*.ipynb", "*.svg"]
+
+[default.extend-words]
+opf = "opf"
+PN="PN"

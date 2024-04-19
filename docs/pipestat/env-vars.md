@@ -6,7 +6,7 @@ Here is a list of the supported environment variables:
 
 | Environment variable           | API argument       | Description                                                                                                                  |
 |--------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------|
-| **PIPESTAT_RECORD_IDENTIFIER** | record_identifier  | record identifier to report for. This creates a weak bound to the record, which can be overriden in this object method calls |
+| **PIPESTAT_RECORD_IDENTIFIER** | record_identifier  | record identifier to report for. This creates a weak bound to the record, which can be overridden in this object method calls |
 | **PIPESTAT_CONFIG**            | config             | path to the configuration file or a mapping with the config file content                                                     |
 | **PIPESTAT_RESULTS_FILE**      | results_file_path  | YAML file to report into, if file is used as the object back-end                                                             |
 | **PIPESTAT_RESULTS_SCHEMA**    | schema_path        | path to the output schema that formalizes the results structure                                                              |

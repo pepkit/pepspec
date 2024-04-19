@@ -24,7 +24,7 @@ project_modifiers:
 ...
 ```
 
-If you load this configuration file, it will by default use the `annotation.csv` file, and the `genome` attribute will be set to "hg38". There are 3 amendments available: `my_project2`, `my_project3`,a nd `hg19_analysis`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv` -- still run on "hg38". To run two amendments, you could issue `ammendments=my_project2,hg19_analysis`, which will result in this config file:
+If you load this configuration file, it will by default use the `annotation.csv` file, and the `genome` attribute will be set to "hg38". There are 3 amendments available: `my_project2`, `my_project3`,a and `hg19_analysis`. If you activate `my_project2`, by passing `amendments=my_project2` when parsing the PEP, the resulting object will use the `annotation2.csv` sample_table instead of the default `annotation.csv` -- still run on "hg38". To run two amendments, you could issue `amendments=my_project2,hg19_analysis`, which will result in this config file:
 
 
 ```{yaml}

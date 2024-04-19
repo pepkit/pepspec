@@ -16,7 +16,7 @@ Table of contents:
 
 Bioinformatics projects often start from a *sample table*, a spreadsheet of samples as rows with attributes of those samples in columns. For example, the some attributes may include file paths to raw data, sample annotation like organism or treatment, and other experimental details. Unfortunately, each project is usually done differently -- there is little standardization of these file formats and column names across projects. The downstream processing tools that consume the sample table typically expect specific way of formatting the table, such as requiring certain columns, expecting certain file formats, and so on. These assumptions are often inherent in the tools, but rarely explained. And even where they are explained, they tend to be unique for each tool. There is no standard way to represent metadata that spans projects and tools. This restricts the portability and reusability of annotated datasets and software that processes them.
 
-*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable. PEP does this by providing *metadata standarization*, *metadata validation*, and *portability modifiers*.
+*Portable Encapsulated Projects* (*PEP* for short) seeks to make datasets and related software more portable and reusable. PEP does this by providing *metadata standardization*, *metadata validation*, and *portability modifiers*.
 
 ## How PEP improves sample annotation portability
 
@@ -24,7 +24,7 @@ PEP provides 3 features to improve portability:
 
 1. **A standardized metadata structure**. PEP standardizes sample metadata formats. This allows tools and pipelines to read data from different sources more easily.
 2. **A validation framework**. PEP provides formal validation schemas. This allows us to confirm that a PEP complies with a requirements for an arbitrary tool. 
-3. **Project and sample modifiers**. PEP provides a powerful framework to *programatically modify* sample- and project-level metadata. This allows us to systematize metadata so one input source can span multiple tools.
+3. **Project and sample modifiers**. PEP provides a powerful framework to *programmatically modify* sample- and project-level metadata. This allows us to systematize metadata so one input source can span multiple tools.
 
 ## Definitions of terms and components of a PEP
 
@@ -230,7 +230,7 @@ Implied attributes can be useful for pipeline arguments. For instance, it may th
 <figcaption><i>Derive</i> builds new attributes from existing values.</figcaption>
 </figure>
 
-The `derive` sample modifier converts existing sample attribute values into new values derived from other existing sample attribute values. It contains two sections; in `attributes` is a list of existing attributes that should be derived; in `sources` is a mapping of key-value pairs that defines the templates used to derive the new attribute values. The `sources` templates are available for *all*  entires under `attributes` .
+The `derive` sample modifier converts existing sample attribute values into new values derived from other existing sample attribute values. It contains two sections; in `attributes` is a list of existing attributes that should be derived; in `sources` is a mapping of key-value pairs that defines the templates used to derive the new attribute values. The `sources` templates are available for *all*  entries under `attributes` .
 
 Example:
 

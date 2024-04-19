@@ -9,7 +9,7 @@
 
 
 This repository contains `geopephub` CLI, that enables to automatic upload GEO projects to PEPhub based on date and scheduled automatic uploading using GitHub actions. 
-Additionally, the CLI includes a download command, enabling users to retrieve projects from specifed namespace directly from the PEPhub database. This feature is particularly helpful for downloading all GEO projects at once.
+Additionally, the CLI includes a download command, enabling users to retrieve projects from specified namespace directly from the PEPhub database. This feature is particularly helpful for downloading all GEO projects at once.
 
 ---
 
