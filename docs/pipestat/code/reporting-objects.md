@@ -19,7 +19,6 @@ psm = pipestat.PipestatManager(
 )
 ```
 
-    Initialize PipestatBackend
     Initialize FileBackend
 
 
@@ -33,12 +32,12 @@ psm.schema
 
 
 
-    ParsedSchemaDB (refget)
+    ParsedSchema (refget)
      Project-level properties:
      - None
      Sample-level properties:
-     -  value : {'type': 'string', 'description': 'Value of the object referred to by the key'}
-     -  mydict : {'type': 'object', 'description': 'Can pipestat handle nested objects?'}
+     - value : {'type': 'string', 'description': 'Value of the object referred to by the key'}
+     - mydict : {'type': 'object', 'description': 'Can pipestat handle nested objects?'}
      Status properties:
      - None
 
@@ -48,19 +47,17 @@ This schema defines two sample-level variables: `value` is a string, and `mydict
 
 
 ```python
-psm.report({"mydict": {"toplevel": {"value": "456"}}}, force_overwrite=True)
+psm.report({"mydict": {"toplevel": {"value": 456}}}, force_overwrite=True)
 ```
 
 
 
 
-    ["Reported records for 'sample1' in 'refget' :\n - mydict: {'toplevel': {'value': '456'}}",
-     "Reported records for 'sample1' in 'refget' :\n - pipestat_created_time: 2024-02-21 20:52:20",
-     "Reported records for 'sample1' in 'refget' :\n - pipestat_modified_time: 2024-02-21 20:52:20"]
+    ["Reported records for 'sample1' in 'refget' :\n - mydict: {'toplevel': {'value': 456}}"]
 
 
 
-And now we can retrieve those results:
+And now we can retrieve those results (which is returned as a python dict):
 
 
 ```python
@@ -70,8 +67,35 @@ psm.retrieve_one("sample1", "mydict")
 
 
 
-    {'toplevel': {'value': '456'}}
+    {'toplevel': {'value': 456}}
 
 
 
-Is there a way to retrieve the values within? Something like `psm.retrieve_one("sample1", "mydict.toplevel.value")` ? I can't find any docs about that.
+
+```python
+psm.retrieve_one("sample1", "mydict")['toplevel']
+```
+
+
+
+
+    {'value': 456}
+
+
+
+
+```python
+psm.retrieve_one("sample1", "mydict")['toplevel']['value']
+```
+
+
+
+
+    456
+
+
+
+
+```python
+
+```

@@ -178,6 +178,14 @@ pipestat retrieve -i percentage_of_things
     1.1
 
 
+### History Retrieval
+
+If you overwrite results, pipestat keeps a history by default.
+Use `pipestat history` to see previously reported results:
+
+`{'percentage_of_things': {'2024-04-18 14:53:58': '1.1'}}`
+
+
 ### Removal
 
 In order to remove a result call `pipestat remove`:
