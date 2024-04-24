@@ -2,6 +2,13 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.9.1] - 2024-04-24
+### Fixed
+- Pipestat summarize html report columns now show stats only  [#148](https://github.com/pepkit/pipestat/issues/148).
+- When creating HTML reports from both sample and project level results (multi results), only sample-level results show in the main index table [#150](https://github.com/pepkit/pipestat/issues/150). 
+- Add more complex schema during dependency check to mitigate false test failures regarding different output schemas [#181](https://github.com/pepkit/pipestat/issues/181). 
+
+
 ## [0.9.0] - 2024-04-19
 ### Fixed
 - Bug with rm_record for filebackend
