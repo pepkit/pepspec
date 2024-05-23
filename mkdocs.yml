@@ -40,8 +40,12 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - md_in_html
   - pymdownx.highlight:
       use_pygments: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -176,17 +180,18 @@ nav:
     - PEPhub: pephub/README.md
     - User guide:
       - Getting started: pephub/user/getting-started.md
-      - Creating an account and logging in: pephub/user/accounts.md
+      - Logging in: pephub/user/accounts.md
       - Uploading your first PEP: pephub/user/uploading.md
       # - Editing a PEP: pephub/user/editing.md
       # - Sharing your PEP: pephub/user/sharing.md
+      - How to use views: pephub/user/views.md
       - Use a PEP in an existing pipeline: pephub/user/pipelines.md
       # - Validating PEPs: pephub/user/validation.md
       # - Version control: pephub/user/version-control.md
       # - Semantic search: pephub/user/semantic-search.md
-      # - Building POPs: pephub/user/pops.md
+      - PEP of PEPs (POP): pephub/user/pops.md
     - Developer guide:
-      - Setup: pephub/developer/organization.md
+      - Setup: pephub/developer/setup.md
       - Deployment: pephub/developer/deployment.md
       - Development: pephub/developer/development.md
       - Authentication: pephub/developer/authentication.md
