@@ -15,3 +15,11 @@ Navigate to your PEPhub namespace (`https://pephub.databio.org/{github username}
 ## Ready to edit your PEP
 
 Once you have uploaded or created a PEP, you can now start using it in pipelines!
+
+## Editing a PEP
+
+...
+
+## Sharing your PEP
+
+...

@@ -2,7 +2,7 @@
 
 ### Container installation: 
 
-0) Go to [pep_db](pep_db)  directory and then run the following lines. <br />
+0) Go to `pep_db`  directory and then run the following lines. <br />
 1) Build the docker: 
 ```
 docker build -t pep-db ./

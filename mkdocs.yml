@@ -180,16 +180,13 @@ nav:
     - PEPhub: pephub/README.md
     - User guide:
       - Getting started: pephub/user/getting-started.md
-      - Logging in: pephub/user/accounts.md
-      - Uploading your first PEP: pephub/user/uploading.md
-      # - Editing a PEP: pephub/user/editing.md
-      # - Sharing your PEP: pephub/user/sharing.md
-      - How to use views: pephub/user/views.md
       - Use a PEP in an existing pipeline: pephub/user/pipelines.md
-      # - Validating PEPs: pephub/user/validation.md
-      # - Version control: pephub/user/version-control.md
-      # - Semantic search: pephub/user/semantic-search.md
+      - Validating PEPs: pephub/user/validation.md
+      - Version control: pephub/user/version-control.md
+      - Semantic search: pephub/user/semantic-search.md
+      - How to use views: pephub/user/views.md
       - PEP of PEPs (POP): pephub/user/pops.md
+      - Accessing GEO metadata: pephub/user/geo.md
     - Developer guide:
       - Setup: pephub/developer/setup.md
       - Deployment: pephub/developer/deployment.md
