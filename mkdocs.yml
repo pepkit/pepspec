@@ -181,6 +181,7 @@ nav:
       # - Editing a PEP: pephub/user/editing.md
       # - Sharing your PEP: pephub/user/sharing.md
       - Use a PEP in an existing pipeline: pephub/user/pipelines.md
+      - What is POP?: pephub/user/pops.md
       # - Validating PEPs: pephub/user/validation.md
       # - Version control: pephub/user/version-control.md
       # - Semantic search: pephub/user/semantic-search.md
@@ -195,7 +196,9 @@ nav:
       - PEPHubClient:
         - PEPhubClient: pephub/developer/pephubclient/README.md
         - Changelog: pephub/developer/pephubclient/changelog.md
-        - Python API: pephub/developer/pephubclient/python-api.md
+        - Python API: pephub/developer/pephubclient/phc_usage.md
+        - Python API samples: pephub/developer/pephubclient/phc_samples_usage.md
+        - Python API views: pephub/developer/pephubclient/phc_views_usage.md
         - CLI usage: pephub/developer/pephubclient/cli.md
       - Server settings: pephub/developer/server-settings.md
       - PEPembed:
