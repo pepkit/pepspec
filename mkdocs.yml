@@ -195,6 +195,7 @@ nav:
       - Semantic search: pephub/developer/semantic-search.md
       - PEPHubClient:
         - PEPhubClient: pephub/developer/pephubclient/README.md
+        - Quickstart: pephub/developer/pephubclient/tutorial.md
         - Changelog: pephub/developer/pephubclient/changelog.md
         - Python API: pephub/developer/pephubclient/phc_usage.md
         - Python API samples: pephub/developer/pephubclient/phc_samples_usage.md
