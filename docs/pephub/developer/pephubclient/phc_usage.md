@@ -42,20 +42,13 @@ find_project(
 
 Find project in specific namespace and return list of PEP annotation 
 
-- 
-- - :param namespace: Namespace where to search for projects 
-- 
-- - :param query_string: Search query 
-- 
-- - :param limit: Return limit 
-- 
-- - :param offset: Return offset 
-- 
-- - :param filter_by: Use filter date. Option: [submission_date, last_update_date] 
-- 
-- - :param start_date: filter beginning date 
-- 
-- - :param end_date: filter end date (if none today's date is used) :return: 
+- :param namespace: Namespace where to search for projects
+- :param query_string: Search query
+- :param limit: Return limit
+- :param offset: Return offset
+- :param filter_by: Use filter date. Option: [submission_date, last_update_date]
+- :param start_date: filter beginning date
+- :param end_date: filter end date (if none today's date is used) :return: 
 
 ---
 
