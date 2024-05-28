@@ -20,7 +20,7 @@ This is common, but what if the data get moved, the filesystem changes, or you s
 ## Using a derived column
 
 
-The PEP specification makes it really easy to do better with the `derive` sample modifier. The `derive` sample modifier adds new sample attributes that are derived from existing sample attributes. What was originally `/long/path/to/sample.fastq.gz` would instead contain just a key, like `source1`, and then a systematic formula for how to construct the path programatically is included in the project config file. Here's an example of the same sample table using a `derived attribute` for `file_path`:
+The PEP specification makes it really easy to do better with the `derive` sample modifier. The `derive` sample modifier adds new sample attributes that are derived from existing sample attributes. What was originally `/long/path/to/sample.fastq.gz` would instead contain just a key, like `source1`, and then a systematic formula for how to construct the path programmatically is included in the project config file. Here's an example of the same sample table using a `derived attribute` for `file_path`:
 
 ```
 "sample_name", "library", "organism", "time", "file_path"

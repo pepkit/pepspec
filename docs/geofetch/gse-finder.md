@@ -61,7 +61,7 @@ gse_list = gse_obj.get_gse_by_date(start_date="2015/05/05", end_date="2020/05/05
 
 gse_obj.generate_file("path/to/the/file")
 
-# if you want to save different list of files you can provide it to the funciton
+# if you want to save different list of files you can provide it to the function
 gse_obj.generate_file("path/to/the/file", gse_list=["123", "124"])
 
 ```

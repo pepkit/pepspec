@@ -52,7 +52,7 @@ cat $PIPESTAT_RESULTS_SCHEMA
     name_of_something:
       type: string
       description: "Name of something"
-    swtich_value:
+    switch_value:
       type: boolean
       description: "Is the switch on of off"
     collection_of_things:
@@ -176,6 +176,14 @@ pipestat retrieve -i percentage_of_things
 ```
 
     1.1
+
+
+### History Retrieval
+
+If you overwrite results, pipestat keeps a history by default.
+Use `pipestat history` to see previously reported results:
+
+`{'percentage_of_things': {'2024-04-18 14:53:58': '1.1'}}`
 
 
 ### Removal

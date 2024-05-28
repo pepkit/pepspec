@@ -14,7 +14,7 @@ There are a multiple advantages of using pipestat instead of the current pipelin
 
 ## Setup
 
-In order to start reporting results with pipestat in your pipeline all you need to do is define a [pipestat resuts schema](http://pipestat.databio.org/en/latest/pipestat_specification/#pipestat-schema-format):
+In order to start reporting results with pipestat in your pipeline all you need to do is define a [pipestat results schema](http://pipestat.databio.org/en/latest/pipestat_specification/#pipestat-schema-format):
 
 ```yaml
 my_int_result:
@@ -26,7 +26,7 @@ my_str_result:
 
 And in the simplest case... that's it! Now you can use `pipestat` property of the `PipelineManager` object to report/retrieve results.
 
-Pypiper *by default* will use a YAML-formated file to store the reported results in the selected `outfolder` and will look for `pipestat_results_schema.yaml` file in the pipeline Python script directory.
+Pypiper *by default* will use a YAML-formatted file to store the reported results in the selected `outfolder` and will look for `pipestat_results_schema.yaml` file in the pipeline Python script directory.
 
 ### Advanced features
 
@@ -60,7 +60,7 @@ database:
   password: pypiper # database password
   host: localhost # database host address
   port: 5433 # port the database is running on
-  dialect: postgresql # type of the databse 
+  dialect: postgresql # type of the database 
   driver: psycopg2 # driver to use to communicate
 ```
 

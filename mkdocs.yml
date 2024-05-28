@@ -40,8 +40,12 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - md_in_html
   - pymdownx.highlight:
       use_pygments: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -176,18 +180,15 @@ nav:
     - PEPhub: pephub/README.md
     - User guide:
       - Getting started: pephub/user/getting-started.md
-      - Creating an account and logging in: pephub/user/accounts.md
-      - Uploading your first PEP: pephub/user/uploading.md
-      # - Editing a PEP: pephub/user/editing.md
-      # - Sharing your PEP: pephub/user/sharing.md
       - Use a PEP in an existing pipeline: pephub/user/pipelines.md
-      - What is POP?: pephub/user/pops.md
-      # - Validating PEPs: pephub/user/validation.md
-      # - Version control: pephub/user/version-control.md
-      # - Semantic search: pephub/user/semantic-search.md
-      # - Building POPs: pephub/user/pops.md
+      - Validating PEPs: pephub/user/validation.md
+      - Version control: pephub/user/version-control.md
+      - Semantic search: pephub/user/semantic-search.md
+      - How to use views: pephub/user/views.md
+      - PEP of PEPs (POP): pephub/user/pops.md
+      - Accessing GEO metadata: pephub/user/geo.md
     - Developer guide:
-      - Setup: pephub/developer/organization.md
+      - Setup: pephub/developer/setup.md
       - Deployment: pephub/developer/deployment.md
       - Development: pephub/developer/development.md
       - Authentication: pephub/developer/authentication.md
@@ -241,6 +242,7 @@ nav:
       - Use command line interface: pipestat/code/cli.md
       - Report objects as results: pipestat/code/reporting-objects.md
       - Configure pipestat: pipestat/configuration.md
+      - Multi pipelines and result files: pipestat/multi.md
     - Reference:
       - How to cite: citations.md
       - CLI usage: pipestat/usage.md

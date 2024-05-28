@@ -204,7 +204,7 @@ This section can consist of multiple variable templates that are rendered and ca
 
 #### pre_submit
 
-This section can consist of two subsections: `python_funcions` and/or `command_templates`, which specify the pre-submission tasks to be run before the main pipeline command is submitted. Please refer to the [pre-submission hooks system](pre-submission-hooks.md) section for a detailed explanation of this feature and syntax.
+This section can consist of two subsections: `python_functions` and/or `command_templates`, which specify the pre-submission tasks to be run before the main pipeline command is submitted. Please refer to the [pre-submission hooks system](pre-submission-hooks.md) section for a detailed explanation of this feature and syntax.
 
 ## Validating a pipeline interface
 

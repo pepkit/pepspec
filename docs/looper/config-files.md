@@ -24,7 +24,7 @@ Users (non-developers) of pipelines only need to be aware of one or two config f
 
 ### Environment configuration
 
-[**environment config**](http://divvy.databio.org/en/latest/configuration/) -- if you are planning to submit jobs to a cluster, then you need to be aware of environment configuration. This task is farmed out to [divvy](http://divvy.databio.org/en/latest/), a computing resource configuration manager. Follow the divvy documentation to learn about ways to tweak the computing environment settins according to your needs.
+[**environment config**](http://divvy.databio.org/en/latest/configuration/) -- if you are planning to submit jobs to a cluster, then you need to be aware of environment configuration. This task is farmed out to [divvy](http://divvy.databio.org/en/latest/), a computing resource configuration manager. Follow the divvy documentation to learn about ways to tweak the computing environment settings according to your needs.
 
 That should be all you need to worry about as a pipeline user. If you need to adjust compute resources or want to develop a pipeline or have more advanced project-level control over pipelines, you'll need knowledge of the config files used by pipeline developers.
 

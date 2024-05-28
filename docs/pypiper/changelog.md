@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1] -- 2024-04-19
+### Changed
+- remove pipestat_project_name from PipelineManager parameters
+- refactor pipestat_sample_name to pipestat_record_identifier in PipelineManager parameters
+- update requirements for pipestat 0.9.0, ubiquerg 0.8.0, and yacman 0.9.3
+- set `force_overwrite` to default to true, Issue #209
+
 ## [0.14.0] -- 2023-12-22
 ### Changed
 - refactor for pipestat v0.6.0 release
@@ -73,7 +80,7 @@
 
 ## [0.11.2] -- 2019-06-06
 ### Fixed
-- Elevate `attmap` depdendency bound to require inclusion of improved path expansion behavior.
+- Elevate `attmap` dependency bound to require inclusion of improved path expansion behavior.
 
 ## [0.11.1] -- 2019-05-30
 ### Fixed
@@ -84,7 +91,7 @@
 - Fixed a bug with cleanup scripts in `dirty` mode
 - Restructured profile output with hash and processID, and made lock paths relative
 - Streamlined some logging outputs
-- Allows nested parenthesies and braces for piped commands
+- Allows nested parentheses and braces for piped commands
 - Fixed a bug that would have split a pipe within a braced command
 - Some performance improvements for ngstk functions
 - Allow `ngstk.input_to_fastq` to yield gzipped fastq files

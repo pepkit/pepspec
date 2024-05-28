@@ -45,7 +45,7 @@ _, temp_file = mkstemp(suffix=".yaml")
 print(temp_file)
 ```
 
-    /tmp/tmps01teih1.yaml
+    /tmp/tmpu4r0mojr.yaml
 
 
 Now we can create a `PipestatManager` object that uses this file as the back-end:
@@ -59,7 +59,6 @@ psm = pipestat.PipestatManager(
 )
 ```
 
-    Initialize PipestatBackend
     Initialize FileBackend
 
 
@@ -100,10 +99,7 @@ Since we've used a newly created file, nothing has been reported yet:
 print(psm.retrieve_one(record_identifier='sample1'))
 ```
 
-    None
-
-
-Using `psm.retrieve_one` at this stage will return `None`.
+Using `psm.retrieve_one` at this stage will return a `RecordNotFound` exception.
 
 
 ```python
@@ -191,19 +187,7 @@ except ValidationError as e:
     print(e)
 ```
 
-    'title' is a required property
-    
-    Failed validating 'required' in schema:
-        {'description': 'This a path to the output file',
-         'object_type': 'file',
-         'properties': {'path': {'type': 'string'},
-                        'title': {'type': 'string'}},
-         'required': ['path', 'title'],
-         'type': 'object'}
-    
-    On instance:
-        {'path': '/home/user/path.csv'}
-
+`SchemaValidationErrorDuringReport: 'title' is a required property`
 
 Let's report a correct object this time:
 
@@ -222,9 +206,7 @@ psm.report(record_identifier="sample1",
 
 
 
-    ["Reported records for 'sample1' in 'default_pipeline_name' :\n - output_file: {'path': '/home/user/path.csv', 'title': 'CSV file with some data'}",
-     "Reported records for 'sample1' in 'default_pipeline_name' :\n - pipestat_created_time: 2023-11-07 17:30:39",
-     "Reported records for 'sample1' in 'default_pipeline_name' :\n - pipestat_modified_time: 2023-11-07 17:30:39"]
+    ["Reported records for 'sample1' in 'default_pipeline_name' :\n - output_file: {'path': '/home/user/path.csv', 'title': 'CSV file with some data'}"]
 
 
 
@@ -242,11 +224,12 @@ psm.data
       project: {}
       sample:
         sample1:
+          meta:
+            pipestat_modified_time: '2024-04-18 15:04:33'
+            pipestat_created_time: '2024-04-18 15:04:33'
           output_file:
             path: /home/user/path.csv
             title: CSV file with some data
-          pipestat_created_time: '2023-11-07 17:30:39'
-          pipestat_modified_time: '2023-11-07 17:30:39'
 
 
 
@@ -263,13 +246,11 @@ psm.retrieve_one('sample1')
 
     {'output_file': {'path': '/home/user/path.csv',
       'title': 'CSV file with some data'},
-     'pipestat_created_time': '2023-11-07 17:30:39',
-     'pipestat_modified_time': '2023-11-07 17:30:39',
      'record_identifier': 'sample1'}
 
 
 
-No results duplication is allowed, unless you force overwrite:
+Results are overwritten unless force_overwrite is set to False!
 
 
 ```python
@@ -284,12 +265,13 @@ psm.report(record_identifier="sample1",
 ```
 
     These results exist for 'sample1': output_file
+    Overwriting existing results: output_file
 
 
 
 
 
-    False
+    ["Reported records for 'sample1' in 'default_pipeline_name' :\n - output_file: {'path': '/home/user/path_new.csv', 'title': 'new CSV file with some data'}"]
 
 
 
@@ -302,14 +284,13 @@ psm.report(record_identifier="sample1",
             "title": "new CSV file with some data",
         }
     },
-    force_overwrite=True,
+    force_overwrite=False,
 )
 
 psm.retrieve_one('sample1')
 ```
 
     These results exist for 'sample1': output_file
-    Overwriting existing results: output_file
 
 
 
@@ -317,8 +298,6 @@ psm.retrieve_one('sample1')
 
     {'output_file': {'path': '/home/user/path_new.csv',
       'title': 'new CSV file with some data'},
-     'pipestat_created_time': '2023-11-07 17:30:39',
-     'pipestat_modified_time': '2023-11-07 17:30:48',
      'record_identifier': 'sample1'}
 
 
@@ -335,7 +314,6 @@ psm1 = pipestat.PipestatManager(
 )
 ```
 
-    Initialize PipestatBackend
     Initialize FileBackend
 
 
@@ -349,8 +327,6 @@ psm.retrieve_one('sample1')
 
     {'output_file': {'path': '/home/user/path_new.csv',
       'title': 'new CSV file with some data'},
-     'pipestat_created_time': '2023-11-07 17:30:39',
-     'pipestat_modified_time': '2023-11-07 17:30:48',
      'record_identifier': 'sample1'}
 
 
@@ -403,8 +379,7 @@ psm.report(record_identifier="sample1",values={"number_of_things": "10"}, strict
 
 
 
-    ["Reported records for 'sample1' in 'default_pipeline_name' :\n - number_of_things: 10",
-     "Reported records for 'sample1' in 'default_pipeline_name' :\n - pipestat_modified_time: 2023-11-07 17:30:56"]
+    ["Reported records for 'sample1' in 'default_pipeline_name' :\n - number_of_things: 10"]
 
 
 
@@ -437,11 +412,17 @@ psm.data
       project: {}
       sample:
         sample1:
+          meta:
+            pipestat_modified_time: '2024-04-18 15:06:45'
+            pipestat_created_time: '2024-04-18 15:04:33'
+            history:
+              output_file:
+                '2024-04-18 15:06:04':
+                  path: /home/user/path.csv
+                  title: CSV file with some data
           output_file:
             path: /home/user/path_new.csv
             title: new CSV file with some data
-          pipestat_created_time: '2023-11-07 17:30:39'
-          pipestat_modified_time: '2023-11-07 17:30:56'
           number_of_things: '10'
 
 
@@ -477,10 +458,26 @@ psm.retrieve_one(record_identifier="sample1")
 
     {'output_file': {'path': '/home/user/path_new.csv',
       'title': 'new CSV file with some data'},
-     'pipestat_created_time': '2023-11-07 17:30:39',
-     'pipestat_modified_time': '2023-11-07 17:30:56',
      'number_of_things': '10',
      'record_identifier': 'sample1'}
+
+
+
+## Retrieving History
+
+Pipestat records a history of reported results by default.
+If results have been overwritten, the historical results can be obtained via:
+
+
+```python
+psm.retrieve_history(record_identifier="sample1")
+```
+
+
+
+
+    {'output_file': {'2024-04-18 15:06:04': {'path': '/home/user/path.csv',
+       'title': 'CSV file with some data'}}}
 
 
 
@@ -537,7 +534,7 @@ psm.backend._data
 
 
 
-## Highligting results
+## Highlighting results
 
 In order to highlight results we need to add an extra property in the pipestat results schema (`highlight: true`) under the result identifier that we wish to highlight. 
 
@@ -643,7 +640,7 @@ psm.cfg['_status_schema']
 
 
 
-`pipestat` Python package ships with a default status schema, so we did not have to provide the schema when constructing the `PipestatManager` object. Similarly, the flags containg directory is an optional configuration option. 
+`pipestat` Python package ships with a default status schema, so we did not have to provide the schema when constructing the `PipestatManager` object. Similarly, the flags containing directory is an optional configuration option. 
 
 Please refer to the Python API documentation (`__init__` method) to see how to use custom status schema and flags directory.
 

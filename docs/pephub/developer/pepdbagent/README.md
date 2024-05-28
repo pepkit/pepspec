@@ -110,7 +110,7 @@ agent.annotation.get(query='query', namespace='namespace')
 # Get annotation of multiple projects given a list of registry paths
 agent.annotation.get_by_rp(["namespace1/project1:tag1", "namespace2/project2:tag2"])
 
-# By default get function will retrun annotations for public projects,
+# By default get function will return annotations for public projects,
 # To get annotation including private projects admin list should be provided.
 # admin list means list of namespaces where user has admin rights
 # For example:
@@ -128,7 +128,7 @@ Example:
 # search for a specified pattern of namespace in database.
 agent.namespace.get(query='Namespace')
 
-# By default all get function will retrun namespace information for public projects,
+# By default all get function will return namespace information for public projects,
 # To get information with private projects, admin list should be provided.
 # admin list means list of namespaces where user has admin rights
 # For example:

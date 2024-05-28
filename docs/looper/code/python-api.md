@@ -141,7 +141,7 @@ def description(self)
 
 
 ```python
-def from_dict(pep_dictionary: dict)
+def from_dict(cls, pep_dictionary: dict)
 ```
 
 Init a peppy project instance from a dictionary representation of an already processed PEP.
@@ -153,7 +153,7 @@ Init a peppy project instance from a dictionary representation of an already pro
 
 
 ```python
-def from_pandas(samples_df: pandas.core.frame.DataFrame, sub_samples_df: List[pandas.core.frame.DataFrame] = None, config: dict = None)
+def from_pandas(cls, samples_df: pandas.core.frame.DataFrame, sub_samples_df: List[pandas.core.frame.DataFrame]=None, config: dict=None)
 ```
 
 Init a peppy project instance from a pandas Dataframe
@@ -167,7 +167,7 @@ Init a peppy project instance from a pandas Dataframe
 
 
 ```python
-def from_pep_config(cfg: str = None, amendments: Union[str, Iterable[str]] = None, sample_table_index: Union[str, Iterable[str]] = None, subsample_table_index: Union[str, Iterable[str]] = None, defer_samples_creation: bool = False)
+def from_pep_config(cls, cfg: str=None, amendments: Union[str, Iterable[str]]=None, sample_table_index: Union[str, Iterable[str]]=None, subsample_table_index: Union[str, Iterable[str]]=None, defer_samples_creation: bool=False)
 ```
 
 Init a peppy project instance from a yaml file
@@ -184,7 +184,7 @@ Init a peppy project instance from a yaml file
 
 
 ```python
-def from_sample_yaml(yaml_file: str)
+def from_sample_yaml(cls, yaml_file: str)
 ```
 
 Init a peppy project instance from a yaml file
@@ -391,7 +391,7 @@ via `sample_table_index` field.
 That's the sample table index selection priority order:
 1. Constructor specified
 2. Config specified
-3. Deafult: `sample_table`
+3. Default: `sample_table`
 #### Returns:
 
 - `str`:  name of the column that consist of sample identifiers
@@ -472,7 +472,7 @@ via `subsample_table_index` field.
 That's the subsample table indexes selection priority order:
 1. Constructor specified
 2. Config specified
-3. Deafult: `[subasample_name, sample_name]`
+3. Default: `[subasample_name, sample_name]`
 #### Returns:
 
 - `List[str]`:  names of the columns that consist of sample and subsample identifiers

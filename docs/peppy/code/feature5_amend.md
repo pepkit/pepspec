@@ -18,10 +18,10 @@ sample_table = examples_dir + "sample_table.csv"
 %cat $sample_table | column -t -s, | cat
 ```
 
-    
-    
-    
-    
+    sample_name  protocol  organism  time  file_path
+    pig_0h       RRBS      pig       0     source1
+    pig_1h       RRBS      pig       1     source1
+    frog_0h      RRBS      frog      0     source1
     frog_1h      RRBS      frog      1     source1
 
 
@@ -94,7 +94,7 @@ from peppy import Project
 p = Project(project_config_file)
 ```
 
-An appropriate message is displayed, which informs you what are the names of the amendments that you have defined in the `project_config.yaml` file. Nontheless, just the main project is "active".
+An appropriate message is displayed, which informs you what are the names of the amendments that you have defined in the `project_config.yaml` file. Nonetheless, just the main project is "active".
 
 Let's inspect it:
 
