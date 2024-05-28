@@ -196,8 +196,11 @@ nav:
       - Semantic search: pephub/developer/semantic-search.md
       - PEPHubClient:
         - PEPhubClient: pephub/developer/pephubclient/README.md
+        - Quickstart: pephub/developer/pephubclient/tutorial.md
         - Changelog: pephub/developer/pephubclient/changelog.md
-        - Python API: pephub/developer/pephubclient/python-api.md
+        - Python API: pephub/developer/pephubclient/phc_usage.md
+        - Python API samples: pephub/developer/pephubclient/phc_samples_usage.md
+        - Python API views: pephub/developer/pephubclient/phc_views_usage.md
         - CLI usage: pephub/developer/pephubclient/cli.md
       - Server settings: pephub/developer/server-settings.md
       - PEPembed:
