@@ -1,6 +1,19 @@
 # A project with multiple pipelines
 
-In earlier versions of looper (v < 1.0), we used a `protocol_mappings` section to map samples with different `protocol` attributes to different pipelines. In the current pipeline interface (looper v > 1.0), we eliminated the `protocol_mappings`, because this can now be handled using sample modifiers, simplifying the pipeline interface. Now, each pipeline has exactly 1 pipeline interface. You link to the pipeline interface with a sample attribute. If you want the same pipeline to run on all samples, it's as easy as using an `append` modifier like this:
+In earlier versions of looper (v < 1.0), we used a `protocol_mappings` section to map samples with different `protocol` attributes to different pipelines. In the current pipeline interface (looper v > 1.0), we eliminated the `protocol_mappings`, because this can now be handled using sample modifiers, simplifying the pipeline interface. 
+Now, each pipeline has exactly 1 pipeline interface.
+
+The preferred method is to specify pipeline interfaces in the looper config file:
+
+```yaml
+pep_config: pephub::databio/looper:default
+output_dir: "$HOME/hello_looper-master/output"
+pipeline_interfaces:
+  sample: "$HOME/hello_looper-master/pipeline/pipeline_interface"
+  project: "$HOME/hello_looper-master/project/pipeline"
+```
+
+However, you can also link to the pipeline interface with a sample attribute. If you want the same pipeline to run on all samples, it's as easy as using an `append` modifier like this:
 
 ```
 sample_modifiers:

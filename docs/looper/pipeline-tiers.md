@@ -10,7 +10,7 @@ Looper doesn't require you to use this two-stage system, but it simply makes it 
 
 ## Sample pipelines
 
-The typical use case is sample-level pipelines. These are run with `looper run`. Pipeline interface defining a sample pipeline must to include `pipeline_type: "sample"` statement.
+The typical use case is sample-level pipelines. These are run with `looper run`. Pipeline interface defining a sample pipeline must include `pipeline_type: "sample"` statement.
 
 ## Project pipelines
 

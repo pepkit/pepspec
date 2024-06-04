@@ -24,12 +24,3 @@ Now, you can convert the files from sra into fastq format:
 looper run --amend sra_convert
 ```
 
-## Run pipeline
-
-Add a pipeline interface to link to a project
-
-(Experimental)
-
-```
-looper mod "pipeline_interfaces: /path/to/piface.yaml"
-```

@@ -32,3 +32,12 @@ Note: previous versions used the `path` variable instead of `var_templates: pipe
 Finally, populate the `command_template`. You can use the full power of Jinja2 Python templates here, but most likely you'll just need to use a few variables using curly braces. In this case, we refer to the `count_lines.sh` script with `{pipeline.var_templates.pipeline}`, which points directly to the `pipeline` variable defined above. Then, we use `{sample.file}` to refer to the `file` column in the sample table specified in the PEP. This pipeline thus takes a single positional command-line argument. You can make the command template much more complicated and refer to any sample or project attributes, as well as a bunch of [other variables made available by looper](variable-namespaces.md).
 
 Now, you have a basic functional pipeline interface. There are many more advanced features you can use to make your pipeline more powerful, such as providing a schema to specify inputs or outputs, making input-size-dependent compute settings, and more. For complete details, consult the formal [pipeline interface format specification](pipeline-interface-specification.md).
+
+## Example Pipeline Interface Using Pipestat
+```yaml
+pipeline_name: example_pipestat_pipeline
+pipeline_type: sample
+output_schema: pipestat_output_schema.yaml
+command_template: >
+  python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}
+```
