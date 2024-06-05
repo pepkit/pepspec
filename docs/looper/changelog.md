@@ -44,6 +44,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `--lumpn` is now `--lump-n`
 - `--lump` is now `--lump-s`
 - 
+## [1.6.0] -- 2023-12-22
+
 ### Added
 - `looper link` creates symlinks for results grouped by record_identifier. It requires pipestat to be configured. [#72](https://github.com/pepkit/looper/issues/72)
 - basic tab completion. 
@@ -53,6 +55,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `looper table`, `check` now use pipestat and therefore require pipestat configuration. [#390](https://github.com/pepkit/looper/issues/390)
 - changed how looper configures pipestat [#411](https://github.com/pepkit/looper/issues/411)
 - initializing pipeline interface also writes an example `output_schema.yaml` and `count_lines.sh` pipeline
+
+### Fixed
+- filtering via attributes that are integers.
 
 ## [1.5.1] -- 2023-08-14
 
