@@ -7,38 +7,38 @@
 
 
 
-PEPhub is a database, web interface, and API for sharing, retrieving, and validating sample metadata. PEPhub takes advantage of the Portable Encapsulated Projects (PEP) biological metadata standard to store, edit, and access your PEPs in one place. PEPhub consists of two components:
+PEPhub is an open-source database, web interface, and API for sharing, retrieving, and validating sample metadata. PEPhub consists of:
 
-- **Deployed public user interface**: <a href="https://pephub.databio.org/" target="_blank">https://pephub.databio.org/</a>
+- **Public user interface**: <a href="https://pephub.databio.org/" target="_blank">https://pephub.databio.org/</a>
 - **API**: <a href="https://pephub-api.databio.org/api/v1/docs" target="_blank">https://pephub-api.databio.org/api/v1/docs</a>
 
-----
+
+## Features at-a-glance
 
 
-## How to use this documentation
-We have two types of documentation for PEPhub: **user** and **developer** documentation. The user documentation is intended for users who want to learn how to use PEPhub. The developer documentation is intended for developers who want to contribute to the PEPhub codebase or build on top of the PEPhub API and deploy their own instance.
+- **Validation**. PEPhub validates sample metadata with [eido](../eido/README.md). Users can specify a schema to which the PEP should adhere. All schemas are available on the official website: [https://schema.databio.org/](https://schema.databio.org/). Schemas are particularly useful before running pipelines, as validation provides essential information about PEP compatibility with specific pipelines and highlights any errors in the PEP structure.
 
-### Users
-- **[Getting started](user/getting-started.md)**: Learn how to create an account, log in, and upload your first PEP.
-- **[Creating an account and logging in](user/accounts.md)**: Learn how to create an account and log in to PEPhub.
-- **[Uploading your first PEP](user/uploading.md)**: Learn how to upload your first PEP to PEPhub.
-<!-- - **[Editing a PEP](user/editing.md)**: Learn how to edit a PEP in PEPhub.
-- **[Sharing your PEP](user/sharing.md)**: Learn how to share your PEP via the PEPhub API. -->
-- **[Use a PEP in an existing pipeline](user/pipelines.md)**: Learn how to incorporate PEPhub into an existing pipeline.
-<!-- - **[Validating PEPs](user/validation.md)**: Learn how to validate PEPs in PEPhub.
-- **[Version control](user/version-control.md)**: Learn how to use version control in PEPhub.
-- **[Semantic search](user/semantic-search.md)**: Learn how to use the semantic search functionality in PEPhub.
-- **[Building POPs](user/pops.md)**: Learn how to build a PEP of PEPs (POP) in PEPhub. -->
+- **Semantic search**. PEPhub has semantic search functionality based on cutting-edge semantic machine learning. Information from each PEP is encoded using a sentence transformer and stored in a fast vector database. The PEPhub search interface then provides an extremely fast and powerful semantic search of sample metadata.
 
-### Developers
-- **[Setup](developer/organization.md)**: Learn how to set up the PEPhub development environment.
-- **[Development](developer/api.md)**: Learn about developing the PEPhub API and user interface.
-- **[Deployment](developer/deployment.md)**: Learn how to deploy PEPhub.
-- **[Authentication](developer/authentication.md)**: Learn about the authentication methods used in PEPhub.
-- **[Device authentication](developer/authentication-device.md)**: Learn about the device authentication method used in PEPhub.
-- **[Semantic search](developer/semantic-search.md)**: Learn about the semantic search functionality in PEPhub.
-- **[Server settings](developer/server-settings.md)**: Learn about the server settings in PEPhub.
-- **[PEPembed](developer/pepembed/README.md)**: Learn about `pepembed`, the PEP embedding tool for PEPhub.
-- **[pepdbagent](developer/pepdbagent/README.md)**: Learn about `pepdbagent`, the database driver for PEPhub.
-- **[PEPhubClient](developer/pephubclient/README.md)**: Learn about `PEPhubClient`, the command-line tool and Python API for PEPhub.
-- **[geopephub](developer/geopephub/README.md)**: Learn about PEPhubs GEO namespace for the gene expression omnibus.
+- **Authorization**. PEPhub has a robust user authorization system to allow users to submit and edit their own PEPs.  Users authenticate via GitHub, and then may upload, modify, and delete PEPs, and star projects. You can  also set projects as private to restrict access. PEPhub also provides group-level permissions using GitHub organization membership, providing organizational namespaces that correspond to GitHub organizations to make it possible to collaborate on PEPs.
+
+- **Group PEPs with using a PEP of PEPs (POP)**. A PEP of PEPs, or simply a POP, is a specific type of PEP in which each row is itself a PEP. Essentially, a POP is a structure to group PEPs, allowing users to organize projects. This allows PEPs related to a specific topic to be consolidated, streamlining organization and accessibility.
+
+- **Re-processing of GEO metadata**. The public PEPhub instance [geo namespace](https://pephub.databio.org/geo)  holds metadata from nearly 99% of the [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo/). PEPhub is updated weekly using [GEOfetch](../geofetch/README.md) to produce standardized PEP sample tables, providing a convenient API interface to GEO metadata.
+
+- **PEPHubClient (phc)**. PEPhubClient is a command-line tool and Python API, which allows users to authenticate with PEPhub, download and upload public or private projects. For more information, see the [PEPHubClient documentation](developer/pephubclient/README.md).
+
+## Next steps
+
+Choose your adventure:
+
+<div class="grid cards" markdown>
+
+- :fontawesome-regular-user:  [**User guide**](user/getting-started.md)  
+  Teaches you how to use PEPhub to manage, share, and validate your sample metadata.
+
+- :fontawesome-solid-code: [**Developer guide**](developer/setup.md)  
+  Teaches you how to contribute to PEPhub, build tools on the PEPhub API, or deploy your own instance.
+
+</div>
+
