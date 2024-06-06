@@ -13,12 +13,12 @@ You can add that location to your path by appending it (`export PATH=$PATH:~/.lo
 
 ## How can I run my jobs on a cluster?
 
-Looper uses the external package [divvy](http://code.databio.org/divvy) for cluster computing, making it flexible enough to use with any cluster resource environment. Please see the [tutorial on cluster computing with looper and divvy](running-on-a-cluster.md).
+Looper uses the external package [divvy](https://pep.databio.org/divvy/) for cluster computing, making it flexible enough to use with any cluster resource environment. Please see the [tutorial on cluster computing with looper and divvy](running-on-a-cluster.md).
 
 
 ## What's the difference between `looper` and `pypiper`?
 
-[`pypiper`](http://pypiper.readthedocs.io) is a more traditional workflow-building framework; it helps you build pipelines to process individual samples. [`looper`](http://looper.readthedocs.io) is completely pipeline-agnostic, and has nothing to do with individual processing steps; it operates groups of samples (as in a project), submitting the appropriate pipeline(s) to a cluster or server (or running them locally). The two projects are independent and can be used separately, but they are most powerful when combined. They complement one another, together constituting a comprehensive pipeline management system.
+[`pypiper`](https://pep.databio.org/pypiper/) is a more traditional workflow-building framework; it helps you build pipelines to process individual samples. [`looper`](https://pep.databio.org/looper/) is completely pipeline-agnostic, and has nothing to do with individual processing steps; it operates groups of samples (as in a project), submitting the appropriate pipeline(s) to a cluster or server (or running them locally). The two projects are independent and can be used separately, but they are most powerful when combined. They complement one another, together constituting a comprehensive pipeline management system.
 
 ## Why isn't a sample being processed by a pipeline (`Not submitting, flag found: ['*_<status>.flag']`)?
 

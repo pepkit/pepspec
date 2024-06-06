@@ -5,7 +5,7 @@ Starting with version 1.4.0, looper supports additional functionality for [pipes
 1. monitor the status of pipeline runs
 2. summarize the results of pipelines
 
-For non-pipestat-compatible pipelines, you can still use looper to run pipelines, but you won't be able to use `looper report` or `looper status` to manage their output.
+For non-pipestat-compatible pipelines, you can still use looper to run pipelines, but you won't be able to use `looper report` or `looper check` to manage their output.
 
 ## Pipestat configuration overview
 Starting with version 1.6.0 configuring looper to work with pipestat has changed.
@@ -14,7 +14,7 @@ Now, Looper will obtain pipestat configurations data from two sources:
 1. pipeline interface
 2. looper_config file
 
-Looper will combine the necessary configuration data and write a new pipestat configuration file named `looper_pipestat_config.yaml` which looper will place in its output directory. Pipestat then uses this configuration file to create the required pipestatManager objects. See [Hello_Looper](https://github.com/pepkit/hello_looper) for a specific example.
+Looper will combine the necessary configuration data and write a new pipestat configuration for each pipeline interface.
 
 Briefly, the Looper config file must contain a pipestat field. A project name must be supplied if running a project level pipeline. The user must also supply a file path for a results file if using a local file backend or database credentials if using a postgresql database backend. 
 
@@ -25,17 +25,6 @@ sample_table: annotation_sheet.csv
 pipeline_interfaces:
   sample:  ./pipeline_interface1_sample_pipestat.yaml
   project: ./pipeline_interface1_project_pipestat.yaml
-looper:
-  all:
-    output_dir: output
-sample_modifiers:
-  append:
-    attr: "val"
-  derive:
-    attributes: [read1, read2]
-    sources:
-      SRA_1: "{SRR}_1.fastq.gz"
-      SRA_2: "{SRR}_2.fastq.gz"
 pipestat:
   project_name: TEST_PROJECT_NAME
   results_file_path: tmp_pipestat_results.yaml
@@ -53,7 +42,7 @@ And the pipeline interface must include information required by pipestat such as
 ```yaml
 pipeline_name: example_pipestat_pipeline
 pipeline_type: sample
-schema_path: pipeline_pipestat/pipestat_output_schema.yaml
+output_schema: pipeline_pipestat/pipestat_output_schema.yaml
 command_template: >
   python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}
 
