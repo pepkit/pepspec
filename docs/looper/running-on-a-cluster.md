@@ -13,6 +13,10 @@ divvy init -c $DIVCFG
 
 Looper will now have access to your computing configuration. You can run `divvy list` to see what compute packages are available in this file. For example, you'll start with a package called 'slurm', which you can use with looper by calling `looper --package slurm`. For many systems (SLURM, SGE, LFS, etc), the default divvy configuration will work out of the box. If you need to tweak things, the template system is flexible and you can configure it to run in any compute environment. That's all there is to it.
 
+You can also override the computing configuration in the CLI, e.g.
+
+``looper run --looper-config .your_config.yaml --package slurm --compute PARTITION=standard time='01-00:00:00' cores='32' mem='32000'``
+
 Complete details on how to configure divvy are described in the [divvy documentation](http://divvy.databio.org).
 
 ## Divvy config file locations

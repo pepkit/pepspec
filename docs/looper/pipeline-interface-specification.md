@@ -217,6 +217,26 @@ This final line in the resources `tsv` must include `NaN` in the `max_file_size`
 
 This section can consist of multiple variable templates that are rendered and can be reused. The namespaces available to the templates are listed in [variable namespaces](variable-namespaces.md) section. Please note that the variables defined here (even if they are paths) are arbitrary and are *not* subject to be made relative. Therefore, the pipeline interface author needs take care of making them portable (the `{looper.piface_dir}` value comes in handy!).
 
+Example using var_templates:
+```yaml
+pipeline_name: example_pipeline  
+pipeline_type: sample   
+output_schema: output_schema.yaml  
+var_templates:  
+  pipeline: "{looper.piface_dir}/pipelines/pipeline1.py"  
+command_template: >  
+  {pipeline.var_templates.pipeline} --sample-name {sample.sample_name} --req-attr {sample.attr} 
+```
+
+Example without var_templates:
+```yaml
+pipeline_name: example_pipeline  
+pipeline_type: sample  
+output_schema: output_schema.yaml  
+command_template: >  
+  python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name}
+```
+
 #### pre_submit
 
 This section can consist of two subsections: `python_functions` and/or `command_templates`, which specify the pre-submission tasks to be run before the main pipeline command is submitted. Please refer to the [pre-submission hooks system](pre-submission-hooks.md) section for a detailed explanation of this feature and syntax.
