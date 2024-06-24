@@ -40,7 +40,7 @@ Saves all sample metadata as a YAML file. The output file path can be customized
 pipeline_type: sample
 var_templates:
   main: "{looper.piface_dir}/pipelines/pipeline1.py"
-  sample_yaml_path: "{looper.output_dir}/custom_sample_yamls"
+  sample_yaml_path: "{looper.output_dir}/custom_sample_yamls/{sample.sample_name}.yaml"
 pre_submit:
   python_functions:
     - looper.write_sample_yaml
