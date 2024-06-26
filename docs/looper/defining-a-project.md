@@ -73,27 +73,3 @@ sample_modifiers:
         extend: "250"            # Default. For fixed-width peaks, extend this distance up- and down-stream.
         frip_ref_peaks: None     # Default. Use an external reference set of peaks instead of the peaks called from this run
 ```
-
-
-## 3. Customize looper
-
-You can also customize things further. Under the `looper` section, you can provide a `cli` keyword to specify any command line (CLI) options from within the project config file. The subsections within this section direct the arguments to the respective `looper` subcommands. So, to specify, e.g. sample submission limit for a `looper run` command use:
-
-```yaml
-looper:
-  output_dir: "/path/to/output_dir"
-  cli:
-    run:
-      limit: 2
-```
-
-or, to pass this argument to any subcommand:
-
-```yaml
-looper:
-  output_dir: "/path/to/output_dir"
-  all:
-    limit: 2
-```
-
-Keys in the `cli.<subcommand>` section *must* match the long argument parser option strings, so `command-extra`, `limit`, `dry-run` and so on. For more CLI options refer to the subcommands [usage](usage.md).

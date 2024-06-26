@@ -34,3 +34,15 @@ one of supported ways: `namespace/name`, `namespace/name:tag`)
 
 To run pipeline, go to the directory of .looper.config and execute command in your terminal:
 `looper run --looper-config {looper_config_path}` or `looper runp --looper-config {looper_config_path}` (project-level pipeline).
+
+## Customize looper
+
+You can also customize things further. You can provide a `cli` keyword to specify any command line (CLI) options from within the looper config file. The subsections within this section direct the arguments to the respective `looper` subcommands. So, to specify, e.g. sample submission limit for a `looper run` command use:
+
+```yaml
+cli:
+    run:
+      limit: 2
+```
+
+Keys in the `cli.<subcommand>` section *must* match the long argument parser option strings, so `command-extra`, `limit`, `dry-run` and so on. For more CLI options refer to the subcommands [usage](usage.md).
