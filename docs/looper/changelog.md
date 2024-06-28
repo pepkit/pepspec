@@ -2,6 +2,17 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [2.0.0] -- 2024-08-xx
+
+### Changed
+- Note that this release breaks backwards compatibility for Looper versions < 2.0.0
+- `--looper-config` is now `--config`, `-c`. [#455](https://github.com/pepkit/looper/issues/455)
+- A pipeline interface now consolidates a `sample_interface` and a `project_interface` [#493](https://github.com/pepkit/looper/issues/493)
+- Updated documentation for Looper 2.0.0, removing previous versions (TODO)
+
+### Added
+- Looper init tutorial [#466](https://github.com/pepkit/looper/issues/466)
+
 ## [1.9.0] -- 2024-06-26
 
 ### Added
