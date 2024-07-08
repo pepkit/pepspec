@@ -43,9 +43,9 @@ markdown_extensions:
   - md_in_html
   - pymdownx.highlight:
       use_pygments: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+#  - pymdownx.emoji:
+#      emoji_index: !!python/name:material.extensions.emoji.twemoji
+#      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -133,35 +133,44 @@ nav:
       - Changelog: geofetch/changelog.md
   - Looper:
     - Looper: looper/README.md
-    - Getting started:
+    - User Guides:
         - Features at-a-glance: looper/features.md
-        - Hello world: looper/code/hello-world.md
+        - First Steps:
+            - Start here: looper/looper-start.md
+            - Initialize Looper: looper/code/looper-init-tutorial.md
+            - Simple Hello world: looper/code/hello-world.md
+        - Next Steps:
+            - Intermediate Hello world: looper/code/hello-world-intermediate.md
+
     - How-to guides:
-        - Defining a project: looper/defining-a-project.md
-        - Details of a project: looper/sample-annotation-sheet.md
-        - Running a pipeline: looper/running-a-pipeline.md
-        - Initializing a repository: looper/initialize.md
-        - Using pipestat: looper/pipestat.md
-        - Parameterizing pipelines: looper/parameterizing-pipelines.md
-        - Running on a cluster: looper/running-on-a-cluster.md
-        - Grouping many jobs into one: looper/grouping-jobs.md
-        - Running jobs in containers: looper/containers.md
-        - Handling multiple input files: looper/how-to-merge-inputs.md
-        - Running multiple pipelines: looper/multiple-pipelines.md
-        - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
-        - Using looper config: looper/looper-config.md
-        - Using geofetch: looper/using-geofetch.md
-        - Browsable HTML Reports: looper/looper-report.md
-    - Using divvy:
-        - Introduction: divvy/README.md
-        - Configuring divvy: divvy/configuration.md
-        - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
-        - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
-        - Configuring containers: divvy/containers.md
-        - Configuring connection with client software: divvy/adapters.md
-        - Default packages: divvy/default-packages.md
-        - DIVCFG examples: http://github.com/pepkit/divcfg
+        - Pipeline User:
+          - Defining a project: looper/defining-a-project.md
+          - Details of a project: looper/sample-annotation-sheet.md
+          - Running a pipeline: looper/running-a-pipeline.md
+
+          - Parameterizing pipelines: looper/parameterizing-pipelines.md
+          - Running on a cluster: looper/running-on-a-cluster.md
+          - Grouping many jobs into one: looper/grouping-jobs.md
+          - Running jobs in containers: looper/containers.md
+          - Handling multiple input files: looper/how-to-merge-inputs.md
+        - Pipeline Developers:
+          - Using pipestat: looper/pipestat.md
+          - Running multiple pipelines: looper/multiple-pipelines.md
+          - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
+          - Using looper config: looper/looper-config.md
+          - Using geofetch: looper/using-geofetch.md
+          - Browsable HTML Reports: looper/looper-report.md
+
     - Reference:
+        - Using divvy:
+          - Introduction: divvy/README.md
+          - Configuring divvy: divvy/configuration.md
+          - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
+          - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
+          - Configuring containers: divvy/containers.md
+          - Configuring connection with client software: divvy/adapters.md
+          - Default packages: divvy/default-packages.md
+          - DIVCFG examples: http://github.com/pepkit/divcfg
         - How to cite: citations.md
         - Pipeline interface specification: looper/pipeline-interface-specification.md
         - Pipeline tiers: looper/pipeline-tiers.md

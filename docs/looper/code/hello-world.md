@@ -15,116 +15,115 @@ The [hello looper repository](http://github.com/pepkit/hello_looper) contains a 
 
 
 ```python
-!wget https://github.com/pepkit/hello_looper/archive/refs/heads/master.zip
+!wget https://github.com/pepkit/hello_looper/archive/refs/heads/dev.zip
 ```
 
-    --2024-06-05 09:33:27--  https://github.com/pepkit/hello_looper/archive/refs/heads/master.zip
-    Resolving github.com (github.com)... 140.82.112.3
-    Connecting to github.com (github.com)|140.82.112.3|:443... connected.
+    --2024-07-08 18:58:59--  https://github.com/pepkit/hello_looper/archive/refs/heads/dev.zip
+    Resolving github.com (github.com)... 140.82.112.4
+    Connecting to github.com (github.com)|140.82.112.4|:443... connected.
     HTTP request sent, awaiting response... 302 Found
-    Location: https://codeload.github.com/pepkit/hello_looper/zip/refs/heads/master [following]
-    --2024-06-05 09:33:27--  https://codeload.github.com/pepkit/hello_looper/zip/refs/heads/master
-    Resolving codeload.github.com (codeload.github.com)... 140.82.112.10
-    Connecting to codeload.github.com (codeload.github.com)|140.82.112.10|:443... connected.
+    Location: https://codeload.github.com/pepkit/hello_looper/zip/refs/heads/dev [following]
+    --2024-07-08 18:59:00--  https://codeload.github.com/pepkit/hello_looper/zip/refs/heads/dev
+    Resolving codeload.github.com (codeload.github.com)... 140.82.114.10
+    Connecting to codeload.github.com (codeload.github.com)|140.82.114.10|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: unspecified [application/zip]
-    Saving to: ‘master.zip’
+    Saving to: ‘dev.zip’
     
-    master.zip              [ <=>                ]  22.79K  --.-KB/s    in 0.003s  
+    dev.zip                 [ <=>                ]  21.28K  --.-KB/s    in 0.09s   
     
-    2024-06-05 09:33:28 (6.66 MB/s) - ‘master.zip’ saved [23340]
+    2024-07-08 18:59:01 (224 KB/s) - ‘dev.zip’ saved [21793]
     
 
 
 
 ```python
-!unzip master.zip
+!unzip dev.zip
 ```
 
-    Archive:  master.zip
-    95c790f9b17e66a24e3e579c0ebc05a955b5c1d0
-       creating: hello_looper-master/
-      inflating: hello_looper-master/.gitignore  
-      inflating: hello_looper-master/.looper.yaml  
-      inflating: hello_looper-master/README.md  
-       creating: hello_looper-master/advanced/
-      inflating: hello_looper-master/advanced/.looper.yaml  
-      inflating: hello_looper-master/advanced/.looper_advanced_pipestat.yaml  
-       creating: hello_looper-master/advanced/pipeline/
-      inflating: hello_looper-master/advanced/pipeline/output_schema.yaml  
-      inflating: hello_looper-master/advanced/pipeline/pipeline_interface1_project.yaml  
-      inflating: hello_looper-master/advanced/pipeline/pipeline_interface1_sample.yaml  
-      inflating: hello_looper-master/advanced/pipeline/pipeline_interface2_project.yaml  
-      inflating: hello_looper-master/advanced/pipeline/pipeline_interface2_sample.yaml  
-      inflating: hello_looper-master/advanced/pipeline/pipestat_output_schema.yaml  
-      inflating: hello_looper-master/advanced/pipeline/pipestat_pipeline_interface1_sample.yaml  
-      inflating: hello_looper-master/advanced/pipeline/pipestat_pipeline_interface2_sample.yaml  
-      inflating: hello_looper-master/advanced/pipeline/readData.R  
-      inflating: hello_looper-master/advanced/pipeline/resources-project.tsv  
-      inflating: hello_looper-master/advanced/pipeline/resources-sample.tsv  
-       creating: hello_looper-master/advanced/project/
-      inflating: hello_looper-master/advanced/project/annotation_sheet.csv  
-      inflating: hello_looper-master/advanced/project/project_config.yaml  
-       creating: hello_looper-master/csv/
-      inflating: hello_looper-master/csv/.looper.yaml  
-       creating: hello_looper-master/csv/data/
-      inflating: hello_looper-master/csv/data/frog1_data.txt  
-      inflating: hello_looper-master/csv/data/frog2_data.txt  
-       creating: hello_looper-master/csv/pipeline/
-      inflating: hello_looper-master/csv/pipeline/count_lines.sh  
-      inflating: hello_looper-master/csv/pipeline/pipeline_interface.yaml  
-      inflating: hello_looper-master/csv/pipeline/pipeline_interface_project.yaml  
-       creating: hello_looper-master/csv/project/
-      inflating: hello_looper-master/csv/project/sample_annotation.csv  
-       creating: hello_looper-master/intermediate/
-      inflating: hello_looper-master/intermediate/.looper.yaml  
-      inflating: hello_looper-master/intermediate/.looper_project.yaml  
-       creating: hello_looper-master/intermediate/data/
-      inflating: hello_looper-master/intermediate/data/frog_1.txt  
-      inflating: hello_looper-master/intermediate/data/frog_2.txt  
-       creating: hello_looper-master/intermediate/pipeline/
-      inflating: hello_looper-master/intermediate/pipeline/count_lines.sh  
-      inflating: hello_looper-master/intermediate/pipeline/pipeline_interface.yaml  
-      inflating: hello_looper-master/intermediate/pipeline/pipeline_interface_project.yaml  
-       creating: hello_looper-master/intermediate/project/
-      inflating: hello_looper-master/intermediate/project/project_config.yaml  
-      inflating: hello_looper-master/intermediate/project/sample_annotation.csv  
-       creating: hello_looper-master/minimal/
-      inflating: hello_looper-master/minimal/.looper.yaml  
-       creating: hello_looper-master/minimal/data/
-      inflating: hello_looper-master/minimal/data/frog_1.txt  
-      inflating: hello_looper-master/minimal/data/frog_2.txt  
-       creating: hello_looper-master/minimal/pipeline/
-      inflating: hello_looper-master/minimal/pipeline/count_lines.sh  
-      inflating: hello_looper-master/minimal/pipeline/pipeline_interface.yaml  
-       creating: hello_looper-master/minimal/project/
-      inflating: hello_looper-master/minimal/project/project_config.yaml  
-      inflating: hello_looper-master/minimal/project/sample_annotation.csv  
-       creating: hello_looper-master/pephub/
-      inflating: hello_looper-master/pephub/.looper.yaml  
-       creating: hello_looper-master/pephub/data/
-      inflating: hello_looper-master/pephub/data/frog1_data.txt  
-      inflating: hello_looper-master/pephub/data/frog2_data.txt  
-       creating: hello_looper-master/pephub/pipeline/
-      inflating: hello_looper-master/pephub/pipeline/count_lines.sh  
-      inflating: hello_looper-master/pephub/pipeline/pipeline_interface.yaml  
-      inflating: hello_looper-master/pephub/pipeline/pipeline_interface_project.yaml  
-       creating: hello_looper-master/pipestat/
-      inflating: hello_looper-master/pipestat/.looper.yaml  
-      inflating: hello_looper-master/pipestat/.looper_pipestat_shell.yaml  
-       creating: hello_looper-master/pipestat/data/
-      inflating: hello_looper-master/pipestat/data/frog_1.txt  
-      inflating: hello_looper-master/pipestat/data/frog_2.txt  
-       creating: hello_looper-master/pipestat/pipeline_pipestat/
-      inflating: hello_looper-master/pipestat/pipeline_pipestat/count_lines.py  
-      inflating: hello_looper-master/pipestat/pipeline_pipestat/count_lines_pipestat.sh  
-      inflating: hello_looper-master/pipestat/pipeline_pipestat/pipeline_interface.yaml  
-      inflating: hello_looper-master/pipestat/pipeline_pipestat/pipeline_interface_project.yaml  
-      inflating: hello_looper-master/pipestat/pipeline_pipestat/pipeline_interface_shell.yaml  
-      inflating: hello_looper-master/pipestat/pipeline_pipestat/pipestat_output_schema.yaml  
-       creating: hello_looper-master/pipestat/project/
-      inflating: hello_looper-master/pipestat/project/project_config.yaml  
-      inflating: hello_looper-master/pipestat/project/sample_annotation.csv  
+    Archive:  dev.zip
+    2e840c22a2148fa941a7ecf987853bb768d40b3d
+       creating: hello_looper-dev/
+      inflating: hello_looper-dev/.gitignore  
+      inflating: hello_looper-dev/.looper.yaml  
+      inflating: hello_looper-dev/README.md  
+       creating: hello_looper-dev/advanced/
+      inflating: hello_looper-dev/advanced/.looper.yaml  
+      inflating: hello_looper-dev/advanced/.looper_advanced_pipestat.yaml  
+       creating: hello_looper-dev/advanced/pipeline/
+     extracting: hello_looper-dev/advanced/pipeline/col_pipeline1.py  
+     extracting: hello_looper-dev/advanced/pipeline/col_pipeline2.py  
+     extracting: hello_looper-dev/advanced/pipeline/other_pipeline2.py  
+      inflating: hello_looper-dev/advanced/pipeline/output_schema.yaml  
+     extracting: hello_looper-dev/advanced/pipeline/pipeline1.py  
+      inflating: hello_looper-dev/advanced/pipeline/pipeline_interface1_project.yaml  
+      inflating: hello_looper-dev/advanced/pipeline/pipeline_interface1_sample.yaml  
+      inflating: hello_looper-dev/advanced/pipeline/pipeline_interface2_project.yaml  
+      inflating: hello_looper-dev/advanced/pipeline/pipeline_interface2_sample.yaml  
+      inflating: hello_looper-dev/advanced/pipeline/pipestat_output_schema.yaml  
+      inflating: hello_looper-dev/advanced/pipeline/pipestat_pipeline_interface1_sample.yaml  
+      inflating: hello_looper-dev/advanced/pipeline/pipestat_pipeline_interface2_sample.yaml  
+      inflating: hello_looper-dev/advanced/pipeline/readData.R  
+      inflating: hello_looper-dev/advanced/pipeline/resources-project.tsv  
+      inflating: hello_looper-dev/advanced/pipeline/resources-sample.tsv  
+       creating: hello_looper-dev/advanced/project/
+      inflating: hello_looper-dev/advanced/project/annotation_sheet.csv  
+      inflating: hello_looper-dev/advanced/project/project_config.yaml  
+       creating: hello_looper-dev/csv/
+      inflating: hello_looper-dev/csv/.looper.yaml  
+       creating: hello_looper-dev/csv/data/
+      inflating: hello_looper-dev/csv/data/frog1_data.txt  
+      inflating: hello_looper-dev/csv/data/frog2_data.txt  
+       creating: hello_looper-dev/csv/pipeline/
+      inflating: hello_looper-dev/csv/pipeline/count_lines.sh  
+      inflating: hello_looper-dev/csv/pipeline/pipeline_interface.yaml  
+       creating: hello_looper-dev/csv/project/
+      inflating: hello_looper-dev/csv/project/sample_annotation.csv  
+       creating: hello_looper-dev/intermediate/
+      inflating: hello_looper-dev/intermediate/.looper.yaml  
+       creating: hello_looper-dev/intermediate/data/
+      inflating: hello_looper-dev/intermediate/data/frog_1.txt  
+      inflating: hello_looper-dev/intermediate/data/frog_2.txt  
+       creating: hello_looper-dev/intermediate/pipeline/
+      inflating: hello_looper-dev/intermediate/pipeline/count_lines.sh  
+      inflating: hello_looper-dev/intermediate/pipeline/pipeline_interface.yaml  
+       creating: hello_looper-dev/intermediate/project/
+      inflating: hello_looper-dev/intermediate/project/project_config.yaml  
+      inflating: hello_looper-dev/intermediate/project/sample_annotation.csv  
+       creating: hello_looper-dev/minimal/
+      inflating: hello_looper-dev/minimal/.looper.yaml  
+       creating: hello_looper-dev/minimal/data/
+      inflating: hello_looper-dev/minimal/data/frog_1.txt  
+      inflating: hello_looper-dev/minimal/data/frog_2.txt  
+       creating: hello_looper-dev/minimal/pipeline/
+      inflating: hello_looper-dev/minimal/pipeline/count_lines.sh  
+      inflating: hello_looper-dev/minimal/pipeline/pipeline_interface.yaml  
+       creating: hello_looper-dev/minimal/project/
+      inflating: hello_looper-dev/minimal/project/project_config.yaml  
+      inflating: hello_looper-dev/minimal/project/sample_annotation.csv  
+       creating: hello_looper-dev/pephub/
+      inflating: hello_looper-dev/pephub/.looper.yaml  
+       creating: hello_looper-dev/pephub/data/
+      inflating: hello_looper-dev/pephub/data/frog1_data.txt  
+      inflating: hello_looper-dev/pephub/data/frog2_data.txt  
+       creating: hello_looper-dev/pephub/pipeline/
+      inflating: hello_looper-dev/pephub/pipeline/count_lines.sh  
+      inflating: hello_looper-dev/pephub/pipeline/pipeline_interface.yaml  
+       creating: hello_looper-dev/pipestat/
+      inflating: hello_looper-dev/pipestat/.looper.yaml  
+      inflating: hello_looper-dev/pipestat/.looper_pipestat_shell.yaml  
+       creating: hello_looper-dev/pipestat/data/
+      inflating: hello_looper-dev/pipestat/data/frog_1.txt  
+      inflating: hello_looper-dev/pipestat/data/frog_2.txt  
+       creating: hello_looper-dev/pipestat/pipeline_pipestat/
+      inflating: hello_looper-dev/pipestat/pipeline_pipestat/count_lines.py  
+      inflating: hello_looper-dev/pipestat/pipeline_pipestat/count_lines_pipestat.sh  
+      inflating: hello_looper-dev/pipestat/pipeline_pipestat/pipeline_interface.yaml  
+      inflating: hello_looper-dev/pipestat/pipeline_pipestat/pipeline_interface_shell.yaml  
+      inflating: hello_looper-dev/pipestat/pipeline_pipestat/pipestat_output_schema.yaml  
+       creating: hello_looper-dev/pipestat/project/
+      inflating: hello_looper-dev/pipestat/project/project_config.yaml  
+      inflating: hello_looper-dev/pipestat/project/sample_annotation.csv  
 
 
 ## 3. Run it
@@ -133,10 +132,10 @@ Run it by changing to the directory and then invoking `looper run` on the projec
 
 
 ```python
-cd hello_looper-master/minimal
+cd hello_looper-dev/minimal
 ```
 
-    /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/minimal
+    /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-dev/minimal
 
 
     /home/drc/GITHUB/pepspec/.venv/lib/python3.10/site-packages/IPython/core/magics/osm.py:417: UserWarning: This is now an optional IPython functionality, setting dhist requires you to install the `pickleshare` library.
@@ -145,23 +144,23 @@ cd hello_looper-master/minimal
 
 
 ```python
-!looper run --looper-config .looper.yaml
+!looper run --config .looper.yaml
 ```
 
-    Looper version: 1.8.1a1
+    Looper version: 2.0.0a1
     Command: run
     Using default divvy config. You may specify in env var: ['DIVCFG']
     [36m## [1 of 2] sample: frog_1; pipeline: count_lines[0m
-    Writing script to /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/minimal/results/submission/count_lines_frog_1.sub
-    Job script (n=1; 0.00Gb): /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/minimal/results/submission/count_lines_frog_1.sub
+    Writing script to /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-dev/minimal/results/submission/count_lines_frog_1.sub
+    Job script (n=1; 0.00Gb): /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-dev/minimal/results/submission/count_lines_frog_1.sub
     Compute node: databio
-    Start time: 2024-06-05 09:37:34
+    Start time: 2024-07-08 19:01:59
     Number of lines: 4
     [36m## [2 of 2] sample: frog_2; pipeline: count_lines[0m
-    Writing script to /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/minimal/results/submission/count_lines_frog_2.sub
-    Job script (n=1; 0.00Gb): /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/minimal/results/submission/count_lines_frog_2.sub
+    Writing script to /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-dev/minimal/results/submission/count_lines_frog_2.sub
+    Job script (n=1; 0.00Gb): /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-dev/minimal/results/submission/count_lines_frog_2.sub
     Compute node: databio
-    Start time: 2024-06-05 09:37:34
+    Start time: 2024-07-08 19:01:59
     Number of lines: 7
     
     Looper finished
@@ -208,13 +207,11 @@ These are:
 
 
 
-When we invoke `looper` from the command line we told it to `run project/project_config.yaml`. `looper` reads the [project/project_config.yaml](https://github.com/pepkit/hello_looper/blob/master/project/project_config.yaml) file, which points to a few things:
+When we invoke `looper` from the command line we told it to `run project/project_config.yaml`. `looper` reads the [project/project_config.yaml](https://github.com/pepkit/hello_looper/blob/master/project/project_config.yaml) file, which points to:
 
- * the [project/sample_annotation.csv](https://github.com/pepkit/hello_looper/blob/master/project/sample_annotation.csv) file, which specifies a few samples, their type, and path to data file
- * the `output_dir`, which is where looper results are saved.
- * the `pipeline_interface.yaml` file, ([pipeline/pipeline_interface.yaml](https://github.com/pepkit/hello_looper/blob/master/pipeline/pipeline_interface.yaml)), which tells looper how to connect to the pipeline ([pipeline/count_lines.sh](https://github.com/pepkit/hello_looper/blob/master/pipeline/)).
+ * the [project/sample_annotation.csv](https://github.com/pepkit/hello_looper/blob/dev/project/sample_annotation.csv) file, which specifies a few samples, their type, and path to data file
 
-The 3 folders (`data`, `project`, and `pipeline`) are modular; there is no need for these to live in any predetermined folder structure. For this example, the data and pipeline are included locally, but in practice, they are usually in a separate folder; you can point to anything (so data, pipelines, and projects may reside in distinct spaces on disk). You may also include more than one pipeline interface in your `project_config.yaml`, so in a looper project, many-to-many relationships are possible.
+The 3 folders (`data`, `project`, and `pipeline`) are modular; there is no need for these to live in any predetermined folder structure. For this example, the data and pipeline are included locally, but in practice, they are usually in a separate folder; you can point to anything (so data, pipelines, and projects may reside in distinct spaces on disk).
 
 ## Looper config
 
@@ -229,7 +226,7 @@ The [looper config](looper-config.md) contains paths to the project config, the 
     # pep_config: pepkit/hello_looper:default  # you can also use a pephub registry path
     output_dir: "results"
     pipeline_interfaces:
-      sample: pipeline/pipeline_interface.yaml
+      - pipeline/pipeline_interface.yaml
 
 
 
@@ -249,7 +246,7 @@ The project config file contains the PEP version and sample annotation sheet. (s
 
 ## Pipeline Interface
 
-The [pipeline interface](pipeline-interface-specification.md) shows the pipeline_name, pipeline_type, as well as the var_templates and command_templates used for this pipeline.
+The [pipeline interface](pipeline-interface-specification.md) shows the pipeline_name, as well as the var_templates and command_templates used for this pipeline.
 
 
 
@@ -258,11 +255,11 @@ The [pipeline interface](pipeline-interface-specification.md) shows the pipeline
 ```
 
     pipeline_name: count_lines
-    pipeline_type: sample
     var_templates:
       pipeline: '{looper.piface_dir}/count_lines.sh'
-    command_template: >
-      {pipeline.var_templates.pipeline} {sample.file}
+    sample_interface:
+      command_template: >
+        {pipeline.var_templates.pipeline} {sample.file}
 
 
 Alright, next let's explore what this pipeline stuck into our `output_dir`:
@@ -291,98 +288,6 @@ Inside of an `output_dir` there will be one to two directories:
 
 From here to running hundreds of samples of various sample types is virtually the same effort!
 
-
-## Running PEPs from PEPHub
-
-Looper also supports running a PEP from [PEPHub](https://pephub.databio.org/)!
-
-
-```python
-cd ..
-```
-
-    /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master
-
-
-
-```python
-cd pephub
-```
-
-    /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/pephub
-
-
-
-```python
-!cat .looper.yaml
-```
-
-    pep_config: pepkit/hello_looper:default # pephub registry path or local path
-    output_dir: results
-    pipeline_interfaces:
-      sample: pipeline/pipeline_interface.yaml
-
-
-
-```python
-!looper run --looper-config .looper.yaml
-```
-
-    Looper version: 1.8.1a1
-    Command: run
-    Using default divvy config. You may specify in env var: ['DIVCFG']
-    No config key in Project, or reading project from dict
-    [36m## [1 of 2] sample: frog_1; pipeline: count_lines[0m
-    Writing script to /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/pephub/results/submission/count_lines_frog_1.sub
-    Job script (n=1; 0.00Gb): /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/pephub/results/submission/count_lines_frog_1.sub
-    Compute node: databio
-    Start time: 2024-06-05 09:46:04
-    Number of lines: 4
-    [36m## [2 of 2] sample: frog_2; pipeline: count_lines[0m
-    Writing script to /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/pephub/results/submission/count_lines_frog_2.sub
-    Job script (n=1; 0.00Gb): /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/pephub/results/submission/count_lines_frog_2.sub
-    Compute node: databio
-    Start time: 2024-06-05 09:46:04
-    Number of lines: 7
-    
-    Looper finished
-    Samples valid for job generation: 2 of 2
-    {'Pipestat compatible': False, 'Commands submitted': '2 of 2', 'Jobs submitted': 2}
-    [0m
-
-# Pipestat compatible configurations
-
-Looper can also be used in tandem with [pipestat](https://pipestat.databio.org/en/latest/) to report pipeline results.
-
-
-```python
-cd ..
-```
-
-    /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master
-
-
-
-```python
-cd pipestat
-```
-
-    /home/drc/GITHUB/pepspec/docs/looper/notebooks/hello_looper-master/pipestat
-
-
-
-```python
-!cat .looper.yaml
-```
-
-    pep_config: ./project/project_config.yaml # pephub registry path or local path
-    output_dir: ./results
-    pipeline_interfaces:
-      sample:  ./pipeline_pipestat/pipeline_interface.yaml
-      project: ./pipeline_pipestat/pipeline_interface_project.yaml
-    pipestat:
-      results_file_path: results.yaml
-      flag_file_dir: results/flags
 
 
 ## A few more basic looper options
