@@ -1,6 +1,7 @@
 [looper_start]: img/looper_start.svg
-# Under construction
+# Looper - Getting Started
 
+**Note Looper 2.0.0 documentation is still under construction**
 
 To begin using Looper, it is important to understand the **three** components required to execute looper.
 
@@ -23,3 +24,6 @@ The looper configuration file contains important information about the looper pr
 It points to the PEP project (via `pep_config`). It allows the user to supply the pipeline interfaces.
 
 See more here: [Looper config](looper-config.md)
+
+
+To get started running a simple looper example, check out our Hello World example here: [Hello World](code/hello-world.md)

@@ -137,10 +137,12 @@ nav:
         - Features at-a-glance: looper/features.md
         - First Steps:
             - Start here: looper/looper-start.md
-            - Initialize Looper: looper/code/looper-init-tutorial.md
             - Simple Hello world: looper/code/hello-world.md
         - Next Steps:
             - Intermediate Hello world: looper/code/hello-world-intermediate.md
+        - Run your own project:
+            - Initialize Looper: looper/looper-init.md
+
 
     - How-to guides:
         - Pipeline User:
