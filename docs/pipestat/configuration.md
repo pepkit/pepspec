@@ -18,7 +18,8 @@ properties:
           description: "ResultName"
 
 ```
-- **backend info**: either path to a YAML-formatted file or pipestat config with PostgreSQL database login credentials. Note that the config file can also contain a path to the yaml-formatted results file:
+- **backend info**: either path to a YAML-formatted file or pipestat config with PostgreSQL database login credentials. 
+- Note that the config file can also contain a path to the yaml-formatted results file:
 ```yaml
 schema_path: sample_output_schema.yaml
 #The config can contain either a results_file_path (file backend) or a database connection (database backend)
@@ -34,6 +35,13 @@ database:
   port: 5432
 
 ```
+
+Beginning with v0.10.0, there is also support for reporting results directly to PEPHub. Simply give PipestatManager a path to a PEPHub registry path:
+
+```python
+psm = PipestatManager(pephub_path="databio/pipestat_demo:default", schema_path=my_schema_file_path)
+```
+
 
 Apart from that, there are many other *optional* configuration points that have defaults. Please refer to the [environment variables reference](http://pipestat.databio.org/en/dev/env_vars/) to learn about the the optional configuration options and their meaning.
 
