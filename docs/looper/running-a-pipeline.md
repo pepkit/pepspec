@@ -1,6 +1,6 @@
 # How to run a pipeline
 
-You first have to [define your project](defining-a-project.md) and a [config file](looper-config.md). This will give you a PEP linked to a pipeline. Next, we'll run the pipeline.
+You first have to [define your project](defining-a-project.md) and a [config file](looper-config.md). This will give you a PEP linked to a pipeline via a [pipeline interface](writing-a-pipeline-interface.md). Next, we'll run the pipeline.
 
 The basic command is `looper run`. To run your pipeline, just:
 

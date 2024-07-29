@@ -168,7 +168,6 @@ nav:
           - Pre-submission hooks system: looper/pre-submission-hooks.md
           - Looper variable namespaces: looper/variable-namespaces.md
         - Advanced:
-          - Advanced features: looper/advanced.md
           - Using geofetch: looper/using-geofetch.md
 
     - Reference:
