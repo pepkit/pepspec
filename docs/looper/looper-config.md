@@ -1,29 +1,27 @@
 # How to use the looper config file
 
-Starting with `looper` version `>=1.5.0`, you should specify a pipeline interface in the looper config file, rather than in the PEP.
-
-Example looper config file using local PEP:
+Here is an example of a looper config file using local PEP and multiple pipeline interfaces:
 
 ```yaml
 pep_config: $HOME/hello_looper-master/project/project_config.yaml
 output_dir: "$HOME/hello_looper-master/output"
 pipeline_interfaces:
-  sample: "$HOME/hello_looper-master/pipeline/pipeline_interface"
-  project: "some/project/pipeline"
+    - pipeline/pipestat_pipeline_interface1.yaml
+    - pipeline/pipestat_pipeline_interface2.yaml
 ```
 
-In addition, looper>=1.5.0 supports projects from [PEPhub](https://pephub.databio.org/). 
+In addition, looper supports projects from [PEPhub](https://pephub.databio.org/). 
 Using a PEP from PEPhub allows a user to run a pipeline without downloading the PEP. This allows you to keep the sample table in a centralized, shared location. You need only specify all necessary
 environment variables used by the PEP.
 
-Example looper config file using PEPhub project:
+Example looper config file using PEPhub project. Note that the `pep_config` is a registry path from [PEPhub](https://pephub.databio.org/pepkit/hello_looper?tag=default):
 
 ```yaml
 pep_config: pepkit/hello_looper:default
 output_dir: "$HOME/hello_looper-master/output"
 pipeline_interfaces:
-  sample: "$HOME/hello_looper-master/pipeline/pipeline_interface_sample.yaml"
-  project: "$HOME/hello_looper-master/pipeline/pipeline_interface_project.yaml"
+    - pipeline/pipestat_pipeline_interface1.yaml
+    - pipeline/pipestat_pipeline_interface2.yaml
 ```
 
 Where:
@@ -37,7 +35,7 @@ To run pipeline, go to the directory of .looper.config and execute command in yo
 
 ## Customize looper
 
-You can also customize things further. You can provide a `cli` keyword to specify any command line (CLI) options from within the looper config file. The subsections within this section direct the arguments to the respective `looper` subcommands. So, to specify, e.g. sample submission limit for a `looper run` command use:
+You can also customize things further. You can provide a `cli` keyword to specify any command line (CLI) options from within the looper config file. The subsections within this section direct the arguments to the respective `looper` subcommands. For example, to specify a sample submission limit for a `looper run` command, use:
 
 ```yaml
 cli:
