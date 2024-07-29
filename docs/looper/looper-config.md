@@ -31,7 +31,7 @@ one of supported ways: `namespace/name`, `namespace/name:tag`)
 - `pipeline interfaces` is a local path to project or sample pipelines.
 
 To run pipeline, go to the directory of .looper.config and execute command in your terminal:
-`looper run --looper-config {looper_config_path}` or `looper runp --looper-config {looper_config_path}` (project-level pipeline).
+`looper run --config {looper_config_path}` or `looper runp --config {looper_config_path}` (project-level pipeline).
 
 ## Customize looper
 

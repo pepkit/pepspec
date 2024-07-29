@@ -55,7 +55,7 @@ The `looper.command` value is what enables the two-layer template system, whereb
 
 The `compute` namespace consists of a group of variables relevant for computing resources. The `compute` namespace has a unique behavior: it aggregates variables from several sources in a priority order, overriding values with more specific ones as priority increases. The list of variable sources in priority order is:
 
-1. Looper CLI (`--compute` or `--settings` for on-the-fly settings) e.g. `looper run --looper-config .your_config.yaml --package slurm --compute PARTITION=standard time='01-00:00:00' cores='32' mem='32000'`
+1. Looper CLI (`--compute` or `--settings` for on-the-fly settings) e.g. `looper run --config .your_config.yaml --package slurm --compute PARTITION=standard time='01-00:00:00' cores='32' mem='32000'`
 2. PEP config, `project.looper.compute` section
 3. Pipeline interface, `compute` section
 4. Activated divvy compute package (`--package` CLI argument)

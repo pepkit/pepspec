@@ -15,7 +15,7 @@ Looper will now have access to your computing configuration. You can run `divvy 
 
 You can also override the computing configuration in the CLI, e.g.
 
-``looper run --looper-config .your_config.yaml --package slurm --compute PARTITION=standard time='01-00:00:00' cores='32' mem='32000'``
+``looper run --config .your_config.yaml --package slurm --compute PARTITION=standard time='01-00:00:00' cores='32' mem='32000'``
 
 Complete details on how to configure divvy are described in the [divvy documentation](http://divvy.databio.org).
 
