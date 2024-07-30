@@ -310,7 +310,7 @@ There are also other commands:
 
 ## On your own
 
-To use `looper` on your own, you will need to prepare 2 things: a **project** (metadata that define *what* you want to process), and **pipelines** (*how* to process data). To link your project to `looper`, you will need to [define a project](defining-a-project.md). You will want to either use pre-made `looper`-compatible pipelines or link your own custom-built pipelines. These docs will also show you how to connect your pipeline to your project.
+To use `looper` on your own, you will need to prepare 2 things: a **project** (metadata that define *what* you want to process), and **pipelines** (*how* to process data). To link your project to `looper`, you will need to [define a project](https://pep.databio.org/looper/defining-a-project/). You will want to either use pre-made `looper`-compatible pipelines or link your own custom-built pipelines. These docs will also show you how to connect your pipeline to your project.
 
 
 

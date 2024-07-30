@@ -253,7 +253,7 @@ Let's also look at the project config:
           SRA_2: "{SRR}_2.fastq.gz"
 
 
-Similar to the intermediate example, this advanced example leverages sample_modifiers to extend the project and serive sample attributes.
+Similar to the intermediate example, this advanced example leverages sample_modifiers to extend the project and derive sample attributes.
 
 Finally, let's take a look at one of the pipeline interfaces
 
