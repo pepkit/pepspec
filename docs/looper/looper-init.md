@@ -11,6 +11,7 @@ looper init
 ```
 
 This guided tutorial will ask you to supply:
+
     -  path to PEP config (project config)
     -  output directory 
     -  any pipeline interfaces

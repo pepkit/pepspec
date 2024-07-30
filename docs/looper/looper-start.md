@@ -1,8 +1,6 @@
 [looper_start]: img/looper_start.svg
 # Looper - Getting Started
 
-**Note Looper 2.0.0 documentation is still under construction**
-
 To begin using Looper, it is important to understand the **three** components required to execute looper.
 
 
