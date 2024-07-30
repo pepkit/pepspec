@@ -43,9 +43,9 @@ markdown_extensions:
   - md_in_html
   - pymdownx.highlight:
       use_pygments: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+#  - pymdownx.emoji:
+#      emoji_index: !!python/name:material.extensions.emoji.twemoji
+#      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -133,49 +133,60 @@ nav:
       - Changelog: geofetch/changelog.md
   - Looper:
     - Looper: looper/README.md
-    - Getting started:
+    - Quickstart:
         - Features at-a-glance: looper/features.md
-        - Hello world: looper/code/hello-world.md
-    - How-to guides:
-        - Defining a project: looper/defining-a-project.md
-        - Details of a project: looper/sample-annotation-sheet.md
-        - Running a pipeline: looper/running-a-pipeline.md
-        - Initializing a repository: looper/initialize.md
-        - Using pipestat: looper/pipestat.md
-        - Parameterizing pipelines: looper/parameterizing-pipelines.md
-        - Running on a cluster: looper/running-on-a-cluster.md
-        - Grouping many jobs into one: looper/grouping-jobs.md
-        - Running jobs in containers: looper/containers.md
-        - Handling multiple input files: looper/how-to-merge-inputs.md
-        - Running multiple pipelines: looper/multiple-pipelines.md
-        - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
-        - Using looper config: looper/looper-config.md
-        - Using geofetch: looper/using-geofetch.md
-        - Browsable HTML Reports: looper/looper-report.md
-    - Using divvy:
-        - Introduction: divvy/README.md
-        - Configuring divvy: divvy/configuration.md
-        - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
-        - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
-        - Configuring containers: divvy/containers.md
-        - Configuring connection with client software: divvy/adapters.md
-        - Default packages: divvy/default-packages.md
-        - DIVCFG examples: http://github.com/pepkit/divcfg
+        - First Steps:
+            - Start here: looper/looper-start.md
+            - Simple Hello world: looper/code/hello-world.md
+        - Next Steps:
+            - Intermediate Hello world: looper/code/hello-world-intermediate.md
+        - Run your own project:
+            - Initialize Looper: looper/looper-init.md
+    - User Guides:
+        - Pipeline User:
+            - Looper configuration:
+                - Defining looper config: looper/looper-config.md
+            - Projects:
+              - Defining a project: looper/defining-a-project.md
+              - Details of a project: looper/sample-annotation-sheet.md
+            - Submitting to Pipelines:
+              - Running a pipeline: looper/running-a-pipeline.md
+              - Parameterizing pipelines: looper/parameterizing-pipelines.md
+              - Advanced:
+                - Running on a cluster: looper/running-on-a-cluster.md
+                - Grouping many jobs into one: looper/grouping-jobs.md
+                - Running jobs in containers: looper/containers.md
+                - Handling multiple input files: looper/how-to-merge-inputs.md
+                - Browsable HTML Reports: looper/looper-report.md
+        - Pipeline Developers:
+          - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
+          - Using pipestat: looper/pipestat.md
+          - Running multiple pipelines: looper/multiple-pipelines.md
+          - Pipeline interface specification: looper/pipeline-interface-specification.md
+          - Pipeline tiers: looper/pipeline-tiers.md
+          - Concentric templates: looper/concentric-templates.md
+          - Pre-submission hooks system: looper/pre-submission-hooks.md
+          - Looper variable namespaces: looper/variable-namespaces.md
+        - Advanced:
+          - Using geofetch: looper/using-geofetch.md
+
     - Reference:
-        - How to cite: citations.md
-        - Pipeline interface specification: looper/pipeline-interface-specification.md
-        - Pipeline tiers: looper/pipeline-tiers.md
-        - Concentric templates: looper/concentric-templates.md
-        - Pre-submission hooks system: looper/pre-submission-hooks.md
-        - Looper variable namespaces: looper/variable-namespaces.md
-        - Advanced features: looper/advanced.md
-        - Usage: looper/usage.md
-        - Configuration files: looper/config-files.md
+        - CLI Usage: looper/usage.md
         - API: looper/code/python-api.md
+        - How to cite: citations.md
         - FAQ: looper/faq.md
         - Support: looper/support.md
         - Contributing: looper/contributing.md
         - Changelog: looper/changelog.md
+        - Using divvy:
+            - Introduction: divvy/README.md
+            - Configuring divvy: divvy/configuration.md
+            - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
+            - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
+            - Configuring containers: divvy/containers.md
+            - Configuring connection with client software: divvy/adapters.md
+            - Default packages: divvy/default-packages.md
+            - DIVCFG examples: http://github.com/pepkit/divcfg
   - PEPhub:
     - PEPhub: pephub/README.md
     - User guide:

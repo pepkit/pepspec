@@ -3,7 +3,7 @@
 Looper can create a browsable html report of all project results using the command:
 
 ```terminal
-looper report --looper-config .your_looper_config.yaml
+looper report --config .your_looper_config.yaml
 ```
 
 An example html report out put can be found here: [PEPATAC Gold Summary](https://pepatac.databio.org/en/latest/files/examples/gold/gold_summary.html)

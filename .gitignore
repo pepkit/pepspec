@@ -5,3 +5,9 @@ venv/
 .DS_Store
 /docs/looper/notebooks/hello_looper-master/
 /docs/looper/notebooks/master.zip
+/docs/looper/notebooks/hello_looper-dev/
+/docs/looper/notebooks/dev.zip
+
+/.idea/
+/docs/pipestat/notebooks/.ipynb_checkpoints/
+/docs/looper/notebooks/.ipynb_checkpoints/

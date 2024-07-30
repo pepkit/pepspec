@@ -1,6 +1,6 @@
 # How to handle multiple input files
 
-*Dealing with multiple input files is described in detail in the [PEP documentation](http://pep.databio.org/en/latest/specification/#project-attribute-subsample_table).*
+*Dealing with multiple input files is described in detail in the [PEP documentation](https://pep.databio.org/spec/howto-multi-value-attributes/).*
 
 Briefly:
 
@@ -8,6 +8,33 @@ Sometimes you have multiple input files that you want to merge for one sample. F
 
 1. Use shell expansion characters (like `*` or `[]`) in your file path definitions (good for simple merges)
 2. Specify a *sample subannotation tables* which maps input files to samples for samples with more than one input file (infinitely customizable for more complicated merges).
+
+To accommodate complex merger use cases, this is infinitely customizable.
+
+To do the first option, simply change the data source specification:
+
+```yaml
+data_sources:
+  data_R1: "${DATA}/{id}_S{nexseq_num}_L00*_R1_001.fastq.gz"
+  data_R2: "${DATA}/{id}_S{nexseq_num}_L00*_R2_001.fastq.gz"
+```
+
+For the second option, provide *in the `metadata` section* of your project config file a path to merge table file:
+
+```yaml
+metadata:
+  merge_table: mergetable.csv
+```
+
+Make sure the `sample_name` column of this table matches, and then include any columns needed to point to the data.
+Looper will automatically include all of these files as input passed to the pipelines.
+
+***Warning***: do not use *both* of these options for the same sample at the same time; that will lead to multiple mergers.
+
+**Note**: mergers are *not* the way to handle different functional/conceptual *kinds* of input files (e.g., `read1` and `read2` for a sample sequenced with a paired-end protocol).
+Such cases should be handled as *separate derived columns* in the main sample annotation sheet if they're different arguments to the pipeline.
+
+
 
 
 ## Multi-value sample attributes behavior in the pipeline interface command templates

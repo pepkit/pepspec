@@ -534,7 +534,7 @@ psm.backend._data
 
 
 
-## Highlighting results
+## Highligting results
 
 In order to highlight results we need to add an extra property in the pipestat results schema (`highlight: true`) under the result identifier that we wish to highlight. 
 
@@ -640,7 +640,7 @@ psm.cfg['_status_schema']
 
 
 
-`pipestat` Python package ships with a default status schema, so we did not have to provide the schema when constructing the `PipestatManager` object. Similarly, the flags containing directory is an optional configuration option. 
+`pipestat` Python package ships with a default status schema, so we did not have to provide the schema when constructing the `PipestatManager` object. Similarly, the flags containg directory is an optional configuration option. 
 
 Please refer to the Python API documentation (`__init__` method) to see how to use custom status schema and flags directory.
 

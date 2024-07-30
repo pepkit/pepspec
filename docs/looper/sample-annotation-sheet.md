@@ -62,7 +62,7 @@ frog_0h,RRBS,frog,0,/data/lab/project/frog_0h.fastq
 frog_1h,RRBS,frog,1,/data/lab/project/frog_1h.fastq
 ```
 
-This is common, and it works in a pinch with Looper, but what if the data get moved, or your filesystem changes, or you switch servers or move institutes?
+This is common, and it works in a pinch with Looper, but what if the data get moved, or your file system changes, or you switch servers or move institutes?
 Will this data still be there in 2 years? Do you want long file paths cluttering your annotation sheet?
 What if you have 2 or 3 input files? Do you want to manually manage these unwieldy absolute paths?
 
@@ -120,7 +120,6 @@ As a side bonus, you can easily include samples from different locations, and yo
 The only thing you have to change is the project-level expression describing the location, not any sample attributes.
 Plus, you get to eliminate those annoying `long/path/arguments/in/your/sample/annotation/sheet`.
 
-Check out the complete working example in the [`microtest` repository](https://github.com/databio/microtest/tree/master/config).
 
 
 # Implied columns
