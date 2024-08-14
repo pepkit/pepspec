@@ -16,7 +16,7 @@ PEPhub is an open-source database, web interface, and API for sharing, retrievin
 ## Features at-a-glance
 
 
-- **Validation**. Users specify a schema for a project (using an extended [JSON Schema](https://json-schema.org/)), and use it validate sample metadata. 
+- **Validation**. Users specify a schema for a project (using an extended [JSON Schema](https://json-schema.org/)), and use it to validate sample metadata. 
 
 - **Semantic search**. The PEPhub search interface provides an extremely fast and powerful semantic search of sample metadata. It is built using cutting-edge machine learning (sentence transformers) and stored in a fast vector databases. 
 
