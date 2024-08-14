@@ -7,7 +7,7 @@ hide:
 
 # How to cite PEPkit
 
-Thanks for citing us! If you use the PEP tools, or concepts in your research, here are papers you can cite.
+Thanks for citing us! If you use the PEP tools, or concepts in your research, please cite us!
 
 | If you use... | Please cite ... |
 |---------------|-----------------|
