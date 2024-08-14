@@ -7,7 +7,7 @@
 
 
 
-PEPhub is an open-source database, web interface, and API for sharing, retrieving, and validating sample metadata. PEPhub consists of:
+PEPhub is an open-source database, web interface, and API for sharing, retrieving, and validating metadata. PEPhub consists of:
 
 - **Public user interface**: <a href="https://pephub.databio.org/" target="_blank">https://pephub.databio.org/</a>
 - **API**: <a href="https://pephub-api.databio.org/api/v1/docs" target="_blank">https://pephub-api.databio.org/api/v1/docs</a>
