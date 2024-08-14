@@ -1,6 +1,6 @@
 # How to validate sample metadata
 
-PEPhub validates sample metadata with [eido](../eido/README.md). Schemas can be added and edited on PEPhub directly.
+PEPhub validates sample metadata with [eido](../../eido/README.md). Schemas can be added and edited on PEPhub directly.
 
 Schemas are particularly useful before running pipelines, as validation provides essential information about PEP compatibility with specific pipelines and highlights any errors in the PEP structure.
 
