@@ -56,7 +56,8 @@ unzip master.zip
 
 # Run looper:
 cd hello_looper-master
-looper run project/project_config.yaml
+cd minimal
+looper run
 ```
 
 Detailed explanation of results is in the [Hello world tutorial](code/hello-world.md).

@@ -134,42 +134,37 @@ nav:
   - Looper:
     - Looper: looper/README.md
     - Quickstart:
-        - Features at-a-glance: looper/features.md
-        - First Steps:
-            - Start here: looper/looper-start.md
-            - Simple Hello world: looper/code/hello-world.md
-        - Next Steps:
-            - Intermediate Hello world: looper/code/hello-world-intermediate.md
-        - Run your own project:
-            - Initialize Looper: looper/looper-init.md
-    - User Guides:
-        - Pipeline User:
-            - Looper configuration:
-                - Defining looper config: looper/looper-config.md
-            - Projects:
-              - Defining a project: looper/defining-a-project.md
-              - Details of a project: looper/sample-annotation-sheet.md
-            - Submitting to Pipelines:
-              - Running a pipeline: looper/running-a-pipeline.md
-              - Parameterizing pipelines: looper/parameterizing-pipelines.md
-              - Advanced:
-                - Running on a cluster: looper/running-on-a-cluster.md
-                - Grouping many jobs into one: looper/grouping-jobs.md
-                - Running jobs in containers: looper/containers.md
-                - Handling multiple input files: looper/how-to-merge-inputs.md
-                - Browsable HTML Reports: looper/looper-report.md
-        - Pipeline Developers:
-          - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
-          - Using pipestat: looper/pipestat.md
-          - Running multiple pipelines: looper/multiple-pipelines.md
-          - Pipeline interface specification: looper/pipeline-interface-specification.md
-          - Pipeline tiers: looper/pipeline-tiers.md
-          - Concentric templates: looper/concentric-templates.md
-          - Pre-submission hooks system: looper/pre-submission-hooks.md
-          - Looper variable namespaces: looper/variable-namespaces.md
-        - Advanced:
-          - Using geofetch: looper/using-geofetch.md
-
+      - Features at-a-glance: looper/features.md
+      - First Steps:
+          - Start here: looper/looper-start.md
+          - Simple Hello world: looper/code/hello-world.md
+      - Next Steps:
+          - Intermediate Hello world: looper/code/hello-world-intermediate.md
+      - Run your own project:
+          - Initialize Looper: looper/looper-init.md
+    - Pipeline User Guide:
+      - Defining looper config: looper/looper-config.md
+      - Defining a project: looper/defining-a-project.md
+      - Details of a project: looper/sample-annotation-sheet.md
+      - Running a pipeline: looper/running-a-pipeline.md
+      - Parameterizing pipelines: looper/parameterizing-pipelines.md
+      - Advanced:
+        - Running on a cluster: looper/running-on-a-cluster.md
+        - Grouping many jobs into one: looper/grouping-jobs.md
+        - Running jobs in containers: looper/containers.md
+        - Handling multiple input files: looper/how-to-merge-inputs.md
+        - Browsable HTML Reports: looper/looper-report.md
+    - Pipeline Developer Guide:
+      - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
+      - Using pipestat: looper/pipestat.md
+      - Running multiple pipelines: looper/multiple-pipelines.md
+      - Pipeline interface specification: looper/pipeline-interface-specification.md
+      - Pipeline tiers: looper/pipeline-tiers.md
+      - Concentric templates: looper/concentric-templates.md
+      - Pre-submission hooks system: looper/pre-submission-hooks.md
+      - Looper variable namespaces: looper/variable-namespaces.md
+      - Advanced:
+        - Using geofetch: looper/using-geofetch.md
     - Reference:
         - CLI Usage: looper/usage.md
         - API: looper/code/python-api.md
