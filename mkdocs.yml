@@ -7,8 +7,6 @@ theme:
   custom_dir: overrides
 
 
-
-
   palette:
 
     # # Palette toggle for dark mode
@@ -149,11 +147,15 @@ nav:
       - Running a pipeline: looper/running-a-pipeline.md
       - Parameterizing pipelines: looper/parameterizing-pipelines.md
       - Advanced:
-        - Running on a cluster: looper/running-on-a-cluster.md
+        - Running on a cluster with divvy: looper/running-on-a-cluster.md
         - Grouping many jobs into one: looper/grouping-jobs.md
         - Running jobs in containers: looper/containers.md
         - Handling multiple input files: looper/how-to-merge-inputs.md
         - Browsable HTML Reports: looper/looper-report.md
+        - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
+        - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
+        - Configuring containers: looper/divvy-containers.md
+        - Configuring connection with client software: loooper/divvy-adapters.md
     - Pipeline Developer Guide:
       - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
       - Using pipestat: looper/pipestat.md
@@ -166,6 +168,7 @@ nav:
       - Advanced:
         - Using geofetch: looper/using-geofetch.md
     - Reference:
+      - Reference:
         - CLI Usage: looper/usage.md
         - API: looper/code/python-api.md
         - How to cite: citations.md
@@ -173,15 +176,6 @@ nav:
         - Support: looper/support.md
         - Contributing: looper/contributing.md
         - Changelog: looper/changelog.md
-        - Using divvy:
-            - Introduction: divvy/README.md
-            - Configuring divvy: divvy/configuration.md
-            - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
-            - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
-            - Configuring containers: divvy/containers.md
-            - Configuring connection with client software: divvy/adapters.md
-            - Default packages: divvy/default-packages.md
-            - DIVCFG examples: http://github.com/pepkit/divcfg
   - PEPhub:
     - PEPhub: pephub/README.md
     - User guide:
