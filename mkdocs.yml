@@ -144,7 +144,6 @@ nav:
       - Defining looper config: looper/looper-config.md
       - Defining a project: looper/defining-a-project.md
       - Running a pipeline: looper/running-a-pipeline.md
-      - Parameterizing pipelines: looper/parameterizing-pipelines.md
       - Advanced:
         - Running on a cluster with divvy: looper/running-on-a-cluster.md
         - Grouping many jobs into one: looper/grouping-jobs.md
@@ -158,7 +157,6 @@ nav:
     - Pipeline Developer Guide:
       - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
       - Using pipestat: looper/pipestat.md
-      - Running multiple pipelines: looper/multiple-pipelines.md
       - Pipeline interface specification: looper/pipeline-interface-specification.md
       - Pipeline tiers: looper/pipeline-tiers.md
       - Concentric templates: looper/concentric-templates.md
