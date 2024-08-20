@@ -1,5 +1,8 @@
 # How to use the looper config file
 
+The looper configuration file contains important information about the looper project. It is named `.looper.yaml` by default and lives at the root of the project. 
+It points to the PEP project (via `pep_config`). It allows the user to supply the pipeline interfaces.
+
 Here is an example of a looper config file using local PEP and multiple pipeline interfaces:
 
 ```yaml
@@ -9,6 +12,8 @@ pipeline_interfaces:
     - pipeline/pipestat_pipeline_interface1.yaml
     - pipeline/pipestat_pipeline_interface2.yaml
 ```
+
+>Note: Using the command `looper init` will provide a guided tutorial to create a looper config file.
 
 In addition, looper supports projects from [PEPhub](https://pephub.databio.org/). 
 Using a PEP from PEPhub allows a user to run a pipeline without downloading the PEP. This allows you to keep the sample table in a centralized, shared location. You need only specify all necessary
