@@ -143,7 +143,6 @@ nav:
     - Pipeline User Guide:
       - Defining looper config: looper/looper-config.md
       - Defining a project: looper/defining-a-project.md
-      - Details of a project: looper/sample-annotation-sheet.md
       - Running a pipeline: looper/running-a-pipeline.md
       - Parameterizing pipelines: looper/parameterizing-pipelines.md
       - Advanced:
