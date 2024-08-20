@@ -133,13 +133,9 @@ nav:
     - Looper: looper/README.md
     - Quickstart:
       - Features at-a-glance: looper/features.md
-      - First Steps:
-          - Start here: looper/looper-start.md
-          - Simple Hello world: looper/code/hello-world.md
-      - Next Steps:
-          - Intermediate Hello world: looper/code/hello-world-intermediate.md
-      - Run your own project:
-          - Initialize Looper: looper/looper-init.md
+      - Start here: looper/looper-start.md
+      - Simple Example: looper/code/hello-world.md
+      - Intermediate Example: looper/code/hello-world-intermediate.md
     - Pipeline User Guide:
       - Defining looper config: looper/looper-config.md
       - Defining a project: looper/defining-a-project.md
