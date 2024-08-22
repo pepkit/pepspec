@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This guide will walk you through creating a Looper project to run a pipeline on a dataset.
+This guide will walk you through creating a Looper workspace to run a pipeline on a dataset.
 Looper is ideal for processing data split into independent samples, allowing you to run the same pipeline in parallel on each sample.
 In our demonstration, we'll work with three sample files, each representing a different country: Canada, Mexico, and Switzerland.
 Each file contains a list of the states or provinces in that country.
@@ -17,15 +17,24 @@ cd looper_csv_example
 looper run
 ```
 
-In a real project, you would likely have hundreds or thousands of samples, each with multiple input files.
+In a real workspace, you would likely have hundreds or thousands of samples, each with multiple input files.
 Your pipeline could be an advanced Python or R script that takes hours or days to run.
 The principles of setting up and running looper will be the same as for our simple demonstration project.
 
 Let's get started!
 
-## Components of a Looper Project
 
-A typical Looper project consists of the following components:
+!!! success "Learning objectives"
+    - How do I get started using looper?
+    - What components do I need to run looper?
+    - What is a looper config file, a pipeline interface, and a metadata table?
+
+
+
+
+## Components of a looper workspace
+
+A typical Looper workspace includes the following components:
 
 1. **Sample Data:** Usually stored as one or more files per sample.
 
@@ -94,7 +103,7 @@ echo "Number of lines: $linecount"
 
 
 All this script does is run the unix `wc` command, and then parse the output using `sed` and `cut`, and then print the result with `echo`.
-In a real project, your pipeline is more likely to be a powerful Python script or something else.
+In a real workspace, your pipeline is more likely to be a powerful Python script or something else.
 The important thing for looper is just that there's a command you can run and to execute it. 
 Since looper will need to execute it, make sure your script has execute permission:
 
@@ -167,4 +176,9 @@ This will submit a job for each sample. That's basically all there is to it; aft
 - **Tweak the command on-the-fly**. The `--command-extra` arguments allow you to pass extra arguments to every command straight through from looper. See [parameterizing pipelines](parameterizing-pipelines.md).
 
 
+
+!!! tip "Summary"
+    - To use looper, you'll need to have data, metadata, a pipeline (with pipeline interface), and a looper configuration file. 
+    - Looper is best suited for data that is split into samples, where you're trying to run a pipeline independently on each sample.
+    - Once you've configured everything correctly, you run your samples with the command `looper run`.
 

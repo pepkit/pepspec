@@ -39,6 +39,7 @@ theme:
 markdown_extensions:
   - attr_list
   - md_in_html
+  - admonition
   - pymdownx.highlight:
       use_pygments: true
 #  - pymdownx.emoji:
@@ -136,9 +137,10 @@ nav:
       - Tutorial:
         - Initiating a new looper project: looper/tutorial/initialize.md
         - Metadata specification: looper/tutorial/metadata.md
-        - Adjusting compute settings: looper/tutorial/compute-settings.md
+        - Configuring compute resources: looper/tutorial/compute-settings.md
       - Advanced user guide:
         - Looper config options: looper/advanced-guide/looper-config.md
+        - Custom compute packages: looper/advanced-guide/custom-compute-packages.md
         - Advanced metadata specification: looper/defining-a-project.md
         - Advanced run configuration: looper/advanced-pipeline-configuration.md
         - Running jobs in containers: looper/containers.md

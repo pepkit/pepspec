@@ -1,26 +1,158 @@
-# Advanced compute configuration
 
 
-## How to submit jobs to a cluster with <img src="../../img/divvy_logo.svg" height="25">
+
+
+<!-- # How to submit jobs to a cluster with <img src="../../img/divvy_logo.svg" height="25"> -->
+
+# Configuring compute settings
 
 ## Introduction
 
-By default, `looper` will build a shell script for each sample and then run it sequentially on the local computer. This is convenient for simple cases, but when it comes time to scale up, this is where `looper` really excels. Looper uses a powerful [concentric template system](concentric-templates.md) that enables looper to run jobs on any cluster resource manager (like SLURM, SGE, LFS, etc.) by simply setting up a template for it. The environment templates are managed by `divvy`.
+So far, we’ve been running jobs with Looper in the simplest way -- sequentially on the local computer.
+While this approach is easy and straightforward, Looper truly shines when you need to scale up and submit jobs to a compute cluster.
 
+To facilitate this, Looper integrates a tool called `divvy`, which handles job submission configuration.
+`Divvy` is automatically installed alongside Looper but can also be used independently.
+By leveraging Divvy, Looper provides a powerful [concentric template system](concentric-templates.md) that simplifies running jobs on any cluster resource manager (e.g., SLURM, SGE, LFS) using templates. 
+Switching between different computing environments is also seamless.
+The best part is that this setup works for any Looper-compatible pipeline.
+Once you’ve configured your computing environment to your liking, Looper will help you deploy any pipeline in the same way.
+
+In this tutorial, we’ll show you how to configure Looper and Divvy, giving you full control over your computing resources.
+You'll learn how the templates work, and how you can customize them to fit just about any computing scenario.
+To demonstrate, we'll show you how to configure looper to submit jobs to a SLURM cluster.
+If you have a different system, you can edit templates and use a similar approach for any cluster resource manager.
+
+
+
+!!! success "Learning objectives"
+    - How does looper actually run jobs?
+    - How can submit my jobs to a cluster instead of running them locally?
+    - What is looper's concentric template system and how can I use it to have total control over my compute settings?
+    - Can I submit my pipeline to different types of clusters or in different computing environments?
+    - How do I specify required resources like time or number of cores for a cluster job?
+
+
+
+
+<!-- 
 ## What is `divvy`?
 
 ![Connect](img/divvy-connect.svg)
 
-`Divvy` is `looper`'s job submission configuration tool.
-Divvy is automatically installed when you install looper.
-You can also use `divvy` independently from looper.
+
 Divvy allows you to populate job submission scripts by integrating job-specific settings with separately configured computing environment settings.
 Divvy helps you toggle among computing resources.
 
-Without `divvy`, tools are tied to a particular compute resource setup. This makes it difficult to transfer to different environments. For tools that can run in multiple environments, each one must be configured separately. In contrast, `divvy`-compatible tools can run on any computing resource. **Users configure their computing environment once, and all divvy-compatible tools will use this same configuration.**
+Without `divvy`, tools are tied to a particular compute resource setup. This makes it difficult to transfer to different environments. For tools that can run in multiple environments, each one must be configured separately. In contrast, `divvy`-compatible tools can run on any computing resource. **Users configure their computing environment once, and all divvy-compatible tools will use this same configuration.** -->
 
 
-## Overview and basic example of cluster computing
+
+## How looper job submission works
+
+To start, let's go deeper into the details of how jobs are run in the simple case. We'll stay in the `pep_derived_attrs` workspace created in the previous tutorial. If you need to, you can download the folder from the [hello looper repository](https://github.com/pepkit/hello_looper).
+
+Two arguments you can pass to `looper run` for testing are these:
+
+- `--dry-run`/`-d`. In dry-run mode, looper will create job scripts, but will not actually run them.
+- `--limit`/`-l`. This will limit the number of samples looper submits.
+
+To demonstrate, run looper using these arguments:
+
+```sh
+cd pep_derived_attrs
+looper run -d -l 1
+```
+
+If you run this, you should see output similar to this:
+
+```console hl_lines="6"
+Command: run
+Using looper config (.looper.yaml).
+## [1 of 3] sample: mexico; pipeline: count_lines
+Writing script to /home/nsheff/code/hello_looper/pep_derived_attrs/results/submission/count_lines_mexico.sub
+Job script (n=1; 0.00Gb): /home/nsheff/code/hello_looper/pep_derived_attrs/results/submission/count_lines_mexico.sub
+Dry run, not submitted
+```
+
+Notice that:
+
+- only 1 sample was processed (because we used `-l 1`)
+- A job script was created, but not submitted (because we used `-d`)
+
+This brings up a key point about how looper works.
+It does not really *run* commands directly.
+Instead, it creates a *job script*, and then executes that script.
+This is true even in the simplest case, with the default compute settings.
+Let's look more closely at the script looper created:
+
+```sh
+cat results/submission/count_lines_mexico.sub 
+```
+
+``` title="results/submission/count_lines_mexico.sub" hl_lines="7"
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+pipeline/count_lines.sh data/mexico.txt 
+} | tee /home/nsheff/code/hello_looper/pep_derived_attrs/results/submission/count_lines_mexico.log
+```
+
+Let's see how looper is creating this file.
+You may recognize the highlighted line, because we've seen it before in the earlier tutoirials.
+It's the command we specified for how to run the pipeline, and it's coming from the *pipeline interface* file.
+
+Recall in the first tutorial we created a `pipeline/pipeline_interface.yaml`, with this content:
+
+```yaml  title="pipeline/pipeline_interface.yaml" hl_lines="4"
+pipeline_name: count_lines
+sample_interface:
+  command_template: >
+    pipeline/count_lines.sh {sample.file_path}
+```
+
+The `command_template`, after populating the variable for the first sample, becomes `pipeline/count_lines.sh data/mexico.txt ` -- the line higlighted in the submission script.
+
+But where is the rest of the submission script coming from? It's not hard coded looper boilerplate -- this is actually coming from a different template that can be configured with divvy.
+It's called the *submission template*, and what we're seeing here is the default submission template divvy uses when nothing else is specified.
+
+Here's the default submission template provided by divvy:
+
+```sh title="localhost_template.sub"
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+{CODE} 
+} | tee {LOGFILE}
+```
+
+This template has 2 variables, which are populated by looper. The `{CODE}` slot is the one being populated from the pipeline interface's `command_template` variable. The `{LOGFILE}` variable is a special variable provided by looper, which we'll get into later, but you can ignore for now.
+
+So, these are the steps looper takes to create the final job submission script:
+
+1. It uses the `command_template` from the pipeline interface, populating it with any sample-specific information specified (like `{sample.file_path}`)
+2. It takes the resulting value and uses it to populate the `{CODE}` variable in the `submission_template`.
+3. It writes the final template to a file, named after the pipeline and sample.
+
+
+!!! tip "Key point"
+    - Looper isn't running anything directly. Rather, it's creating a script (called a submission script), and then it executes that.
+    - If you use dry run mode, then it just creates the script without executing it.
+    - The submission script is created in two steps, with two templates. First, the command is constructed, using the pipeline interface. Then, this command is inserted into a submission template provided by divvy. This two-layered template system is what we call looper's [concentric template system](concentric-templates.md), and it provides a lot of  powerful benefits.
+
+
+Next, we'll learn how to change the submission template, so that the job gets submitted to a cluster instead of run locally.
+
+
+## Configuring looper for cluster submission
+
+### Initializing divvy configuration
 
 To configure `divvy` (and therefore `looper`) for cluster computing, first create a `divvy` computing configuration file using `divvy init`. Looper looks for the divvy configuration file in the environment variable `$DIVCFG`, so it's best to set that up to point to your divvy configuration file, so you don't have to provide it every time you run `looper`. This `init` command will create a default config file, along with a folder of computing templates:
 
@@ -56,64 +188,9 @@ slurm
 ```
 
 
-For example, there's a package called 'slurm'. You select a package with `--package` (*e.g.* ). 
+For example, there's a package called 'slurm'. The template for this package looks a little different from the one we saw above:
 
-```bash
-looper run
-  --package slurm
-```
-
-For many systems (SLURM, SGE, LFS, etc), the default divvy configuration will work out of the box.
-If you need to tweak things, the template system is flexible and you can override individual parameters using `--compute`, *e.g.*:
-
-```bash
-looper run
-  --package slurm  
-  --compute PARTITION=standard time='01-00:00:00' cores='32' mem='32000'
-```
-
-You can also add you own custom templates to tailor divvy to any compute environment.
-
-## Customizing your configuration file
-
-The *divvy configuration file* (`DIVCFG` for short) is a `yaml` file that specifies a user's available *compute packages*. Each compute package represents a computing resource; for example, by default we have a package called `local` that populates templates to simple run jobs in the local console, and another package called `slurm` with a generic template to submit jobs to a SLURM cluster resource manager. Users can customize compute packages as much as needed. 
-
-Here is an example `divvy` configuration file:
-
-```{console}
-compute_packages:
-  default:
-    submission_template: templates/local_template.sub
-    submission_command: sh
-  local:
-    submission_template: templates/local_template.sub
-    submission_command: sh
-  develop_package:
-    submission_template: templates/slurm_template.sub
-    submission_command: sbatch
-    partition: develop
-  big:
-    submission_template: templates/slurm_template.sub
-    submission_command: sbatch
-    partition: bigmem
-```
-
-Each entry in `compute_packages` defines a separate package. If you don't specify a package to activate, `divvy` uses the package named `default`. You can make your default whatever you like. 
-Each compute package must specify the `submission_command` and `submission_template` attributes. You can add whatever other attributes you want. 
-
-### The `submission_command` attribute
-
-The `submission_command` attribute is the string divvy will use to submit a job. For example, in our compute package named `develop_package`, we've set `submission_command` to `sbatch`. We are telling divvy that, when this package is activated, divvy should submit the job by running: `sbatch <submission_script.txt>`.
-
-### The `submission_template` attribute
-
-The `submission_template` attribute is a path to a template file. The template file provides a skeleton that `divvy` will populate with job-specific attributes. These paths can be relative or absolute; relative paths are considered *relative to the DIVCFG file*. Let's explore what template files look like next.
-
-### Template files
-
-Each compute package must point to a template file with the `submission_template` attribute. These template files are typically stored relative to the `divvy` configuration file. Template files are taken by `divvy`, populated with job-specific information, and then run as scripts. Here's an example of a generic SLURM template file:
-
-```{bash}
+```sh title="slurm_template.sub"
 #!/bin/bash
 #SBATCH --job-name='{JOBNAME}'
 #SBATCH --output='{LOGFILE}'
@@ -127,72 +204,160 @@ Each compute package must point to a template file with the `submission_template
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
-srun {CODE}
+{CODE}
 ```
 
-Template files use variables (*e.g.* `{VARIABLE}`), which will be populated independently for each job. If you want to make your own templates, you can find examples in the [submit_templates](https://github.com/pepkit/divcfg/tree/master/templates) folder. Making your own templates gives `divvy` ultimate flexibility to work with any compute infrastructure in any environment. 
+This template includes directives that are understood by the SLURM scheduler (that's what the `#SBATCH lines are`). So the resulting submission file is going to be a SLURM script, rather than simply a shell script.
 
-### Creating a custom compute package
+So let's re-run looper but as we did before, but this time using this new package. You select a package in a `looper run` command with the `--package` argument:
 
-To create a custom compute package and add it to divvy is easy:
-
-1. Create your own template. Just follow the examples. It's a simple text file, with `{VARIBLE}` syntax for any job-specific variables.
-2. Add a new compute package as an entry under `compute_packages` in your divvy config file.
-3. Point to your custom template in the `submission_template` attribute of your new compute package.
-4. Don't forget to add the appropriate `submission_command` for this package.
-
-### Flexible template variables
-
-Starting with `divvy v0.5.0` the configuration file can include an `adapters` section, which is used to provide a set of variable mappings that `divvy` uses to populate the submission templates.
-
-This makes the connection with `divvy` and client software more flexible and more elegant, since the source of the data does not need to follow any particular naming scheme, any mapping can be used and adapted to work with any `divvy` templates.
-
-## Example adapters section
-
-```yaml
-adapters:
-  CODE: namespace.command
-  LOGFILE: namespace1.log_file
-  JOBNAME: user_settings.program.job_name
-  CORES: processors_number
-...
+```bash
+looper run -d -l 1 \
+  --package slurm
 ```
 
-As you can see in the example `adapters` section above, each adapter is a key-value pair that maps a `divvy` template variable to a target value. The target values can use namespaces (nested mapping).
+Now when we view the resulting submission script, we get a very different result:
 
-## Resources
+```sh title="results/submission/count_lines_mexico.sub"
+#!/bin/bash
+#SBATCH --job-name='count_lines_mexico'
+#SBATCH --output='/home/nsheff/code/hello_looper/pep_derived_attrs/results/submission/count_lines_mexico.log'
+#SBATCH --mem='{MEM}'
+#SBATCH --cpus-per-task='{CORES}'
+#SBATCH --time='{TIME}'
+#SBATCH --partition='{PARTITION}'
+#SBATCH -m block
+#SBATCH --ntasks=1
 
-You may notice that the compute config file does not specify resources to request (like memory, CPUs, or time). Yet, these are required in order to submit a job to a cluster. **Resources are not handled by the divcfg file** because they not relative to a particular computing environment; instead they vary by pipeline and sample. As such, these items should be provided elsewhere. 
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
 
-
-Here are some [examples of divvy configuration files](http://github.com/pepkit/divcfg).
-
-
-## Using divvy independently from the command-line
-
-![Merge](img/divvy-merge.svg)
-
-You can actually use `divvy` without using looper, to submit one-off jobs to a cluster. Divvy will take variables from a file or the command line, merge these with environment settings to create a specific job script. Write a submission script from the command line:
-
-```{console}
-divvy write --package slurm \
-    --settings myjob.yaml \
-    --compute sample=sample1 \
-    --outfile submit_script.txt
+pipeline/count_lines.sh data/mexico.txt 
 ```
 
-## Python interface
 
-You can also use `divvy` via Python interface, or you can use it to make your own Python tools divvy-compatible:
+Of course, the template has changed to the slurm template.
+The `{CODE}` variable was correctly populated, same as before, from the pipeline interface's `command_template` field.
+But the other variables, like `{MEM}` and `{TIME}`, have not been populated.
+Why not? Because we haven't provided looper any values for these variables.
+So, how do we tell looper what to use?
 
-```{python}
-import divvy
-dcc = divvy.ComputingConfiguration()
-dcc.activate_package("slurm")
+### Parameterizing job templates through the command-line
 
-# write out a submission script
-dcc.write_script("test_script.sub", 
-    {"code": "bowtie2 input.bam output.bam"})
+The simplest way is that we can provide them on the command line using `--compute`, *e.g.*:
+
+
+``` {.console .copy}
+looper run -d -l 1 \
+  --package slurm  \
+  --compute partition=standard time='01-00:00:00' cores='32' mem='32000'
 ```
 
+This command will populate the variables as you expect:
+
+
+```sh title="results/submission/count_lines_mexico.sub"
+#!/bin/bash
+#SBATCH --job-name='count_lines_mexico'
+#SBATCH --output='/home/nsheff/code/hello_looper/pep_derived_attrs/results/submission/count_lines_mexico.log'
+#SBATCH --mem='32000'
+#SBATCH --cpus-per-task='32'
+#SBATCH --time='01-00:00:00'
+#SBATCH --partition='standard'
+#SBATCH -m block
+#SBATCH --ntasks=1
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+pipeline/count_lines.sh data/mexico.txt 
+```
+
+### Parameterizing job templates through the pipeline interface
+
+It can be annoying to provide compute parameters every time you want to run your jobs. 
+It's convenient to store those settings somewhere.
+You can also provide compute settings in the pipeline interface.
+Let's add a `compute` section in the pipeline interface file, like this:
+
+
+```yaml  title="pipeline/pipeline_interface.yaml" hl_lines="5 6 7 8 9"
+pipeline_name: count_lines
+sample_interface:
+  command_template: >
+    pipeline/count_lines.sh {sample.file_path}
+  compute:
+    partition: standard
+    time: '01-00:00:00'
+    cores: '32'
+    mem: '32000'
+```
+
+Now, with this new pipeline interface, you can leave off the `--compute` argument to `looper run`, as we did before, but the variables will be populated from the pipeline interface:
+
+``` {.console .copy}
+looper run -d -l 1 \  # this works!
+  --package slurm  \
+```
+
+Parameterizing through the pipeline interface is useful if the parameters are going to be the same for this pipeline, regardless of the project. But sometimes, you need to set the parameters separately for each project...
+
+### Parameterizing job templates through the looper config
+
+You can also provide compute parameters in the looper config:
+
+```yaml title=".looper.yaml" hl_lines="5 6 7 8 9"
+pep_config: metadata/pep_config.yaml
+output_dir: results
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
+compute:
+  partition: standards
+  time: '01-00:00:00'
+  cores: '32'
+  mem: '32000'
+```
+
+This allows you to parameterize the pipeline differently for different projects.
+
+!!! warning
+    One problem with all of these methods is that they just provide the same compute parameters for every sample.
+    What if your samples are widely different in input file size, and therefore require different parameters?
+    If you need to change the parameters by sample, you can solve the problem through pipeline interface [size-dependent variables](../pipeline-interface-specification/#size_dependent_variables). In many cases, the samples are roughly similar, so a single parameterization for the whole project will suffice.
+
+So, there are several ways to provide compute parameters.
+Why do we need all these different places to provide compute parameters?
+
+Because different people/roles will be editing different things.
+
+- the pipeline author is not necessarily the same as the person running the pipeline.
+- the pipeline author may want to provide some basic compute guidance, which can do so in the pipeline interface. 
+- the person running might way to configure something for the workspace as a whole. These go in the `.looper.yaml` file.
+- but for a one-off run, that's different from normal, you can override with with the `--compute` command-line argument.
+
+
+
+## The submission command
+
+There's one final important point about how looper job submission happens.
+To looper, different compute packages are really not that different; if we pick the `slurm` package, mostly, it just means we're using a different template.
+But there is one other very important difference: for the local package, looper needs to submit the job using `sh`, whereas for the slurm package, looper submits the job with `sbatch` -- the command used to assign a task to the SLURM scheduler.
+This *submission command* is actually part of the compute package, and something you can specify if you create your own package.
+For these built-in packages, the submission commands are already appropriately populated.
+
+
+## Custom compute packages
+For many use cases, the built-in packages will be sufficient.
+But a great thing about looper is that these compute packages are totally customizable.
+You can edit the templates, and even create your own custom compute packages.
+This allows you to tailor divvy/looper to any compute environment.
+You can find out more in the documentation on [custom compute packages](../advanced-guide/custom-compute-packages.md)
+
+
+
+!!! tip "Summary"
+    - Looper runs jobs by creating job scripts and then running them.
+    - You can control the job script by choosing a different submission package
+    - You can view the list of available compute packages with `divvy list` and choose one with `looper run --package` or `-p`.
+    - You pass parameters to the submission template in several ways, such as the pipeline interface, the looper config, or on the command line with `--compute`.
 

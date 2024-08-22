@@ -4,6 +4,13 @@
 
 This tutorial will guide you through how to use powerful features of PEP and PEPhub to make managing your metadata easier.
 
+
+!!! success "Learning objectives"
+    - How can I use PEPs as input instead of a `.csv`, and what benefit does this provide?
+    - What is PEPhub, and how can it simplify my data analysis?
+
+
+
 ## Recap
 
 In the first guide, we used a simple CSV file to specify our sample metadata in `metadata/sample_table.csv`, which looked like this:
@@ -140,3 +147,16 @@ But what if your data sources are not the same? Say you have a set of samples wh
 ## Why is this useful?
 
 In this simple example, we don't benefit much from using the derived columns. But in a real-world case, things can get much more complicated. Paths start to get really long and unwieldy. They might point to different places. File systems can change, necessitating adjusting lots of variables. For more information and a more detailed example, see: [How to eliminate paths from a sample table](../../spec/howto-eliminate-paths.md).
+
+## PEPhub
+
+
+
+
+
+!!! tip "Summary"
+    - Looper will accept metadata as a `.csv`, but you can also use a PEP for more powerful management features.
+    - PEPs allow you to simplify your table with programmatic sample modifiers, like `derive`, `append`, or `imply`. 
+    - One common use of PEP sample modifiers is to remove file paths from sample tables, making them more portable.
+    - PEPhub provides a web-based way to edit sample metadata, which can be consumed directly by looper.
+
