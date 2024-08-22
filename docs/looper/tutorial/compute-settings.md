@@ -1,4 +1,7 @@
-# How to submit jobs to a cluster with <img src="../img/divvy_logo.svg" height="25">
+# Advanced compute configuration
+
+
+## How to submit jobs to a cluster with <img src="../../img/divvy_logo.svg" height="25">
 
 ## Introduction
 

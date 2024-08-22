@@ -43,6 +43,12 @@
   width: 50%;
 }
 
+.img-bullet {
+  display: inline-block;
+  vertical-align: middle;
+  height: 0.5em;
+}
+
 .badges {
   display: block; 
   margin-left: auto;

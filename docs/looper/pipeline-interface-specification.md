@@ -253,3 +253,51 @@ This section can consist of two subsections: `python_functions` and/or `command_
 ## Validating a pipeline interface
 
 A pipeline interface can be validated using JSON Schema against [schema.databio.org/pipelines/pipeline_interface.yaml](http://schema.databio.org/pipelines/pipeline_interface.yaml). Looper automatically validates pipeline interfaces at submission initialization stage.
+
+
+
+
+
+
+## Initialize Generic Pipeline Interface
+
+Each Looper project requires one or more pipeline interfaces that points to sample and/or project pipelines. You can run a command that will generate a generic pipeline interface to get you started:
+
+```shell
+looper init_piface
+```
+
+
+```shell
+──────────  Pipeline Interface ──────────
+{
+│   'pipeline_name': 'default_pipeline_name',
+│   'output_schema': 'output_schema.yaml',
+│   'var_templates': {
+│   │   'pipeline': '{looper.piface_dir}/count_lines.sh'
+│   },
+│   'sample_interface': {
+│   │   'command_template': '{pipeline.var_templates.pipeline} {sample.file} --output-parent {looper.sample_output_folder}'
+│   }
+}
+Pipeline interface successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/pipeline_interface.yaml
+──────────  Output Schema ──────────
+{
+│   'pipeline_name': 'default_pipeline_name',
+│   'samples': {
+│   │   'number_of_lines': {
+│   │   │   'type': 'integer',
+│   │   │   'description': 'Number of lines in the input file.'
+│   │   }
+│   }
+}
+Output schema successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/output_schema.yaml
+──────────  Example Pipeline Shell Script ──────────
+#!/bin/bash
+linecount=`wc -l $1 | sed -E 's/^[[:space:]]+//' | cut -f1 -d' '`
+pipestat report -r $2 -i 'number_of_lines' -v $linecount -c $3
+echo "Number of lines: $linecount"
+    
+count_lines.sh successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/count_lines.sh
+
+```

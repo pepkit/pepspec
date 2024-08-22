@@ -1,26 +1,8 @@
-# How to Run a Pipeline
+# Advanced pipeline configuration
 
-You first have to [define your project](defining-a-project.md) and a [config file](looper-config.md). This will give you a PEP linked to a pipeline via a [pipeline interface](writing-a-pipeline-interface.md). Next, we'll run the pipeline.
+## Running Multiple pipelines
 
-The basic command is `looper run`. To run your pipeline, just:
-
-```console
-looper run --config .your_looper_config.yaml
-```
-
-This will submit a job for each sample. That's basically all there is to it; after this, there's a lot of powerful options and tweaks you can do to control your jobs. Here we'll just mention a few of them.
-
-- **Dry runs**. You can use `-d, --dry-run` to create the job submission scripts, but not actually run them. This is really useful for testing that everything is set up correctly before you commit to submitting hundreds of jobs.
-- **Limiting the number of jobs**. You can `-l, --limit` to test a few before running all samples. You can also use the `--selector-*` arguments to select certain samples to include or exclude.
-- **Grouping jobs**. You can use `-u, --lump`, `-n, --lumpn`, `-j, --lumpj` to group jobs. [More details on grouping jobs](grouping-jobs.md).
-- **Changing compute settings**. You can use `-p, --package`, `-s, --settings`, or `--compute` to change the compute templates. Read more in [running on a cluster](running-on-a-cluster.md).
-- **Time delay**. You can stagger submissions to not overload a submission engine using `--time-delay`.
-- **Use rerun to resubmit jobs**. To run only jobs that previously failed, try `looper rerun`.
-- **Tweak the command on-the-fly**. The `--command-extra` arguments allow you to pass extra arguments to every command straight through from looper. See [parameterizing pipelines](parameterizing-pipelines.md).
-
-# Running Multiple pipelines
-
-To run more than one pipeline, simply specify pipeline interfaces in the looper config file:
+To run more than one pipeline, specify multiple pipeline interfaces in the looper config file:
 
 ```yaml
 pep_config: pephub::databio/looper:default
@@ -32,7 +14,7 @@ pipeline_interfaces:
 
 You can also link to the pipeline interface with a sample attribute. If you want the same pipeline to run on all samples, it's as easy as using an `append` modifier like this:
 
-```
+```yaml
 sample_modifiers:
   append:
     pipeline_interfaces: "test.yaml"
@@ -40,7 +22,7 @@ sample_modifiers:
 
 But if you want to submit different samples to different pipelines, depending on a sample attribute, like `protocol`, you can use an implied attribute:
 
-```
+```yaml
 sample_modifiers:
   imply:
     - if:
@@ -52,15 +34,15 @@ sample_modifiers:
 This approach uses only functionality of PEPs to handle the connection to pipelines as sample attributes, which provides full control and power using the familiar sample modifiers. It completely eliminates the need for re-inventing this complexity within looper, which eliminated the protocol mapping section to simplify the looper pipeline interface files. You can read more about the rationale of this change in [issue 244](https://github.com/pepkit/looper/issues/244#issuecomment-611154594).
 
 
-# Pass Extra Command-Line Arguments
+## Passing extra command-line arguments
 
 Occasionally, a particular project needs to run a particular flavor of a pipeline. How can you  adjust pipeline arguments for just this project? You can use looper *command extras* to solve this problem. Command extras let you pass any string on to the pipeline, which will be appended to the command.
 
 There are 2 ways to use command extras: for sample pipelines, or for project pipelines:
 
-## 1. Sample pipeline command extras
+### 1. Sample pipeline command extras
 
-### Adding sample command extras via sample attributes
+#### Adding sample command extras via sample attributes
 
 Looper uses a reserved sample attribute called `command_extras`, which you can set using general PEP sample modifiers however you wish. For example, if your extras are the same for all samples you could use an `append` modifier:
 
@@ -82,7 +64,7 @@ sample_modifiers:
         command_extra: "-C flavor.yaml --epilog"
 ```
 
-### Adding sample command extras via the command line
+#### Adding sample command extras via the command line
 
 You can also pass extra arguments using `--command-extra` like this:
 
@@ -90,7 +72,7 @@ You can also pass extra arguments using `--command-extra` like this:
 looper run project_config.yaml --command-extra="--flavor-flag"
 ```
 
-## 2. Project pipeline command extras
+### 2. Project pipeline command extras
 
 For *project pipelines*, you can specify command extras in the `looper` section of the PEP config:
 
@@ -110,7 +92,7 @@ looper runp project_config.yaml --command-extra="--flavor-flag"
 ```
 
 
-## Overriding PEP-based command extras
+### Overriding PEP-based command extras
 
 By default, the CLI extras are *appended to the command_extra specified in your PEP*. If you instead want to *override* the command extras listed in the PEP, you can instead use `--command-extra-override`.
 
@@ -121,3 +103,21 @@ looper run --command-extra-override="-R"
 ```
 
 That will remove any defined command extras and append `-R` to the end of any commands created by looper.
+
+
+## Grouping many jobs into one
+
+By default, `looper` will translate each row in your `sample_table` into a single job. But perhaps you are running a project with tens of thousands of rows, and each job only takes mere minutes to run; in this case, you'd rather just submit a single job to process many samples. `Looper` makes this easy with the `--lump` and `--lumpn` command line arguments.
+
+### Lumping jobs by job count: `--lumpn`
+
+It's quite simple: if you want to run 100 samples in a single job submission script, just tell looper `--lumpn 100`.
+
+### Lumping jobs by input file size: `--lump`
+
+But what if your samples are quite different in terms of input file size? For example, your project may include many small samples, which you'd like to lump together with 10 jobs to 1, but you also have a few control samples that are very large and should have their own dedicated job. If you just use `--lumpn` with 10 samples per job, you could end up lumping your control samples together, which would be terrible. To alleviate this problem, `looper` provides the `--lump` argument, which uses input file size to group samples together. By default, you specify an argument in number of gigabytes. Looper will go through your samples and accumulate them until the total input file size reaches your limit, at which point it finalizes and submits the job. This will keep larger files in independent runs and smaller files grouped together.
+
+### Lumping jobs by input file size: `--lumpj`
+
+Or you can lump samples into number of jobs.
+

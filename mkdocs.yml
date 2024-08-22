@@ -131,25 +131,26 @@ nav:
       - Changelog: geofetch/changelog.md
   - Looper:
     - Looper: looper/README.md
-    - Quickstart:
-      - Features at-a-glance: looper/features.md
-      - Start here: looper/looper-start.md
-      - Simple Example: looper/code/hello-world.md
-      - Intermediate Example: looper/code/hello-world-intermediate.md
+    - Installation: looper/install.md
     - Pipeline User Guide:
-      - Defining looper config: looper/looper-config.md
-      - Defining a project: looper/defining-a-project.md
-      - Running a pipeline: looper/running-a-pipeline.md
-      - Advanced:
-        - Running on a cluster with divvy: looper/running-on-a-cluster.md
-        - Grouping many jobs into one: looper/grouping-jobs.md
+      - Tutorial:
+        - Initiating a new looper project: looper/tutorial/initialize.md
+        - Metadata specification: looper/tutorial/metadata.md
+        - Adjusting compute settings: looper/tutorial/compute-settings.md
+      - Advanced user guide:
+        - Looper config options: looper/advanced-guide/looper-config.md
+        - Advanced metadata specification: looper/defining-a-project.md
+        - Advanced run configuration: looper/advanced-pipeline-configuration.md
         - Running jobs in containers: looper/containers.md
         - Handling multiple input files: looper/how-to-merge-inputs.md
         - Browsable HTML Reports: looper/looper-report.md
-        - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
-        - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
         - Configuring containers: looper/divvy-containers.md
         - Configuring connection with client software: loooper/divvy-adapters.md
+        # - Hello World (to remove): looper/code/hello-world.md
+        # - Intermediate Example (to remove): looper/code/hello-world-intermediate.md
+      - How-to recipes:
+        - "Tutorial: divvy in Python": looper/code/tutorial_divvy.md
+        - "Tutorial: divvy in shell": looper/code/cli_divvy.md
     - Pipeline Developer Guide:
       - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
       - Using pipestat: looper/pipestat.md
