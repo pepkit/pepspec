@@ -33,6 +33,56 @@ sample_modifiers:
 
 This approach uses only functionality of PEPs to handle the connection to pipelines as sample attributes, which provides full control and power using the familiar sample modifiers. It completely eliminates the need for re-inventing this complexity within looper, which eliminated the protocol mapping section to simplify the looper pipeline interface files. You can read more about the rationale of this change in [issue 244](https://github.com/pepkit/looper/issues/244#issuecomment-611154594).
 
+## Modulating pipeline by sample
+
+If you have a project that contains samples of different types, you may want to submit a different pipeline for each sample.
+Usually, we think of looper as running the same pipeline for each sample.
+The best way to solve this problem is to split your sample table up into different tables, and then run a different pipeline on each.
+But if you really want to, you can actually modulate the pipeline by sample attributes.
+You can use an `imply` modifier in your PEP to select which pipelines you want to run on which samples, like this:
+
+
+```yaml
+sample_modifiers:
+  imply:
+    - if:
+        protocol: "RRBS"
+      then:
+        pipeline_interfaces: "/path/to/pipeline_interface.yaml"
+    - if:
+        protocol: "ATAC"
+      then:
+        pipeline_interfaces: "/path/to/pipeline_interface2.yaml"
+```
+
+A more complicated example taken from [PEPATAC](https://pepatac.databio.org/en/latest/) of a `project_config.yaml` file:
+
+```yaml
+pep_version: 2.0.0
+sample_table: tutorial.csv
+
+sample_modifiers:
+  derive:
+    attributes: [read1, read2]
+    sources:
+      # Obtain tutorial data from http://big.databio.org/pepatac/ then set
+      # path to your local saved files
+      R1: "${TUTORIAL}/tools/pepatac/examples/data/{sample_name}_r1.fastq.gz"
+      R2: "${TUTORIAL}/tools/pepatac/examples/data/{sample_name}_r2.fastq.gz"
+  imply:
+    - if: 
+        organism: ["human", "Homo sapiens", "Human", "Homo_sapiens"]
+      then: 
+        genome: hg38
+        prealignment_names: ["rCRSd"]
+        deduplicator: samblaster # Default. [options: picard]
+        trimmer: skewer          # Default. [options: pyadapt, trimmomatic]
+        peak_type: fixed         # Default. [options: variable]
+        extend: "250"            # Default. For fixed-width peaks, extend this distance up- and down-stream.
+        frip_ref_peaks: None     # Default. Use an external reference set of peaks instead of the peaks called from this run
+```
+
+
 
 ## Passing extra command-line arguments
 

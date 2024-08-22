@@ -150,8 +150,24 @@ In this simple example, we don't benefit much from using the derived columns. Bu
 
 ## PEPhub
 
+What if you could point looper to a remote file, instead of having to store your metadata locally on disk?
+This is where PEPhub comes in.
+PEPhub is a web interface for storing PEPs. You can read more in the [PEPhub documentation](../../pephub/README.md).
 
+This tutorial PEP is saved on PEPhub at <https://pephub.databio.org/databio/pep_derived_attrs>.
 
+Looper allows us to point to these remote PEPs instead of to local files. Just change the `pep_config` to point to a registry path on PEPhub, like this:
+
+```yaml hl_lines="1" title=".looper.yaml"
+pep_config: "pephub.databio.org://databio/pep_derived_attrs:default"
+output_dir: results
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
+```
+
+Now you can delete the `metadata` subfolder entirely, because we're not using it at all, but the `looper run` will give the same results.
+
+The next more advanced thing to do with this is to have the pipeline results actually *populate* the table on PEPhub. This is possible with looper, but it requires that we learn one more important tool: pipestat. This is what we'll study next.
 
 
 !!! tip "Summary"

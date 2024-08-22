@@ -138,6 +138,7 @@ nav:
         - Initiating a new looper project: looper/tutorial/initialize.md
         - Metadata specification: looper/tutorial/metadata.md
         - Configuring compute resources: looper/tutorial/compute-settings.md
+        - Setting up pipestat: looper/tutorial/pipestat.md
       - Advanced user guide:
         - Looper config options: looper/advanced-guide/looper-config.md
         - Custom compute packages: looper/advanced-guide/custom-compute-packages.md
@@ -151,6 +152,7 @@ nav:
         # - Hello World (to remove): looper/code/hello-world.md
         # - Intermediate Example (to remove): looper/code/hello-world-intermediate.md
       - How-to recipes:
+        - Modulate pipeline by sample: looper/how-to/module-pipeline-by-sample.md
         - "Tutorial: divvy in Python": looper/code/tutorial_divvy.md
         - "Tutorial: divvy in shell": looper/code/cli_divvy.md
     - Pipeline Developer Guide:

@@ -273,10 +273,55 @@ echo 'Start time:' `date +'%Y-%m-%d %T'`
 pipeline/count_lines.sh data/mexico.txt 
 ```
 
-### Parameterizing job templates through the pipeline interface
+
+### Parameterizing job templates through the looper config
+
 
 It can be annoying to provide compute parameters every time you want to run your jobs. 
 It's convenient to store those settings somewhere.
+Luckily, looper provides a solution to this exact problem!
+You can specify any command-line arguments through the looper config by adding a `cli` section.
+For example, if we want to add these compute settings, we could do it like this:
+
+```yaml title=".looper.yaml" hl_lines="5 6 7 8 9 10 11"
+pep_config: metadata/pep_config.yaml
+output_dir: results
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
+cli:
+  run:
+    compute: 
+      partition: standards
+      time: '01-00:00:00'
+      cores: '32'
+      mem: '32000'
+```
+
+This works for other arguments as well. For example, if we want `looper run` to default to only running a single sample and using the `slurm` package, we could add these lines to our looper config:
+
+```yaml title=".looper.yaml" hl_lines="7 8"
+pep_config: metadata/pep_config.yaml
+output_dir: results
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
+cli:
+  run:
+    limit: 1
+    package: slurm
+    compute: 
+      partition: standards
+      time: '01-00:00:00'
+      cores: '32'
+      mem: '32000'
+```
+
+Now, we could override these by passing `-p` or `-l` on the command line.
+Putting default arguments into the looper config `cli` section allows you to avoid having to type your common settings every time.
+It also makes it easier to parameterize the pipeline differently for different projects.
+
+### Parameterizing job templates through the pipeline interface
+
+Sometimes, you want the pipeline to be paramterized globally, so you don't have to worry about re-parameterizing it for different projects.
 You can also provide compute settings in the pipeline interface.
 Let's add a `compute` section in the pipeline interface file, like this:
 
@@ -302,23 +347,6 @@ looper run -d -l 1 \  # this works!
 
 Parameterizing through the pipeline interface is useful if the parameters are going to be the same for this pipeline, regardless of the project. But sometimes, you need to set the parameters separately for each project...
 
-### Parameterizing job templates through the looper config
-
-You can also provide compute parameters in the looper config:
-
-```yaml title=".looper.yaml" hl_lines="5 6 7 8 9"
-pep_config: metadata/pep_config.yaml
-output_dir: results
-pipeline_interfaces:
-  - pipeline/pipeline_interface.yaml
-compute:
-  partition: standards
-  time: '01-00:00:00'
-  cores: '32'
-  mem: '32000'
-```
-
-This allows you to parameterize the pipeline differently for different projects.
 
 !!! warning
     One problem with all of these methods is that they just provide the same compute parameters for every sample.
