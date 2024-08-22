@@ -16,7 +16,7 @@ switzerland,canton,data/switzerland.txt
 canada,province,data/canada.txt
 ```
 
-Then, we pointed to the this CSV in the `.looper.yaml` config file:
+Then, we pointed to the CSV in the `.looper.yaml` config file:
 
 ``` yaml title=".looper.yaml" hl_lines="1"
 pep_config: metadata/sample_table.csv  # pointer to metadata file
@@ -139,4 +139,4 @@ But what if your data sources are not the same? Say you have a set of samples wh
 
 ## Why is this useful?
 
-In this simple example, we don't benefit much from using the derived columns. But in a real-world case, things can get much more complicated. Paths start to get really long and unweildy. They might point to different places. File systems can change, necessitating adjusting lots of variables. For more information and a more detailed example, see: [How to eliminate paths from a sample table](../../spec/howto-eliminate-paths.md).
+In this simple example, we don't benefit much from using the derived columns. But in a real-world case, things can get much more complicated. Paths start to get really long and unwieldy. They might point to different places. File systems can change, necessitating adjusting lots of variables. For more information and a more detailed example, see: [How to eliminate paths from a sample table](../../spec/howto-eliminate-paths.md).
