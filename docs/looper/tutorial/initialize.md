@@ -13,7 +13,7 @@ By running this pipeline, we’ll compute the number of states or provinces in e
 After setting things up, it will be easy to launch all our jobs like this:
 
 ```sh
-cd my_project_directory
+cd looper_csv_example
 looper run
 ```
 
@@ -71,7 +71,7 @@ Chiapas
 
 ## Step 3: Create a metadata table
 
-Looper needs a list of samples in the form of a sample metadata table, which names each sample and includes paths to the data files. Create a new file called `metadata/sample_table.csv` and paste this content in it:
+Looper needs a list of samples in the form of a sample metadata table, which names each sample and includes paths to the data files. Looper will accept a PEP, which we'll discuss more later, or just a simple CSV file, which is where we'll start. Create a new file called `metadata/sample_table.csv` and paste this content in it:
 
 ```csv  title="metadata/sample_table.csv"
 sample_name,area_type,file_path
@@ -80,7 +80,7 @@ switzerland,canton,data/switzerland.txt
 canada,province,data/canada.txt
 ```
 
-Each row corresopnd to a sample, with a unique identifier under `sample_name`, a pointer to its corresponding file in `file_path`, and any other information you want to include about the sample (in this case, `area_type`). These will be the different values available to pass to your pipeline.
+Each row corresponds to a sample, with a unique identifier under `sample_name`, a pointer to its corresponding file in `file_path`, and any other information you want to include about the sample (in this case, `area_type`). These will be the different values available to pass to your pipeline.
 
 ## Step 4: Create the pipeline
 
