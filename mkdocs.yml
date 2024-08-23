@@ -136,9 +136,9 @@ nav:
     - Pipeline User Guide:
       - Tutorial:
         - Initiating a new looper project: looper/tutorial/initialize.md
-        - Metadata specification: looper/tutorial/metadata.md
-        - Configuring compute resources: looper/tutorial/compute-settings.md
-        - Setting up pipestat: looper/tutorial/pipestat.md
+        - Using PEP to simplify complex projects: looper/tutorial/metadata.md
+        - Setting up pipestat for results reporting: looper/tutorial/pipestat.md
+        - Configuring compute resources to run on a cluster: looper/tutorial/compute-settings.md
       - Advanced user guide:
         - Looper config options: looper/advanced-guide/looper-config.md
         - Custom compute packages: looper/advanced-guide/custom-compute-packages.md
