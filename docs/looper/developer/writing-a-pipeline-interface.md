@@ -6,7 +6,17 @@ title: Pipeline interface specification
 
 ## Introduction
 
-If you want to use looper to run samples in a PEP through an arbitrary shell command, you will need to write a pipeline interface. Here is a basic walkthrough to write a simple interface file. Once you've been through this, you can consult the formal [pipeline interface format specification](pipeline-interface-specification.md) for further details and reference.
+If you're interested in developing 
+The critical point of contact is the pipeline interface.
+It connects
+ Here is a basic walkthrough to write a simple interface file. Once you've been through this, you can consult the formal [pipeline interface format specification](pipeline-interface-specification.md) for further details and reference.
+
+!!! success "Learning objectives"
+    - What is a looper pipeline interface?
+    - How do I write a looper pipeline interface for my custom pipeline?
+
+
+
 
 ## Example
 

@@ -141,7 +141,7 @@ nav:
         - Configuring compute resources to run on a cluster: looper/tutorial/compute-settings.md
       - Advanced user guide:
         - Looper config options: looper/advanced-guide/looper-config.md
-        - Custom compute packages: looper/advanced-guide/custom-compute-packages.md
+        - Customizing compute settings: looper/advanced-guide/advanced-computing.md
         - Advanced metadata specification: looper/defining-a-project.md
         - Advanced run configuration: looper/advanced-pipeline-configuration.md
         - Running jobs in containers: looper/containers.md
@@ -155,16 +155,14 @@ nav:
         - Modulate pipeline by sample: looper/how-to/module-pipeline-by-sample.md
         - "Tutorial: divvy in Python": looper/code/tutorial_divvy.md
         - "Tutorial: divvy in shell": looper/code/cli_divvy.md
-    - Pipeline Developer Guide:
-      - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
-      - Using pipestat: looper/pipestat.md
-      - Pipeline interface specification: looper/pipeline-interface-specification.md
-      - Pipeline tiers: looper/pipeline-tiers.md
-      - Concentric templates: looper/concentric-templates.md
-      - Pre-submission hooks system: looper/pre-submission-hooks.md
-      - Looper variable namespaces: looper/variable-namespaces.md
-      - Advanced:
         - Using geofetch: looper/using-geofetch.md
+        - Using pipestat: looper/pipestat.md
+    - Pipeline Developer Docs:
+      - Developer tutorial:
+        - Writing a pipeline interface: looper/developer/writing-a-pipeline-interface.md
+        - Pre-submission hooks system: looper/developer/pre-submission-hooks.md
+        - Pipeline interface specification: looper/developer/pipeline-interface-specification.md
+        - Pipeline tiers: looper/developer/pipeline-tiers.md
     - Reference:
       - Reference:
         - CLI Usage: looper/usage.md
