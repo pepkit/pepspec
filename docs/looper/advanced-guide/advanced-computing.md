@@ -1,29 +1,31 @@
-# Customizing compute with looper's concentric template system
+# Customizing compute with looper's nested template system
 
 ## Introduction
 
-Looper builds job scripts using a *concentric template system*, which consists of an inner and outer template. The inner template, called the *command template*, generates the individual commands to execute. The outer template, known as the *submission template*, wraps these commands in environment-handling code. This layered approach separates the computing environment from the pipeline, enhancing portability.
+Looper builds job scripts using a *nested template system*, which consists of an inner and outer template. The inner template, called the *command template*, generates the individual commands to execute. The outer template, known as the *submission template*, wraps these commands in environment-handling code. This nested approach separates the computing environment from the pipeline, enhancing portability.
 
-This more advanced guide assumes you're already familiar with the "configuring compute settings" guide. We will now explain the concentric templates in more detail and then explain how you can customize submission templates to fit just about any computing scenario.
+This more advanced guide assumes you're already familiar with the "configuring compute settings" guide. We will now explain the nested templates in more detail and then explain how you can customize submission templates to fit just about any computing scenario.
 
 !!! success "Learning objectives"
-    - What is looper's concentric template system?
-    - Why does looper use concentric templates?
+    - What is looper's nested template system?
+    - Why does looper use nested templates?
+    - What is the difference between command and submission templates?
     - How can I configure looper to submit jobs in different ways?
     - How do I create custom looper compute packages?
 
 
 
-## Why use concentric templates?
+## Why use nested templates?
 
-Looper’s concentric templates are a reflection of its modular design philosophy, aimed at separation of concerns. The system distinguishes between *how to run a pipeline* and *how to configure the environment* where it runs. These tasks are done by different people because the pipeline author is not necessarily the same as the pipeline user.
+Looper’s nested templates are a reflection of its modular design philosophy, aimed at separation of concerns. The system distinguishes between *how to run a pipeline* and *how to configure the environment* where it runs. These tasks are done by different people because the pipeline author is not necessarily the same as the pipeline user.
 
 - The pipeline author designs how the pipeline runs, but does not know the user's computing environment.
 - The user knows their environment well, but may not be familiar with the pipeline's specifics.
 
 This separation addresses a common frustration with pipelines that hard-code job submission mechanisms, making them difficult to adapt to different environments. By clearly separating the configuration of pipeline execution from the environment setup, looper allows both roles to operate independently.
 
-The *command template*, written by the pipeline author, is specified in the pipeline interface file. Meanwhile, the pipeline user defines the outer *submission template* using divvy submission templates. This setup offers several benefits:
+### Command vs Submission Templates
+The *command template*, written by the pipeline author, is specified in the pipeline interface file. Meanwhile, the pipeline user defines the outer *submission template* using submission templates (via **divvy**, more on that in a moment). This setup offers several benefits:
 
 1. Commands can be executed in any computing environment by simply switching the submission template.
 2. The submission template can handle various environment parameters, such as containers.
@@ -31,7 +33,7 @@ The *command template*, written by the pipeline author, is specified in the pipe
 4. The universal submission template can be managed by dedicated submission software.
 5. Pipeline authors can focus solely on pipeline design, without worrying about environment configuration. 
 
-## Brief recap of command  and submission templates
+## Template examples
 
 We've seen examples of two templates in the previous tutorials, but to briefly remind you:
 
@@ -52,7 +54,9 @@ The command template provides the command and should be written by the pipeline 
 
 ### The submission template
 
-As a user, the submission template is more relevant -- it tells the computer how, where, and when to execute the command. To submit commands to a cluster, we simply need to add some more information around the command above, specifying things like memory use, job name, *etc.* It may be tempting to add these details directly to the command template. This *would* work; however, this would restrict the pipeline to *only* running in that way, since the submission code would now be tightly coupled to the command code. Instead, looper retains flexibility by introducing a second template layer, the *submission template*. A submission template can be as simple or complex as required. For, example, a basic submission template to run in a local computing environment might look like this:
+As a user, the submission template is **more relevant** -- it tells the computer how, where, and when to execute the command. To submit commands to a cluster, we simply need to add some more information around the command above, specifying things like memory use, job name, *etc.* It may be tempting to add these details directly to the command template. This *would* work; however, this would restrict the pipeline to *only* running in that way, since the submission code would now be tightly coupled to the command code. Instead, looper retains flexibility by introducing a second template layer, the *submission template*. A submission template can be as simple or complex as required. 
+  
+For, example, a basic submission template to run in a local computing environment might look like this:
 
 ```sh title="simple_submission_template.sub"
 #! /usr/bin/bash
@@ -60,7 +64,7 @@ As a user, the submission template is more relevant -- it tells the computer how
 {CODE}
 ```
 
-The `{CODE}` variable is populated by the populated result of the command template -- that's what makes the templates concentric. This example does nothing but pass the command through. A more complicated template could submit a job to a SLURM cluster:
+The `{CODE}` variable is populated by the populated result of the command template -- that's what makes the templates nested. This example does nothing but pass the command through. A more complicated template could submit a job to a SLURM cluster:
 
 ```sh title="slurm_template.sub"
 #!/bin/bash
@@ -79,27 +83,26 @@ Now that you understand the difference between the command template and the subm
 Remember, we're taking the perspective of the pipeline user here; we assume the pipeline author has provided the command correctly in the pipeline interface, so we won't delve any deeper into command templates here.
 If you want to learn more about developing pipelines and advanced features of the pipeline interface, consult the developer tutorials on [how to write a pipeline interface](../developer/writing-a-pipeline-interface.md).
 
-## Custom compute packages
+## Custom compute packages using divvy
 
-Looper will come with several pre-built packages, but these may not fit your computing environment exactly.
-You'll probably want to create your own compute package.
+Looper will come with several pre-built packages via a module called **divvy**. However, these may not fit your computing environment exactly, and you'll probably want to create your own compute package.
 
-The available compute packages are defined in the *divvy configuration file* (`DIVCFG` for short), `yaml` file. Each compute package is defined by at lease two things: a path to a template, the command used to submit the template. Here is an example divvy configuration file:
+The available compute packages are defined in the *divvy configuration file* (`DIVCFG` for short), `yaml` file. Note that looper will use a default divvy config file if the user does not specify one via the `DIVCFG` environment variable (e.g. `export DIVCFG=path/to/compute_config.yaml`). Each compute package is defined by at lease two things: a path to a template, the command used to submit the template. Here is an example divvy configuration file:
 
 ```yaml title="divvy_config.yaml"
 compute_packages:
   default:
-    submission_template: templates/local_template.sub
+    submission_template: divvy_templates/local_template.sub
     submission_command: sh
   local:
-    submission_template: templates/local_template.sub
+    submission_template: divvy_templates/local_template.sub
     submission_command: sh
   develop_package:
-    submission_template: templates/slurm_template.sub
+    submission_template: divvy_templates/slurm_template.sub
     submission_command: sbatch
     partition: develop
   big:
-    submission_template: templates/slurm_template.sub
+    submission_template: divvy_templates/slurm_template.sub
     submission_command: sbatch
     partition: bigmem
 ```
@@ -122,7 +125,7 @@ The `submission_template` attribute is a path to a template file. The template f
 
 To create a custom compute package and add it to divvy is easy:
 
-1. Create your own template, a text file with `{VARIBLE}` syntax for any job-specific variables. You can find examples in the [submit_templates](https://github.com/pepkit/divcfg/tree/master/templates) folder.
+1. Create your own template, a text file with `{VARIABLE}` syntax for any job-specific variables. You can find examples in the [submit_templates](https://github.com/pepkit/divcfg/tree/master/templates) folder.
 2. Add a new compute package as an entry under `compute_packages` in your divvy config file.
 3. Point to your custom template in the `submission_template` attribute of your new compute package.
 4. Add the appropriate `submission_command` for this package.
@@ -370,9 +373,6 @@ my_variable: 123
 
 Then `project.my_variable` would have value `123`. You can use the project namespace to refer to any information in the project. You can use `project.looper` to refer to any attributes in the `looper` section of the PEP.
 
-!!! warning
-    This may no longer be possible, since we removed the `looper` section of the PEP. Now, we will need to update this to work with the new looper config. I am not sure what is the current status of this, but probably this namespace needs to be revamped.
-
 #### 2. sample or samples
 
 For sample-level pipelines, the `sample` namespace contains all PEP post-processing sample attributes for the given sample. For project-level pipelines, looper constructs a single job for an entire project, so there is no `sample` namespace; instead, there is a `samples` (plural) namespace, which is a list of all the samples in the project. This can be useful if you need to iterate through all the samples in your command template.
@@ -417,9 +417,11 @@ So, the compute namespace is first populated with any variables from the selecte
 
 The `pipestat` namespace consists of a group of variables that reflect the [pipestat](../../pipestat/README.md) configuration for a submission.
 
-1. `pipestat.results_file` - The pipestat results file.
+1. `pipestat.file` - The pipestat results file.
 2. `pipestat.record_identifier` - record_identifier
-3. `pipestat.config_file`- config
+3. `pipestat.config_file`- config file path
+4. `pipestat.output_schema` - output schema path
+5. `pipestat.pephub_path` - path to PEP on PEPhub as destination for reporting results
 
 ## Best practices on storing compute variables
 
@@ -451,13 +453,19 @@ Finally, project-level variables can also be populated from the `compute` sectio
 
 ## Resources
 
-You may notice that the compute config file does not specify resources to request (like memory, CPUs, or time). Yet, these are required in order to submit a job to a cluster. **Resources are not handled by the divcfg file** because they not relative to a particular computing environment; instead they vary by pipeline and sample. As such, these items should be provided elsewhere. 
+You may notice that the compute config file does not specify resources to request (like memory, CPUs, or time). Yet, these are required in order to submit a job to a cluster. **Resources are not handled by the divcfg file** because they not relative to a particular computing environment; instead they vary by pipeline and sample. As such, these items should be provided elsewhere. The user can provide them at run time via the CLI:
+
+```shell
+looper run --package slurm --compute PARTITION=standard time='01-00:00:00' cores='32' mem='32000'
+```
+
+
 
 
 
 !!! tip "Summary"
     - Looper jobs are created by first populating a command template, which is then provided as a variable to populate a submission template.
-    - Looper's concentric templates provide a powerful separation of concerns, so pipeline developers don't have to worry about configurint computing environments (like cluster resources), and pipeline users don't have to worry about the specifics of the pipeline interface.
+    - Looper's nested templates provide a powerful separation of concerns, so pipeline developers don't have to worry about configurint computing environments (like cluster resources), and pipeline users don't have to worry about the specifics of the pipeline interface.
     - You can easily create your own compute packages to customize job submission for any computing environment.
     - Looper provides a lot of built-in variables you can use in your job submission templates, which are organized into *looper variable namespaces*.
     - You can use `divvy` independently of looper to create and submit independent job scripts. Looper uses divvy to create job scripts for each sample in your sample table.
