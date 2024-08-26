@@ -285,41 +285,20 @@ As shown in the previous tutorial, Looper can process metadata from PEPhub using
 
 Create a new PEP on PEPHub to hold these results (in this case, let's use the demo example): `databio/pipestat_demo:default`
 
-We can change our pipeline to report to PEPhub directly:
-
-```python hl_lines="17"
-import pipestat
-import sys
-import os.path
-
-# Very simple pipeline that counts lines and reports the final count via pipestat
-
-# Obtain arguments invoked during looper submission via command templates
-text_file = sys.argv[1] 
-sample_name = sys.argv[2]   # pipestat needs a unique sample identifier. Looper uses sample_name but pipestat uses record_identifier
-config_file_path = sys.argv[3]  # this is the config file path
-schema_path = sys.argv[4]  # This is the output schema
-
-# Create pipestat manager
-psm = pipestat.PipestatManager(
-    schema_path=schema_path,
-    record_identifier=sample_name,
-    pephub_path = "databio/pipestat_demo:default"
-)
-
-# Read text file
-text_file = os.path.abspath(text_file)
-
-#Count Lines
-with open(text_file, "r") as f:
-    result = {"number_of_lines": len(f.readlines())}
-
-# Report Results using Pipestat
-psm.report(record_identifier=sample_name, values=result)
-
-# Set status of pipeline for this specific sample at the completion of the pipeline
-psm.set_status(record_identifier=sample_name, status_identifier="completed")
+We must change our looper config file to no longer use a results file path. Instead, it will now use a pephub_url:
+```yaml  title=".looper.yaml" hl_lines="6"
+pep_config: metadata/sample_table.csv
+output_dir: results
+pipeline_interfaces:
+  - ['pipeline/pipeline_interface.yaml']
+pipestat:
+  pephub_path: "databio/pipestat_demo:default"
+  flag_file_dir: results/flags
 ```
+
+The pipeline can remain the same as the last example. Looper will pass along the information in the generated pipestat config file. Pipestat will read the pephub_path from the config file and report results directly to the PEP!
+
+
 
 
 !!! tip "Summary"
