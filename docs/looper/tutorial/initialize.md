@@ -156,7 +156,7 @@ This will create a file at `.looper.yaml`, with this content:
 pep_config: metadata/sample_table.csv
 output_dir: results
 pipeline_interfaces:
-  - ['pipeline/pipeline_interface.yaml']
+  - pipeline/pipeline_interface.yaml
 ```
 
 You could also just create this manually, but the `init` function makes it so you don't have to remember the config syntax. Now that that the project is configured, you can run it like this:

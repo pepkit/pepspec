@@ -27,6 +27,7 @@ In our previous tutorials, we demonstrated using PEP to specify sample metadata.
 cd ..
 cp -r pep_derived_attrs pipestat_example
 rm -rf pipestat_example/results  # remove results folder
+cd pipestat_example
 ```
 
 First we need to take a look at and modify our pipeline interface in `pipeline/pipeline_interface.yaml` by adding an **output schema**:
@@ -84,7 +85,7 @@ Modify the looper config file to give looper some additional information about p
 pep_config: metadata/sample_table.csv
 output_dir: results
 pipeline_interfaces:
-  - ['pipeline/pipeline_interface.yaml']
+  - pipeline/pipeline_interface.yaml
 pipestat:
   results_file_path: results.yaml
 ```
@@ -216,7 +217,7 @@ Modify the looper config file to set the flag status directory:
 pep_config: metadata/sample_table.csv
 output_dir: results
 pipeline_interfaces:
-  - ['pipeline/pipeline_interface.yaml']
+  - pipeline/pipeline_interface.yaml
 pipestat:
   results_file_path: results.yaml
   flag_file_dir: results/flags
@@ -292,7 +293,7 @@ We must change our looper config file to no longer use a results file path. Inst
 pep_config: metadata/sample_table.csv
 output_dir: results
 pipeline_interfaces:
-  - ['pipeline/pipeline_interface.yaml']
+  - pipeline/pipeline_interface.yaml
 pipestat:
   pephub_path: "databio/pipestat_demo:default"
   flag_file_dir: results/flags
