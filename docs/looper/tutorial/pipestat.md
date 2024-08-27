@@ -82,7 +82,7 @@ echo "Number of lines: $linecount"
 Modify the looper config file to give looper some additional information about pipestat regarding _where_ the results will be stored:
 
 ```yaml  title=".looper.yaml" hl_lines="5-6"
-pep_config: metadata/sample_table.csv
+pep_config: metadata/pep_config.yaml
 output_dir: results
 pipeline_interfaces:
   - pipeline/pipeline_interface.yaml
@@ -147,7 +147,7 @@ pipeline_name: count_lines
 output_schema: pipestat_output_schema.yaml
 sample_interface:
   command_template: >
-    python3 {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file} {pipestat.output_schema}
+    python3 pipeline/count_lines.py {sample.file_path} {sample.sample_name} {pipestat.results_file} {pipestat.output_schema}
 ```
 
 Note: as with previous tutorials, you may need to change the permissions on the `count_lines.py` file:
@@ -165,7 +165,7 @@ pipeline_name: count_lines
 output_schema: pipestat_output_schema.yaml
 sample_interface:
   command_template: >
-    pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file} {pipestat.output_schema}
+    python3 pipeline/count_lines.py {sample.file_path} {sample.sample_name} {pipestat.config_file} {pipestat.output_schema}
 ```
 
 ```python hl_lines="17"
@@ -214,7 +214,7 @@ To use status flags, we must modify the pipeline to set the status and we must t
 Modify the looper config file to set the flag status directory:
 
 ```yaml  title=".looper.yaml" hl_lines="7"
-pep_config: metadata/sample_table.csv
+pep_config: metadata/pep_config.yaml
 output_dir: results
 pipeline_interfaces:
   - pipeline/pipeline_interface.yaml
@@ -290,7 +290,7 @@ Create a new PEP on PEPHub to hold these results (in this case, let's use the de
 
 We must change our looper config file to no longer use a results file path. Instead, it will now use a pephub_url:
 ```yaml  title=".looper.yaml" hl_lines="6"
-pep_config: metadata/sample_table.csv
+pep_config: metadata/pep_config.yaml
 output_dir: results
 pipeline_interfaces:
   - pipeline/pipeline_interface.yaml
