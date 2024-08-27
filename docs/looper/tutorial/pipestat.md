@@ -18,6 +18,8 @@ In this tutorial, we will wire up our simple pipeline with pipestat, and show ho
 
 ## A Simple Shell Pipeline
 
+Note: if you'd like the completed pipestat example, it can be downloaded directly here: [pipestat_example](https://github.com/pepkit/hello_looper/tree/master/pipestat_example)
+
 ## Set up a working directory
 In our previous tutorials, we demonstrated using PEP to specify sample metadata. To begin using pipestat, let's create a copy of the previous tutorial:
 

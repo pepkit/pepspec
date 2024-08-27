@@ -44,7 +44,7 @@ A typical Looper workspace includes the following components:
 
 4. **Looper Configuration File:** This file points to the other components and includes any additional configuration options you want to pass to looper.
 
-We'll walk through how to set up each of these components. If you'd rather skip the setup instructions, you can also download the files from the [hello world git repository](https://github.com/pepkit/hello_looper/tree/master/csv), which have the files structured the way you'd get at the end of this tutorial. But we recommend following these instructions the first time because they will help you get a feel for the contents of the files.
+We'll walk through how to set up each of these components. If you'd rather skip the setup instructions, you can also download the files from the [hello world git repository](https://github.com/pepkit/hello_looper/tree/master/looper_csv_example), which have the files structured the way you'd get at the end of this tutorial. But we recommend following these instructions the first time because they will help you get a feel for the contents of the files.
 
 ## Step 1: Set up a directory
 
