@@ -13,7 +13,7 @@ While this approach is easy and straightforward, Looper truly shines when you ne
 
 To facilitate this, Looper integrates a tool called `divvy`, which handles job submission configuration.
 `Divvy` is automatically installed alongside Looper but can also be used independently.
-By leveraging Divvy, Looper provides a powerful [concentric template system](concentric-templates.md) that simplifies running jobs on any cluster resource manager (e.g., SLURM, SGE, LFS) using templates. 
+By leveraging Divvy, Looper provides a powerful [nested template system](../advanced-guide/advanced-computing.md) that simplifies running jobs on any cluster resource manager (e.g., SLURM, SGE, LFS) using templates. 
 Switching between different computing environments is also seamless.
 The best part is that this setup works for any Looper-compatible pipeline.
 Once you’ve configured your computing environment to your liking, Looper will help you deploy any pipeline in the same way.
@@ -28,7 +28,7 @@ If you have a different system, you can edit templates and use a similar approac
 !!! success "Learning objectives"
     - How does looper actually run jobs?
     - How can submit my jobs to a cluster instead of running them locally?
-    - What is looper's concentric template system and how can I use it to have total control over my compute settings?
+    - What is looper's nested template system and how can I use it to have total control over my compute settings?
     - Can I submit my pipeline to different types of clusters or in different computing environments?
     - How do I specify required resources like time or number of cores for a cluster job?
 
@@ -144,7 +144,7 @@ So, these are the steps looper takes to create the final job submission script:
 !!! tip "Key point"
     - Looper isn't running anything directly. Rather, it's creating a script (called a submission script), and then it executes that.
     - If you use dry run mode, then it just creates the script without executing it.
-    - The submission script is created in two steps, with two templates. First, the command is constructed, using the pipeline interface. Then, this command is inserted into a submission template provided by divvy. This two-layered template system is what we call looper's [concentric template system](concentric-templates.md), and it provides a lot of  powerful benefits.
+    - The submission script is created in two steps, with two templates. First, the command is constructed, using the pipeline interface. Then, this command is inserted into a submission template provided by divvy. This two-layered template system is what we call looper's [nested template system](../advanced-guide/advanced-computing.md), and it provides a lot of  powerful benefits.
 
 
 Next, we'll learn how to change the submission template, so that the job gets submitted to a cluster instead of run locally.
@@ -158,7 +158,7 @@ To configure `divvy` (and therefore `looper`) for cluster computing, first creat
 
 ```bash
 export DIVCFG="divvy_config.yaml"
-divvy init -c $DIVCFG
+divvy init --config $DIVCFG
 ```
 
 Looper will now have access to your computing configuration. Add the `export...` line to your `.bashrc` or `.profile` to ensure the `DIVCFG` variable persists for future command-line sessions. 
@@ -361,7 +361,7 @@ Because different people/roles will be editing different things.
 - the pipeline author is not necessarily the same as the person running the pipeline.
 - the pipeline author may want to provide some basic compute guidance, which can do so in the pipeline interface. 
 - the person running might way to configure something for the workspace as a whole. These go in the `.looper.yaml` file.
-- but for a one-off run, that's different from normal, you can override with with the `--compute` command-line argument.
+- but for a one-off run, that's different from normal, you can override with the `--compute` command-line argument.
 
 
 
@@ -379,7 +379,7 @@ For many use cases, the built-in packages will be sufficient.
 But a great thing about looper is that these compute packages are totally customizable.
 You can edit the templates, and even create your own custom compute packages.
 This allows you to tailor divvy/looper to any compute environment.
-You can find out more in the documentation on [custom compute packages](../advanced-guide/custom-compute-packages.md)
+You can find out more in the documentation on [custom compute packages](../advanced-guide/advanced-computing.md)
 
 
 
