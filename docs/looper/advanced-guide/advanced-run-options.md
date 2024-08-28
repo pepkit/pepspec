@@ -156,10 +156,6 @@ sample_modifiers:
 
 ## Passing extra command-line arguments
 
-!!! warning
-    This may be outdated... we need to confirm passing extra command-line arguments still works like this.
-
-
 Occasionally, a particular project needs to run a particular flavor of a pipeline. How can you  adjust pipeline arguments for just this project? You can use looper *command extras* to solve this problem. Command extras let you pass any string on to the pipeline, which will be appended to the command.
 
 There are 2 ways to use command extras: for sample pipelines, or for project pipelines:
@@ -231,7 +227,7 @@ That will remove any defined command extras and append `-R` to the end of any co
 
 ## Add CLI arguments to looper config
 
-You can also customize things further. You can provide a `cli` keyword to specify any command line (CLI) options from within the looper config file. The subsections within this section direct the arguments to the respective `looper` subcommands. For example, to specify a sample submission limit for a `looper run` command, use:
+You can provide a `cli` keyword to specify any command line (CLI) options from within the **looper config file**. The subsections within this section direct the arguments to the respective `looper` subcommands. For example, to specify a sample submission limit for a `looper run` command, use:
 
 ```yaml
 cli:
