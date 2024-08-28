@@ -143,7 +143,6 @@ nav:
         - Advanced run options: looper/advanced-guide/advanced-run-options.md
         - Customizing compute settings: looper/advanced-guide/advanced-computing.md
         - Advanced metadata features: looper/advanced-guide/advanced-metadata.md
-        - Browsable HTML Reports: looper/looper-report.md
       - How-to recipes:
         - Running jobs in containers: looper/how-to/containers.md
         - "Tutorial: divvy in Python": looper/code/tutorial_divvy.md

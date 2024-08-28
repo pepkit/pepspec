@@ -276,10 +276,12 @@ Finally, looper's integration with pipestat allows for the generation of a html 
 Assuming you've been following along and have reported results previously, simply run:
 
 ```sh
-looper run
+looper report
 ```
 
 This command will call `pipestat summarize` on the results located in your results location. In this case, the `results.yaml` file.
+
+An example html report using `looper report` can be found here: [PEPATAC Gold Summary](https://pepatac.databio.org/en/latest/files/examples/gold/gold_summary.html)
 
 
 ## Reporting results back to PEPhub
@@ -301,7 +303,36 @@ pipestat:
 
 The pipeline can remain the same as the last example. Looper will pass along the information in the generated pipestat config file. Pipestat will read the pephub_path from the config file and report results directly to the PEP!
 
+## Create tables and stats summaries
 
+Looper can also create pipeline stats summaries and object summaries as  `.tsv` and `.yaml` file respectively.
+First, ensure Looper is properly set up to use pipestat and that pipeline results have been reported to the backend of choice.
+
+Run:
+```sh
+looper table
+```
+
+You'll see a path output for each of the summary files:
+```
+Looper version: 2.0.0
+Command: table
+Using looper config (.looper.yaml).
+Creating objects summary
+'count_lines' pipeline stats summary (n=4): results/count_lines_stats_summary.tsv
+'count_lines' pipeline objects summary (n=0): results/count_lines_objs_summary.yaml
+
+```
+
+## Create a folder of similar objects (symlinks)
+
+Sometimes your pipeline may create many of the same file types (think images) and you'd like to peruse all of them. You can use `looper link` which will create a folder of similar objects for each sample in one location. Note: this does not create copies of the objects; it simply uses symlinks to achieve this.
+
+To create a directory of linked objects:
+
+```shell
+looper link
+```
 
 
 !!! tip "Summary"
