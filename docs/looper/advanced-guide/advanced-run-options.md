@@ -37,7 +37,7 @@ Or you can lump samples into number of jobs.
 
 ### What are project-level pipelines?
 
-The tutorials assume you're running a pipeline where you're trying to run one job per sample. The samples are independent and you want to do the same thing to each of them. This is the most common use case for looper. 
+The tutorials assume you're running a pipeline where you're trying to run one job per sample,i.e. the samples are independent, and you want to do the same thing to each of them. This is the most common use case for looper. 
 
 But sometimes, you're interested in running a job on an entire project. This could be a pipeline that integrates data across *all* the samples, or one that will summarize the results of your independent sample pipeline runs. In this case, you really only need to submit a single job. Looper's main benefit is handling the boilerplate needed to construct the submission scripts and submit a separate job for each sample. But looper *also* provides some help for the task of submitting a single job for the whole project.
 
@@ -58,7 +58,17 @@ Project pipelines are run with `looper runp` (where the *p* stands for *project*
 
 In a typical workflow, a user will first run the samples individually using `looper run`, and then, if the pipeline provides one, will run the project component using `looper runp` to summarize to aggregate the results into a project-level output.
 
-
+Example of a pipeline interface containing a sample-level interface AND a project-level interface:
+```yaml
+pipeline_name: example_pipeline
+output_schema: pipestat_output_schema.yaml
+sample_interface:
+  command_template: >
+    count_lines.sh {sample.file} {sample.sample_name}
+project_interface:
+  command_template: >
+    count_lines_project.sh "data/*.txt"
+```
 
 
 ## Running multiple pipelines
@@ -69,8 +79,8 @@ To run more than one pipeline, specify multiple pipeline interfaces in the loope
 pep_config: pephub::databio/looper:default
 output_dir: "$HOME/hello_looper-master/output"
 pipeline_interfaces:
-  sample: "$HOME/hello_looper-master/pipeline/pipeline_interface"
-  project: "$HOME/hello_looper-master/project/pipeline"
+  - "$HOME/hello_looper-master/pipeline/pipeline_interface"
+  - "$HOME/hello_looper-master/project/pipeline"
 ```
 
 You can also link to the pipeline interface with a sample attribute. If you want the same pipeline to run on all samples, it's as easy as using an `append` modifier like this:
