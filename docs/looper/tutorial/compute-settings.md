@@ -351,7 +351,7 @@ Parameterizing through the pipeline interface is useful if the parameters are go
 !!! warning
     One problem with all of these methods is that they just provide the same compute parameters for every sample.
     What if your samples are widely different in input file size, and therefore require different parameters?
-    If you need to change the parameters by sample, you can solve the problem through pipeline interface [size-dependent variables](../pipeline-interface-specification/#size_dependent_variables). In many cases, the samples are roughly similar, so a single parameterization for the whole project will suffice.
+    If you need to change the parameters by sample, you can solve the problem through pipeline interface [size-dependent variables](../developer/pipeline-interface-specification.md#size_dependent_variables). In many cases, the samples are roughly similar, so a single parameterization for the whole project will suffice.
 
 So, there are several ways to provide compute parameters.
 Why do we need all these different places to provide compute parameters?

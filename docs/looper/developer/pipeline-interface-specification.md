@@ -12,7 +12,7 @@ Table of contents:
 
 In order to run an arbitrary pipeline, we require a formal specification for how the pipeline is to be used. We define this using a *pipeline interface* file. It maps attributes of a PEP project or sample to the pipeline CLI arguments. Thus, it defines the interface between the project metadata (the PEP) and the pipeline itself.
 
-If you're using *existing* `looper`-compatible pipelines, you don't need to create a new interface; just [point your project at the one that comes with the pipeline](defining-a-project.md). When creating *new* `looper`-compatible pipelines, you'll need to create a new pipeline interface file.
+If you're using *existing* `looper`-compatible pipelines, you don't need to create a new interface; just point your project at the one that comes with the pipeline. When creating *new* `looper`-compatible pipelines, you'll need to create a new pipeline interface file.
 
 
 
@@ -50,7 +50,7 @@ Pretty simple. The `pipeline_name` is arbitrary. It's used for messaging and ide
 
 The pipeline name is arbitrary. It should be unique for each pipeline. Looper uses it for a few things:
 
-1. to construct the `job_name` variable (accessible via `{ looper.job_name }`). See [variable namespaces](variable-namespaces.md) for more details.
+1. to construct the `job_name` variable (accessible via `{ looper.job_name }`). See [looper variable namespaces in advanced computing](../advanced-guide/advanced-computing.md) for more details.
 
 2. to check for flags. For pipelines that produce flags, looper will be aware of them and not re-submit running jobs.
 
@@ -60,7 +60,7 @@ Looper can run 2 kinds of pipeline: *sample pipelines* run once per sample; *pro
 
 ### command_template
 
-The command template is the most critical part of the pipeline interface. It is a [Jinja2](https://jinja.palletsprojects.com/) template for the command to run for each sample. Within the `command_template`, you have access to variables from several sources. These variables are divided into namespaces depending on the variable source. You can access the values of these variables in the command template using the single-brace jinja2 template language syntax: `{namespace.variable}`. For example, looper automatically creates a variable called `job_name`, which you may want to pass as an argument to your pipeline. You can access this variable with `{looper.job_name}`. The available namespaces are described in detail in [looper variable namespaces](variable-namespaces.md).
+The command template is the most critical part of the pipeline interface. It is a [Jinja2](https://jinja.palletsprojects.com/) template for the command to run for each sample. Within the `command_template`, you have access to variables from several sources. These variables are divided into namespaces depending on the variable source. You can access the values of these variables in the command template using the single-brace jinja2 template language syntax: `{namespace.variable}`. For example, looper automatically creates a variable called `job_name`, which you may want to pass as an argument to your pipeline. You can access this variable with `{looper.job_name}`. The available namespaces are described in detail in [advanced computing](../advanced-guide/advanced-computing.md).
 
 Because it's based on Jinja2, command templates are extremely flexible. For example, optional arguments can be accommodated using Jinja2 syntax, like this:
 
@@ -177,7 +177,7 @@ Looper uses the output schema in its `report` function, which produces a browsab
 
 ### compute
 
-The compute section of the pipeline interface provides a way to set compute settings at the pipeline level. These variables can then be accessed in the command template. They can also be overridden by values in the PEP config, or on the command line. See the [looper variable namespaces](variable-namespaces.md) for details.
+The compute section of the pipeline interface provides a way to set compute settings at the pipeline level. These variables can then be accessed in the command template. They can also be overridden by values in the PEP config, or on the command line. 
 
 There is one reserved attribute under `compute` with specialized behavior -- `size_dependent_variables` which we'll now describe in detail.
 
@@ -215,7 +215,7 @@ This final line in the resources `tsv` must include `NaN` in the `max_file_size`
 
 #### var_templates
 
-This section can consist of multiple variable templates that are rendered and can be reused. The namespaces available to the templates are listed in [variable namespaces](variable-namespaces.md) section. Please note that the variables defined here (even if they are paths) are arbitrary and are *not* subject to be made relative. Therefore, the pipeline interface author needs take care of making them portable (the `{looper.piface_dir}` value comes in handy!).
+This section can consist of multiple variable templates that are rendered and can be reused. The namespaces available to the templates are listed in [advanced computing](../advanced-guide/advanced-computing.md) section. Please note that the variables defined here (even if they are paths) are arbitrary and are *not* subject to be made relative. Therefore, the pipeline interface author needs take care of making them portable (the `{looper.piface_dir}` value comes in handy!).
 
 Example using var_templates:
 ```yaml

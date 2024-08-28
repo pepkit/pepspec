@@ -12,7 +12,7 @@ Pipestat is a tool used by pipelines to standardize reporting of pipeline result
 
 Pipestat is a standalone tool.
 It is not required to use looper, and it can also be used by pipelines that are not looper-compatible. However, using pipestat alongside looper unlocks a set of helpful tools such as html reports via `looper report`.
-You can read the complete details about pipestat in the [pipestat documentation](../../pipestat).
+You can read the complete details about pipestat in the [pipestat documentation](https://pep.databio.org/pipestat/).
 In this tutorial, we will wire up our simple pipeline with pipestat, and show how this lets us use powerful reporting tools to view pipeline results nicely.
 
 

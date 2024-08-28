@@ -3,7 +3,7 @@
 
 ## What kind of pipelines can `looper` run?
 
-`Looper` can run samples through *any pipeline that runs on the command line*. The flexible [pipeline interface](pipeline-interface-specification.md) file allows `looper` to execute arbitrary shell commands. A pipeline may consist of scripts in languages like Perl, Python, or bash, or it may be built with a particular framework. Typically, we use Python pipelines built using the [`pypiper` package](http://pypiper.readthedocs.io), which provides some additional power to `looper`, but that's optional.
+`Looper` can run samples through *any pipeline that runs on the command line*. The flexible [pipeline interface](developer/pipeline-interface-specification.md) file allows `looper` to execute arbitrary shell commands. A pipeline may consist of scripts in languages like Perl, Python, or bash, or it may be built with a particular framework. Typically, we use Python pipelines built using the [`pypiper` package](https://pep.databio.org/pypiper/), which provides some additional power to `looper`, but that's optional.
 
 
 ## Why isn't the `looper` executable available on `PATH`?
@@ -13,7 +13,7 @@ You can add that location to your path by appending it (`export PATH=$PATH:~/.lo
 
 ## How can I run my jobs on a cluster?
 
-Looper uses the external package [divvy](https://pep.databio.org/divvy/) for cluster computing, making it flexible enough to use with any cluster resource environment. Please see the [tutorial on cluster computing with looper and divvy](running-on-a-cluster.md).
+Looper uses the external package [divvy](advanced-guide/advanced-computing.md) for cluster computing, making it flexible enough to use with any cluster resource environment. Please see the [tutorial on cluster computing with looper and divvy](tutorial/compute-settings.md).
 
 
 ## What's the difference between `looper` and `pypiper`?
@@ -36,8 +36,8 @@ As of version `0.11`, you can use `looper rerun` to submit only jobs with a `fai
 
 You may notice that the compute config file does not specify resources to request (like memory, CPUs, or time). Yet, these are required in order to submit a job to a cluster. **Resources are not handled by the divcfg file** because they not relative to a particular computing environment; instead they vary by pipeline and sample. As such, these items should be defined at other stages.
 
-Resources defined in the `pipeline_interface.yaml` file that connects looper to a pipeline. The reason for this is that pipeline developers are the most likely to know what sort of resources their pipeline requires, so they are in the best position to define the resources requested. For more information on how to adjust resources, see the `compute` section of the [pipeline interface page](pipeline-interface-specification.md).  If all the different configuration files seem confusing, now is a good time to review [who's who in configuration files](config-files.md).
+Resources defined in the `pipeline_interface.yaml` file that connects looper to a pipeline. The reason for this is that pipeline developers are the most likely to know what sort of resources their pipeline requires, so they are in the best position to define the resources requested. For more information on how to adjust resources, see the `compute` section of the [pipeline interface page](developer/pipeline-interface-specification.md).
 
 ## Which configuration file has which settings?
 
-There's a list on the [config files page](config-files.md).
+There's information on the initial [tutorial page](tutorial/initialize.md).

@@ -146,7 +146,7 @@ Pre-submission tasks can be written as a Python function or a shell commands. We
 
 Python plugin functions have access *all of the metadata variables looper has access to to construct the primary command template*. The Python function must obey the following rules:
 
-1. The Python function *must* take as input a `namespaces` object, which is a Python [`dict`](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) of [looper variable namespaces](variable-namespaces.md).
+1. The Python function *must* take as input a `namespaces` object, which is a Python [`dict`](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) of [looper variable namespaces](../advanced-guide/advanced-computing.md).
 
 2. The function *should* return any updated namespace variables; or can potentially return an empty `dict` (`{}`) if no changes are intended, which may the case if the function is only used for its side effect.
 
@@ -160,7 +160,7 @@ pipeline_type: sample
 extra_time: 3
 ```
 
-This variable would be accessible in your python function as `namespaces["pipeline"]["extra_time"]`. This works, but we recommend keeping things clean by putting all required pipeline parameters into the [`pipeline.template_vars`](pipeline-interface-specification.md#var_templates) section. This not only keeps things tidy in a particular section, but also adds additional functionality of making these templates that can themselves refer to namespace variables, which can be very convenient. For example, a better approach would be:
+This variable would be accessible in your python function as `namespaces["pipeline"]["extra_time"]`. This works, but we recommend keeping things clean by putting all required pipeline parameters into the [`pipeline.template_vars`](pipeline-interface-specification.md) section. This not only keeps things tidy in a particular section, but also adds additional functionality of making these templates that can themselves refer to namespace variables, which can be very convenient. For example, a better approach would be:
 
 ```{yaml}
 pipeline_name: my_pipeline
@@ -176,7 +176,7 @@ The plugins need to handle incomplete parametrization, either by providing defau
 
 #### Function output: updating submission metadata via return value
 
-One of the features of the pre-submission hooks is that they can be used to update the [looper variable namespaces](variable-namespaces.md) so that you can use modified variables in your primary command template. This is effectively a way for a plugin function to provide output that can be used by looper. The way this works is that after every successful pre-submission hook execution, the input namespaces are updated with the return value of the hook execution. Existing values are overwritten with the returned ones, whereas omitted values are not changed. Therefore, you must simply write your function to return any updated variables in the same format as in the input function. That is, your return value should be a Python [`dict`](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) of [looper variable namespaces](variable-namespaces.md)
+One of the features of the pre-submission hooks is that they can be used to update the [looper variable namespaces](../advanced-guide/advanced-computing.md) so that you can use modified variables in your primary command template. This is effectively a way for a plugin function to provide output that can be used by looper. The way this works is that after every successful pre-submission hook execution, the input namespaces are updated with the return value of the hook execution. Existing values are overwritten with the returned ones, whereas omitted values are not changed. Therefore, you must simply write your function to return any updated variables in the same format as in the input function. That is, your return value should be a Python [`dict`](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) of [looper variable namespaces](../advanced-guide/advanced-computing.md)
 
 
 For example, given this input (which represents the looper variable namespaces):
