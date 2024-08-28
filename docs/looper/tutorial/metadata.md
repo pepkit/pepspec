@@ -38,7 +38,7 @@ Now, we'll show you how to use more advanced features to make this better.
 
 Looper allows you to use metadata in PEP.
 This is a powerful framework for specifying sample metadata that allows you to do things.
-You can read the [detailed PEP documentation](/spec/simple-example/) for a complete description of features.
+You can read the [detailed PEP documentation](../../spec/simple-example.md) for a complete description of features.
 In this tutorial, we'll demonstrate one of the most useful PEP features: **derived attributes**.
 Derived attributes will allow us to remove the file paths from the metadata table, which is nice.
 We will keep everything else about the project the same (the data, pipeline and interface, and looper configuration) and replace the `metadata/sample_table.csv` with a PEP.

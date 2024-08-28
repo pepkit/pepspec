@@ -6,16 +6,13 @@ title: Pipeline interface specification
 
 ## Introduction
 
-If you're interested in developing 
-The critical point of contact is the pipeline interface.
-It connects
- Here is a basic walkthrough to write a simple interface file. Once you've been through this, you can consult the formal [pipeline interface format specification](pipeline-interface-specification.md) for further details and reference.
+If you're interested in making a pipeline looper-compatible, the critical point of contact is the pipeline interface.
+A pipeline interface *describes how to run a pipeline*.
+Here is a basic walkthrough to write a simple interface file. Once you've been through this, you can consult the formal [pipeline interface format specification](pipeline-interface-specification.md) for further details and reference.
 
 !!! success "Learning objectives"
     - What is a looper pipeline interface?
     - How do I write a looper pipeline interface for my custom pipeline?
-
-
 
 
 ## Example
