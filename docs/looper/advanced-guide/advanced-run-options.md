@@ -229,6 +229,18 @@ looper run --command-extra-override="-R"
 
 That will remove any defined command extras and append `-R` to the end of any commands created by looper.
 
+## Add CLI arguments to looper config
+
+You can also customize things further. You can provide a `cli` keyword to specify any command line (CLI) options from within the looper config file. The subsections within this section direct the arguments to the respective `looper` subcommands. For example, to specify a sample submission limit for a `looper run` command, use:
+
+```yaml
+cli:
+    run:
+      limit: 2
+```
+
+Keys in the `cli.<subcommand>` section *must* match the long argument parser option strings, so `command-extra`, `limit`, `dry-run` and so on. For more CLI options refer to the subcommands [usage](usage.md).
+
 
 
 
