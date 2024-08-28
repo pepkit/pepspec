@@ -94,10 +94,6 @@ Thus, reparameterizing this pipeline is as simple as choosing the amendment with
 
 ## How to handle multiple input files
 
-!!! warning
-    This may be outdated.
-
-
 Sometimes a sample has multiple input files that belong to the same attribute. For example, a common use case is a single library that was spread across multiple sequencing lanes, yielding multiple input files that need to be merged, and then run through the pipeline as one. Dealing with multiple input files is described in detail in the [PEP documentation](https://pep.databio.org/spec/howto-multi-value-attributes/), but covered briefly here. PEP has two ways to merge these:
 
 1. Use shell expansion characters (like `*` or `[]`) in your file path definitions (good for simple merges)
@@ -107,11 +103,17 @@ To accommodate complex merger use cases, this is infinitely customizable.
 
 To do the first option, simply change the data source specification:
 
-```yaml
-data_sources:
-  data_R1: "${DATA}/{id}_S{nexseq_num}_L00*_R1_001.fastq.gz"
-  data_R2: "${DATA}/{id}_S{nexseq_num}_L00*_R2_001.fastq.gz"
+```yaml title="portion of a pep config" hl_lines="4-6"
+sample_modifiers:
+  derive:
+    attributes: [read1, read2]
+    sources:
+      SRA_1: "{SRR}_*1.fastq.gz"
+      SRA_2: "{SRR}_*2.fastq.gz"
 ```
+
+!!! warning
+    Below this section may be outdated.
 
 For the second option, provide *in the `metadata` section* of your project config file a path to merge table file:
 
