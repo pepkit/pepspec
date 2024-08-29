@@ -147,7 +147,6 @@ nav:
         - Running jobs in containers: looper/how-to/containers.md
         - "Tutorial: divvy in Python": looper/code/tutorial_divvy.md
         - "Tutorial: divvy in shell": looper/code/cli_divvy.md
-        - Using geofetch: looper/using-geofetch.md
         - Using pipestat: looper/using-pipestat.md
     - Pipeline Developer Docs:
       - Developer tutorial:
