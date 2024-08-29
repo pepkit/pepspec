@@ -23,7 +23,6 @@ A pipeline interface may contain the following keys:
 - `pipeline_name` (REQUIRED) - A string identifying the pipeline,
 - `pipeline_type` (REQUIRED) - A string indicating a pipeline type: "sample" (for `run`) or "project" (for `runp`),
 - `command_template` (REQUIRED) - A [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) template used to construct a pipeline command to run.
-- `linked_pipeline_interfaces` (OPTIONAL) - A collection of paths to sample pipeline interfaces related to this pipeline interface (used only in project pipeline interfaces for `looper report` purposes).
 - `input_schema` (RECOMMENDED) - A [PEP Schema](http://eido.databio.org) formally defining *required inputs* for the pipeline
 - `output_schema` (RECOMMENDED) - A schema describing the *outputs* of the pipeline
 - `compute` (RECOMMENDED) - Settings for computing resources
@@ -77,20 +76,6 @@ command_template: >
 ```
 
 Arguments wrapped in Jinja2 conditionals will only be added *if the specified attribute exists for the sample*.
-
-### linked_pipeline_interfaces
-
-*Only project pipeline interfaces will respect this attribute*
-
-Since the sample and project pipeline interfaces are completely separate this is the only way to link them together. This attribute is used by `looper report` to organize the produced HTML reports into groups, i.e. project-level report will list linked sample-level reports.
-
-```
-linked_pipeline_interfaces:
-  - ../pipeline_interface.yaml
-  - /home/john/test/pipeline_interface1.yaml
-```
-
-The paths listed in `linked_pipeline_interfaces` are considered relative to the pipeline interface, unless they are absolute.
 
 
 ### input_schema
@@ -259,45 +244,4 @@ A pipeline interface can be validated using JSON Schema against [schema.databio.
 
 
 
-## Initialize Generic Pipeline Interface
 
-Each Looper project requires one or more pipeline interfaces that points to sample and/or project pipelines. You can run a command that will generate a generic pipeline interface to get you started:
-
-```shell
-looper init_piface
-```
-
-
-```shell
-──────────  Pipeline Interface ──────────
-{
-│   'pipeline_name': 'default_pipeline_name',
-│   'output_schema': 'output_schema.yaml',
-│   'var_templates': {
-│   │   'pipeline': '{looper.piface_dir}/count_lines.sh'
-│   },
-│   'sample_interface': {
-│   │   'command_template': '{pipeline.var_templates.pipeline} {sample.file} --output-parent {looper.sample_output_folder}'
-│   }
-}
-Pipeline interface successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/pipeline_interface.yaml
-──────────  Output Schema ──────────
-{
-│   'pipeline_name': 'default_pipeline_name',
-│   'samples': {
-│   │   'number_of_lines': {
-│   │   │   'type': 'integer',
-│   │   │   'description': 'Number of lines in the input file.'
-│   │   }
-│   }
-}
-Output schema successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/output_schema.yaml
-──────────  Example Pipeline Shell Script ──────────
-#!/bin/bash
-linecount=`wc -l $1 | sed -E 's/^[[:space:]]+//' | cut -f1 -d' '`
-pipestat report -r $2 -i 'number_of_lines' -v $linecount -c $3
-echo "Number of lines: $linecount"
-    
-count_lines.sh successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/count_lines.sh
-
-```
