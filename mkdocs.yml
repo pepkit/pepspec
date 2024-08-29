@@ -145,8 +145,6 @@ nav:
         - Advanced metadata features: looper/advanced-guide/advanced-metadata.md
       - How-to recipes:
         - Running jobs in containers: looper/how-to/containers.md
-        - "Tutorial: divvy in Python": looper/code/tutorial_divvy.md
-        - "Tutorial: divvy in shell": looper/code/cli_divvy.md
         - Using pipestat: looper/using-pipestat.md
         - Using divvy: looper/using-divvy.md
     - Pipeline Developer Docs:
