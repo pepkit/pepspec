@@ -22,26 +22,27 @@ A pipeline interface may contain the following keys:
 
 - `pipeline_name` (REQUIRED) - A string identifying the pipeline,
 - `pipeline_type` (REQUIRED) - A string indicating a pipeline type: "sample" (for `run`) or "project" (for `runp`),
-- `command_template` (REQUIRED) - A [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) template used to construct a pipeline command to run.
-- `input_schema` (RECOMMENDED) - A [PEP Schema](http://eido.databio.org) formally defining *required inputs* for the pipeline
+- `command_template` (REQUIRED) - A [Jinja2](https://jinja.palletsprojects.com/) template used to construct a pipeline command to run.
+- `input_schema` (RECOMMENDED) - A [PEP Schema](https://pep.databio.org/eido/) formally defining *required inputs* for the pipeline
 - `output_schema` (RECOMMENDED) - A schema describing the *outputs* of the pipeline
 - `compute` (RECOMMENDED) - Settings for computing resources
-- `var_templates` (RECOMMENDED) - A mapping of [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templates and corresponding names, typically used to encode submission-specific paths that can be submission-specific
+- `var_templates` (RECOMMENDED) - A mapping of [Jinja2](https://jinja.palletsprojects.com/) templates and corresponding names, typically used to encode submission-specific paths that can be submission-specific
 - `pre_submit` (OPTIONAL) - A mapping that defines the pre-submission tasks to be executed
 
 The pipeline interface should define either a sample pipeline or a project pipeline. Here's a simple example:
 
 ```yaml
 pipeline_name: RRBS
-pipeline_type: sample
 var_templates:
   pipeline: "{looper.piface_dir}/pipeline1.py"
   sample_info: "{looper.piface_dir}/{sample.name}/info.txt"
 input_schema: path/to/rrbs_schema.yaml
-command_template: {pipeline.var_templates.pipeline} --input {sample.data_path} --info {pipeline.sample_info.path}
+sample_interface:
+  command_template: >
+    {pipeline.var_templates.pipeline} --input {sample.data_path} --info {pipeline.sample_info.path}
 ```
 
-Pretty simple. The `pipeline_name` is arbitrary. It's used for messaging and identification. Ideally, it's unique to each pipeline. In this example, we define a single sample-level pipeline.
+The `pipeline_name` is arbitrary. It's used for messaging and identification. Ideally, it's unique to each pipeline. In this example, we define a single sample-level pipeline.
 
 ## Details of pipeline interface components
 
@@ -53,9 +54,9 @@ The pipeline name is arbitrary. It should be unique for each pipeline. Looper us
 
 2. to check for flags. For pipelines that produce flags, looper will be aware of them and not re-submit running jobs.
 
-### pipeline_type
+### sample_interface and project_interface
 
-Looper can run 2 kinds of pipeline: *sample pipelines* run once per sample; *project pipelines* run once per project. The type of pipeline must be specified in the pipeline interface as `pipeline_type: sample` or `pipeline_type: project`.
+Looper can run 2 kinds of pipeline: *sample pipelines* run once per sample; *project pipelines* run once per project. You must nest the `command_template` under a `sample_interface` or `project_interface` key to let looper know which level the pipeline will run at.
 
 ### command_template
 
@@ -82,11 +83,11 @@ Arguments wrapped in Jinja2 conditionals will only be added *if the specified at
 
 The input schema formally specifies the *input processed by this pipeline*. The input schema serves 2 related purposes:
 
-1. **Validation**. Looper uses the input schema to ensure that the project fulfills all pipeline requirements before submitting any jobs. Looper uses the PEP validation tool, [eido](http://eido.databio.org), to validate input data by ensuring that input samples have the attributes and input files required by the pipeline. Looper will only submit a sample pipeline if the sample validates against the pipeline's input schema.
+1. **Validation**. Looper uses the input schema to ensure that the project fulfills all pipeline requirements before submitting any jobs. Looper uses the PEP validation tool, [eido](https://pep.databio.org/eido/), to validate input data by ensuring that input samples have the attributes and input files required by the pipeline. Looper will only submit a sample pipeline if the sample validates against the pipeline's input schema.
 
 2. **Description**. The input schema is also useful to describe the inputs, including both required and optional inputs, thereby providing a standard way to describe a pipeline's inputs. In the schema, the pipeline author can describe exactly what the inputs mean, making it easier for users to learn how to structure a project for the pipeline.
 
-Details for how to write a schema in [writing a schema](http://eido.databio.org/en/latest/writing-a-schema/). The input schema format is an extended [PEP JSON-schema validation framework](http://pep.databio.org/en/latest/howto_validate/), which adds several capabilities, including
+Details for how to write a schema in [writing a schema](https://pep.databio.org/eido/writing-a-schema/). The input schema format is an extended [PEP JSON-schema validation framework](https://pep.databio.org/spec/howto-validate/), which adds several capabilities, including
 
 - `required` (optional): A list of sample attributes (columns in the sample table) that **must be defined**
 - `required_files` (optional): A list of sample attributes that point to **input files that must exist**.
@@ -96,7 +97,7 @@ If no `input_schema` is included in the pipeline interface, looper will not be a
 
 ### output_schema
 
-The output schema formally specifies the *output produced by this pipeline*. It is used by downstream tools to that need to be aware of the products of the pipeline for further visualization or analysis. Beginning with Looper 1.6.0 and Pipestat 0.6.0, the output schema is a JSON-schema: [pipestat schema specification](http://pipestat.databio.org/en/latest/pipestat_specification/#pipestat-schema).
+The output schema formally specifies the *output produced by this pipeline*. It is used by downstream tools to that need to be aware of the products of the pipeline for further visualization or analysis. Beginning with Looper 1.6.0 and Pipestat 0.6.0, the output schema is a JSON-schema: [pipestat schema specification](https://pep.databio.org/pipestat/pipestat-specification/).
 
 Here is an example output schema:
 
@@ -194,7 +195,7 @@ max_file_size cores mem time
 NaN 32  32000 04-00:00:00
 ```
 
-This example will add 3 variableS: `cores`, `mem`, and `time`, which can be accessed via `{compute.cores}`, `{compute.mem}`, and `{compute.time}`. Each row defines a "packages" of variable values. Think of it like a group of steps of increasing size. For a given job, looper calculates the total size of the input files (which are defined in the `input_schema`). Using this value, looper then selects the best-fit row by iterating over the rows until the calculated input file size does not exceed the `max_file_size` value in the row. This selects the largest resource package whose `max_file_size` attribute does not exceed the size of the input file. Max file sizes are specified in GB, so `5` means 5 GB.
+This example will add 3 variables: `cores`, `mem`, and `time`, which can be accessed via `{compute.cores}`, `{compute.mem}`, and `{compute.time}`. Each row defines a "packages" of variable values. Think of it like a group of steps of increasing size. For a given job, looper calculates the total size of the input files (which are defined in the `input_schema`). Using this value, looper then selects the best-fit row by iterating over the rows until the calculated input file size does not exceed the `max_file_size` value in the row. This selects the largest resource package whose `max_file_size` attribute does not exceed the size of the input file. Max file sizes are specified in GB, so `5` means 5 GB.
 
 This final line in the resources `tsv` must include `NaN` in the `max_file_size` column, which serves as a catch-all for files larger than the largest specified file size. Add as many resource sets as you want.
 
@@ -213,16 +214,7 @@ command_template: >
   {pipeline.var_templates.pipeline} --sample-name {sample.sample_name} --req-attr {sample.attr} 
 ```
 
-Example without var_templates:
-```yaml
-pipeline_name: example_pipeline  
-pipeline_type: sample  
-output_schema: output_schema.yaml  
-command_template: >  
-  python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name}
-```
-
-Note: Beginning with Looper 1.9.0, var_templates can be nested, e.g.
+Note: Beginning with Looper 1.9.0, var_templates can also be nested, e.g.
 ```yaml
 var_templates:
   refgenie_plugin:
