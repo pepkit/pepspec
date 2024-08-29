@@ -8,7 +8,7 @@ Pypiper is simple but powerful. Your pipeline is a python script, let's call it 
 * `PipelineManager.run()`: The primary workhorse function; runs a command.
 * `PipelineManager.stop_pipeline()`: Terminate the pipeline.
 
-That's all you need to create a powerful pipeline. You can find in-depth reference documentation for each method in the API. In particular, most of Pypiper’s power comes from the `run` method, which has a series of options outlined in [dedicated documentation on the run method](/advanced-run-method).
+That's all you need to create a powerful pipeline. You can find in-depth reference documentation for each method in the API. In particular, most of Pypiper’s power comes from the `run` method, which has a series of options outlined in [dedicated documentation on the run method](../advanced-run-method.md).
 
 To write your first basic pipeline, first `import pypiper`, then specify an output folder and create a new `PipelineManager` object:
 
