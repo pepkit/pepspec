@@ -26,7 +26,7 @@ Instead, divvy-compatible tools can run on any computing resource. Users configu
 
 Divvy reads a standard configuration file describing available compute resources and then uses a simple template system to write custom job submission scripts. Computing resources are organized as compute packages, which users select, populate with values, and build scripts for compute jobs.
 
-## Quick start with CLI
+### Quick start with CLI
 
 divvy comes installed with looper, so ensure you have the newest version of looper installed: `pip install looper`
 
@@ -163,4 +163,125 @@ Note, `slurm` requires `sbatch` to work which will be found HPCs and not my loca
 
 ```sh
 divvy submit --package local  --settings my_job_settings.yaml --compute sample=sample1 code=run-this-cmd jobname=12345  --outfile submit_script.sub
+```
+
+### Using the Python API for divvy
+
+You can also call divvy from a python script. You'll need to provide a path to a divvy config file:
+
+```python title="divvy_usage.py"
+import looper.divvy as divvy
+
+
+config_path = "/home/drc/GITHUB/looper/master/looper/venv/lib/python3.10/site-packages/looper/default_config/divvy_config.yaml"
+
+# Now create a ComputingConfiguration object
+dcc = divvy.ComputingConfiguration.from_yaml_file(filepath=config_path)
+
+```
+
+Once a ComputingConfiguration object has been created, you can see the default compute package as well as the associated submission script:
+
+```python title="sub section of divvy_usage.py"
+
+# Print default compute package to terminal
+print(dcc.compute)
+
+# Access the submission template associated with the compute package.
+with open(dcc.compute['submission_template']) as f:
+    print(f.read())
+
+```
+
+```console title="console output"
+submission_template: /home/drc/PythonProjects/testing_looper_docs_tutorial/looper_tutorial/.venv/lib/python3.10/site-packages/looper/default_config/divvy_templates/localhost_template.sub
+submission_command: .
+
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+{CODE}
+} | tee {LOGFILE}
+```
+
+You can also populate the submission script via the API:
+
+```python title="sub section of divvy_usage.py"
+
+# Populate and create a local submission script
+dcc.write_script("test_local.sub", {"code": "run-this-command", "logfile": "logfile.txt"})
+
+# Take a look at the newly populated submission template
+with open("test_local.sub") as f:
+    print(f.read())
+
+```
+
+```console title="console output"
+
+Writing script to /home/drc/PythonProjects/testing_looper_docs_tutorial/looper_tutorial/test_local.sub
+
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+run-this-command
+} | tee logfile.txt
+
+```
+
+You can also activate a computing package via the API:
+
+```python title="sub section of divvy_usage.py"
+# You can also activate a package
+print(dcc.activate_package("slurm"))
+
+```
+
+```console title="console output"
+
+Activating compute package 'slurm'
+
+```
+
+Finally, you can also submit jobs:
+
+```python title="sub section of divvy_usage.py"
+dcc.submit(output_path="test_local.sub")
+```
+
+Here is the final completed script used for this tutorial:
+
+
+```python title="divvy_usage.py"
+import looper.divvy as divvy
+
+config_path = "/home/drc/GITHUB/looper/master/looper/venv/lib/python3.10/site-packages/looper/default_config/divvy_config.yaml"
+dcc = divvy.ComputingConfiguration.from_yaml_file(filepath=config_path)
+
+# Print default compute package to terminal
+print(dcc.compute)
+
+# Access the submission template associated with the compute package.
+with open(dcc.compute['submission_template']) as f:
+    print(f.read())
+
+# Populate and create a local submission script
+dcc.write_script("test_local.sub", {"code": "run-this-command", "logfile": "logfile.txt"})
+
+# Take a look at the newly populated submission template
+with open("test_local.sub") as f:
+    print(f.read())
+
+# You can also activate a package
+dcc.activate_package("slurm")
+
+# You can also submit jobs 
+dcc.submit(output_path="test_local.sub")
+
 ```
