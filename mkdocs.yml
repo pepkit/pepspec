@@ -150,8 +150,8 @@ nav:
     - Pipeline Developer Docs:
       - Developer tutorial:
         - Writing a pipeline interface: looper/developer/writing-a-pipeline-interface.md
-        - Pre-submission hooks system: looper/developer/pre-submission-hooks.md
         - Pipeline interface specification: looper/developer/pipeline-interface-specification.md
+        - Pre-submission hooks system: looper/developer/pre-submission-hooks.md
     - Reference:
       - Reference:
         - CLI Usage: looper/usage.md

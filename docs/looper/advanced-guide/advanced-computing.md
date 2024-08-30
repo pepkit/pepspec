@@ -276,7 +276,7 @@ divvy submit --package slurm \
 
 
 !!! note "Note: Using divvy from within Python"
-    You can also use `divvy` via Python API, allowing you to create and submit jobs from within Python. You can use this make your own Python tools divvy-compatible. Here's an example of using divvy to write scripts from within python.
+    You can also use [divvy](../using-divvy.md) via Python API, allowing you to create and submit jobs from within Python. You can use this make your own Python tools divvy-compatible. Here's an example of using divvy to write scripts from within python. For more information, please see the [divvy documentation](../using-divvy.md).
 
     ```python
     import divvy
