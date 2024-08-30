@@ -13,7 +13,7 @@ If you want to see *all* the features of PEP, you should consult the [detailed P
 
 
 !!! note
-    This concepts aren't strictly about `looper`, they are about PEP. They just show you some examples of how your `looper` project could take advantage of PEP features.
+    These concepts aren't strictly about `looper`, they are about PEP. They just show you some examples of how your `looper` project could take advantage of PEP features.
 
 
 ## Implied attributes
@@ -101,7 +101,11 @@ Sometimes a sample has multiple input files that belong to the same attribute. F
 
 To accommodate complex merger use cases, this is infinitely customizable.
 
-To do the first option, simply change the data source specification:
+!!! warning
+    Do not use *both* of these options for the same sample at the same time; that will lead to multiple mergers.
+
+### Using wild cards in derived sources
+To do the first option, simply change the data source specification to use wild card characters:
 
 ```yaml title="portion of a pep config" hl_lines="4-6"
 sample_modifiers:
@@ -112,25 +116,35 @@ sample_modifiers:
       SRA_2: "{SRR}_*2.fastq.gz"
 ```
 
-!!! warning
-    Below this section may be outdated.
+For the second option, provide a subsample table in your pep config file a path to merge table file:
 
-For the second option, provide *in the `metadata` section* of your project config file a path to merge table file:
+```yaml title="pep_config.yaml" hl_lines="3"
+pep_version: 2.1.0
+sample_table: sample_table.csv
+subsample_table: subsample_table.csv
+```
 
-```yaml
-metadata:
-  merge_table: mergetable.csv
+```csv title="Example subsample_table.csv"
+sample_name,file_path
+canada,data/canada_1.txt
+canada,data/canada_1.txt
+switzerland,data/switzerland_1.txt
+switzerland,data/switzerland_2.txt
+mexico,data/mexico_1.txt
+mexico,data/mexico_2.txt
 ```
 
 Make sure the `sample_name` column of this table matches, and then include any columns needed to point to the data.
 Looper will automatically include all of these files as input passed to the pipelines.
 
-***Warning***: do not use *both* of these options for the same sample at the same time; that will lead to multiple mergers.
 
-**Note**: mergers are *not* the way to handle different functional/conceptual *kinds* of input files (e.g., `read1` and `read2` for a sample sequenced with a paired-end protocol).
-Such cases should be handled as *separate derived columns* in the main sample annotation sheet if they're different arguments to the pipeline.
+!!! Important Note
+    Mergers are *not* the way to handle different functional/conceptual *kinds* of input files (e.g., `read1` and `read2` for a sample sequenced with a paired-end protocol).
+    Such cases should be handled as *separate derived columns* in the main sample annotation sheet if they're different arguments to the pipeline.
 
 
+!!! warning
+    Below this section may be outdated.
 
 
 ### Multi-value sample attributes behavior in the pipeline interface command templates
