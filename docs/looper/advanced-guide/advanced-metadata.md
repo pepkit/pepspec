@@ -107,15 +107,19 @@ To accommodate complex merger use cases, this is infinitely customizable.
 ### Using wild cards in derived sources
 To do the first option, simply change the data source specification to use wild card characters:
 
-```yaml title="portion of a pep config" hl_lines="4-6"
+```yaml title="pep_config.yaml" hl_lines="4-6"
+pep_version: 2.1.0
+sample_table: sample_table.csv
 sample_modifiers:
+  append:
+    file_path: source1
   derive:
-    attributes: [read1, read2]
+    attributes: [file_path]
     sources:
-      SRA_1: "{SRR}_*1.fastq.gz"
-      SRA_2: "{SRR}_*2.fastq.gz"
+      source1: "data/{sample_name}_*.txt"
 ```
 
+### Using a subsample table
 For the second option, provide a subsample table in your pep config file:
 
 ```yaml title="pep_config.yaml" hl_lines="3"
@@ -127,7 +131,7 @@ subsample_table: subsample_table.csv
 ```csv title="Example subsample_table.csv"
 sample_name,file_path
 canada,data/canada_1.txt
-canada,data/canada_1.txt
+canada,data/canada_2.txt
 switzerland,data/switzerland_1.txt
 switzerland,data/switzerland_2.txt
 mexico,data/mexico_1.txt
@@ -143,21 +147,16 @@ Looper will automatically include all of these files as input passed to the pipe
     Such cases should be handled as *separate derived columns* in the main sample annotation sheet if they're different arguments to the pipeline.
 
 
-!!! warning
-    Below this section may be outdated.
-
-
 ### Multi-value sample attributes behavior in the pipeline interface command templates
 
-Both sample subannotation tables and shell expansion characters lead to sample attributes with multiple values, stored in a list of strings (`multi_attr1` and `multi_attr1`), as opposed to a standard scenario, where a single value is stored as a string (`single_attr`):
+Both subsample tables and shell expansion characters lead to sample attributes with multiple values, stored in a list of strings as opposed to a standard scenario, where a single value is stored as a string (`single_attr`).
 
+For example:
 ```
 Sample
-sample_name: sample1
-subsample_name: ['0', '1', '2']
-multi_attr1: ['one', 'two', 'three']
-multi_attr2: ['four', 'five', 'six']
-single_attr: test_val
+sample_name: canada
+file_path: ['data/canada_1.txt', 'data/canada_2.txt']
+single_attr: random_test_val
 ```
 
 #### Access individual elements in lists
@@ -168,15 +167,15 @@ Pipeline interface author can leverage that fact and access the individual eleme
 pipeline_name: test_iter
 pipeline_type: sample
 command_template: >
-  --input-iter {%- for x in sample.multi_attr1 -%} --test-individual {x} {% endfor %} # iterate over multiple values
+  --input-iter {%- for x in sample.file_path -%} --test-individual {x} {% endfor %} # iterate over multiple values
   --input-single {sample.single_attr} # use the single value as is
 
 ```
 
 This results in a submission script that includes the following command:
 ```bash
---input-iter  --test-individual one  --test-individual two  --test-individual three
---input-single  test_val
+--input-iter  --test-individual data/canada_1.txt  --test-individual data/canada_2.txt
+--input-single  random_test_val
 ```
 
 #### Concatenate elements in lists
@@ -188,27 +187,23 @@ Pipeline interface:
 pipeline_name: test_concat
 pipeline_type: sample
 command_template: >
-  --input-concat {sample.multi_attr1} # concatenate all the values
+  --input-concat {sample.file_path} # concatenate all the values
 ```
 
 Command in the submission script:
 ```bash
---input-concat  one two three
+--input-concat  data/canada_1.txt data/canada_2.txt
 ```
-
-
-
 
 ## Others
 
 Some other things you might find interesting:
 
-- *imports* allow PEPs to import other PEPs, so you can re-use information across projects.
-
-
+- *imports* allow PEPs to [import other PEPs](https://pep.databio.org/spec/specification/#project-modifier-import), so you can re-use information across projects.
 
 
 !!! tip "Summary"
     - You can use the `imply` sample modifier to eliminate redundant columns in your sample table.
-    - PEP provide a lot of other powerful features that you may find useful.
+    - You can use multiple input files for your pipeline using wildcards or subsample tables.
+    - PEP provides many powerful features that work well with looper.
 
