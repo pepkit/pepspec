@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This tutorial will guide you through how to use powerful features of PEP and PEPhub to make managing your metadata easier.
+Previously, we used a `.csv` file to store metadata. This tutorial will guide you through how to use powerful features of PEP and PEPhub to make managing your metadata easier.
 
 
 !!! success "Learning objectives"
@@ -36,11 +36,11 @@ Now, we'll show you how to use more advanced features to make this better.
 
 ## Using a PEP for derived attributes
 
-Looper allows you to use metadata in PEP.
-This is a powerful framework for specifying sample metadata that allows you to do things.
+Looper can read sample metadata as a PEP instead of as a CSV file.
+This is a powerful framework for specifying sample metadata that allows you to make your metadata table easier to manage, easier to re-use, and more portable.
 You can read the [detailed PEP documentation](../../spec/simple-example.md) for a complete description of features.
 In this tutorial, we'll demonstrate one of the most useful PEP features: **derived attributes**.
-Derived attributes will allow us to remove the file paths from the metadata table, which is nice.
+Derived attributes will allow us to remove the file paths from the metadata table.
 We will keep everything else about the project the same (the data, pipeline and interface, and looper configuration) and replace the `metadata/sample_table.csv` with a PEP.
 
 The new sample metadata will use 2 files instead of one. We will still have the main `sample_table.csv` file, but we will add a `pep_config.yaml` file. 
@@ -57,7 +57,16 @@ rm -rf pep_derived_attrs/results  # remove results folder
 
 ## Remove paths from `sample_table.csv`
 
-First, edit the sample table to remove all the paths. Just replace them all with a variable, which we'll call `source1` (it can be whatever you like). Here our revised `metadata/sample_table.csv`:
+One of our goals is to remove the paths from the sample table.
+The hard-coded paths tie the sample table to a particular compute environment, which is undesirable.
+What if we change where the data are stored?
+Or what if someone else wanted to download our project and run it locally?
+They'd need to put the dataset in exactly the spot we did, relative to our metadata table.
+That's not a major problem for a couple of small text files, but if you're dealing with hundreds of large biological data files, you probably don't want that data in the same physical location as your metadata and pipeline files.
+It might even be on a different file system.
+The PEP will help us simplify the sample table and make it portable.
+
+First, edit the sample table to remove all the paths. Just replace them all with a variable, which we'll call `source1` (it can be whatever you like). Here's our revised table:
 
 ```csv title="metadata/sample_table.csv"
 sample_name,area_type,file_path
@@ -66,7 +75,10 @@ switzerland,canton,source1
 canada,province,source1
 ```
 
-One nice thing about this table is that it's more portable. Now, it will be valid, even if it is removed from the data, because it no longer has paths, which require it to be in some specific computing environment. But, we've lost the path information, which we will need to process the files. We will move that information into the new `pep_config.yaml` file.
+One nice thing about this table is that it's more portable.
+Now, it will be valid, even if it is removed from the data, because it no longer has paths that tie it to a specific computing environment.
+But, wait -- we've lost the path information, which we will need to process the files.
+We will move that information into the new `pep_config.yaml` file.
 
 ## Create `metadata/pep_config.yaml`
 
@@ -141,12 +153,21 @@ sample_modifiers:
 
 Since the append modifier happens before the derive modifier, the samples will first have the `file_path` attribute added, with the `source1` value. Then, these will be derived as before. This configuration thus produces the same result as before, but now with a very streamlined sample table.
 
-But what if your data sources are not the same? Say you have a set of samples where some of them are stored in one location, and others are stored in a separate location? You can still use the *derive* modifier, just specifying different sources in both your table and config, say, `source1` and `source2`, with different paths. The *append* trick wouldn't work, though because it adds constant attributes. In that case, you might use another sample modifier: the [*imply* modifier](../../spec/specification.md#sample-modifier-imply). The imply modifier adds sample attributes with values that depend on the value of an existing attribute.
+But what if your data sources are not the same? Say you have a set of samples where some of them are stored in one location, and others are stored in a separate location. You can still use the *derive* modifier, just specifying different sources in both your table and config, say, `source1` and `source2`, with different paths. The *append* trick wouldn't work, though because it adds constant attributes. In that case, you might use another sample modifier: the [*imply* modifier](../../spec/specification.md#sample-modifier-imply). The imply modifier adds sample attributes with values that depend on the value of an existing attribute. We will cover more details on the imply modifier in the advanced guides.
 
 
 ## Why is this useful?
 
-In this simple example, we don't benefit much from using the derived columns. But in a real-world case, things can get much more complicated. Paths start to get really long and unwieldy. They might point to different places. File systems can change, necessitating adjusting lots of variables. For more information and a more detailed example, see: [How to eliminate paths from a sample table](../../spec/howto-eliminate-paths.md).
+In this simple example, we don't benefit much from using the derived columns, because there's no real harm in distributing a few text files along with your pipeline and sample metadata.
+But in a real-world case, things can get much more complicated.
+With big data, it starts to make a lot of sense to keep data separate from metadata, because it can be re-used for multiple projects.
+We want to share our projects with others, and we're not sure they will necessarily store the data in the same location we do.
+Paths start to get really long and unwieldy.
+They might point to different places.
+File systems can change, necessitating adjusting lots of variables.
+The PEP sample modifiers can help us corral all this chaos to keep sample tables clean and portable.
+They allow you to isolate any of these changes to the project configuration file, and minimize them to editing a single template variable.
+For more information and a more detailed example, see: [How to eliminate paths from a sample table](../../spec/howto-eliminate-paths.md).
 
 ## PEPhub
 
@@ -166,9 +187,11 @@ pipeline_interfaces:
 ```
 
 Now you can delete the `metadata` subfolder entirely, because we're not using it at all, but the `looper run` will give the same results.
+Now with your metadata living on a remote server, it becomes even more clear how we can benefit from separating file paths from the sample table.
 
-The next more advanced thing to do with this is to have the pipeline results actually *populate* the table on PEPhub. This is possible with looper, but it requires that we learn one more important tool: pipestat. This is what we'll study next.
 
+The next thing step is to have the pipeline results actually *populate* the table on PEPhub.
+This is possible with looper, but it requires that we learn one more important tool: pipestat. This is what we'll study next.
 
 !!! tip "Summary"
     - Looper will accept metadata as a `.csv`, but you can also use a PEP for more powerful management features.

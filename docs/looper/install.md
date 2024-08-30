@@ -1,10 +1,9 @@
 # Installing
 
-Releases are posted as [GitHub releases](https://github.com/pepkit/looper/releases), or you can install using `pip`:
-
+Install using `pip`:
 
 ```console
-pip install --user looper
+pip install looper
 ```
 
 Update with:
@@ -18,3 +17,5 @@ If the `looper` executable in not automatically in your `$PATH`, add the followi
 ```console
 export PATH=~/.local/bin:$PATH
 ```
+
+Or, you can install from [releases posted on GitHub](https://github.com/pepkit/looper/releases).

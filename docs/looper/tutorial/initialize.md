@@ -19,6 +19,7 @@ looper run
 
 In a real workspace, you would likely have hundreds or thousands of samples, each with multiple input files.
 Your pipeline could be an advanced Python or R script that takes hours or days to run.
+You might be running the jobs on a compute cluster.
 The principles of setting up and running looper will be the same as for our simple demonstration project.
 
 Let's get started!
@@ -36,37 +37,39 @@ Let's get started!
 
 A typical Looper workspace includes the following components:
 
-1. **Sample Data:** Usually stored as one or more files per sample.
+1. **Sample data:** Usually stored as one or more files per sample.
 
-2. **Sample Metadata:** A simple `.csv` file that describes the samples. Looper will run your pipeline once for each row in this table. In a future guide, we’ll explore how to leverage more advanced features of `PEP` to describe your samples.
+2. **Sample metadata:** A `.csv` file that describes the samples. Looper will run your pipeline once for each row in this table. In a future guide, we’ll explore how to leverage more advanced features of `PEP` to describe your sample metadata.
 
 3. **Pipeline:** The script or command you want to run on each sample file. You'll also need a *pipeline interface* file that tells looper how to execute the pipeline.
 
-4. **Looper Configuration File:** This file points to the other components and includes any additional configuration options you want to pass to looper.
+4. **Looper configuration file:** This file points to the other components and includes any additional configuration options you want to pass to looper.
 
-We'll walk through how to set up each of these components. If you'd rather skip the setup instructions, you can also download the files from the [hello world git repository](https://github.com/pepkit/hello_looper/tree/master/looper_csv_example), which have the files structured the way you'd get at the end of this tutorial. But we recommend following these instructions the first time because they will help you get a feel for the contents of the files.
+We'll walk through how to create each of these components. If you'd rather skip creating the files yourself, you can download the completed project from the [hello world git repository](https://github.com/pepkit/hello_looper/tree/master/looper_csv_example), which has the files as you'd end with in this tutorial. But we recommend following these instructions the first time because they will help you get a feel for the contents of the files.
 
 ## Step 1: Set up a directory
 
-In practice, looper can handle any locations for any of the components, but to keep things simple in this tutorial, we'll create a root folder for all the components, split into subfolders for data, metadata, and pipeline.
+Usually, a looper workspace corresponds to a directory. So the first step is to create a new folder for this tutorial. We'll run the commands from within the folder:
 
 ```sh
 mkdir looper_csv_example
 cd looper_csv_example
 ```
 
+In practice, looper can handle any file paths for any of the components, but to keep things simple in this tutorial, we'll keep all the components in this workspace folder, in subfolders for data, metadata, and pipeline.
+
 ## Step 2: Grab the data
 
-First, we'll need some data. Download these 3 files and save them in a subfolder called `data/`:
+First, we'll need some data. Download these 3 files from [looper csv example](https://github.com/pepkit/hello_looper/tree/master/looper_csv_example/data) and save them in a subfolder called `data/`:
 
 ```sh
 mkdir data
-wget mexico.txt  //TODO: Make these wget commands correct to raw files hosted on github
-wget canada.txt
-wget switzerland.txt
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/mexico.txt  
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/canada.txt
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/switzerland.txt
 ```
 
-Take a peak at the contents of the files. They are each a simple list of the states or provinces of each country, with one per line, like this:
+Take a peak at the contents of the files. Each lists the states or provinces of the country, with one per line, like this:
 
 ```sh
 head data/mexico.txt -n 5
@@ -104,7 +107,7 @@ echo "Number of lines: $linecount"
 
 All this script does is run the unix `wc` command, and then parse the output using `sed` and `cut`, and then print the result with `echo`.
 In a real workspace, your pipeline is more likely to be a powerful Python script or something else.
-The important thing for looper is just that there's a command you can run and to execute it. 
+The important thing for looper is just that there's a command you can run to execute the pipeline, and you can pass arguments on the command line. 
 Since looper will need to execute it, make sure your script has execute permission:
 
 ```sh
@@ -137,7 +140,7 @@ For now, the important part is just that the `command_template` is telling loope
 
 Now you have all the components finished for your looper project.
 The last step is to create the looper configuration file.
-The easiest way to do this is to run `looper init` from within the root `my_looper_project` folder.
+The easiest way to do this is to run `looper init` from within your workspace folder.
 This will walk you through a wizard that will build the file for you.
 
 Here's how to answer the questions
@@ -159,13 +162,24 @@ pipeline_interfaces:
   - pipeline/pipeline_interface.yaml
 ```
 
-You could also just create this manually, but the `init` function makes it so you don't have to remember the config syntax. Now that that the project is configured, you can run it like this:
+Right now, this file is basically just 3 pointers.
+The first line points to the metadata table we just created.
+The second line points to the `output_dir` where looper will store results.
+Finally, the `pipeline_interfaces` is a list that includes the path to the pipeline interface we just created.
+Future tutorials will cover how to use this to run multiple pipelines on each sample, but most of the time you'll just have a single entry here.
+You could also create this `.looper.yaml` file manually, but the `init` function makes it so you don't have to remember the config syntax.
+Now that that the project is configured, you can run it like this:
 
 ```sh
 looper run
 ```
 
-This will submit a job for each sample. That's basically all there is to it; after this, there's a lot of powerful options and tweaks you can do to control your jobs. Here we'll just mention a few of them.
+This will submit a job for each sample. You've just run your first looper project! 
+
+Basically, all looper does is load you metadata table, and then for each row, populate the `command_template` for the sample, and then run the command.
+That is the gist of it.
+After this, there's just more options and tweaks you can do to control your jobs.
+For example, here are some looper arguments:
 
 - **Dry runs**. You can use `-d, --dry-run` to create the job submission scripts, but not actually run them. This is really useful for testing that everything is set up correctly before you commit to submitting hundreds of jobs.
 - **Limiting the number of jobs**. You can `-l, --limit` to test a few before running all samples. You can also use the `--selector-*` arguments to select certain samples to include or exclude.
@@ -175,7 +189,7 @@ This will submit a job for each sample. That's basically all there is to it; aft
 - **Use rerun to resubmit jobs**. To run only jobs that previously failed, try `looper rerun`.
 - **Tweak the command on-the-fly**. The `--command-extra` arguments allow you to pass extra arguments to every command straight through from looper. See [advanced run options](../advanced-guide/advanced-run-options.md).
 
-
+In the upcoming tutorials, we'll cover these and other features in more detail.
 
 !!! tip "Summary"
     - To use looper, you'll need to have data, metadata, a pipeline (with pipeline interface), and a looper configuration file. 
