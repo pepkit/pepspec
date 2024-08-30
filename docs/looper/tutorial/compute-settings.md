@@ -114,7 +114,7 @@ sample_interface:
     pipeline/count_lines.sh {sample.file_path}
 ```
 
-The `command_template`, after populating the variable for the first sample, becomes `pipeline/count_lines.sh data/mexico.txt ` -- the line higlighted in the submission script.
+The `command_template`, after populating the variable for the first sample, becomes `pipeline/count_lines.sh data/mexico.txt ` -- the line highlighted in the submission script.
 
 But where is the rest of the submission script coming from? It's not hard coded looper boilerplate -- this is actually coming from a different template that can be configured with divvy.
 It's called the *submission template*, and what we're seeing here is the default submission template divvy uses when nothing else is specified.
@@ -321,7 +321,7 @@ It also makes it easier to parameterize the pipeline differently for different p
 
 ### Parameterizing job templates through the pipeline interface
 
-Sometimes, you want the pipeline to be paramterized globally, so you don't have to worry about re-parameterizing it for different projects.
+Sometimes, you want the pipeline to be parameterized globally, so you don't have to worry about re-parameterizing it for different projects.
 You can also provide compute settings in the pipeline interface.
 Let's add a `compute` section in the pipeline interface file, like this:
 

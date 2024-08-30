@@ -10,7 +10,7 @@ For non-pipestat-compatible pipelines, you can still use looper to run pipelines
 For a tutorial example using looper with pipestat please see this [documentation](tutorial/pipestat.md)
 
 
-This document will explore, in futher detail, how to configure pipestat in Looper:
+This document will explore, in further detail, how to configure pipestat in Looper:
 
 !!! success "Learning objectives"
     - How do I configure looper so that it can utilize pipestat?
