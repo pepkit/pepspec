@@ -116,7 +116,7 @@ sample_modifiers:
       SRA_2: "{SRR}_*2.fastq.gz"
 ```
 
-For the second option, provide a subsample table in your pep config file a path to merge table file:
+For the second option, provide a subsample table in your pep config file:
 
 ```yaml title="pep_config.yaml" hl_lines="3"
 pep_version: 2.1.0
