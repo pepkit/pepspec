@@ -95,59 +95,61 @@ type: object
 properties:
   pipeline_name: "default_pipeline_name"
   samples:
-    type: object
-    properties:
-      number_of_things:
-        type: integer
-        description: "Number of things"
-      percentage_of_things:
-        type: number
-        description: "Percentage of things"
-      name_of_something:
-        type: string
-        description: "Name of something"
-      switch_value:
-        type: boolean
-        description: "Is the switch on or off"
-      md5sum:
-        type: string
-        description: "MD5SUM of an object"
-        highlight: true
-      collection_of_images:
-        description: "This store collection of values or objects"
-        type: array
-        items:
-          properties:
-              prop1:
-                description: "This is an example file"
-                $ref: "#/$defs/file"
-      output_file_in_object:
-        type: object
-        properties:
-          prop1:
-            description: "This is an example file"
-            $ref: "#/$defs/file"
-          prop2:
-            description: "This is an example image"
-            $ref: "#/$defs/image"
-        description: "Object output"
-      output_file_in_object_nested:
-        type: object
-        description: First Level
-        properties:
-          prop1:
-            type: object
-            description: Second Level
+    type: array
+    items:
+      type: object
+      properties:
+        number_of_things:
+          type: integer
+          description: "Number of things"
+        percentage_of_things:
+          type: number
+          description: "Percentage of things"
+        name_of_something:
+          type: string
+          description: "Name of something"
+        switch_value:
+          type: boolean
+          description: "Is the switch on or off"
+        md5sum:
+          type: string
+          description: "MD5SUM of an object"
+          highlight: true
+        collection_of_images:
+          description: "This store collection of values or objects"
+          type: array
+          items:
             properties:
-              prop2:
-                type: integer
-                description: Third Level
-      output_file:
-        $ref: "#/$defs/file"
-        description: "This a path to the output file"
-      output_image:
-        $ref: "#/$defs/image"
-        description: "This a path to the output image"
+                prop1:
+                  description: "This is an example file"
+                  $ref: "#/$defs/file"
+        output_file_in_object:
+          type: object
+          properties:
+            prop1:
+              description: "This is an example file"
+              $ref: "#/$defs/file"
+            prop2:
+              description: "This is an example image"
+              $ref: "#/$defs/image"
+          description: "Object output"
+        output_file_in_object_nested:
+          type: object
+          description: First Level
+          properties:
+            prop1:
+              type: object
+              description: Second Level
+              properties:
+                prop2:
+                  type: integer
+                  description: Third Level
+        output_file:
+          $ref: "#/$defs/file"
+          description: "This a path to the output file"
+        output_image:
+          $ref: "#/$defs/image"
+          description: "This a path to the output image"
 $defs:
   image:
     type: object
