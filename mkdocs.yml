@@ -139,13 +139,14 @@ nav:
         - Using PEP to simplify metadata: looper/tutorial/metadata.md
         - Setting up pipestat for reports: looper/tutorial/pipestat.md
         - Configuring cluster computing: looper/tutorial/compute-settings.md
+        - Conclusion: looper/tutorial/conclusion.md
       - Advanced user guide:
         - Advanced run options: looper/advanced-guide/advanced-run-options.md
         - Customizing compute settings: looper/advanced-guide/advanced-computing.md
         - Advanced metadata features: looper/advanced-guide/advanced-metadata.md
       - How-to recipes:
         - Running jobs in containers: looper/how-to/containers.md
-        - Using pipestat: looper/using-pipestat.md
+        - Configure pipestat back-ends: looper/how-to/configure-pipestat-backends.md
         - Using divvy: looper/using-divvy.md
     - Pipeline Developer Docs:
       - Developer tutorial:

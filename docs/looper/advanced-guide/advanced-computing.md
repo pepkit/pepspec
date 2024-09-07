@@ -4,7 +4,7 @@
 
 Looper builds job scripts using a *nested template system*, which consists of an inner and outer template. The inner template, called the *command template*, generates the individual commands to execute. The outer template, known as the *submission template*, wraps these commands in environment-handling code. This nested approach separates the computing environment from the pipeline, enhancing portability.
 
-This more advanced guide assumes you're already familiar with the "configuring compute settings" guide. We will now explain the nested templates in more detail and then explain how you can customize submission templates to fit just about any computing scenario.
+This more advanced guide assumes you're already familiar with the "configuring cluster computing" chapter of the basic tutorial. We will now explain the nested templates in more detail and then explain how you can customize submission templates to fit just about any computing scenario.
 
 !!! success "Learning objectives"
     - What is looper's nested template system?
@@ -25,6 +25,7 @@ Looper’s nested templates are a reflection of its modular design philosophy, a
 This separation addresses a common frustration with pipelines that hard-code job submission mechanisms, making them difficult to adapt to different environments. By clearly separating the configuration of pipeline execution from the environment setup, looper allows both roles to operate independently.
 
 ### Command vs Submission Templates
+
 The *command template*, written by the pipeline author, is specified in the pipeline interface file. Meanwhile, the pipeline user defines the outer *submission template* using submission templates (via **divvy**, more on that in a moment). This setup offers several benefits:
 
 1. Commands can be executed in any computing environment by simply switching the submission template.

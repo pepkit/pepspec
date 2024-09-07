@@ -6,13 +6,14 @@ title: Pipeline interface specification
 
 ## Introduction
 
-If you're interested in making a pipeline looper-compatible, the critical point of contact is the pipeline interface.
+If you're interested in building a looper-compatible pipeline, or taking an existing pipeline and making it work with looper, the critical point of contact is the pipeline interface.
 A pipeline interface *describes how to run a pipeline*.
 Here is a basic walkthrough to write a simple interface file. Once you've been through this, you can consult the formal [pipeline interface format specification](pipeline-interface-specification.md) for further details and reference.
 
 !!! success "Learning objectives"
     - What is a looper pipeline interface?
     - How do I write a looper pipeline interface for my custom pipeline?
+    - Do I have to write a pipeline interface to have looper just run some command that isn't really a pipeline?
 
 
 ## Example
@@ -26,24 +27,39 @@ sample_interface:
     {looper.piface_dir}/count_lines.sh {sample.file_path}
 ```
 
-What's going on here? Well, we need to supply the interface with a pipeline name. In this case, because our script counts lines, we'll just use that for the name. The pipeline name could be anything. It will be used for messaging and communication. 
+What's going on here?
+First, looper needs to know the name of the pipeline so it can keep track of outputs of different pipelines.
+In this case, we named the pipeline `count_lines`.
+The pipeline name could be anything, as long as it is unique to the pipeline.
+It will be used for communication and keeping track of which results belong to which pipeline.
+Think of it as a unique identifier label you assign to the pipeline. 
 
-Next, we have a command template which is nested under the `sample_interface` key. This key tells looper (and pipestat) that this is a **sample-level pipeline.** Note, we can use `project_interface` for project-level pipelines.
+Next, the `sample_interface` key.
+This key tells looper (and pipestat) that this is a **sample-level pipeline.**
+If this interface were describing a project-level pipeline, it would instead use `project_interface`.
 
-Within the `command_template` our command string contains a combination of variables that can be populated from the various [looper namespaces](../advanced-guide/advanced-computing.md#divvy-config-variable-adapters-and-built-in-looper-variables) (looper, sample, pipestat, etc).
+!!! tip "Sample and project interfaces"
+    Remember, looper distinguishes sample-level from project-level pipelines.
+    This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md).
+    Basically, sample-level pipelines run *once per sample*, whereas project-level pipelines run *once per project*.
+    You can also write an interface with both a `sample_interface` and a `project_interface`.
+    This would make sense to do for a pipeline that had two parts, one that you run independently for each sample, and a second one that aggregates all those sample results at the project level.
 
-In the above example, we are telling the command to run the script (`count_lines.sh`) found in the looper pipeline interface directory and to execute it on the current sample's file_path. Note that `file_path` is an attribute for the sample. This is generally a columns (`file_path`) in the sample table specified in the PEP.
+Under `sample_interface` (or `project_interface`) is the `command_template`, which holds our command string with variables that will be populated.
+In this example, we will run (`count_lines.sh`) in the same directory as the pipeline interface file.
+We will pass a single argument to the script, `{sample.file_path}`, which is a variable that will be populated with the `file_path` attribute on the sample.
+This `file_path` field is arbitrary -- it is just an attribute for the sample, which corresponds to a column header in the sample table.
+As the pipeline author, your command template can use any attributes with `{sample.<attribute>}` syntax.
+You would just then define what attributes are necessary to run your pipeline.
 
 You can make the command template much more complicated and refer to any sample or project attributes, as well as a bunch of [other variables made available by looper](../advanced-guide/advanced-computing.md#divvy-config-variable-adapters-and-built-in-looper-variables).
 
-Now, you have a basic functional pipeline interface. There are many more advanced features you can use to make your pipeline more powerful, such as providing a schema to specify inputs or outputs, making input-size-dependent compute settings, and more. For complete details, consult the formal [pipeline interface format specification](pipeline-interface-specification.md).
-
-
-Next, let's walk through some of these more advanced options.
-
+There are many more advanced features, such as providing a schema to specify inputs or outputs, making input-size-dependent compute settings, and more.
+Let's walk through some of these more advanced options.
 
 ### Variable Templates via `var_templates`
-You can utilize `var_templates` to render re-usable variables for use in the command template.
+
+You can use `var_templates` to render re-usable variables for use in the command template.
 
 ```yaml title="pipeline_interface.yaml"
 pipeline_name: count_lines
@@ -86,7 +102,7 @@ NaN   1 64000 00-02:00:00
 ```
 
 
-### Initialize Generic Pipeline Interface
+### Initialize generic pipeline interface
 
 Each Looper project requires one or more pipeline interfaces that points to sample and/or project pipelines. You can run a command that will generate a generic pipeline interface, a generic output_schema.yaml (useful for pipestat compatible pipelines) and a generic pipeline to get you started:
 
@@ -140,3 +156,5 @@ command_template: >
   python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}
 ```
 
+
+For complete details, consult the formal [pipeline interface format specification](pipeline-interface-specification.md).
