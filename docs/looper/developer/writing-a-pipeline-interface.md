@@ -150,7 +150,6 @@ If you wish to use [pipestat](../tutorial/pipestat.md), you will need to provide
 
 ```yaml
 pipeline_name: example_pipestat_pipeline
-pipeline_type: sample
 output_schema: pipestat_output_schema.yaml
 command_template: >
   python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}

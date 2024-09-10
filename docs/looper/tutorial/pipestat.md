@@ -271,7 +271,9 @@ looper report
 
 This command will call `pipestat summarize` on the results located in your results location. In this case, the `results.yaml` file.
 
-An example html report using `looper report` can be found here: [PEPATAC Gold Summary](https://pepatac.databio.org/en/latest/files/examples/gold/gold_summary.html)
+Here is an example html report for the above tutorial examples: [count lines report](../count_lines_report/index.html)
+
+A more advanced example of an html report using `looper report` can be found here: [PEPATAC Gold Summary](https://pepatac.databio.org/en/latest/files/examples/gold/gold_summary.html)
 
 ### Create tables and stats summaries
 

@@ -67,11 +67,10 @@ pipestat:
   pephub_path: "databio/pipestat_demo:default"
 ```
 
-### 2. The pipeline interface must include information required by pipestat such as pipeline_name, pipeline_type, and an output schema path:
+### 2. The pipeline interface must include information required by pipestat such as pipeline_name and an output schema path:
 
-```yaml title="pipeline_interface.yaml" hl_lines="1-3"
+```yaml title="pipeline_interface.yaml" hl_lines="1-2"
 pipeline_name: example_pipestat_pipeline
-pipeline_type: sample
 output_schema: pipeline_pipestat/pipestat_output_schema.yaml
 command_template: >
   python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}
