@@ -328,7 +328,7 @@ Pipestat will read the `pephub_path` from the config file and report results dir
 
 Besides reporting results, another feature of pipestat is that it allows users to set pipeline *status*.
 If your pipeline uses pipestat to set status flags, then looper can be used to check the status of pipeline runs.
-Let's modify modify the pipeline to set status:
+Let's modify the pipeline to set status:
 
 ```python hl_lines="20 21 33 34"
 import pipestat
