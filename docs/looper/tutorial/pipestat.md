@@ -424,6 +424,22 @@ To create a directory of linked objects:
 looper link
 ```
 
+## Project-level pipelines
+
+A project name must be supplied if running a project level pipeline with pipestat. 
+
+```yaml title=".looper.yaml" hl_lines="6"
+pep_config: project_config_pipestat.yaml # pephub registry path or local path
+output_dir: results
+pipeline_interfaces:
+  - ./pipeline_interface1_sample_pipestat.yaml
+pipestat:
+  project_name: TEST_PROJECT_NAME
+  results_file_path: tmp_pipestat_results.yaml
+  flag_file_dir: output/results_pipeline
+```
+
+
 
 !!! tip "Summary"
     - Pipestat is a standalone tool that can be used with or without looper.

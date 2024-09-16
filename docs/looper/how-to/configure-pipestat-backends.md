@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In the basic [pipestat tutorial](tutorial/pipestat.md), we showed how to create a simple pipeline that could use pipestat to report results.
+In the basic [pipestat tutorial](../tutorial/pipestat.md), we showed how to create a simple pipeline that could use pipestat to report results.
 One of the powerful features of pipestat is that you can configure it to store results in different locations.
 This document will cover more details about how to configure pipestat in looper:
 
@@ -14,7 +14,7 @@ This document will cover more details about how to configure pipestat in looper:
 
 As looper processes samples and creates a job submission script, if `.looper.yaml` config file contains `pipestat` section, it creates a pipestat configuration file, which merges information found in 1. pipeline interface and 2. looper_config file.
 
-Looper combines the necessary configuration data and writed a pipestat configuration for each pipeline interface. The configuration file is then used by the pipeline interface (and pipeline) to create a PipestatManager object. This instantiated PipestatManager object can then be used to report results.
+Looper combines the necessary configuration data and writes a pipestat configuration for each pipeline interface. The configuration file is then used by the pipeline interface (and pipeline) to create a PipestatManager object. This instantiated PipestatManager object can then be used to report results.
 
 To configure looper to use pipestat, you must
 
@@ -31,7 +31,7 @@ output_dir: results
 pipeline_interfaces:
   - ./pipeline_interface1_sample_pipestat.yaml
 pipestat:
-  project_name: TEST_PROJECT_NAME
+  project_name: TEST_PROJECT_NAME # This is optional unless running a project-level pipeline.
   results_file_path: tmp_pipestat_results.yaml
   flag_file_dir: output/results_pipeline
 ```
@@ -72,27 +72,22 @@ pipestat:
 ```yaml title="pipeline_interface.yaml" hl_lines="1-2"
 pipeline_name: example_pipestat_pipeline
 output_schema: pipeline_pipestat/pipestat_output_schema.yaml
-command_template: >
-  python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}
+sample_interface:
+  command_template: >
+    python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}
+```
 
+Using the above information, Looper will construct the pipestat configuration file automatically. It will have the name `pipestat_config_{pipeline_name}.yaml` and be placed in the results output directory. It will contain the aggregation of pipestat relevant items found in the looper config file and the pipeline interface.
+
+```yaml title="example of pipestat_config_count_lines.yaml"
+results_file_path: /home/drc/GITHUB/hello_looper/hello_looper/pipestat_example/./results/count_lines/results.yaml
+flag_file_dir: /home/drc/GITHUB/hello_looper/hello_looper/pipestat_example/./results/flags
+output_dir: /home/drc/GITHUB/hello_looper/hello_looper/pipestat_example/./results
+schema_path: /home/drc/GITHUB/hello_looper/hello_looper/pipestat_example/pipeline/pipestat_output_schema.yaml
+pipeline_name: count_lines
 ```
 
 
-
-## Project-level pipelines
-
-A project name must be supplied if running a project level pipeline. 
-
-```yaml title=".looper.yaml" hl_lines="6"
-pep_config: project_config_pipestat.yaml # pephub registry path or local path
-output_dir: results
-pipeline_interfaces:
-  - ./pipeline_interface1_sample_pipestat.yaml
-pipestat:
-  project_name: TEST_PROJECT_NAME
-  results_file_path: tmp_pipestat_results.yaml
-  flag_file_dir: output/results_pipeline
-```
 
 
 
