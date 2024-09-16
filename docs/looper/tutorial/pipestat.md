@@ -424,9 +424,9 @@ To create a directory of linked objects:
 looper link
 ```
 
-## Project-level pipelines
+## What if I want to run a project-level pipeline and use pipestat?
 
-A project name must be supplied if running a project level pipeline with pipestat. 
+A project name must be supplied if running a project-level pipeline with pipestat. For more information on using project-level pipelines with Looper, see here: [Running project-level pipelines](../advanced-guide/advanced-run-options.md#running-project-level-pipelines)
 
 ```yaml title=".looper.yaml" hl_lines="6"
 pep_config: project_config_pipestat.yaml # pephub registry path or local path
