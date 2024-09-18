@@ -25,7 +25,7 @@ PEPhub is an open-source database, web interface, and API for sharing, retrievin
 
 - **Re-processing of GEO metadata**. The public PEPhub instance [geo namespace](https://pephub.databio.org/geo)  holds metadata from nearly 99% of the [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo/). PEPhub is updated weekly using [GEOfetch](../geofetch/README.md) to produce standardized PEP sample tables, providing a convenient API interface to GEO metadata.
 
-- **Command-line client**. You can use [PEPHubClient](developer/pephubclient/README.md) for  command-line tool and Python API, which allows authentication, download, upload of public or private projects.
+- **Command-line client**. You can use [PEPHubClient](user/pephubclient/README.md) for  command-line tool and Python API, which allows authentication, download, upload of public or private projects.
 
 - **Group PEPs with using a PEP of PEPs (POP)**. A PEP of PEPs, or simply a POP, is a type of PEP in which each row is itself a PEP. POPs allow users to organize projects into groups.
 

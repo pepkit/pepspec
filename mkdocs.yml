@@ -187,6 +187,14 @@ nav:
       - How to use views: pephub/user/views.md
       - PEP of PEPs (POP): pephub/user/pops.md
       - Accessing GEO metadata: pephub/user/geo.md
+      - PEPHubClient:
+        - PEPhubClient: pephub/user/pephubclient/README.md
+        - Quickstart: pephub/user/pephubclient/tutorial.md
+        - Python API: pephub/user/pephubclient/phc_usage.md
+        - Python API samples: pephub/user/pephubclient/phc_samples_usage.md
+        - Python API views: pephub/user/pephubclient/phc_views_usage.md
+        - CLI usage: pephub/user/pephubclient/cli.md
+        - Changelog: pephub/user/pephubclient/changelog.md
     - Developer guide:
       - Setup: pephub/developer/setup.md
       - Deployment: pephub/developer/deployment.md
@@ -194,14 +202,6 @@ nav:
       - Authentication: pephub/developer/authentication.md
       - Authentication Device: pephub/developer/authentication-device.md
       - Semantic search: pephub/developer/semantic-search.md
-      - PEPHubClient:
-        - PEPhubClient: pephub/developer/pephubclient/README.md
-        - Quickstart: pephub/developer/pephubclient/tutorial.md
-        - Changelog: pephub/developer/pephubclient/changelog.md
-        - Python API: pephub/developer/pephubclient/phc_usage.md
-        - Python API samples: pephub/developer/pephubclient/phc_samples_usage.md
-        - Python API views: pephub/developer/pephubclient/phc_views_usage.md
-        - CLI usage: pephub/developer/pephubclient/cli.md
       - Server settings: pephub/developer/server-settings.md
       - PEPembed:
         - PEPembed: pephub/developer/pepembed/README.md

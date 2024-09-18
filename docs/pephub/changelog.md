@@ -2,7 +2,34 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
-## [0.11.6] - 02-26-2024
+## [0.14.0] - 18-09-2024
+- Added BEDMS standardizer to PEPhub
+- Updated schema endpoints 
+- Added archive namespace endpoint
+- Fixed multiple bugs
+- A lot of UI work
+
+## [0.13.0] - 25-07-2024
+- Added schemas to the PEPhub
+- Fixed a lot of ui issues #[360](https://github.com/pepkit/pephub/pull/360)
+
+## [0.12.0] - 18-07-2024
+- Fixed CTRL+K and CTRL+S not working  #350
+- Added Project history #349
+- Fixed PEPhub won't save a table without sample_name #347
+- Fixed Moving to 'config' tab loses all unsaved changes in 'samples' tab #346
+- Fixed Pasting csv file into pephub yields error #345
+- Fixed UI is creating bogus column names when you remove existing columns. #344
+- Fixed UI invents a column name #343
+- Fixed UI issues with pasting a column header named 'sample_name' #342
+- Fixed UI glitch reloads data on save #340
+- Added Feature request: Ctrl+S to save #339
+- Fixed pephub UI removes samples in progress if you switch to a different tab without saving #338
+- Fixed pephub UI cannot delete a sample the inutitive way #337
+
+## [0.11.9] - 02-07-2024
+
+## [0.11.8] - 02-26-2024
 
 - Fix some bugs introduced as a result of the last release:
   - tag's were being removed from the URL params when selecting a project view
