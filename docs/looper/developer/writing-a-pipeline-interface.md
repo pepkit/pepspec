@@ -148,3 +148,9 @@ NaN   1 64000 00-02:00:00
 ```
 
 For complete details, consult the formal [pipeline interface format specification](pipeline-interface-specification.md).
+
+
+!!! tip "Summary"
+    - You learned how to initialize and modify a generic pipeline interface using `looper init_piface`. 
+    - Using var_templates can easily allow you to re-use the same variables within your command template. 
+    - Pipeline specific compute variables can be added to the pipeline interface to set items such as memory and number of cpus during the pipeline run.

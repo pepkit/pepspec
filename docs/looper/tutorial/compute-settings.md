@@ -331,11 +331,11 @@ pipeline_name: count_lines
 sample_interface:
   command_template: >
     pipeline/count_lines.sh {sample.file_path}
-  compute:
-    partition: standard
-    time: '01-00:00:00'
-    cores: '32'
-    mem: '32000'
+compute:
+  partition: standard
+  time: '01-00:00:00'
+  cores: '32'
+  mem: '32000'
 ```
 
 Now, with this new pipeline interface, you can leave off the `--compute` argument to `looper run`, as we did before, but the variables will be populated from the pipeline interface:
