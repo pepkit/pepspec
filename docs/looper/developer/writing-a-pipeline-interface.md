@@ -16,31 +16,44 @@ Here is a basic walkthrough to write a simple interface file. Once you've been t
     - Do I have to write a pipeline interface to have looper just run some command that isn't really a pipeline?
 
 
-## Example
+### Initialize generic pipeline interface
 
-Let's start with a simple example:
+Each Looper project requires one or more pipeline interfaces that points to sample and/or project pipelines. You can run a command that will generate a generic pipeline interface, a generic output_schema.yaml (useful for pipestat compatible pipelines) and a generic pipeline to get you started:
+
+```shell
+looper init_piface
+```
+
+We can inspect our simple, generic example:
+
+`cat pipeline_interface.yaml`
+
 
 ```yaml title="pipeline_interface.yaml"
 pipeline_name: count_lines
+output_schema: output_schema.yaml
+var_templates:
+  pipeline: '{looper.piface_dir}/count_lines.sh'
 sample_interface:
-  command_template: >
-    {looper.piface_dir}/count_lines.sh {sample.file_path}
+  command_template: '{pipeline.var_templates.pipeline} {sample.file} --output-parent {looper.sample_output_folder}'
 ```
 
 What's going on here?
 First, looper needs to know the name of the pipeline so it can keep track of outputs of different pipelines.
-In this case, we named the pipeline `count_lines`.
 The pipeline name could be anything, as long as it is unique to the pipeline.
 It will be used for communication and keeping track of which results belong to which pipeline.
-Think of it as a unique identifier label you assign to the pipeline. 
+Think of it as a unique identifier label you assign to the pipeline.
 
-Next, the `sample_interface` key.
+The `output_schema` field is useful if you are using pipestat to report results. If you are not using pipestat, you can remove this line from your own pipeline interface.
+
+We will come back to the `var_templates` in a moment. First, we must discuss the `sample_interface` key.
+
 This key tells looper (and pipestat) that this is a **sample-level pipeline.**
 If this interface were describing a project-level pipeline, it would instead use `project_interface`.
 
 !!! tip "Sample and project interfaces"
     Remember, looper distinguishes sample-level from project-level pipelines.
-    This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md).
+    This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md) and a specific example of running a project-level pipeline can be found here under the [pipestat tutorial](../tutorial/pipestat/#running-project-level-pipelines).
     Basically, sample-level pipelines run *once per sample*, whereas project-level pipelines run *once per project*.
     You can also write an interface with both a `sample_interface` and a `project_interface`.
     This would make sense to do for a pipeline that had two parts, one that you run independently for each sample, and a second one that aggregates all those sample results at the project level.
@@ -59,21 +72,33 @@ Let's walk through some of these more advanced options.
 
 ### Variable Templates via `var_templates`
 
-You can use `var_templates` to render re-usable variables for use in the command template.
+Let us circle back to the `var_templates` key. You can use `var_templates` to render re-usable variables for use in the command template.
 
+```yaml title="pipeline_interface.yaml" hl_lines="3 4"
+pipeline_name: count_lines
+output_schema: output_schema.yaml
+var_templates:
+  pipeline: '{looper.piface_dir}/count_lines.sh'
+sample_interface:
+  command_template: {pipeline.var_templates.pipeline} {sample.file} --output-parent {looper.sample_output_folder}
+```
+
+You can add anything to the var_templates that you need to later access in the command templates:
 ```yaml title="pipeline_interface.yaml"
 pipeline_name: count_lines
 var_templates:  
-  pipeline: "{looper.piface_dir}/directory_of_pipelines/count_lines.sh"  
+  pipeline: '{looper.piface_dir}/count_lines.sh' 
+  refgenie_config: "$REFGENIE"
 sample_interface:
   command_template: >
-    {pipeline.var_templates.pipeline} {sample.file_path}
+    {pipeline.var_templates.pipeline} --config {pipeline.var_templates.refgenie_config} {sample.file_path} --output-parent {looper.sample_output_folder}
 ```
 
 
-### Compute Variables
+### Adding compute variables to the pipeline interface
 
-You can also utilize pipeline specific compute variables within the pipeline interface:
+Sometimes, you may want to modify compute variables for a specific pipeline, e.g. adding a specific memory requirement.
+Therefore, you can also utilize pipeline specific compute variables within the pipeline interface:
 
 
 ```yaml title="pipeline_interface.yaml"
@@ -84,10 +109,31 @@ sample_interface:
   command_template: >
     {pipeline.var_templates.pipeline} {sample.file_path}
 compute:
-  size_dependent_variables: resources-sample.tsv
+  cores: '32'
+  mem: '32000'
 ```
 
-In this example we are pointing to a `.tsv` file that will determine the resources for each sample as needed.
+In this example, we are specifying that the pipeline run will require 32 cores and 32 gigabytes of memory.
+
+We can add other items as well, such as the HPC partition to run our pipeline, and the maximum time to allot for the run.:
+
+```yaml title="pipeline_interface.yaml"
+compute:
+  cores: '32'
+  mem: '32000'
+  partition: standard
+  time: '01-00:00:00'
+```
+Finally, you can even point to a `.tsv` file that will determine the resources for each sample as needed.
+
+```yaml title="pipeline_interface.yaml"
+compute:
+  cores: '32'
+  mem: '32000'
+  partition: standard
+  time: '01-00:00:00'
+  size_dependent_variables: resources-sample.tsv
+```
 
 For clarity here is an example `resources-sample.tsv` would look like:
 
@@ -100,60 +146,5 @@ max_file_size cores mem time
 NaN   1 64000 00-02:00:00
 
 ```
-
-
-### Initialize generic pipeline interface
-
-Each Looper project requires one or more pipeline interfaces that points to sample and/or project pipelines. You can run a command that will generate a generic pipeline interface, a generic output_schema.yaml (useful for pipestat compatible pipelines) and a generic pipeline to get you started:
-
-```shell
-looper init_piface
-```
-
-```console title="Output from looper init_piface"
-──────────  Pipeline Interface ──────────
-{
-│   'pipeline_name': 'default_pipeline_name',
-│   'output_schema': 'output_schema.yaml',
-│   'var_templates': {
-│   │   'pipeline': '{looper.piface_dir}/count_lines.sh'
-│   },
-│   'sample_interface': {
-│   │   'command_template': '{pipeline.var_templates.pipeline} {sample.file} --output-parent {looper.sample_output_folder}'
-│   }
-}
-Pipeline interface successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/pipeline_interface.yaml
-──────────  Output Schema ──────────
-{
-│   'pipeline_name': 'default_pipeline_name',
-│   'samples': {
-│   │   'number_of_lines': {
-│   │   │   'type': 'integer',
-│   │   │   'description': 'Number of lines in the input file.'
-│   │   }
-│   }
-}
-Output schema successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/output_schema.yaml
-──────────  Example Pipeline Shell Script ──────────
-#!/bin/bash
-linecount=`wc -l $1 | sed -E 's/^[[:space:]]+//' | cut -f1 -d' '`
-pipestat report -r $2 -i 'number_of_lines' -v $linecount -c $3
-echo "Number of lines: $linecount"
-    
-count_lines.sh successfully created at: /home/drc/PythonProjects/testing_perofrmance/testingperformance/pipeline/count_lines.sh
-
-```
-
-## Example Pipeline Interface Using Pipestat
-
-If you wish to use [pipestat](../tutorial/pipestat.md), you will need to provide an `output_schema`. Note that the pipeline name contained within this pipeline interface should match the one in the pipestat output schema.
-
-```yaml
-pipeline_name: example_pipestat_pipeline
-output_schema: pipestat_output_schema.yaml
-command_template: >
-  python {looper.piface_dir}/count_lines.py {sample.file} {sample.sample_name} {pipestat.results_file}
-```
-
 
 For complete details, consult the formal [pipeline interface format specification](pipeline-interface-specification.md).

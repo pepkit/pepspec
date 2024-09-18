@@ -90,10 +90,67 @@ The input schema formally specifies the *input processed by this pipeline*. The 
 Details for how to write a schema in [writing a schema](https://pep.databio.org/eido/writing-a-schema/). The input schema format is an extended [PEP JSON-schema validation framework](https://pep.databio.org/spec/howto-validate/), which adds several capabilities, including
 
 - `required` (optional): A list of sample attributes (columns in the sample table) that **must be defined**
-- `required_files` (optional): A list of sample attributes that point to **input files that must exist**.
-- `files` (optional): A list of sample attributes that point to input files that are not necessarily required, but if they exist, should be counted in the total size calculation for requesting resources.
+- `tangible` (optional): A list of sample attributes that point to **input files that must exist**.
+- `sizing` (optional): A list of sample attributes that point to input files that are not necessarily required, but if they exist, should be counted in the total size calculation for requesting resources.
 
 If no `input_schema` is included in the pipeline interface, looper will not be able to validate the samples and will simply submit each job without validation.
+
+Here is an example input schema:
+
+```yaml title="Example input_schema.yaml"
+description: A PEP for ATAC-seq samples for the PEPATAC pipeline.
+imports:
+  - http://schema.databio.org/pep/2.0.0.yaml
+properties:
+  samples:
+    type: array
+    items:
+      type: object
+      properties:
+        sample_name: 
+          type: string
+          description: "Name of the sample"
+        organism: 
+          type: string
+          description: "Organism"
+        protocol: 
+          type: string
+          description: "Must be an ATAC-seq or DNAse-seq sample"
+        genome:
+          type: string
+          description: "Refgenie genome registry identifier"
+        read_type:
+          type: string
+          description: "Is this single or paired-end data?"
+          enum: ["SINGLE", "PAIRED"]
+        read1:
+          anyOf:
+            - type: string
+              description: "Fastq file for read 1"
+            - type: array
+              items:
+                type: string
+        read2:
+          anyOf:
+            - type: string
+              description: "Fastq file for read 2 (for paired-end experiments)"
+            - type: array
+              items:
+                type: string
+      tangible:
+        - read1
+      sizing:
+        - read1
+        - read2
+      required:
+        - sample_name
+        - protocol
+        - read1
+        - genome
+required:
+  - samples
+```
+
 
 ### output_schema
 
@@ -101,37 +158,68 @@ The output schema formally specifies the *output produced by this pipeline*. It 
 
 Here is an example output schema:
 
-```yaml
+```yaml title="Example output_schema.yaml"
 title: An example output schema
-description: An example description
+description: A pipeline that uses pipestat to report sample and project level results.
 type: object
 properties:
   pipeline_name: "default_pipeline_name"
   samples:
-    type: object
-    properties:
-      number_of_things:
-        type: integer
-        description: "Number of things"
-      percentage_of_things:
-        type: number
-        description: "Percentage of things"
-      name_of_something:
-        type: string
-        description: "Name of something"
-      switch_value:
-        type: boolean
-        description: "Is the switch on or off"
-      output_file:
-        $ref: "#/$defs/file"
-        description: "This a path to the output file"
-      output_image:
-        $ref: "#/$defs/image"
-        description: "This a path to the output image"
-      md5sum:
-        type: string
-        description: "MD5SUM of an object"
-        highlight: true
+    type: array
+    items:
+      type: object
+      properties:
+        number_of_things:
+          type: integer
+          description: "Number of things"
+        percentage_of_things:
+          type: number
+          description: "Percentage of things"
+        name_of_something:
+          type: string
+          description: "Name of something"
+        switch_value:
+          type: boolean
+          description: "Is the switch on or off"
+        md5sum:
+          type: string
+          description: "MD5SUM of an object"
+          highlight: true
+        collection_of_images:
+          description: "This store collection of values or objects"
+          type: array
+          items:
+            properties:
+                prop1:
+                  description: "This is an example file"
+                  $ref: "#/$defs/file"
+        output_file_in_object:
+          type: object
+          properties:
+            prop1:
+              description: "This is an example file"
+              $ref: "#/$defs/file"
+            prop2:
+              description: "This is an example image"
+              $ref: "#/$defs/image"
+          description: "Object output"
+        output_file_in_object_nested:
+          type: object
+          description: First Level
+          properties:
+            prop1:
+              type: object
+              description: Second Level
+              properties:
+                prop2:
+                  type: integer
+                  description: Third Level
+        output_file:
+          $ref: "#/$defs/file"
+          description: "This a path to the output file"
+        output_image:
+          $ref: "#/$defs/image"
+          description: "This a path to the output image"
 $defs:
   image:
     type: object
