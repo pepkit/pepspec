@@ -110,7 +110,7 @@ _Due to the changes mentioned above, a few functionalities may be disabled. For 
 ### Fixed
 
 - Performance issues during sample parsing. Two list comprehensions were combined to speed up this functionality.
-- `KeyError` is thrown when attempting to access the `pep_version` of a `peppy.Project` instance instatiated from a sample table (`csv`)
+- `KeyError` is thrown when attempting to access the `pep_version` of a `peppy.Project` instance instantiated from a sample table (`csv`)
 
 ### Added
 

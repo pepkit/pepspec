@@ -25,7 +25,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Fixed UI glitch reloads data on save #340
 - Added Feature request: Ctrl+S to save #339
 - Fixed pephub UI removes samples in progress if you switch to a different tab without saving #338
-- Fixed pephub UI cannot delete a sample the inutitive way #337
+- Fixed pephub UI cannot delete a sample the intuitive way #337
 
 ## [0.11.9] - 02-07-2024
 

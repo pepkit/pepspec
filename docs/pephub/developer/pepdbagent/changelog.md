@@ -25,7 +25,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Fixed forking schema
 - Improved forking efficiency [#129](https://github.com/pepkit/pepdbagent/issues/129)
 - Added uploading project from dict 
-- Added get_config, get_smaples, get_subsamples methods to project module [#128](https://github.com/pepkit/pepdbagent/issues/128)
+- Added get_config, get_samples, get_subsamples methods to project module [#128](https://github.com/pepkit/pepdbagent/issues/128)
 - Fixed error handling in views API [#130](https://github.com/pepkit/pepdbagent/issues/130)
 - Added no_fail to views API 
 
