@@ -53,7 +53,7 @@ If this interface were describing a project-level pipeline, it would instead use
 
 !!! tip "Sample and project interfaces"
     Remember, looper distinguishes sample-level from project-level pipelines.
-    This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md) and a specific example of running a project-level pipeline can be found here under the [pipestat tutorial](../tutorial/pipestat/#running-project-level-pipelines).
+    This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md) and a specific example of running a project-level pipeline can be found here under the [pipestat tutorial](../tutorial/pipestat.md/#running-project-level-pipelines).
     Basically, sample-level pipelines run *once per sample*, whereas project-level pipelines run *once per project*.
     You can also write an interface with both a `sample_interface` and a `project_interface`.
     This would make sense to do for a pipeline that had two parts, one that you run independently for each sample, and a second one that aggregates all those sample results at the project level.
@@ -70,7 +70,7 @@ You can make the command template much more complicated and refer to any sample 
 There are many more advanced features, such as providing a schema to specify inputs or outputs, making input-size-dependent compute settings, and more.
 Let's walk through some of these more advanced options.
 
-### Variable Templates via `var_templates`
+### Variable templates via `var_templates`
 
 Let us circle back to the `var_templates` key. You can use `var_templates` to render re-usable variables for use in the command template.
 
@@ -149,6 +149,18 @@ NaN   1 64000 00-02:00:00
 
 For complete details, consult the formal [pipeline interface format specification](pipeline-interface-specification.md).
 
+
+### Adding pre-submission commands to your pipeline run
+
+Looper also support a [pre-submission hook system](pre-submission-hooks.md). For example, if you need to run a command before the pipeline begins, you can use the `pre_submit` key within the pipeline interface:
+
+```yaml
+var_templates:
+  compute_script: "{looper.piface_dir}/hooks/script.py"
+pre_submit:
+  command_templates:
+    - "{pipeline.var_templates.compute_script} --genome {sample.genome} --log-file {looper.output_dir}/log.txt"
+```
 
 !!! tip "Summary"
     - You learned how to initialize and modify a generic pipeline interface using `looper init_piface`. 
