@@ -3,7 +3,7 @@
 
 This how-to guide assumes you have already completed the [pipestat tutorial](../tutorial/pipestat.md) as well as the how-to guide for [running project-level pipelines](project-level-pipelines.md).
 
-So far, our examples have been reporting primitives. But what if out pipeline generates an image and we wish to report this more complex object? We can leverage looper's integration with pipestat to accomplish this.
+So far, our examples have been reporting primitives such as integers. But what if our pipeline generates an image, and we wish to report this more complex object? We can leverage looper's integration with pipestat to accomplish this.
 
 As an example, we will take the previous pipestat tutorial and modify it to run a project-level pipeline that will create and then report an image result. You can always download the completed tutorial files from the [hello looper repository](https://github.com/pepkit/hello_looper).
 
@@ -20,11 +20,10 @@ Next run the sample level pipeline so that the sample-level results are reported
 looper run
 ```
 
-We would like to take the number of regions from each sample (file) and collect them into a single plot. This plot will be stored as an image locally and the path of this image will be reported to the pipestat backend.
+We would like to take the number of regions from each sample (file) and collect them into a single plot. This plot will be stored as an image locally, and the path of this image will be reported to the pipestat backend.
 
-To achieve this, we must use a project-level pipeline.
 
-First, we will need to add a `project_interface` to the `pipeline_interface`:
+We will need to add a `project_interface` to the `pipeline_interface`:
 
 ```yaml title="pipeline_interface.yaml" hl_lines="6-9"
 pipeline_name: count_lines
@@ -39,7 +38,7 @@ project_interface:
 
 We only need to pass the `pipestat.results_file` and the `pipestat.output_schema` to pipestat in this project-level example.
 
-Secondly, we will need to modify the `.looper.yaml` config file to add a project name to the pipestat section. When running project-level pipelines with pipestat, we must supply a project name.
+Next, we will modify the `.looper.yaml` config file to add a project name to the pipestat section. When running project-level pipelines with pipestat, we must supply a project name.
 
 ```yaml title=".looper.yaml" hl_lines="6"
 pep_config: ./metadata/pep_config.yaml # pephub registry path or local path
@@ -52,7 +51,7 @@ pipestat:
   flag_file_dir: results/flags
 ```
 
-Third, we will need to modify the pipestat output schema to report an image result. This is a more complex object than our previous integer results. For example, it has required fields. Let's modify our output schema now:
+We will also need to modify the pipestat output schema to report an image result. This is a more complex object than our previous integer results. For example, it has required fields. Let's modify our output schema now:
 
 ```yaml title="pipestat_output_schema.yaml" hl_lines="14-33"
 title: Pipestat output schema for counting lines
@@ -121,7 +120,6 @@ plt.bar(countries, number_of_regions, color=['blue', 'green', 'purple'])
 plt.xlabel('Countries')
 plt.ylabel('Number of regions')
 plt.title('Number of regions per country')
-#plt.show() # Showing the figure and then saving it causes issues, so leave this commented out.
 
 # Save the image locally AND report that location via pipestat
 # we can place it next to the results file for now
@@ -140,7 +138,7 @@ psm.report(record_identifier="count_lines", values=result_to_report)
 
 Looper passes the schema and results file to the pipeline. Pipestat then uses these items to create a PipestatManager object (`psm`) which can access the previously reported results.
   
-Once we've plotted the results in a bar chart, we can report the location of the saved plot using pipestat. The structure of the reported image, `regions_plot` is a nested dictionary and contains all the required fields from our modified pipestat output schema.
+Once we've plotted the results in a bar chart, we can report the location of the saved plot using pipestat. The structure of the reported image, `regions_plot`, is a nested dictionary and contains all the required fields from our modified pipestat output schema.
 
 
 Make sure `count_lines_plot.py` is executable:
@@ -157,7 +155,7 @@ If you run the project-level pipeline with the following command,
 
 And the path to this image will be added to the `results.yaml` file as a reported result:
 
-```yaml
+```yaml title="results.yaml" hl_lines="7-10"
 count_lines:
   project:
     count_lines:
