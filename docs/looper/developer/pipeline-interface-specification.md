@@ -10,28 +10,26 @@ Table of contents:
 
 ## Introduction
 
-In order to run an arbitrary pipeline, we require a formal specification for how the pipeline is to be used. We define this using a *pipeline interface* file. It maps attributes of a PEP project or sample to the pipeline CLI arguments. Thus, it defines the interface between the project metadata (the PEP) and the pipeline itself.
-
-If you're using *existing* `looper`-compatible pipelines, you don't need to create a new interface; just point your project at the one that comes with the pipeline. When creating *new* `looper`-compatible pipelines, you'll need to create a new pipeline interface file.
-
-
+To run an arbitrary pipeline, we require a formal specification for how the pipeline is run.
+We define this using a *pipeline interface* file.
+It maps attributes of a PEP project or sample to the pipeline CLI arguments.
+Thus, it defines the interface between the project metadata (the PEP) and the pipeline itself.
 
 ## Overview of pipeline interface components
 
 A pipeline interface may contain the following keys:
 
-- `pipeline_name` (REQUIRED) - A string identifying the pipeline,
-- `pipeline_type` (REQUIRED) - A string indicating a pipeline type: "sample" (for `run`) or "project" (for `runp`),
-- `command_template` (REQUIRED) - A [Jinja2](https://jinja.palletsprojects.com/) template used to construct a pipeline command to run.
+- `pipeline_name` (REQUIRED) - A string identifying the pipeline.
+- `sample_interface` OR `project_interface` (REQUIRED) - which will hold the  `command_template` (REQUIRED) variable with a [Jinja2](https://jinja.palletsprojects.com/) template used to construct a pipeline command to run.
 - `input_schema` (RECOMMENDED) - A [PEP Schema](https://pep.databio.org/eido/) formally defining *required inputs* for the pipeline
-- `output_schema` (RECOMMENDED) - A schema describing the *outputs* of the pipeline
+- `output_schema` (RECOMMENDED) - A schema describing the *outputs* of the pipeline, for pipestat-compatible pipelines.
 - `compute` (RECOMMENDED) - Settings for computing resources
-- `var_templates` (RECOMMENDED) - A mapping of [Jinja2](https://jinja.palletsprojects.com/) templates and corresponding names, typically used to encode submission-specific paths that can be submission-specific
-- `pre_submit` (OPTIONAL) - A mapping that defines the pre-submission tasks to be executed
+- `var_templates` (OPTIONAL) - A mapping of [Jinja2](https://jinja.palletsprojects.com/) templates and corresponding names, typically used to encode paths that can be submission-specific
+- `pre_submit` (OPTIONAL) - A mapping that defines the pre-submission tasks to be executed.
 
-The pipeline interface should define either a sample pipeline or a project pipeline. Here's a simple example:
+## Example pipeline interface
 
-```yaml
+```yaml  title="pipeline_interface.yaml"
 pipeline_name: RRBS
 var_templates:
   pipeline: "{looper.piface_dir}/pipeline1.py"
@@ -42,29 +40,33 @@ sample_interface:
     {pipeline.var_templates.pipeline} --input {sample.data_path} --info {pipeline.sample_info.path}
 ```
 
-The `pipeline_name` is arbitrary. It's used for messaging and identification. Ideally, it's unique to each pipeline. In this example, we define a single sample-level pipeline.
 
 ## Details of pipeline interface components
 
 ### pipeline_name
 
-The pipeline name is arbitrary. It should be unique for each pipeline. Looper uses it for a few things:
+The `pipeline_name` is arbitrary. It should be unique for each pipeline. 
+Looper uses it for a few things:
 
 1. to construct the `job_name` variable (accessible via `{ looper.job_name }`). See [looper variable namespaces in advanced computing](../advanced-guide/advanced-computing.md) for more details.
 
 2. to check for flags. For pipelines that produce flags, looper will be aware of them and not re-submit running jobs.
 
+3. to communicate with the user. In log files, or on the screen, this name will be the string used to identify the pipeline to the user.
+
 ### sample_interface and project_interface
 
-Looper can run 2 kinds of pipeline: *sample pipelines* run once per sample; *project pipelines* run once per project. You must nest the `command_template` under a `sample_interface` or `project_interface` key to let looper know which level the pipeline will run at.
+Looper can run 2 kinds of pipeline: *sample pipelines* run once per sample; *project pipelines* run once per project.
+The pipeline interface should define either a `sample_interface`, a `project_interface`, or both.
+You must nest the `command_template` under a `sample_interface` or `project_interface` key to let looper know at which level to run the pipeline.
 
 ### command_template
 
-The command template is the most critical part of the pipeline interface. It is a [Jinja2](https://jinja.palletsprojects.com/) template for the command to run for each sample. Within the `command_template`, you have access to variables from several sources. These variables are divided into namespaces depending on the variable source. You can access the values of these variables in the command template using the single-brace jinja2 template language syntax: `{namespace.variable}`. For example, looper automatically creates a variable called `job_name`, which you may want to pass as an argument to your pipeline. You can access this variable with `{looper.job_name}`. The available namespaces are described in detail in [advanced computing](../advanced-guide/advanced-computing.md).
+The command template is the most critical part of the pipeline interface. It is a [Jinja2](https://jinja.palletsprojects.com/) template for the command to run for each sample. Within the `command_template`, you have access to variables from several sources. These variables are divided into namespaces depending on the variable source. You can access the values of these variables in the command template using the single-brace jinja2 template language syntax: `{namespace.variable}`. For example, looper automatically creates a variable called `job_name`, which you may want to pass as an argument to your pipeline. You can access this variable with `{looper.job_name}`. The available namespaces are described in detail in the [advanced computing guide](../advanced-guide/advanced-computing.md).
 
 Because it's based on Jinja2, command templates are extremely flexible. For example, optional arguments can be accommodated using Jinja2 syntax, like this:
 
-```
+```yaml title="pipeline_interface.yaml"
 command_template: >
   {pipeline.path}
   --sample-name {sample.sample_name}
@@ -76,14 +78,14 @@ command_template: >
   {% if sample.FRIP_ref is defined %} --frip-ref-peaks {sample.FRIP_ref} {% endif %}
 ```
 
-Arguments wrapped in Jinja2 conditionals will only be added *if the specified attribute exists for the sample*.
+The arguments wrapped in these Jinja2 conditionals will only be added if the specified attribute exists for the sample.
 
 
 ### input_schema
 
 The input schema formally specifies the *input processed by this pipeline*. The input schema serves 2 related purposes:
 
-1. **Validation**. Looper uses the input schema to ensure that the project fulfills all pipeline requirements before submitting any jobs. Looper uses the PEP validation tool, [eido](https://pep.databio.org/eido/), to validate input data by ensuring that input samples have the attributes and input files required by the pipeline. Looper will only submit a sample pipeline if the sample validates against the pipeline's input schema.
+1. **Validation**. Looper uses the input schema to ensure that the project fulfills all pipeline requirements before submitting any jobs. Looper uses the PEP validation tool, [eido](../../eido/README.md), to validate input data by ensuring that input samples have the attributes and input files required by the pipeline. Looper will only submit a sample pipeline if the sample validates against the pipeline's input schema.
 
 2. **Description**. The input schema is also useful to describe the inputs, including both required and optional inputs, thereby providing a standard way to describe a pipeline's inputs. In the schema, the pipeline author can describe exactly what the inputs mean, making it easier for users to learn how to structure a project for the pipeline.
 
@@ -289,20 +291,13 @@ This final line in the resources `tsv` must include `NaN` in the `max_file_size`
 
 #### var_templates
 
-This section can consist of multiple variable templates that are rendered and can be reused. The namespaces available to the templates are listed in [advanced computing](../advanced-guide/advanced-computing.md) section. Please note that the variables defined here (even if they are paths) are arbitrary and are *not* subject to be made relative. Therefore, the pipeline interface author needs take care of making them portable (the `{looper.piface_dir}` value comes in handy!).
+This section can consist of variable templates that are rendered and can be reused.
+The namespaces available to the templates are listed in [advanced computing](../advanced-guide/advanced-computing.md) section.
 
-Example using var_templates:
-```yaml
-pipeline_name: example_pipeline  
-pipeline_type: sample   
-output_schema: output_schema.yaml  
-var_templates:  
-  pipeline: "{looper.piface_dir}/pipelines/pipeline1.py"  
-command_template: >  
-  {pipeline.var_templates.pipeline} --sample-name {sample.sample_name} --req-attr {sample.attr} 
-```
+The use of `var_templates` is for parameterizing pre-submission functions with parameters that require template rendering. This is an advanced use case.
 
-Note: Beginning with Looper 1.9.0, var_templates can also be nested, e.g.
+Beginning with Looper 1.9.0, var_templates can also be nested:
+
 ```yaml
 var_templates:
   refgenie_plugin:
@@ -318,10 +313,3 @@ This section can consist of two subsections: `python_functions` and/or `command_
 ## Validating a pipeline interface
 
 A pipeline interface can be validated using JSON Schema against [schema.databio.org/pipelines/pipeline_interface.yaml](http://schema.databio.org/pipelines/pipeline_interface.yaml). Looper automatically validates pipeline interfaces at submission initialization stage.
-
-
-
-
-
-
-
