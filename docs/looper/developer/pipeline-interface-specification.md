@@ -60,6 +60,13 @@ Looper can run 2 kinds of pipeline: *sample pipelines* run once per sample; *pro
 The pipeline interface should define either a `sample_interface`, a `project_interface`, or both.
 You must nest the `command_template` under a `sample_interface` or `project_interface` key to let looper know at which level to run the pipeline.
 
+When a user invokes `looper run`, looper reads data under `sample_interface` and will create one job template per sample.
+In contrast, when a user invokes `looper runp`, looper reads data under `project_interface` and  creates one job per project (one job total). 
+
+The only other difference is that the sample-level command template has access to the `{sample.<attribute>}` namespace, whereas the project-level command template has access to the `{samples}` array.
+
+
+
 ### command_template
 
 The command template is the most critical part of the pipeline interface. It is a [Jinja2](https://jinja.palletsprojects.com/) template for the command to run for each sample. Within the `command_template`, you have access to variables from several sources. These variables are divided into namespaces depending on the variable source. You can access the values of these variables in the command template using the single-brace jinja2 template language syntax: `{namespace.variable}`. For example, looper automatically creates a variable called `job_name`, which you may want to pass as an argument to your pipeline. You can access this variable with `{looper.job_name}`. The available namespaces are described in detail in the [advanced computing guide](../advanced-guide/advanced-computing.md).
