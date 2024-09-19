@@ -16,8 +16,6 @@ You can also use each of these tools independent of looper in a completely diffe
 
 That modularity is the core design philosophy of PEPkit.
 
-![PEPkit](../img/pepkit.png)
-
 What we've covered so far is still just the beginning of what you can use these tools to do. 
 In the advanced user guides, you'll find details on how to configure run options, more advanced computing guides, and more useful metadata management.
 There are also how-to guides with specific recipes for common use cases.
