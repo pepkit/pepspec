@@ -85,7 +85,7 @@ like `{pipeline.my_param}`.
 
 Great. But wait, what if we want to use another looper variable in there? The problem is, this isn't a template, so we can't
 
-THat's what `var_templates` are. they are populated first through the template system, so they are rendered, then, they are provided.
+That's what `var_templates` are. they are populated first through the template system, so they are rendered, then, they are provided.
 
 
 
@@ -93,7 +93,6 @@ THat's what `var_templates` are. they are populated first through the template s
 Example using var_templates:
 ```yaml
 pipeline_name: example_pipeline  
-pipeline_type: sample   
 output_schema: output_schema.yaml  
 var_templates:  
   pipeline_path: "{looper.piface_dir}/pipelines/pipeline1.py"  
