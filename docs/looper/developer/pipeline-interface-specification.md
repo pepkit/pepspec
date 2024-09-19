@@ -24,7 +24,7 @@ A pipeline interface may contain the following keys:
 - `input_schema` (RECOMMENDED) - A [PEP Schema](https://pep.databio.org/eido/) formally defining *required inputs* for the pipeline
 - `output_schema` (RECOMMENDED) - A schema describing the *outputs* of the pipeline, for pipestat-compatible pipelines.
 - `compute` (RECOMMENDED) - Settings for computing resources
-- `var_templates` (OPTIONAL) - A mapping of [Jinja2](https://jinja.palletsprojects.com/) templates and corresponding names, typically used to encode paths that can be submission-specific
+- `var_templates` (OPTIONAL) - A mapping of [Jinja2](https://jinja.palletsprojects.com/) templates and corresponding names, typically used to parameterize plugins
 - `pre_submit` (OPTIONAL) - A mapping that defines the pre-submission tasks to be executed.
 
 ## Example pipeline interface
