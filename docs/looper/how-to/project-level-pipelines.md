@@ -22,7 +22,7 @@ Ensure you are in the `pep_derived_attrs` folder from the previous tutorial or a
 cd pep_derived_attrs
 ```
 
-Next run the sample level pipeline so that the pipelines log files are avalable:
+Next run the sample level pipeline so that the pipeline log files are available:
 
 ```shell
 looper run
@@ -33,18 +33,17 @@ You can confirm the existence of log files by checking the `results/submission` 
 `ls results/submission/`
 
 ```shell
-count_lines_canada.log  count_lines_mexico.log  count_lines_pep_derived_attrs.log  count_lines_switzerland.log 
-count_lines_canada.sub  count_lines_mexico.sub  count_lines_pep_derived_attrs.sub  count_lines_switzerland.sub
+count_lines_canada.log  count_lines_mexico.log  count_lines_switzerland.log 
+count_lines_canada.sub  count_lines_mexico.sub  count_lines_switzerland.sub
 ```
 
-If you open one of the `.log` files, you'll see that each contains our pipeline's results for this sample:
+If you open one of the `.log` files, you'll see that each contains the pipeline's results for this sample:
 
 ```shell
 Number of lines: 10
 ```
 
 This is because our sample-level pipeline prints the number of lines to the terminal. Looper logs this terminal output to a `.log` file. While not intended to be used as a results file, we can use the `.log` file in this case as an example.
-
 
 First, we will need to add a `project_interface` to the `pipeline_interface` contained within `pep_derived_attrs/pipeline`:
 
@@ -105,6 +104,6 @@ If you run the project-level pipeline with the following command,
 
 ![Generated image](../img/regions_per_country.png)
 
-That is how you can run a project-level pipeline and report an object result via pipestat!
+That is how you can run a project-level pipeline via looper!
 
-You can find even more details about project-level pipelines in [Running project-level pipelines](../advanced-guide/advanced-run-options.md#running-project-level-pipelines).
+You can find even more details about project-level pipelines in [advanced run options](../advanced-guide/advanced-run-options.md#running-project-level-pipelines).

@@ -21,8 +21,6 @@ In this tutorial, we will wire up our simple pipeline with pipestat, and demonst
     - Can looper monitor whether my jobs are still running, failed, or already completed?
     - Where are pipestat results saved? How can I store results of my pipeline somewhere else?
     - How can I make my pipeline store results in PEPhub?
-    - How can I run project-level pipelines with looper and pipestat?
-    - How can I create and view a directory of similar reported results?
 
 
 ## Set up a working directory
@@ -95,7 +93,6 @@ Since the sample name (`-r $2`) and the pipestat config file (`-c $3`) weren't p
 
 ```yaml  title="pipeline/pipeline_interface.yaml" hl_lines="5"
 pipeline_name: count_lines
-output_schema: pipestat_output_schema.yaml
 sample_interface:
   command_template: >
     pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file}
@@ -114,7 +111,7 @@ pipeline_name: count_lines
 output_schema: pipestat_output_schema.yaml
 sample_interface:
   command_template: >
-    pipeline/count_lines.sh {sample.file_path}
+    pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file}
 ```
 
 Finally, we need to configure where the pipestat results will be stored.
@@ -132,7 +129,7 @@ pipestat:
 ```
 
 This instructs looper to configure pipestat to store the results in a `.yaml` file.
-Looper will now configured the pipeline to report results into a `results.yaml` file.
+Looper will now configure the pipeline to report results into a `results.yaml` file.
 
 Execute the run with:
 ```sh
@@ -140,7 +137,7 @@ looper run
 ```
 
 You should now be able to navigate to the `results.yaml` file and see the reported results within.
-Now that you have your first pipestat pipeline configured with looper, there's lot of other, more powerful things you can add to make this even more useful.
+Now that you have your first pipestat pipeline configured with looper, there's many other, more powerful things you can add to make this even more useful.
 For example, now that looper knows the structure of results your pipeline reports, it can automatically generate beautiful, project-wide results summary HTML pages for you.
 It also provides some ability to monitor jobs and make sure they are all succeeding.
 But before we get into the details of these advanced features, we'll take a small detour now to show you how to wire up pipestat to a Python pipeline, instead of a shell script.
@@ -172,26 +169,21 @@ import os.path
 # Obtain arguments invoked during looper submission via command templates
 text_file = sys.argv[1] 
 sample_name = sys.argv[2]   # pipestat needs a unique sample identifier. Looper uses sample_name but pipestat uses record_identifier
-results_file = sys.argv[3]  # the results.yaml file
-schema_path = sys.argv[4]  # the output schema
+config_file_path = sys.argv[3]  # this is the config file path
 
 # Create pipestat manager
 psm = pipestat.PipestatManager(
-    schema_path=schema_path,
-    results_file_path=results_file,
     record_identifier=sample_name,
+    config_file=config_file_path,
 )
 
-# Read text file
+# Read text file and count lines
 text_file = os.path.abspath(text_file)
-
-#Count Lines
 with open(text_file, "r") as f:
     result = {"number_of_lines": len(f.readlines())}
 
 # Report Results using Pipestat
 psm.report(record_identifier=sample_name, values=result)
-
 ```
 
 Make sure `count_lines.py` is executable:
@@ -200,61 +192,7 @@ Make sure `count_lines.py` is executable:
 chmod 755 pipeline/count_lines.py
 ```
 
-Now, you need to update the pipeline interface to reflect the pipeline change:
-
-```yaml  title="pipeline/pipeline_interface.yaml" hl_lines="5"
-pipeline_name: count_lines
-output_schema: pipestat_output_schema.yaml
-sample_interface:
-  command_template: >
-    python3 pipeline/count_lines.py {sample.file_path} {sample.sample_name} {pipestat.results_file} {pipestat.output_schema}
-```
-
-In this example, the command template removed the configuration file as an argument and fed the results_file_path directly.
-However, we could've just as easily made our command template use the config file instead.
-Using the config file would allow more complex result backends such as databases.
-
-
-```yaml  title="pipeline/pipeline_interface.yaml" hl_lines="5"
-pipeline_name: count_lines
-output_schema: pipestat_output_schema.yaml
-sample_interface:
-  command_template: >
-    python3 pipeline/count_lines.py {sample.file_path} {sample.sample_name} {pipestat.config_file} {pipestat.output_schema}
-```
-
-```python hl_lines="17"
-import pipestat
-import sys
-import os.path
-
-# Very simple pipeline that counts lines and reports the final count via pipestat
-
-# Obtain arguments invoked during looper submission via command templates
-text_file = sys.argv[1] 
-sample_name = sys.argv[2]   # pipestat needs a unique sample identifier. Looper uses sample_name but pipestat uses record_identifier
-config_file_path = sys.argv[3]  # this is the config file path
-schema_path = sys.argv[4]  # This is the output schema
-
-# Create pipestat manager
-psm = pipestat.PipestatManager(
-    schema_path=schema_path,
-    record_identifier=sample_name,
-    config_file=config_file_path,
-)
-
-# Read text file
-text_file = os.path.abspath(text_file)
-
-#Count Lines
-with open(text_file, "r") as f:
-    result = {"number_of_lines": len(f.readlines())}
-
-# Report Results using Pipestat
-psm.report(record_identifier=sample_name, values=result)
-```
-
-Again, you can now run the example with:
+You can now run the example with:
 
 ```sh
 looper run
@@ -334,7 +272,7 @@ Besides reporting results, another feature of pipestat is that it allows users t
 If your pipeline uses pipestat to set status flags, then looper can be used to check the status of pipeline runs.
 Let's modify the pipeline to set status:
 
-```python hl_lines="20 21 33 34"
+```python hl_lines="18 19 29 30"
 import pipestat
 import sys
 import os.path
@@ -345,11 +283,9 @@ import os.path
 text_file = sys.argv[1] 
 sample_name = sys.argv[2]   # pipestat needs a unique sample identifier. Looper uses sample_name but pipestat uses record_identifier
 config_file_path = sys.argv[3]  # this is the config file path
-schema_path = sys.argv[4]  # This is the output schema
 
 # Create pipestat manager
 psm = pipestat.PipestatManager(
-    schema_path=schema_path,
     record_identifier=sample_name,
     config_file=config_file_path,
 )
@@ -357,10 +293,8 @@ psm = pipestat.PipestatManager(
 # Set status for this sample to 'running'
 psm.set_status(record_identifier=sample_name, status_identifier="running")
 
-# Read text file
+#  Read text file and count lines
 text_file = os.path.abspath(text_file)
-
-# Count lines
 with open(text_file, "r") as f:
     result = {"number_of_lines": len(f.readlines())}
 
