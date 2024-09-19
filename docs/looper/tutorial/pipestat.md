@@ -82,10 +82,10 @@ echo "Number of lines: $linecount"
 
 We added one new line, which runs `pipestat` and provides it with this information:
 
-- `-r` provides the record identifier, which identifies the sample
+- `-r` provides the record identifier (from `$2`, the second script argument, which will be the `sample_name` in a moment)
 - `-i` provides the ID (or key) of the result to report, as defined in the output schema (`number_of_lines`)
 - `-v` provides the actual value we are reporting (the number of lines, `$linecount`)
-- `-c` provides a path to a pipestat configuration file, which configures how the result is stored 
+- `-c` provides a path to a pipestat configuration file, which configures how the result is stored (from `$3`, the third script argument, which we'll set up next)
 
 
 ## Connect pipestat to looper
