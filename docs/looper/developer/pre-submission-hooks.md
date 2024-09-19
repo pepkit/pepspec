@@ -38,7 +38,6 @@ Saves all sample metadata as a YAML file. The output file path can be customized
 **Usage:**
 
 ```yaml
-pipeline_type: sample
 var_templates:
   main: "{looper.piface_dir}/pipelines/pipeline1.py"
   sample_yaml_path: "{looper.output_dir}/custom_sample_yamls/{sample.sample_name}.yaml"
@@ -60,7 +59,6 @@ This plugin writes a sample yaml file compatible as a job input file for a CWL p
 **Usage:**
 
 ```yaml
-pipeline_type: sample
 var_templates:
   main: "{looper.piface_dir}/pipelines/pipeline1.py"
   sample_yaml_cwl_path: "{looper.output_dir}/custom_sample_yamls/custom_{sample.name}.yaml"
@@ -83,7 +81,6 @@ Saves the sample to YAML file with project reference.  This plugin can be parame
 **Usage:**
 
 ```yaml
-pipeline_type: sample
 var_templates:
   main: "{looper.piface_dir}/pipelines/pipeline1.py"
   sample_yaml_prj_path: "{looper.output_dir}/custom_sample_yamls"
@@ -105,7 +102,6 @@ Saves all five namespaces of pre-submission to YAML file.  This plugin can be pa
 **Example usage:**
 
 ```yaml
-pipeline_type: sample
 var_templates:
   main: "{looper.piface_dir}/pipelines/pipeline1.py"
   submission_yaml_path: "{looper.output_dir}/custom_path"
@@ -128,7 +124,6 @@ Populates an independent jinja template with values from all the available loope
 **Example usage:**
 
 ```yaml
-pipeline_type: sample
 var_templates:
   custom_template: custom_template.jinja
   custom_template_output: "{looper.output_dir}/submission/{sample.sample_name}_custom_config.yaml"
@@ -158,7 +153,6 @@ How can you parameterize your plugin function? Since the function will have acce
 
 ```{yaml}
 pipeline_name: my_pipeline
-pipeline_type: sample
 extra_time: 3
 ```
 
@@ -166,7 +160,6 @@ This variable would be accessible in your python function as `namespaces["pipeli
 
 ```{yaml}
 pipeline_name: my_pipeline
-pipeline_type: sample
 var_templates:
   extra_time: 3
   plugin_path: "{looper.piface_dir}/plugin_results"
@@ -246,7 +239,6 @@ The `pre_submit.command_templates` specifies a list of Jinja2 templates to const
 **Usage**:
 
 ```yaml
-pipeline_type: sample
 var_templates:
   pipeline_path: "{looper.piface_dir}/pipelines/pepatac.py"
   compute_script: "{looper.piface_dir}/hooks/script.py"
