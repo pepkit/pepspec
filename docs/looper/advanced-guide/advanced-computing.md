@@ -301,7 +301,7 @@ In the divvy examples above, we just matched them by specifying exactly the same
 The default divvy templates use variables like `{CODE}`, `{JOBNAME}`, and `{LOGFILE}`.
 But what if you want to use variables with different names, or add other variables?
 How can you connect looper-provided information into these template?
-Todo this, we need more more step.
+To do this, we need more more step.
 These variables are linked to looper namespaces via *divvy adapters*. 
 The adapters is a section of the divvy configuration file that provides a set of variable mappings that `divvy` uses to populate the submission templates.
 This makes the connection with `divvy` and client software more flexible and more elegant, since the source of the data does not need to follow any particular naming scheme, any mapping can be used and adapted to work with any `divvy` templates.

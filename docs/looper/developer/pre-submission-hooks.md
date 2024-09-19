@@ -2,14 +2,14 @@
 
 ## Purpose
 
-Sometimes there is a need to perform some job/submission related tasks *before* the main pipeline submission. For example, we may need to generate a particular representation of the sample metadata to be consumed by a pipeline run. Some of these pre-submission tasks may depend on the information outside of the sample, such as the compute settings. For this purpose looper provides **pre-submission hooks**, which allows users to run arbitrary shell commands or Python functions before submitting the actual pipeline. These hooks have access to all of the job submission settings looper uses to populate the primary command template. They can be used in two ways: 1) to simply run required tasks, producing required output before the pipeline is run; and 2) to modify the job submission settings, which can then be used in the actual submission template.
-
+Sometimes we need to run a set-up task *before* submitting the main pipeline. For example, we may need to generate a particular representation of the sample metadata to be consumed by a pipeline run. Some pre-submission tasks may depend on information outside of the sample, such as compute settings. For this purpose, looper provides **pre-submission hooks**, which allow users to run arbitrary shell commands or Python functions before submitting the actual pipeline. These hooks have access to all of the job submission settings looper uses to populate the primary command template. They can be used in two ways: 1) to simply run required tasks, producing required output before the pipeline is run; and 2) to modify the job submission settings, which can then be used in the actual submission template.
 
 ## How to specify pre-submission tasks in the pipeline interface
 
 The pre-submission tasks to be executed are listed in the [pipeline interface](pipeline-interface-specification.md) file under the top-level `pre_submit` key. The `pre_submit` section is divided into two subsections corresponding to two types of hooks: `python_functions` and `command_templates`. The `python_functions` key specifies a list of strings corresponding to Python functions to run. The `command_templates` key is more generic, specifying shell command templates to be executed in a subprocess. Here is an example:
 
-```yaml
+```yaml title="pipeline_interface.yaml"
+...
 pre_submit:
   python_functions:
     - "package_name.function_name"
@@ -17,6 +17,7 @@ pre_submit:
   command_templates:
     - "tool.sh --param {sample.attribute}"
     - "tool1.sh --param {sample.attribute1}"
+...
 ```
 
 Because the looper variables are the input to each task, and are also potentially modified by each task, the order of execution is critical. Execution order follows two rules: First, `python_functions` are *always* executed before `command_templates`; and second, the user-specified order in the pipeline interface is preserved within each subsection.
@@ -120,6 +121,7 @@ command_template: >
 Populates an independent jinja template with values from all the available looper namespaces.
 
 **Parameters:**
+
 - `pipeline.var_templates.custom_template` (required): a jinja template to be populated for each job.
 - `pipeline.var_templates.custom_template_output` (optional): path to which the populated template file will be saved. If not provided, the populated fill will be saved in `{looper.output_dir}/submission/{sample.sample_name}_config.yaml
 
@@ -150,7 +152,7 @@ Python plugin functions have access *all of the metadata variables looper has ac
 
 2. The function *should* return any updated namespace variables; or can potentially return an empty `dict` (`{}`) if no changes are intended, which may the case if the function is only used for its side effect.
 
-#### Custom function input parameters
+#### Custom function input parameters: using `var_templates`
 
 How can you parameterize your plugin function? Since the function will have access to all the looper variable namespaces, this means that plugin authors may require users to specify any attributes within any namespace to parametrize them. For example, a plugin that increases the compute wall time by an arbitrary amount of time may require `extra_time` attribute in the `pipeline` namespace. Users would specify this parameter like this:
 
@@ -160,7 +162,7 @@ pipeline_type: sample
 extra_time: 3
 ```
 
-This variable would be accessible in your python function as `namespaces["pipeline"]["extra_time"]`. This works, but we recommend keeping things clean by putting all required pipeline parameters into the [`pipeline.template_vars`](pipeline-interface-specification.md) section. This not only keeps things tidy in a particular section, but also adds additional functionality of making these templates that can themselves refer to namespace variables, which can be very convenient. For example, a better approach would be:
+This variable would be accessible in your python function as `namespaces["pipeline"]["extra_time"]`. This works, but we recommend keeping things clean by putting all required pipeline parameters into the [`pipeline.var_templates`](pipeline-interface-specification.md) section. This not only keeps things tidy in a particular section, but also adds additional functionality of making these templates that can themselves refer to namespace variables, which can be very convenient. For example, a better approach would be:
 
 ```{yaml}
 pipeline_name: my_pipeline
