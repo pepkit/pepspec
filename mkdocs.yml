@@ -148,6 +148,9 @@ nav:
         - Running jobs in containers: looper/how-to/containers.md
         - Configure pipestat back-ends: looper/how-to/configure-pipestat-backends.md
         - Using divvy: looper/using-divvy.md
+        - Running project-level pipelines: looper/how-to/project-level-pipelines.md
+        - Link similar results: looper/how-to/link-objects.md
+        - Report objects:  looper/how-to/report-objects.md
     - Pipeline Developer Docs:
       - Developer tutorial:
         - Writing a pipeline interface: looper/developer/writing-a-pipeline-interface.md

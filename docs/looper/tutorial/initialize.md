@@ -168,7 +168,7 @@ The second line points to the `output_dir` where looper will store results.
 Finally, the `pipeline_interfaces` is a list that includes the path to the pipeline interface we just created.
 Future tutorials will cover how to use this to run multiple pipelines on each sample, but most of the time you'll just have a single entry here.
 You could also create this `.looper.yaml` file manually, but the `init` function makes it so you don't have to remember the config syntax.
-Now that that the project is configured, you can run it like this:
+Now that the project is configured, you can run it like this:
 
 ```sh
 looper run
