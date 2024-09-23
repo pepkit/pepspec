@@ -78,18 +78,48 @@ You can now see the results reported in the `results.yaml` output file.
 
 ## Reporting results back to a database
 
+!!! info "Using results file and a database backend"
+    If you provide database credentials *and* a results file path, the results file path will take priority and results will only be reported to the local file.
 
-!!! warning "Under construction"
-    This part of the tutorial needs to describe how to configure looper to report results to a database.
+### PostgreSQL
+Pipestat also supports PostgreSQL databases as a backend. You will need to set up your own database or be provided the credentials to an existing database.
 
+Once you have those credentials, you can configure pipestat to use those credentials in the looper config file:
+```yaml title=".looper.yaml" hl_lines="7-14"
+pep_config: metadata/pep_config.yaml 
+output_dir: results
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
+pipestat:
+  database:
+    dialect: postgresql
+    driver: psycopg2
+    name: pipestat-test
+    user: postgres
+    password: pipestat-password
+    host: 127.0.0.1
+    port: 5432
+```
 
+### SQLite
+
+You can also report results to a SQLite database. You will need to provide a path to the local SQLite database.
+```yaml title=".looper.yaml" hl_lines="8"
+pep_config: metadata/pep_config.yaml
+output_dir: results
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
+pipestat:
+  database:
+    sqlite_url: "sqlite:///yourdatabase.sqlite3"
+```
 
 
 ## Reporting results back to PEPhub
 
 In the previous tutorial, you configured looper to read sample metadata from PEPhub.
 Now, by adding in pipestat integration, we can also report pipeline results *back* to PEPhub.
-In this example, we'll report the results back to the the demo PEP we used earlier, `databio/pipestat_demo:default`.
+In this example, we'll report the results back to the demo PEP we used earlier, `databio/pipestat_demo:default`.
 But you won't be able to report the results back to the demo repository because you don't have permissions.
 So if you want to follow along, you'll first need to create your own PEP on PEPHub to hold these results.
 Then, you can run this section yourself by replacing `databio/pipestat_demo:default` with the registry path to a PEP you control.

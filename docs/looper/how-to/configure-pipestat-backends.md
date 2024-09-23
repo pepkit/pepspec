@@ -55,6 +55,20 @@ pipestat:
     port: 5432
 ```
 
+### SQLite database back-end
+
+```yaml title=".looper.yaml" hl_lines="8"
+pep_config: project_config_pipestat.yaml 
+output_dir: results
+pipeline_interfaces:
+  - ./pipeline_interface.yaml
+pipestat:
+  flag_file_dir: output/results_pipeline
+  database:
+    sqlite_url: "sqlite:///yourdatabase.sqlite3"
+```
+
+
 ### PEPhub back-end
 
 ```yaml title=".looper.yaml" hl_lines="7"
