@@ -22,8 +22,11 @@ Your pipeline could be an advanced Python or R script that takes hours or days t
 You might be running the jobs on a compute cluster.
 The principles of setting up and running looper will be the same as for our simple demonstration project.
 
-Let's get started!
+This User Tutorial does not cover how to actually create a looper-compatible pipeline.
+If you want to create a new pipeline, that's the goal of the [Pipeline Developer Tutorial](../developer-tutorial/writing-a-pipeline-interface.md).
+Here, we assume you already have a looper-compatible pipeline and and you're trying to run it on some data.
 
+Let's get started!
 
 !!! success "Learning objectives"
     - How do I get started using looper?

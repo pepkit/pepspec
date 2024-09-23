@@ -6,14 +6,16 @@ title: Pipeline interface specification
 
 ## Introduction
 
+In the [User Tutorial](../user-tutorial/initialize.md) we walked you through creating a Looper workspace to run a pipeline on a dataset.
+That tutorial assumed you already want to run an existing looper-compatible pipeline.
+For pipelines that are already looper-compatible, you just point your looper configuration file at pipeline's interface file, as described in the User Tutorial.
+
+This Developer Tutorial goes into more detail on how to *create* a looper-compatible pipeline.
 If you're interested in building a looper-compatible pipeline, or taking an existing pipeline and making it work with looper, the critical point of contact is the pipeline interface.
 A pipeline interface *describes how to run a pipeline*.
 
-For pipelines that are already looper-compatible, you don't need to create a new interface; just point your looper configuration file at the one that comes with the pipeline. You only need to write a new pipeline interface file if you're creating a *new* looper-compatible pipeline.
-
-This tutorial will show you how to write a pipeline interface. Once you've been through this, you can consult the formal [pipeline interface format specification](pipeline-interface-specification.md) for further details and reference.
-
-
+This tutorial will show you how to write a pipeline interface.
+Once you've been through this, you can consult the formal [pipeline interface format specification](pipeline-interface-specification.md) for further details and reference.
 
 !!! success "Learning objectives"
     - What is a looper pipeline interface?
@@ -408,7 +410,7 @@ Dry run, not submitted
 ```
 
 Notice how the usa sample file size is listed as near 0Gb.
-Why is it not recognizing?
+Why is it not recognizing the true size of the input file?
 There is one more thing we need to do.
 
 ### Configuring how looper determines sample size
@@ -462,11 +464,8 @@ Job script (n=1; 0.99Gb): /home/nsheff/code/hello_looper/input_schema_example/re
 Dry run, not submitted
 ```
 
-The file path is 
-
-Looper is computing this based on the size of file listed in `file_path`.
-
-and now if you look at the job script that was created, it pulled the largest file parameters:
+Looper is computing this suze based on the size of file listed in `file_path`.
+Now, look at the job script that was created, which contains the parameters for large files:
 
 ```sh
 cat results/submission/count_lines_usa.sub
@@ -533,7 +532,7 @@ Looper will run this command before running each job, allowing you to create lit
 ## Project-level pipeline interfaces
 
 Remember, looper distinguishes sample-level from project-level pipelines.
-This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md) with a specific example of running a project-level pipeline in the [pipestat tutorial](../tutorial/pipestat.md/#running-project-level-pipelines).
+This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md) and in [How to run a project-level pipeline](../how-to/project-level-pipelines.md).
 Basically, sample-level pipelines run *once per sample*, whereas project-level pipelines run *once per project*.
 If this interface were describing a project-level pipeline, we would change out `sample_interface` to `project_interface`.
 

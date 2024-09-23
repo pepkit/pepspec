@@ -134,12 +134,12 @@ nav:
     - Looper: looper/README.md
     - Installation: looper/install.md
     - Pipeline User Guide:
-      - Tutorial:
-        - Initiating a new looper project: looper/tutorial/initialize.md
-        - Using PEP to simplify metadata: looper/tutorial/metadata.md
-        - Enabling pipestat for results reporting: looper/tutorial/pipestat.md
-        - Configuring cluster computing: looper/tutorial/compute-settings.md
-        - Conclusion: looper/tutorial/conclusion.md
+      - User tutorial:
+        - Initiating a new looper project: looper/user-tutorial/initialize.md
+        - Using PEP to simplify metadata: looper/user-tutorial/metadata.md
+        - Configuring pipestat results: looper/user-tutorial/user-pipestat.md
+        - Configuring cluster computing: looper/user-tutorial/compute-settings.md
+        - Conclusion: looper/user-tutorial/conclusion.md
       - Advanced user guide:
         - Advanced run options: looper/advanced-guide/advanced-run-options.md
         - Customizing compute settings: looper/advanced-guide/advanced-computing.md
@@ -153,9 +153,10 @@ nav:
         - Report objects:  looper/how-to/report-objects.md
     - Pipeline Developer Docs:
       - Developer tutorial:
-        - Writing a pipeline interface: looper/developer/writing-a-pipeline-interface.md
-        - Pipeline interface specification: looper/developer/pipeline-interface-specification.md
-        - Pre-submission hooks system: looper/developer/pre-submission-hooks.md
+        - Writing a pipeline interface: looper/developer-tutorial/writing-a-pipeline-interface.md
+        - Configuring a pipeline to use pipestat: looper/developer-tutorial/developer-pipestat.md
+        - Using pre-submission hooks: looper/developer-tutorial/pre-submission-hooks.md
+        - Pipeline interface specification: looper/developer-tutorial/pipeline-interface-specification.md
     - Reference:
       - Reference:
         - CLI Usage: looper/usage.md
