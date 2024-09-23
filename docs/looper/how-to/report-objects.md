@@ -1,7 +1,7 @@
 
 ## Reporting objects using pipestat
 
-This how-to guide assumes you have already completed the [pipestat tutorial](../tutorial/pipestat.md) as well as the how-to guide for [running project-level pipelines](project-level-pipelines.md).
+This how-to guide assumes you have already completed the [pipestat tutorial](../user-tutorial/user-pipestat.md) as well as the how-to guide for [running project-level pipelines](project-level-pipelines.md).
 
 So far, our examples have been reporting primitives such as integers. But what if our pipeline generates an image, and we wish to report this more complex object? We can leverage looper's integration with pipestat to accomplish this.
 

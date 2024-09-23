@@ -82,7 +82,7 @@ srun {CODE}
 
 Now that you understand the difference between the command template and the submission template, let's move on to how you can configure looper for different computing environments.
 Remember, we're taking the perspective of the pipeline user here; we assume the pipeline author has provided the command correctly in the pipeline interface, so we won't delve any deeper into command templates here.
-If you want to learn more about developing pipelines and advanced features of the pipeline interface, consult the developer tutorials on [how to write a pipeline interface](../developer/writing-a-pipeline-interface.md).
+If you want to learn more about developing pipelines and advanced features of the pipeline interface, consult the developer tutorials on [how to write a pipeline interface](../developer-tutorial/writing-a-pipeline-interface.md).
 
 ## Custom compute packages using divvy
 

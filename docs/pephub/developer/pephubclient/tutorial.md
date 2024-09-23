@@ -31,7 +31,7 @@ phc login
 
 PEPHubClient provides a CLI for interacting with PEPhub.
 You can find the list of available commands here:
-[PEPHubClient CLI](./python-api.md)
+[PEPHubClient CLI](cli.md)
 
 
 ## Using the PEPHubClient Python API

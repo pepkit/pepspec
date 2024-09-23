@@ -2,7 +2,7 @@
 ## Running project-level pipelines
 
 So far, our example has been what we call a *sample-level pipeline*.
-The `count_lines` pipeline from our [basic tutorial](../tutorial/initialize.md) runs one job per sample, and we want to do the same thing to each sample.
+The `count_lines` pipeline from our [basic tutorial](../user-tutorial/initialize.md) runs one job per sample, and we want to do the same thing to each sample.
 
 This is the most common use case for looper. 
 
@@ -13,7 +13,7 @@ Here, we'll walk through a basic example of running a project-level pipeline usi
 
 A project-level pipeline is meant to run on the entire group of your samples, not each sample individually.
 
-First we need to create a project-level pipeline. We would like to take the number of regions from each sample (file) and collect them into a single plot. This how-to guide assumes you've completed the tutorial, [using a pep for derived attributes](../tutorial/metadata.md/#using-a-pep-for-derived-attributes). You can always download the completed tutorial files from the [hello looper repository](https://github.com/pepkit/hello_looper).
+First we need to create a project-level pipeline. We would like to take the number of regions from each sample (file) and collect them into a single plot. This how-to guide assumes you've completed the tutorial, [using a pep for derived attributes](../user-tutorial/metadata.md/#using-a-pep-for-derived-attributes). You can always download the completed tutorial files from the [hello looper repository](https://github.com/pepkit/hello_looper).
 
 
 Ensure you are in the `pep_derived_attrs` folder from the previous tutorial or after downloading the folder from the hello looper repository.

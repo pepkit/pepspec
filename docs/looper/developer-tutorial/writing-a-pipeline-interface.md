@@ -222,7 +222,7 @@ required:
 ```
 
 This file specifies what inputs the pipeline uses, and what type they are.
-It is a [JSON Schema](output_schema), which allows us to use this file to validate the inputs, which we'll cover later.
+It is a [JSON Schema](https://json-schema.org/), which allows us to use this file to validate the inputs, which we'll cover later.
 For now, it defines that our input samples have 3 properties: `sample_name`, `file_path`, and `area_type`.
 
 ### Adapt the pipeline interface to use the input schema

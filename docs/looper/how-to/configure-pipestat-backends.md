@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In the basic [pipestat tutorial](../tutorial/pipestat.md), we showed how to create a simple pipeline that could use pipestat to report results.
+In the basic [pipestat tutorial](../user-tutorial/user-pipestat.md), we showed how to create a simple pipeline that could use pipestat to report results.
 One of the powerful features of pipestat is that you can configure it to store results in different locations.
 This document will cover more details about how to configure pipestat in looper:
 
