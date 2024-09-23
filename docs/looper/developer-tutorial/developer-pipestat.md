@@ -246,7 +246,7 @@ But you won't be able to report the results back to the demo repository because 
 So if you want to follow along, you'll first need to create your own PEP on PEPHub to hold these results.
 Then, you can run this section yourself by replacing `databio/pipestat_demo:default` with the registry path to a PEP you control.
 
-To configure pipestat to report results to PEPhub instead of to a file, we just change our looper config to point to a pephub_url:
+To configure pipestat to report results to PEPhub instead of to a file, we just change our looper config to point to a `pephub_path`:
 
 ```yaml  title=".looper.yaml" hl_lines="6"
 pep_config: metadata/pep_config.yaml
@@ -342,7 +342,7 @@ That's why `looper check` can be helpful for these long-running pipelines.
     
     **What benefits does pipestat give me?**
     If you *are* developing your own pipeline, then you might want to consider using pipestat in your pipeline.
-    This will users to use `looper check` to check on the status of pipelines.
+    This will allow users to use `looper check` to check on the status of pipelines.
     It will also enable `looper report` and `looper table` to create summarized outputs of pipeline results.
     
 

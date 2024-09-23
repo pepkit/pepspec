@@ -462,7 +462,7 @@ Job script (n=1; 0.99Gb): /home/nsheff/code/hello_looper/input_schema_example/re
 Dry run, not submitted
 ```
 
-Looper is computing this suze based on the size of file listed in `file_path`.
+Looper is computing this size based on the size of file listed in `file_path`.
 Now, look at the job script that was created, which contains the parameters for large files:
 
 ```sh

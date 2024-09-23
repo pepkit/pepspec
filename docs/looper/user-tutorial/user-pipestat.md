@@ -27,7 +27,7 @@ This tutorial will show you how to do that.
 
 All the options and features in this tutorial require a pipestat-compatible pipeline.
 What does that mean?
-The [Pipeline Developer Tutorial](../developer-tutorial/writing-a-pipeline-interface.md) will go into detail about how to make a pipeline pipestat-compatible.
+[Configuring a pipeline to use pipestat](../developer-tutorial/developer-pipestat.md) will go into detail about how to make a pipeline pipestat-compatible.
 Briefly, it just means these 3 criteria are fulfilled:
 
 1. The pipeline specifies a [pipestat output schema](../../pipestat/pipestat-specification.md). This just tells pipestat what results a pipeline can report.
@@ -42,7 +42,7 @@ sample_interface:
     pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file}
 ```
 
-A pipeline that satisfies these criteria is pipestat-compatible, and for these pipelines, looper can give you a nice, aggregated web-based browsable report.
+A pipeline that satisfies these criteria is pipestat-compatible, and for these pipelines, looper can give you a nice, web browsable report of results.
 It can also help you manage job status of your runs.
 
 To demonstrate, let's use a modified version of our `count_lines` pipeline that has been made pipestat-compatible.
@@ -94,7 +94,7 @@ But you won't be able to report the results back to the demo repository because 
 So if you want to follow along, you'll first need to create your own PEP on PEPHub to hold these results.
 Then, you can run this section yourself by replacing `databio/pipestat_demo:default` with the registry path to a PEP you control.
 
-To configure pipestat to report results to PEPhub instead of to a file, we just change our looper config to point to a pephub_url:
+To configure pipestat to report results to PEPhub instead of to a file, we just change our looper config to point to a `pephub_path`:
 
 ```yaml  title=".looper.yaml" hl_lines="6"
 pep_config: metadata/pep_config.yaml
@@ -179,7 +179,7 @@ That's why `looper check` can be helpful for these long-running pipelines.
     
     **What benefits does pipestat give me?**
     If you *are* developing your own pipeline, then you might want to consider using pipestat in your pipeline.
-    This will users to use `looper check` to check on the status of pipelines.
+    This will allow users to use `looper check` to check on the status of pipelines.
     It will also enable `looper report` and `looper table` to create summarized outputs of pipeline results.
     
 
