@@ -16,11 +16,8 @@ Pipestat will help us record and retrieve pipeline results in a much cleaner way
 In this tutorial, we will wire up our simple pipeline with pipestat, and demonstrate these powerful reporting tools.
 
 !!! success "Learning objectives"
-    - What is pipestat? Why is it useful?
-    - How can I configure my looper workspace to use a pipestat-compatible pipeline effectively?
-    - Can looper monitor whether my jobs are still running, failed, or already completed?
-    - Where are pipestat results saved? How can I store results of my pipeline somewhere else?
-    - How can I make my pipeline store results in PEPhub?
+    - How do I configure a looper pipeline interface to interact with pipestat?
+    - How should I use pipestat in my pipeline to make use of looper integration?
 
 
 ## Set up a working directory

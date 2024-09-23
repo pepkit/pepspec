@@ -153,11 +153,10 @@ This is also true for pre-submit command templates.
 Right now, looper will create and submit jobs for every row in the table.
 What if we want to prevent jobs from being submitted if the row lacks all the information required by the pipeline?
 This could help us fail early and save submitting jobs that won't succeed.
-For example, what if we could check to make sure the `file_path` attribute is set, and points to a file, before submitting a job to count the number of lines in the file?
-Or, what if we want to 
+For example, what if we want to make sure a particular required attribute is set before we submit a job?
 
 To demonstrate, let's make a simple modification to the pipeline.
-We'll adjust it so the reporting specifies the area type.
+We'll adjust it to report the area type.
 
 ```sh title="pipeline/count_lines.sh" hl_lines="3 4"
 #!/bin/bash
@@ -192,7 +191,7 @@ We will do that through the `input_schema`.
 ### Create an input schema
 
 The input schema formally specifies the *input processed by this pipeline*.
-I serves several purposes, like sample validation, specifying which attributes should be used to determine sample size, and specifying which attributes are files.
+It serves several purposes, like sample validation, specifying which attributes should be used to determine sample size, and specifying which attributes are files.
 We'll get into those details later.
 First, let's make an input schema.
 Paste this text into `pipeline/input_schema.yaml`
@@ -226,8 +225,6 @@ This file specifies what inputs the pipeline uses, and what type they are.
 It is a [JSON Schema](output_schema), which allows us to use this file to validate the inputs, which we'll cover later.
 For now, it defines that our input samples have 3 properties: `sample_name`, `file_path`, and `area_type`.
 
-
-
 ### Adapt the pipeline interface to use the input schema
 
 Next, we need to tell looper to use this as the input schema for the pipeline.
@@ -244,7 +241,6 @@ sample_interface:
 Now, the input schema is created and linked to the pipeline.
 If you invoke `looper run`, looper will read the schema, and first validate the sample before running the job.
 In this example, the first 3 samples will validate and run as before, but the final sample will not pass the validation stage.
-
 
 To solve the problem, we need to specify the `area_type` for country `usa`.
 Let's add that back in.
@@ -296,8 +292,7 @@ By specifying `file_path` under `required`, we are telling looper to make sure t
 Then, by adding `file_path` under `tangible`, we are telling looper that the file it points to must actually exist.
 
 To test, the `usa` sample should be missing its data file, so it should not run.
-Try it by running `looper run`
-
+Try it by running `looper run`.
 
 You will see:
 
@@ -327,9 +322,8 @@ shuf -r -n 100000000 data/mexico.txt > data/usa.txt
 
 Now if you run this it will work. 
 But this also leads to another thought.
+The `usa.txt` text file is way larger than the other files.
 What if we need to modulate the job parameters by the size of the input file?
-
-
 
 ## Parameterizing job templates by sample through size-dependent variables
 
@@ -348,7 +342,7 @@ compute:
 ```
 
 This allows a job submission template to use computing variables like `{CORES}` and `{MEM}`, so you can control cluster resources.
-The problem with this is that it provides the same compute parameters for every sample.
+This provides the same compute parameters for every sample.
 What if we have a huge file and we want to use different parameters?
 It's common to need to increase memory usage for a larger sample.
 Looper provides a simple but powerful way to configure pipelines depending on the input size of the samples.
@@ -361,6 +355,8 @@ compute:
   size_dependent_variables: resources-sample.tsv
 ```
 
+(Here, we leave the `partition` variable there, since it won't change by sample input size).
+
 Then, create `resources-sample.tsv` with these contents:
 
 ```tsv title="resources-sample.tsv"
@@ -371,15 +367,17 @@ NaN	4	4000	00-05:00:00
 ```
 
 In this example, the `partition` will remain constant for all samples, but the `cores`, `mem`, and `time` variables will be modulated by sample file size.
-For each sample, looper will select the best-fit row, which is the row whose `max_file_size` value is the largest value that does not exceed the actual input file size of the sample, in gigabytes.
+For each sample, looper will select the first row for which the sample's input file size does not exceed the row's `max_file_size` value in gigabytes. In this example: 
 
 Files up to 0.05 Gb (50 Mb) will use 1 core, 1000 mb of RAM, and 1 hour of clock time.
 Files up to 0.5 Gb (500 Mb) will use 2 cores, 2000 mb of RAM, and 3 hours of clock time.
 Anything larger will use 4 cores, 4000 mb of RAM, and 5 hours of clock time.
 
+You can think of it like a coin sorter machine, going through a priority list of parameter sets with increasing file size allowed, and the sample falls into first bin in which it fits.
 This allows a pipeline author to specify different computing requirements depending on the size of the input sample. 
 
-To see this in action, we will need to use a compute template that specifies. The `slurm` tempalte should do the trick.
+To see this in action, we will need to use a compute template that uses these parameters.
+The `slurm` template should do the trick.
 We'll use `-d` to specify a dry run, so the jobs are created, but not run.
 
 ```
@@ -409,7 +407,7 @@ Job script (n=1; 0.00Gb): /home/nsheff/code/hello_looper/input_schema_example/re
 Dry run, not submitted
 ```
 
-Notice how the usa sample file size is listed as near 0Gb.
+But wait! The usa sample file size is listed as 0Gb.
 Why is it not recognizing the true size of the input file?
 There is one more thing we need to do.
 
@@ -488,12 +486,7 @@ echo 'Start time:' `date +'%Y-%m-%d %T'`
 pipeline/count_lines.sh data/usa.txt  
 ```
 
-
-
-
 We recommend pipeline authors configure their pipeline interfaces with appropriate `size_dependent_variables` file, which should be distributed alongside the pipeline interface.
-
-
 
 ## Adding pre-submission commands to your pipeline run
 
@@ -524,10 +517,6 @@ pre_submit:
 ```
 
 Looper will run this command before running each job, allowing you to create little set-up scripts to prepare things before a full job is run.
-
-
-
-
 
 ## Project-level pipeline interfaces
 
