@@ -84,6 +84,16 @@ You can now see the results reported in the `results.yaml` output file.
 ### PostgreSQL
 Pipestat also supports PostgreSQL databases as a backend. You will need to set up your own database or be provided the credentials to an existing database.
 
+!!! info "Using docker to set up a temporary PostgreSQL database"
+    If you are comfortable using docker, you can quickly set up an instance of a PostgreSQL database using the following command:
+    ```docker run --rm -it --name looper_tutorial \
+    -e POSTGRES_USER=looper_test_user \
+    -e POSTGRES_PASSWORD=looper_test_pw \
+    -e POSTGRES_DB=looper-test-db \
+    -p 127.0.0.1:5432:5432 \
+    postgres
+    ```
+
 Once you have those credentials, you can configure pipestat to use those credentials in the looper config file:
 ```yaml title=".looper.yaml" hl_lines="7-14"
 pep_config: metadata/pep_config.yaml 
@@ -94,9 +104,9 @@ pipestat:
   database:
     dialect: postgresql
     driver: psycopg2
-    name: pipestat-test
-    user: postgres
-    password: pipestat-password
+    name: looper-test-db
+    user: looper_test_user
+    password: looper_test_pw
     host: 127.0.0.1
     port: 5432
 ```
@@ -104,7 +114,7 @@ pipestat:
 ### SQLite
 
 You can also report results to a SQLite database. You will need to provide a path to the local SQLite database.
-```yaml title=".looper.yaml" hl_lines="8"
+```yaml title=".looper.yaml" hl_lines="7"
 pep_config: metadata/pep_config.yaml
 output_dir: results
 pipeline_interfaces:
@@ -113,6 +123,13 @@ pipestat:
   database:
     sqlite_url: "sqlite:///yourdatabase.sqlite3"
 ```
+
+Once the database credentials are added for either PostgreSQL or SQLite backends, execute the run with:
+```sh
+looper run
+```
+
+Using a database browser, you will now be able to view the reported results within the database of your choice.
 
 
 ## Reporting results back to PEPhub

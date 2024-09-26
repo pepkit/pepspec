@@ -20,26 +20,25 @@ To configure looper to use pipestat, you must
 
 ### 1. Add `pipestat` section to the looper config file.
 
-The looper config file must contain a pipestat section.
-This must supply information on where to store results, which is either a file path for a results file, database credentials if using a postgresql database backend, or PEPhub registry path. Here are 3 examples showing how to use configure pipestat to use different back-ends:
+The looper config file must contain a `pipestat` section.
+This section must contain information on where to store results, which is either a file path for a results file, database credentials if using a PostgreSQL database backend, a SQLite path if using a SQLite database backend,or PEPhub registry path. Here are 4 examples showing how to configure pipestat to use different back-ends:
 
 ### File back-end
 
-```yaml title=".looper.yaml" hl_lines="5-8"
-pep_config: project_config_pipestat.yaml # pephub registry path or local path
+```yaml title=".looper.yaml" hl_lines="7"
+pep_config: project_config_pipestat.yaml
 output_dir: results
 pipeline_interfaces:
   - ./pipeline_interface1_sample_pipestat.yaml
 pipestat:
-  project_name: TEST_PROJECT_NAME # This is optional unless running a project-level pipeline.
-  results_file_path: tmp_pipestat_results.yaml
   flag_file_dir: output/results_pipeline
+  results_file_path: tmp_pipestat_results.yaml
 ```
 
 ### Postgres SQL database back-end
 
 ```yaml title=".looper.yaml" hl_lines="7-14"
-pep_config: project_config_pipestat.yaml # pephub registry path or local path
+pep_config: project_config_pipestat.yaml 
 output_dir: results
 pipeline_interfaces:
   - ./pipeline_interface1_sample_pipestat.yaml
