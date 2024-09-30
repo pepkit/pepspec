@@ -7,8 +7,6 @@ theme:
   custom_dir: overrides
 
 
-
-
   palette:
 
     # # Palette toggle for dark mode
@@ -41,11 +39,12 @@ theme:
 markdown_extensions:
   - attr_list
   - md_in_html
+  - admonition
   - pymdownx.highlight:
       use_pygments: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+#  - pymdownx.emoji:
+#      emoji_index: !!python/name:material.extensions.emoji.twemoji
+#      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -133,45 +132,36 @@ nav:
       - Changelog: geofetch/changelog.md
   - Looper:
     - Looper: looper/README.md
-    - Getting started:
-        - Features at-a-glance: looper/features.md
-        - Hello world: looper/code/hello-world.md
-    - How-to guides:
-        - Defining a project: looper/defining-a-project.md
-        - Details of a project: looper/sample-annotation-sheet.md
-        - Running a pipeline: looper/running-a-pipeline.md
-        - Initializing a repository: looper/initialize.md
-        - Using pipestat: looper/pipestat.md
-        - Parameterizing pipelines: looper/parameterizing-pipelines.md
-        - Running on a cluster: looper/running-on-a-cluster.md
-        - Grouping many jobs into one: looper/grouping-jobs.md
-        - Running jobs in containers: looper/containers.md
-        - Handling multiple input files: looper/how-to-merge-inputs.md
-        - Running multiple pipelines: looper/multiple-pipelines.md
-        - Writing a pipeline interface: looper/writing-a-pipeline-interface.md
-        - Using looper config: looper/looper-config.md
-        - Using geofetch: looper/using-geofetch.md
-        - Browsable HTML Reports: looper/looper-report.md
-    - Using divvy:
-        - Introduction: divvy/README.md
-        - Configuring divvy: divvy/configuration.md
-        - "Tutorial: divvy in python": looper/code/tutorial_divvy.md
-        - "Tutorial: divvy on the command line": looper/code/cli_divvy.md
-        - Configuring containers: divvy/containers.md
-        - Configuring connection with client software: divvy/adapters.md
-        - Default packages: divvy/default-packages.md
-        - DIVCFG examples: http://github.com/pepkit/divcfg
+    - Installation: looper/install.md
+    - Pipeline User Guide:
+      - User tutorial:
+        - Initiating a new looper project: looper/user-tutorial/initialize.md
+        - Using PEP to simplify metadata: looper/user-tutorial/metadata.md
+        - Configuring pipestat results: looper/user-tutorial/user-pipestat.md
+        - Configuring cluster computing: looper/user-tutorial/compute-settings.md
+        - Conclusion: looper/user-tutorial/conclusion.md
+      - Advanced user guide:
+        - Advanced run options: looper/advanced-guide/advanced-run-options.md
+        - Customizing compute settings: looper/advanced-guide/advanced-computing.md
+        - Advanced metadata features: looper/advanced-guide/advanced-metadata.md
+      - How-to recipes:
+        - Running jobs in containers: looper/how-to/containers.md
+        - Configure pipestat back-ends: looper/how-to/configure-pipestat-backends.md
+        - Using divvy: looper/using-divvy.md
+        - Running project-level pipelines: looper/how-to/project-level-pipelines.md
+        - Link similar results: looper/how-to/link-objects.md
+        - Report objects:  looper/how-to/report-objects.md
+    - Pipeline Developer Docs:
+      - Developer tutorial:
+        - Writing a pipeline interface: looper/developer-tutorial/writing-a-pipeline-interface.md
+        - Configuring a pipeline to use pipestat: looper/developer-tutorial/developer-pipestat.md
+        - Using pre-submission hooks: looper/developer-tutorial/pre-submission-hooks.md
+        - Pipeline interface specification: looper/developer-tutorial/pipeline-interface-specification.md
     - Reference:
-        - How to cite: citations.md
-        - Pipeline interface specification: looper/pipeline-interface-specification.md
-        - Pipeline tiers: looper/pipeline-tiers.md
-        - Concentric templates: looper/concentric-templates.md
-        - Pre-submission hooks system: looper/pre-submission-hooks.md
-        - Looper variable namespaces: looper/variable-namespaces.md
-        - Advanced features: looper/advanced.md
-        - Usage: looper/usage.md
-        - Configuration files: looper/config-files.md
+      - Reference:
+        - CLI Usage: looper/usage.md
         - API: looper/code/python-api.md
+        - How to cite: citations.md
         - FAQ: looper/faq.md
         - Support: looper/support.md
         - Contributing: looper/contributing.md

@@ -9,7 +9,7 @@ Many sample tables include identifiers like a genome or transcriptome assembly (
 One way to solve this is to use an `append` modifier to add a `genome` attribute to each sample from the project config file.
 
 ```
-sample_modifiers
+sample_modifiers:
   append:
     genome: "hg38"
 ```
@@ -17,7 +17,7 @@ sample_modifiers
 This way, we've moved the 'genome' attribute out of the sample table. Another analysis that could run on this same set of input data could now use the sample table without issue. In fact, we could even include these two analyses in the same project config file using an amendment:
 
 ```
-sample_modifiers
+sample_modifiers:
   append:
     genome: "hg38"
 
@@ -38,7 +38,7 @@ The `append` modifier will add the same value to all samples; if your project re
 
 
 ```
-sample_modifiers
+sample_modifiers:
   imply:
     - if:
         organism: "human"

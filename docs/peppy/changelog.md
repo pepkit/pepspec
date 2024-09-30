@@ -2,6 +2,31 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.40.7] -- 2024-09-30
+### Fixed
+- Fixed incorrect sample table index in subtables
+
+## [0.40.6] -- 2024-09-10
+### Changed
+- [#493](https://github.com/pepkit/peppy/issues/493)
+
+## [0.40.5] -- 2024-07-25
+### Fixed
+- Fixed bug in initialization of peppy object from csv
+
+## [0.40.4] -- 2024-07-17
+### Changed
+- minor change, [PR #490](https://github.com/pepkit/peppy/pull/490)
+
+## [0.40.3] -- 2024-07-17
+### Fixed
+- [#393](https://github.com/pepkit/peppy/issues/393)
+- [#480](https://github.com/pepkit/peppy/issues/480)
+- [#369](https://github.com/pepkit/peppy/issues/369)
+- [#399](https://github.com/pepkit/peppy/issues/399)
+- [#476](https://github.com/pepkit/peppy/issues/476)
+- [#471](https://github.com/pepkit/peppy/issues/471)
+
 ## [0.40.2] -- 2024-05-28
 ### Added
 - added `sample_name` property to samples object.

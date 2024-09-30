@@ -111,7 +111,7 @@ This output is printed to your screen and also recorded in a log file (called ``
  * output.txt
  * stats.tsv
 
-These files are explained in more detail in the reference section [outputs explained](outputs). 
+These files are explained in more detail in the reference section [outputs explained](../outputs.md). 
 
 What's next? That depends on if you're interested in just *running* pypiper pipelines, or if you want to *develop* pypiper pipelines. The next sections are a series of HOW-TO articles that address each of these scenarios.
 
