@@ -415,7 +415,7 @@ There is one more thing we need to do.
 
 You can use the input_schema `sizing` keyword to tell looper which attributes determine file size.
 In most cases, `sizing` should be the same as `tangible,` because any file that is listed and must exist on disk would probably be the files that you want to use to determine the input file size.
-But there is a possibilty that you might have some required input files that you don't want to use to modulate how you think of the size of the sample.
+But there is a possibility that you might have some required input files that you don't want to use to modulate how you think of the size of the sample.
 For this reason, we have the ability to define them separately.
 So, all we have to do is add `file_path` to the `sizing` section in the input schema, like this.
 
