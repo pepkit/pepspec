@@ -18,9 +18,9 @@ Many of the tests require a postgres database to be set up otherwise many of the
 We recommend using docker:
 ```bash
 docker run --rm -it --name pipestat_test_db \
-    -e POSTGRES_USER=postgres \
-    -e POSTGRES_PASSWORD=pipestat-password \
+    -e POSTGRES_USER=pipestatuser \
+    -e POSTGRES_PASSWORD=shgfty^8922138$^! \
     -e POSTGRES_DB=pipestat-test \
-    -p 5432:5432 \
+    -p 127.0.0.1:5432:5432 \
     postgres
 ```

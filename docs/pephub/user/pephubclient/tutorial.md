@@ -57,9 +57,9 @@ phc.upload(example_pep, namespace="databio", name="example", force=True)
 
 Full documentation for the Python API can be found here:
 
-- [PEPHubClient Python API](./phc_usage.md)
-- [PEPHubClient Python API - Samples](./phc_samples_usage.md)
-- [PEPHubClient Python API - Views](./phc_views_usage.md)
+- [PEPHubClient Python API](phc_usage.md)
+- [PEPHubClient Python API - Samples](phc_samples_usage.md)
+- [PEPHubClient Python API - Views](phc_views_usage.md)
 
 ----
 If you have any questions or need help, please contact us at [databio.org](https://databio.org)
