@@ -2,6 +2,21 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.2.4] - 2024-09-30
+
+### Fixed
+- Fixed eido convert filters for csv and yaml appear to be broken [#70](https://github.com/pepkit/eido/issues/70)
+- Fixed error in validating valid sample item in a project [#76](https://github.com/pepkit/eido/issues/76)
+
+### Added
+- added new tests
+
+## [0.2.3] - 2024-09-10
+
+### Changed
+- bump peppy reqs to 0.40.6
+- refactor files_key to sizing, required_files_key to tangible_key, _samples to samples
+
 ## [0.2.2] - 2023-11-16
 
 ### Changed
