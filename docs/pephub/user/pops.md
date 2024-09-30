@@ -16,11 +16,11 @@ This recursive nature enables complex hierarchies and relationships to be effici
 
 A POP is actually just a PEP, that has a special flag set. You can create a new POP in the typical *Add PEP* interface; just select the *POP* tab.
 
-![alt text](../../img/add-pop.png)
+![POP tab](../img/add-pop.png)
 
 If you already have a PEP and you want to designate it as a POP, just make sure it has at least these 3 columns: `namespace`, `name`, and `tag`, which correspond to the registry path for the PEP. You can add whatever other columns you want. Then, just toggle the POP toggle button in the settings interface for the PEP:
 
-![alt text](./../img/pop-toggle.png)
+![POP toggle](../img/pop-toggle.png)
 
 
 ### Views
@@ -29,4 +29,4 @@ There are two ways to view a POP. First, since a POP *is* a PEP, you can just us
 Second, you can use a special "POP" view, which just shows you a linked list of the PEPs contained in the pop.
 Toggle between the two views using the *More* context menu, which provides a *View as POP* or *View as PEP* options for any PEP that has the POP toggle checked.
 
-![alt text](../../img/menu-view-as-pop.png)
+![View as POP](../img/menu-view-as-pop.png)

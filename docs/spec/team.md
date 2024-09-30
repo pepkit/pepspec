@@ -1,10 +1,10 @@
 # The PEP team
 
 <ul>
-<li><a href="http://databio.org">Nathan Sheffield</a>, Center for Public Health Genomics, University of Virginia</li>
+<li><a href="http://databio.org">Nathan Sheffield</a>, Department of Genome Sciences, University of Virginia</li>
 <li><a href="http://andre-rendeiro.com/">Andre Rendeiro</a>, Englander Institute for Precision Medicine, Cornell University</li>
 <li><a href="http://databio.org">Vince Reuter</a>, University of Pennsylvania</li>
-<li><a href="http://databio.org/people/">Michal Stolarczyk</a>, Center for Public Health Genomics, University of Virginia</li>
+<li><a href="http://databio.org/people/">Michal Stolarczyk</a>, Department of Genome Sciences, University of Virginia</li>
 </ul>
 
 

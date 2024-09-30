@@ -221,7 +221,7 @@ sample_modifiers:
 
 This example will take any sample with `organism` attribute set to the string "human" and add attributes of `genome` (with value "hg38") and `macs_genome_size` (with value "hs"). This example shows only 1 implication, but you can include as many as you like.
 
-Implied attributes can be useful for pipeline arguments. For instance, it may that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to eliminate project-level attributes from a sample table](howto-genome-id.md).
+Implied attributes can be useful for pipeline arguments. For instance, it may be that one sample attribute implies several more. Rather than encoding these each as separate columns in the annotation sheet for a particular pipeline, you may simply indicate in the `project_config.yaml` that samples of a certain type should automatically inherit additional attributes. For more details, see [how to eliminate project-level attributes from a sample table](howto-genome-id.md).
 
 #### Sample modifier: derive
 

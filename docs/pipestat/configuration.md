@@ -11,8 +11,10 @@ type: object
 properties:
   pipeline_name: "default_pipeline_name"
   samples:
-    type: object
-    properties:
+    type: array
+    items:
+      type: object
+      properties:
         result_name:
           type: string
           description: "ResultName"

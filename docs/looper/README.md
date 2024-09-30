@@ -9,7 +9,7 @@
 
 ## What is looper?
 
-Looper is a job submitting engine. Looper deploys arbitrary shell commands for each sample in a [standard PEP project](https://pepkit.github.io/docs/home/). You can think of looper as providing a single user interface to running, monitoring, and managing all of your sample-intensive research projects the same way, regardless of data type or pipeline used.
+Looper is a job submitting engine. Looper deploys arbitrary shell commands for each sample in a [standard PEP project](../spec/simple-example.md). You can think of looper as providing a single user interface to running, monitoring, and managing all of your sample-intensive research projects the same way, regardless of data type or pipeline used.
 
 ## What makes looper better?
 
@@ -21,42 +21,22 @@ Looper **decouples job handling from the pipeline process**. In a typical pipeli
 4. running just one or two samples/jobs is simpler, and does not require a  distributed compute environment.
 
 
+# Features at-a-glance
 
+<img src="img/modular.svg" class="img-bullet"> **Modular approach to job handling**. Looper completely divides job handling from pipeline processing. Now,  pipelines no longer need to worry about sample metadata parsing.
 
-## Installing
+<img src="img/file_yaml.svg" class="img-bullet"> **The power of standard PEP format**. `Looper` inherits benefits of [PEP format](http://pepkit.github.io): For example, you only need to learn 1 way to format your project metadata, and it will work with any pipeline. PEP provides subprojects,  programmatic modifiers, loading in R with  [pepr](https://github.com/pepkit/pepr) or Python with [peppy](https://github.com/pepkit/peppy).
 
-Releases are posted as [GitHub releases](https://github.com/pepkit/looper/releases), or you can install using `pip`:
+<img src="img/computing.svg" class="img-bullet"> **Universal parallelization implementation**. Looper's sample-level parallelization applies to all pipelines, so individual pipelines do not have to re-implement parallelization by sample. `Looper` also handles cluster submission on any cluster resource manager (SLURM, SGE, etc.), so your pipeline doesn't need to manage that, either.
 
+<img src="img/flexible_pipelines.svg" class="img-bullet"> **Flexible pipelines**. Use looper with any pipeline, any library, in any domain. As long as you can run your pipeline with a shell command, looper can run it for you.
 
-```console
-pip install --user looper
-```
+<img src="img/job_monitoring.svg" class="img-bullet"> **Job completion monitoring**. Looper is job-aware and will not submit new jobs for samples that are already running or finished, making it easy to add new samples to existing projects, or re-run failed samples.
 
-Update with:
+<img src="img/resources.svg" class="img-bullet"> **Flexible resources**. Looper has an easy-to-use resource requesting scheme. With a few lines to define CPU, memory, clock time, or anything else, pipeline authors can specify different computational resources depending on the size of the input sample and pipeline to run. Or, just use a default if you don't want to mess with setup.
 
-```console
-pip install --user --upgrade looper
-```
+<img src="img/cli.svg" class="img-bullet">  **Command line interface**. Looper uses a command-line interface so you have total power at your fingertips.
 
-If the `looper` executable in not automatically in your `$PATH`, add the following line to your `.bashrc` or `.profile`:
+<img src="img/HTML.svg" class="img-bullet">  **Beautiful linked result reports**. Looper automatically creates an internally linked, portable HTML report highlighting all results for your pipeline, for every pipeline.
+For an html report example see: [PEPATAC Gold Summary](https://pepatac.databio.org/en/latest/files/examples/gold/gold_summary.html)
 
-```console
-export PATH=~/.local/bin:$PATH
-```
-
-## Quick start
-
-To test `looper`, follow the [Hello Looper example repository](https://github.com/databio/hello_looper) to run your first looper project:
-
-
-```console
-# download and unzip the hello_looper repository
-wget https://github.com/databio/hello_looper/archive/master.zip
-unzip master.zip
-
-# Run looper:
-cd hello_looper-master
-looper run project/project_config.yaml
-```
-
-Detailed explanation of results is in the [Hello world tutorial](code/hello-world.md).

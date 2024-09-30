@@ -70,35 +70,6 @@ Return currently active list of amendments or None if none was activated
 
 
 ```python
-def build_submission_bundles(self, protocol, priority=True)
-```
-
-Create pipelines to submit for each sample of a particular protocol.
-
-With the argument (flag) to the priority parameter, there's control
-over whether to submit pipeline(s) from only one of the project's
-known pipeline locations with a match for the protocol, or whether to
-submit pipelines created from all locations with a match for the
-protocol.
-#### Parameters:
-
-- `protocol` (`str`):  name of the protocol/library for which tocreate pipeline(s)
-- `priority` (`bool`):  to only submit pipeline(s) from the first of thepipelines location(s) (indicated in the project config file) that has a match for the given protocol; optional, default True
-
-
-#### Returns:
-
-- `Iterable[(PipelineInterface, type, str, str)]`: 
-
-
-#### Raises:
-
-- `AssertionError`:  if there's a failure in the attempt topartition an interface's pipeline scripts into disjoint subsets of those already mapped and those not yet mapped
-
-
-
-
-```python
 def cli_pifaces(self)
 ```
 
@@ -191,27 +162,6 @@ Init a peppy project instance from a yaml file
 #### Parameters:
 
 - `yaml_file` (`str`):  path to yaml file
-
-
-
-
-```python
-def get_pipestat_managers(self, sample_name=None, project_level=False)
-```
-
-Get a collection of pipestat managers for the selected sample or project.
-
-The number of pipestat managers corresponds to the number of unique
-output schemas in the pipeline interfaces specified by the sample or project.
-#### Parameters:
-
-- `sample_name` (`str`):  sample name to get pipestat managers for
-- `project_level` (`bool`):  whether the project PipestatManagersshould be returned
-
-
-#### Returns:
-
-- `dict[str, pipestat.PipestatManager]`:  a mapping of pipestatmanagers by pipeline interface name
 
 
 
@@ -767,22 +717,19 @@ job submission script templates.
 
 
 ```python
-def __init__(self, entries=None, filepath=None)
+def __init__(self, entries=None, wait_max=None, strict_ro_locks=False, schema_source=None, validate_on_write=False)
 ```
 
 Object constructor
 #### Parameters:
 
 - `entries` (`Iterable[(str, object)] | Mapping[str, object]`):  YAML collectionof key-value pairs.
-- `filepath` (`str`):  Path to the YAML config file.
 - `yamldata` (`str`):  YAML-formatted string
-- `locked` (`bool`):  Whether to initialize as locked (providing write capability)
 - `wait_max` (`int`):  how long to wait for creating an object when the filethat data will be read from is locked
 - `strict_ro_locks` (`bool`):  By default, we allow RO filesystems that can't be locked.Turn on strict_ro_locks to error if locks cannot be enforced on readonly filesystems.
 - `skip_read_lock` (`bool`):  whether the file should not be locked for readingwhen object is created in read only mode
 - `schema_source` (`str`):  path or a URL to a jsonschema in YAML format to usefor optional config validation. If this argument is provided the object is always validated at least once, at the object creation stage.
 - `validate_on_write` (`bool`):  a boolean indicating whether the object should bevalidated every time the `write` method is executed, which is a way of preventing invalid config writing
-- `create_file` (`str`):  Create an empty file at filepath upon data load.
 
 
 
@@ -858,19 +805,59 @@ Returns a copy of the object's data elements with env vars and user vars expande
 
 
 ```python
-def get_active_package(self)
+def from_obj(cls, entries: object, **kwargs)
 ```
 
-Returns settings for the currently active compute package
-#### Returns:
+Initialize from a Python object (dict, list, or primitive).
+#### Parameters:
 
-- `yacman.YacAttMap`:  data defining the active compute package
+- `entries` (`obj`):  object to initialize from.
+- `kwargs` (``):  Keyword arguments to pass to the constructor.
 
 
 
 
 ```python
-def get_adapters(self)
+def from_yaml_data(cls, yamldata, **kwargs)
+```
+
+Initialize from a YAML string.
+#### Parameters:
+
+- `yamldata` (`str`):  YAML-formatted string.
+- `kwargs` (``):  Keyword arguments to pass to the constructor.
+
+
+
+
+```python
+def from_yaml_file(cls, filepath: str, create_file: bool=False, **kwargs)
+```
+
+Initialize from a YAML file.
+#### Parameters:
+
+- `filepath` (`str`):  Path to the YAML config file.
+- `create_file` (`str`):  Create a file at filepath if it doesn't exist.
+- `kwargs` (``):  Keyword arguments to pass to the constructor.
+
+
+
+
+```python
+def get_active_package(self) -> yacman.yacman_future.FutureYAMLConfigManager
+```
+
+Returns settings for the currently active compute package
+#### Returns:
+
+- `YAMLConfigManager`:  data defining the active compute package
+
+
+
+
+```python
+def get_adapters(self) -> yacman.yacman_future.FutureYAMLConfigManager
 ```
 
 Get current adapters, if defined.
@@ -881,7 +868,7 @@ package-specific set of adapters, if any defined in 'adapters' section
 under currently active compute package.
 #### Returns:
 
-- `yacman.YAMLConfigManager`:  current adapters mapping
+- `YAMLConfigManager`:  current adapters mapping
 
 
 
@@ -1023,4 +1010,4 @@ these options succeed, the default config path will be returned.
 
 
 
-*Version Information: `looper` v1.7.0, generated by `lucidoc` v0.4.4*
+*Version Information: `looper` v2.0.0a1, generated by `lucidoc` v0.4.4*
