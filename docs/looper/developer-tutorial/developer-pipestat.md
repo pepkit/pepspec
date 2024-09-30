@@ -241,7 +241,7 @@ Creating objects summary
 
 In the previous tutorial, you configured looper to read sample metadata from PEPhub.
 Now, by adding in pipestat integration, we can also report pipeline results *back* to PEPhub.
-In this example, we'll report the results back to the the demo PEP we used earlier, `databio/pipestat_demo:default`.
+In this example, we'll report the results back to the demo PEP we used earlier, `databio/pipestat_demo:default`.
 But you won't be able to report the results back to the demo repository because you don't have permissions.
 So if you want to follow along, you'll first need to create your own PEP on PEPHub to hold these results.
 Then, you can run this section yourself by replacing `databio/pipestat_demo:default` with the registry path to a PEP you control.
