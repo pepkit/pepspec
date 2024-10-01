@@ -40,6 +40,8 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.highlight:
       use_pygments: true
 #  - pymdownx.emoji:
@@ -193,6 +195,7 @@ nav:
       - Authentication Device: pephub/developer/authentication-device.md
       - Semantic search: pephub/developer/semantic-search.md
       - Server settings: pephub/developer/server-settings.md
+      - Archiving namespaces: pephub/developer/tar_namespace.md
       - PEPembed:
         - PEPembed: pephub/developer/pepembed/README.md
       - pepdbagent:
