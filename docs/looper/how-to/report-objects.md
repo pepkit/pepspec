@@ -72,20 +72,19 @@ properties:
     properties:
       regions_plot:
         description: "This a path to the output image"
-        image:
-          type: object
-          object_type: image
-          properties:
-            path:
-              type: string
-            thumbnail_path:
-              type: string
-            title:
-              type: string
-          required:
-            - path
-            - thumbnail_path
-            - title
+        type: object
+        object_type: image
+        properties:
+          path:
+            type: string
+          thumbnail_path:
+            type: string
+          title:
+            type: string
+        required:
+          - path
+          - thumbnail_path
+          - title
 ```
 We have three required fields in this schema, `path`, `thumbnail_path`, and `title`.
 
