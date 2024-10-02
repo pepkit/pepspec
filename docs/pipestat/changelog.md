@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.11.0] - 2024-10-02
+### Fixed
+- for output schema, make samples an array type and nest under items [#204](https://github.com/pepkit/pipestat/issues/204)
+- pipeline_name not setting correctly [#207](https://github.com/pepkit/pipestat/issues/207)
+- bug with objects populating html report
+
 ## [0.10.0] - 2024-07-18
 ### Fixed
 - allow for bool or boolean in schema [#189](https://github.com/pepkit/pipestat/issues/189)
