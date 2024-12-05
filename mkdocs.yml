@@ -51,7 +51,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: "!!python/name:pymdownx.superfences.fence_code_format"
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra_css:
   - stylesheets/extra.css
@@ -179,6 +179,7 @@ nav:
       - How to use views: pephub/user/views.md
       - PEP of PEPs (POP): pephub/user/pops.md
       - Accessing GEO metadata: pephub/user/geo.md
+      - PEPhub organization: pephub/user/organization.md
       - PEPHubClient:
         - PEPhubClient: pephub/user/pephubclient/README.md
         - Quickstart: pephub/user/pephubclient/tutorial.md
