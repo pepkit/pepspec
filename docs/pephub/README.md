@@ -35,10 +35,10 @@ Choose your adventure:
 
 <div class="grid cards" markdown>
 
-- :fontawesome-regular-user:  [**User guide**](user/getting-started.md)  
+-  [**User guide**](user/getting-started.md)  
   Teaches you how to use PEPhub to manage, share, and validate your sample metadata.
 
-- :fontawesome-solid-code: [**Developer guide**](developer/setup.md)  
+-  [**Developer guide**](developer/setup.md)  
   Teaches you how to contribute to PEPhub, build tools on the PEPhub API, or deploy your own instance.
 
 </div>
