@@ -207,12 +207,15 @@ properties:
         sample_name: 
           type: string
           description: "Name of the sample"
+          minLength: 1 # set a minimum length required for this required attribute
         file_path: 
           type: string
           description: "Path to the input file to count"
+          minLength: 1 # set a minimum length required for this required attribute
         area_type:
           type: string
           description: "Name of the components of the country"
+          minLength: 1 # set a minimum length required for this required attribute
       required:
         - sample_name
         - file_path
@@ -223,7 +226,8 @@ required:
 
 This file specifies what inputs the pipeline uses, and what type they are.
 It is a [JSON Schema](https://json-schema.org/), which allows us to use this file to validate the inputs, which we'll cover later.
-For now, it defines that our input samples have 3 properties: `sample_name`, `file_path`, and `area_type`.
+For now, it defines that our input samples have 3 properties: `sample_name`, `file_path`, and `area_type`. 
+We also specify a minimum length required for these inputs with `minLength: 1`.
 
 ### Adapt the pipeline interface to use the input schema
 
