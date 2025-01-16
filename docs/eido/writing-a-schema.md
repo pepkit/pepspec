@@ -75,7 +75,7 @@ This document defines the required an optional sample attributes for this pipeli
 
 In the above example, we listed `read1` and `read2` attributes as *required*. This will enforce that these attributes must be defined on the samples, but for this example, this is not enough -- these also must *point to files that exist*. Checking for files is outside the scope of JSON Schema, which only validates JSON documents, so eido extends JSON Schema with the ability to specify which attributes should point to files.
 
-Eido provides two ways to do it: `files` and `required_files`. The basic `files` is simply used to specify which attributes point to files, which are not required to exist. This is useful for tools that want to calculate the total size of any provided inputs, for example. The `required_files` list specifies that the attributes point to files that *must exist*, otherwise the PEP doesn't validate. Here's an example of specifying an optional and required input attribute:
+Eido provides two ways to do it: `sizing` and `tangible`. The basic `sizing` is simply used to specify which attributes point to files, which are not required to exist. This is useful for tools that want to calculate the total size of any provided inputs, for example. The `tangible` list specifies that the attributes point to files that *must exist*, otherwise the PEP doesn't validate. Here's an example of specifying an optional and required input attribute:
 
 ```yaml
 description: A PEP for ATAC-seq samples for the PEPATAC pipeline.
@@ -109,7 +109,7 @@ properties:
         read2:
           type: string
           description: "Fastq file for read 2 (for paired-end experiments)"
-      required_files:
+      tangible:
         - read1
       files:
         - read1
