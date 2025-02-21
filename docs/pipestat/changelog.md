@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.12.1] - 2025-02-10
+### Fixed
+- fix checking for records during summarize failing because aggregate_results file had not yet been resolved [#215](https://github.com/pepkit/pipestat/issues/215)
+
 ## [0.12.0] - 2025-01-16
 ### Fixed
 - portable report now has proper file extension in messaging.
