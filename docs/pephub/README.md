@@ -11,6 +11,7 @@ PEPhub is an open-source database, web interface, and API for sharing, retrievin
 
 - **Public user interface**: <a href="https://pephub.databio.org/" target="_blank">https://pephub.databio.org/</a>
 - **API**: <a href="https://pephub-api.databio.org/api/v1/docs" target="_blank">https://pephub-api.databio.org/api/v1/docs</a>
+- **DEV API**: <a href="https://pephub-api-dev.databio.org/api/v1/docs" target="_blank">https://pephub-api-dev.databio.org/api/v1/docs</a>
 
 
 ## Features at-a-glance
