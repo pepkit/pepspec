@@ -187,6 +187,7 @@ nav:
         - Python API: pephub/user/pephubclient/phc_usage.md
         - Python API samples: pephub/user/pephubclient/phc_samples_usage.md
         - Python API views: pephub/user/pephubclient/phc_views_usage.md
+        - Python API schemas: pephub/user/pephubclient/phc_schemas.md
         - CLI usage: pephub/user/pephubclient/cli.md
         - Changelog: pephub/user/pephubclient/changelog.md
     - Developer guide:
