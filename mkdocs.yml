@@ -203,6 +203,7 @@ nav:
         - PEPembed: pephub/developer/pepembed/README.md
       - pepdbagent:
         - pepdbagent: pephub/developer/pepdbagent/README.md
+        - Database version migration: pephub/developer/pepdbagent/database_version_migration.md
         - Database tutorial: pephub/developer/pepdbagent/db_tutorial.md
         - Changelog: pephub/developer/pepdbagent/changelog.md
       - geopephub: pephub/developer/geopephub.md
