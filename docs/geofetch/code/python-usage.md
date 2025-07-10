@@ -2,7 +2,7 @@
 
 ♪♫*•♪♪♫*•♪♪♫*•♪♪♫*•♪♪♫*
 
-Geofetch provides python functions to fetch metadata and metadata from GEO and SRA by using python language. `get_project` function returns dictionary of peppy projects that were found using filters and input you specified.
+Geofetch provides python fuctions to fetch metadata and metadata from GEO and SRA by using python language. `get_project` function returns dictionary of peppy projects that were found using filters and input you specified.
  peppy is a Python package that provides an API for handling standardized project and sample metadata. 
  
 More information you can get here:
@@ -18,9 +18,9 @@ http://pep.databio.org/en/2.0.0/
 from geofetch import Geofetcher
 ```
 
-### Initiate Geofetch object by specifying parameters that you want to use for downloading metadata/data
+### Initiate Geofetch object by specifing parameters that you want to use for downloading metadata/data
 
-1) If you won't specify any parameters, default parameters will be used
+1) If you won't specify any parameters, defaul parameters will be used
 
 
 ```python
@@ -156,7 +156,7 @@ projects.keys()
 
 
 
-project for samples was created! Now let's look into it.
+project for smaples was created! Now let's look into it.
 
 \* the values of the dictionary are peppy projects. More information about peppy Project you can find in the documentation: http://peppy.databio.org/en/latest/
 
@@ -174,7 +174,7 @@ len(projects['GSE95654_samples'].samples)
 
 We got 40 samples from GSE95654 project. If you want to check if it's correct information go into: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE95654
 
-Now let's see actual data. first 15 project and 5 clolumns:
+Now let's see actuall data. first 15 project and 5 clolumns:
 
 
 ```python

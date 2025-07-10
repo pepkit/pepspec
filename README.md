@@ -41,7 +41,7 @@ The documentation is published automatically upon commits to `master` using a Gi
 In the past, I had a plugin that would auto-document 2 things: 1. Python docs using lucidoc, and 2. Jupyter notebooks. This plugin was neat, but it caused me a lot of maintenance issues as well. So now, I've made it much simpler; now it's no longer a plugin, just a simple Python script. Update all the auto-generated docs (stored in `docs/autodoc_build`) by running the update script manually:
 
 ```console
-python update_python_autodocs.py
+python autodoc.py
 ```
 
 #### Configuring lucidoc rendering

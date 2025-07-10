@@ -52,7 +52,7 @@ cat $PIPESTAT_RESULTS_SCHEMA
     name_of_something:
       type: string
       description: "Name of something"
-    switch_value:
+    swtich_value:
       type: boolean
       description: "Is the switch on of off"
     collection_of_things:

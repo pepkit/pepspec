@@ -63,7 +63,7 @@ psm.report(record_identifier="my_sample_name_1", values={"percentage_of_things":
 
 ```python
 # Pipestat reports the result as well as a created time and a modified time.
-# We can overwrite the modified time by reporting a new result. This is because force_overwrite defaults to True
+# We can overwrite the modified time by reporting a new result. This is because force_overwrite defualts to True
 psm.report(record_identifier="my_sample_name_1", values={"percentage_of_things": 50})
 ```
 

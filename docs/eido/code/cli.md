@@ -80,7 +80,7 @@ eido validate peppro_paper.yaml -s http://schema.databio.org/pep/2.0.0.yaml -e
     Validation successful
 
 
-Any PEP should validate against that schema, which describes generic PEP format. We can go one step further and validate it against the PEPPRO schema, which describes Proseq projects specifically for this pipeline:
+Any PEP should validate against that schema, which describes generic PEP format. We can go one step further and validate it against the PEPPRO schema, which describes Proseq projects specfically for this pipeline:
 
 
 ```bash
@@ -144,7 +144,7 @@ eido validate -h
 
 Let's use `eido convert` command to convert PEPs to a variety of different formats. `eido` supports a plugin system, which can be used by other tool developers to create Python plugin functions that save PEPs in a desired format. Please refer to the documentation for more details. For now let's focus on a couple of plugins that are built-in in `eido`.
 
-To see what plugins are currently available in your Python environment call:
+To see what plugins are currently avaialable in your Python environment call:
 
 
 ```bash
@@ -213,6 +213,8 @@ eido convert peppro_paper.yaml --format csv
     H9_treated_PRO-seq_1,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_200nM_romidepsin_rep1_PE1.fastq.gz,PAIRED,H9 treated PRO-seq,H9_treated_PRO-seq_1,H9_200nM_romidepsin_rep1,200 nM romidepsin,8,/Users/mstolarczyk/H9_200nM_romidepsin_rep1_PE2.fastq.gz
     H9_treated_PRO-seq_2,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_200nM_romidepsin_rep2_PE1.fastq.gz,PAIRED,H9 treated PRO-seq,H9_treated_PRO-seq_2,H9_200nM_romidepsin_rep2,200 nM romidepsin,8,/Users/mstolarczyk/H9_200nM_romidepsin_rep2_PE2.fastq.gz
     H9_treated_PRO-seq_3,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_200nM_romidepsin_rep3_PE1.fastq.gz,PAIRED,H9 treated PRO-seq,H9_treated_PRO-seq_3,H9_200nM_romidepsin_rep3,200 nM romidepsin,8,/Users/mstolarczyk/H9_200nM_romidepsin_rep3_PE2.fastq.gz
+
+
     H9_PRO-seq_10,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_PRO-seq_10pct_PE1.fastq.gz,PAIRED,10% subset H9 PRO-seq 2,H9_PRO-seq_10,H9_PRO-seq_10pct,DMSO,8,/Users/mstolarczyk/H9_PRO-seq_10pct_PE2.fastq.gz
     H9_PRO-seq_20,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_PRO-seq_20pct_PE1.fastq.gz,PAIRED,20% subset H9 PRO-seq 2,H9_PRO-seq_20,H9_PRO-seq_20pct,DMSO,8,/Users/mstolarczyk/H9_PRO-seq_20pct_PE2.fastq.gz
     H9_PRO-seq_30,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_PRO-seq_30pct_PE1.fastq.gz,PAIRED,30% subset H9 PRO-seq 2,H9_PRO-seq_30,H9_PRO-seq_30pct,DMSO,8,/Users/mstolarczyk/H9_PRO-seq_30pct_PE2.fastq.gz
