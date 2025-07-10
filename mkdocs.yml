@@ -123,7 +123,7 @@ nav:
       - Specifying samples to download: geofetch/file-specification.md
       - Set SRA data download location: geofetch/howto-location.md
       - Run SRA convert: geofetch/code/howto-sra-to-fastq.md
-      - Install prefetch: geofetch/howto-prefetch.md
+      - Install prefetch: geofetch/howto_prefetch.md
     - Reference:
       - How to cite: citations.md
       - API: geofetch/code/python-api.md
