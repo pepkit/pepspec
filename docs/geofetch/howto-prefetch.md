@@ -7,4 +7,5 @@ varies depending on your operating system.
 
 ### Documentation:
 The best way to install the NCBI SRA Toolkit is to follow the official instructions:
-https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit
+
+[Official NCBI SRA Toolkit Installation Guide](https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit)
