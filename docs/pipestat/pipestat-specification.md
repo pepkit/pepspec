@@ -70,7 +70,7 @@ type: object
 properties:
   pipeline_name: "default_pipeline_name"
   samples:
-    type: object
+    type: array
     properties: # result identifiers are properties of the samples object
       number_of_things:
         type: integer
