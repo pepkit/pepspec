@@ -235,9 +235,11 @@ nav:
       - Use Python API: pipestat/code/python-tutorial.md
       - Use command line interface: pipestat/code/cli.md
       - Report objects as results: pipestat/code/reporting-objects.md
+      - Reporting pipeline status: pipestat/report_statuses.md
       - Configure pipestat: pipestat/configuration.md
       - Multi pipelines and result files: pipestat/multi.md
     - Reference:
+      - Terminology - Results and Record Identifiers: pipestat/results_records.md
       - How to cite: citations.md
       - CLI usage: pipestat/usage.md
       - Configuration format: pipestat/config.md
