@@ -229,15 +229,18 @@ nav:
       - Changelog: peppy/changelog.md
   - Pipestat:
     - Pipestat: pipestat/README.md
+    - User guide:
+        - Quickstart: pipestat/code/api-quickstart.md
+        - Use Python API: pipestat/code/python-tutorial.md
+        - Use command line interface: pipestat/code/cli.md
     - How-to guides:
-      - Quickstart: pipestat/code/api-quickstart.md
+      - Install: pipestat/install.md
       - Write a pipestat schema: pipestat/pipestat-schema.md
-      - Use Python API: pipestat/code/python-tutorial.md
-      - Use command line interface: pipestat/code/cli.md
-      - Report objects as results: pipestat/code/reporting-objects.md
       - Reporting pipeline status: pipestat/report_statuses.md
       - Configure pipestat: pipestat/configuration.md
-      - Multi pipelines and result files: pipestat/multi.md
+    - Advanced:
+        - Multi pipelines and result files: pipestat/multi.md
+        - Report objects as results: pipestat/code/reporting-objects.md
     - Reference:
       - Terminology - Results and Record Identifiers: pipestat/results_records.md
       - How to cite: citations.md

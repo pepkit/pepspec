@@ -1,5 +1,6 @@
 # How to write a pipestat schema
 
+## Introduction
 Pipestat requires a schema, in which all the results that the pipeline can report are specified. 
 
 It is written in [JSON schema](https://cswr.github.io/JsonSchema/spec/basic_types/) which definines specific data types:
@@ -14,7 +15,7 @@ Each *result* reported by a pipeline must have a specified data type. The suppor
 - boolean
 - null
 
-Pipestat also extends the jsonschema vocabulary by adding two _additional_ types, which are common results of a pipeline: `image` and `file`. These types require reporting objects with the following attributes:
+Pipestat also extends the json schema vocabulary by adding two _additional_ types, which are common results of a pipeline: `image` and `file`. These types require reporting objects with the following attributes:
 
 - `file`:
     - `path`: path to the reported file
@@ -23,6 +24,10 @@ Pipestat also extends the jsonschema vocabulary by adding two _additional_ types
     - `path`: path to the reported image, usually PDF
     - `thumbnail`: path to the reported thumbnail, usually PNG or JPEG
     - `title`: human readable description of the image
+
+
+### Complex objects
+Pipestat also supports reporting more [complex objects](./code/reporting-objects.md)
 
 ### Unsupported data types
 
