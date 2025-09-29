@@ -241,6 +241,7 @@ nav:
     - Advanced:
         - Multi pipelines and result files: pipestat/multi.md
         - Report objects as results: pipestat/code/reporting-objects.md
+        - Summarize reported results: pipestat/summarize.md
     - Reference:
       - Terminology - Results and Record Identifiers: pipestat/results_records.md
       - How to cite: citations.md
