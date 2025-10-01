@@ -44,6 +44,13 @@ Beginning with v0.10.0, there is also support for reporting results directly to 
 psm = PipestatManager(pephub_path="databio/pipestat_demo:default", schema_path=my_schema_file_path)
 ```
 
+You can also place this in the configuration file:
+
+```yaml
+pephub_path: "databio/pipestat_demo:default"
+schema_path: sample_output_schema.yaml
+
+```
 
 Apart from that, there are many other *optional* configuration points that have defaults. Please refer to the [environment variables reference](http://pipestat.databio.org/en/dev/env_vars/) to learn about the the optional configuration options and their meaning.
 
