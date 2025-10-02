@@ -127,7 +127,7 @@ This release breaks backwards compatibility for Looper versions < 2.0.0
 - fix `looper table` failing without `sample.protocol`
 
 ### Changed
-- correct `--looper_conifg` to `--looper-config`
+- correct `--looper_config` to `--looper-config`
 
 ## [1.5.0] -- 2023-08-09
 

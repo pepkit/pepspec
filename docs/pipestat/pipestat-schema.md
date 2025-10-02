@@ -3,7 +3,7 @@
 ## Introduction
 Pipestat requires a schema, in which all the results that the pipeline can report are specified. 
 
-It is written in [JSON schema](https://cswr.github.io/JsonSchema/spec/basic_types/) which definines specific data types:
+It is written in [JSON schema](https://cswr.github.io/JsonSchema/spec/basic_types/) which defines specific data types:
 
 ### Data types
 

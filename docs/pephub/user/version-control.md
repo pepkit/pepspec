@@ -8,7 +8,7 @@ PEPhub automatically records a history of your files whenever changes are made. 
 
 ![alt text](../img/menu-history.png)
 
-Selecting this option will bring up the *History Interface*, which will provide buttons allowing you to view or delete entries from your history table. If you choose the `View` button for an entry, it will show you the PEP at that point in history. It also opens a new interface that will allow you to click `Restore` to overwright your current PEP with the historical version you are currently viewing, or you can `Download` the table as it was at that point in history.
+Selecting this option will bring up the *History Interface*, which will provide buttons allowing you to view or delete entries from your history table. If you choose the `View` button for an entry, it will show you the PEP at that point in history. It also opens a new interface that will allow you to click `Restore` to overwrite your current PEP with the historical version you are currently viewing, or you can `Download` the table as it was at that point in history.
 
 ![alt text](../img/history-interface.png)
 

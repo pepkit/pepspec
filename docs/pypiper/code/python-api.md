@@ -349,7 +349,7 @@ provides some logging output.
 - `target` (`str | Sequence[str]`):  Output file(s) to produce, optional.If all target files exist, the command will not be run. If no target is given, a lock_name must be provided.
 - `lock_name` (`str`):  Name of lock file. Optional.
 - `shell` (`bool`):  If command requires should be run in its own shell.Optional. Default: None --will try to determine whether the command requires a shell.
-- `nofail` (`bool`):  Whether the pipeline proceed past a nonzero return froma process, default False; nofail can be used to implement non-essential parts of the pipeline; if a 'nofail' command fails, the pipeline is free to continue execution.
+- `nofail` (`bool`):  Whether the pipeline proceed past a nonzero return from process, default False; nofail can be used to implement non-essential parts of the pipeline; if a 'nofail' command fails, the pipeline is free to continue execution.
 - `clean` (`bool`):  True means the target file will be automatically addedto an auto cleanup list. Optional.
 - `follow` (`callable`):  Function to call after executing (each) command.
 - `container` (`str`):  Name for Docker container in which to run commands.

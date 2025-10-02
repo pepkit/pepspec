@@ -7356,7 +7356,7 @@ function defined(value) {
 
 exports.defined = defined;
 /**
- * Returns `true` if the operand (one) is divisble by the test's argument
+ * Returns `true` if the operand (one) is divisible by the test's argument
  * (two).
  * @param { number } one
  * @param { number } two
