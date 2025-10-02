@@ -5,16 +5,13 @@ Pipestat offers a CLI that can be access via the `pipestat` command in the shell
 Here you can see the command-line usage instructions for the main command and for each subcommand:
 ## `pipestat --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
-version: 0.6.0
-usage: pipestat [-h] [--version] [--silent] [--verbosity V] [--logdev]
-                {report,inspect,remove,retrieve,status,init,summarize,link,serve}
-                ...
+version: 0.12.1
+usage: pipestat [-h] [--version] [--silent] [--verbosity V] [--logdev] {report,inspect,remove,retrieve,status,init,summarize,link,serve,history} ...
 
 pipestat - report pipeline results
 
 positional arguments:
-  {report,inspect,remove,retrieve,status,init,summarize,link,serve}
+  {report,inspect,remove,retrieve,status,init,summarize,link,serve,history}
     report              Report a result.
     inspect             Inspect a database.
     remove              Remove a result.
@@ -24,6 +21,7 @@ positional arguments:
     summarize           Generates HTML Report
     link                Create symlinks of reported files
     serve               Initializes pipestatreader API
+    history             Retrieve history of reported results for one record identifier
 
 options:
   -h, --help            show this help message and exit
@@ -32,17 +30,15 @@ options:
   --verbosity V         Set logging level (1-5 or logging module level name)
   --logdev              Expand content of logging message format.
 
-Pipestat standardizes reporting of pipeline results and pipeline status
-management. It formalizes a way for pipeline developers and downstream tools
-developers to communicate -- results produced by a pipeline can easily and
-reliably become an input for downstream analyses. A PipestatManager object
-exposes an API for interacting with the results and pipeline status and can be
-backed by either a YAML-formatted file or a database.
+Pipestat standardizes reporting of pipeline results and pipeline status management. 
+It formalizes a way for pipeline developers and downstream tools developers to communicate 
+-- results produced by a pipeline can easily andreliably become an input for downstream analyses. 
+A PipestatManager object exposes an API for interacting with the results and pipeline status and 
+can be backed by either a YAML-formatted file or a database.
 ```
 
 ## `pipestat report --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
 usage: pipestat report [-h] [-n N] [-f F] [-c C] [-a] [-s S] [--status-schema ST]
                        [--flag-dir FD] [-p P] -i I [-r R] -v V [-o] [-t]
 
@@ -83,7 +79,6 @@ options:
 
 ## `pipestat inspect --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
 usage: pipestat inspect [-h] [-n N] [-f F] [-c C] [-a] [-s S] [--status-schema ST]
                         [--flag-dir FD] [-p P] [-d]
 
@@ -115,7 +110,6 @@ options:
 
 ## `pipestat remove --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
 usage: pipestat remove [-h] [-n N] [-f F] [-c C] [-a] [-s S] [--status-schema ST]
                        [--flag-dir FD] [-p P] -i I [-r R]
 
@@ -151,7 +145,6 @@ options:
 
 ## `pipestat retrieve --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
 usage: pipestat retrieve [-h] [-n N] [-f F] [-c C] [-a] [-s S] [--status-schema ST]
                          [--flag-dir FD] [-p P] [-r R]
 
@@ -185,7 +178,6 @@ options:
 
 ## `pipestat status --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
 usage: pipestat status [-h] {set,get} ...
 
 Manage pipeline status.
@@ -201,7 +193,6 @@ options:
 
 ## `pipestat status get --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
 usage: pipestat status get [-h] [-n N] [-f F] [-c C] [-a] [-s S] [--status-schema ST]
                            [--flag-dir FD] [-r R] [-p P]
 
@@ -235,7 +226,6 @@ options:
 
 ## `pipestat status set --help`
 ```console
-Configure by setting PIPESTAT_CONFIG env var
 usage: pipestat status set [-h] [-n N] [-f F] [-c C] [-a] [-s S] [--status-schema ST]
                            [--flag-dir FD] [-r R] [-p P]
                            status_identifier

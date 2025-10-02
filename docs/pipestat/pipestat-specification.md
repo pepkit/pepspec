@@ -70,20 +70,22 @@ type: object
 properties:
   pipeline_name: "default_pipeline_name"
   samples:
-    type: object
-    properties: # result identifiers are properties of the samples object
-      number_of_things:
-        type: integer
-        description: "Number of things"
-      percentage_of_things:
-        type: number
-        description: "Percentage of things"
-      name_of_something:
-        type: string
-        description: "Name of something"
-      switch_value:
-        type: boolean
-        description: "Is the switch on or off"
+    type: array
+    items:
+      type: object
+      properties: # result identifiers are properties of the samples object
+        number_of_things:
+          type: integer
+          description: "Number of things"
+        percentage_of_things:
+          type: number
+          description: "Percentage of things"
+        name_of_something:
+          type: string
+          description: "Name of something"
+        switch_value:
+          type: boolean
+          description: "Is the switch on or off"
 ```
 
 Here's a more complex schema example that showcases some of the more advanced jsonschema features:
