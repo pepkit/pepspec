@@ -244,7 +244,7 @@ nav:
         - Summarize reported results: pipestat/summarize.md
     - Reference:
       - Terminology - Results and Record Identifiers: pipestat/results_records.md
-      - How to cite: citations.md
+      - Backends: pipestat/backends.md
       - CLI usage: pipestat/usage.md
       - Configuration format: pipestat/config.md
       - Testing configuration: pipestat/testing.md
@@ -253,6 +253,7 @@ nav:
       - Python API: pipestat/code/python-api.md
       - Support: https://github.com/pepkit/pipestat/issues
       - Contributing: pipestat/contributing.md
+      - How to cite: citations.md
       - Changelog: pipestat/changelog.md
   - Pypiper:
     - Pypiper: pypiper/README.md
