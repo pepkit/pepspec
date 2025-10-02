@@ -21,6 +21,6 @@ Simiarly this can be accomplished via the CLI:
 
 ```shell
 
-pipestat sumamrize --results-file my_results.yaml --schema output_schema.yaml --portable
+pipestat summarize --results-file my_results.yaml --schema output_schema.yaml --portable
 
 ```
