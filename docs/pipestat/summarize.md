@@ -17,7 +17,7 @@ psm.summarize(output_dir="/home/output_dir",portable= True )
 ```
 
 
-Simiarly this can be accomplished via the CLI:
+Similarly this can be accomplished via the CLI:
 
 ```shell
 

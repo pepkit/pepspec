@@ -42,7 +42,7 @@ eido inspect peppro_paper.yaml
     Sections: name, pep_version, sample_table, looper, sample_modifiers
 
 
- - To inspect a specific sample, one needs to provide the sample name (via `-n`/`--sample-name` oprional argument)
+ - To inspect a specific sample, one needs to provide the sample name (via `-n`/`--sample-name` optional argument)
 
 
 ```bash

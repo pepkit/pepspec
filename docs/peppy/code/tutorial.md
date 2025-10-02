@@ -1,6 +1,6 @@
 # Basic PEP example
 
-This vignette will show you a simple example PEP-formatted project, and how to read it into python using the `peppy` package. This example comes from the [example_peps repsitory](https://github.com/pepkit/example_peps) in the [example_basic](https://github.com/pepkit/example_peps/tree/master/example_basic) folder.
+This vignette will show you a simple example PEP-formatted project, and how to read it into python using the `peppy` package. This example comes from the [example_peps repository](https://github.com/pepkit/example_peps) in the [example_basic](https://github.com/pepkit/example_peps/tree/master/example_basic) folder.
 
 
 Start by importing `peppy`, and then let's take a look at the configuration file that defines our project:

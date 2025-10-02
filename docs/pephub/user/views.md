@@ -2,7 +2,7 @@
 
 ## What are views?
 
-Large tables (*e.g.* >5,000 rows) can be unweildy with PEPhup. It can be hard to find the elements you're looking for. To address this, PEPhub provides the *Views* feature. Views provide a way to look at a subset of a large table (basically, a filtered table).
+Large tables (*e.g.* >5,000 rows) can be unwieldy with PEPhup. It can be hard to find the elements you're looking for. To address this, PEPhub provides the *Views* feature. Views provide a way to look at a subset of a large table (basically, a filtered table).
 
 ## How to create a view
 

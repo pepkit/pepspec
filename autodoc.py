@@ -86,7 +86,7 @@ if args["x_usage"] is False and "cli_usage" in cfg:
 else:
     print("Skipping usage documentation")
 
-# # Render Juptyer notebooks to markdown
+# # Render Jupyter notebooks to markdown
 if args["x_jupyter"] is False and "jupyter" in cfg:
     for item in cfg["jupyter"]:
         files = glob.glob(f"docs/{item['in']}/*.ipynb")

@@ -153,7 +153,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 - sample table would exhibit odd, erratic behavior if column names were left blank
-- alnding page styling was not otpimal
+- alnding page styling was not optimal
 
 ## [0.9.6] - 07-20-2023
 

@@ -49,7 +49,7 @@ With that said, there are a few universal (Pypiper-added) options that are frequ
 ## Customizing `add_pypiper_args()`
 
 
-There are two ways to modulate the arguments added by `add_pypiper_args()` function: the `groups` argument, which lets you add argument groups; or the `args` argument, which lets you add arguments indvidually. By default, `add_pypiper_args()` add all arguments listed in the `pypiper` group. You may instead pass a list of one or more of these groups of arguments (to `groups`) or individual arguments (to `args`) to customize exactly the set of built-in options your pipeline implements.
+There are two ways to modulate the arguments added by `add_pypiper_args()` function: the `groups` argument, which lets you add argument groups; or the `args` argument, which lets you add arguments individually. By default, `add_pypiper_args()` add all arguments listed in the `pypiper` group. You may instead pass a list of one or more of these groups of arguments (to `groups`) or individual arguments (to `args`) to customize exactly the set of built-in options your pipeline implements.
 
 For example, `parser.add_pypiper_args(parser, groups=['pypiper', 'common'])` will add all arguments listed under `pypiper` and `common` below:
 
