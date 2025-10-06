@@ -34,8 +34,23 @@ currentPipestatManager.set_status(record_identifier="sample2", status_identifier
 ```
 More info on setting status can be found [here](../developer-tutorial/developer-pipestat.md#setting-and-checking-status).
 
+Now that your pipeline is setting statuses, you can check the status of all samples using:
+```shell
+looper check
+```
+This command will show you a list of samples and their associated status,e.g:
 
-Now that your pipeline is setting statuses, you can resubmit failed jobs with:
+```
+     'count_lines' pipeline status summary     
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃    Status     ┃    Jobs count/total jobs    ┃
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│   completed   │             1/3             │
+│    failed     │             2/3             │
+└───────────────┴─────────────────────────────┘
+```
+
+You can resubmit all failed jobs with:
 ```shell
 looper rerun
 ```
