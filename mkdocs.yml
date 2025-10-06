@@ -154,7 +154,7 @@ nav:
         - Running project-level pipelines: looper/how-to/project-level-pipelines.md
         - Link similar results: looper/how-to/link-objects.md
         - Report objects:  looper/how-to/report-objects.md
-        - Rerun samples: looper/how-to/rerun.md
+        - Check status and rerun samples: looper/how-to/rerun.md
     - Pipeline Developer Docs:
       - Developer tutorial:
         - Writing a pipeline interface: looper/developer-tutorial/writing-a-pipeline-interface.md
