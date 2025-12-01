@@ -8,7 +8,7 @@ any data or needing to manually interact with the database.
 ## 👷 Database schema change - for database developers
 
 If you are changing database schema in `db_utils.py` file and schema in the database changed, you should 
-percied wiht the following steps:
+percied with the following steps:
 
 ### 0. **Set up the database URL in `alembic.ini`:**
 

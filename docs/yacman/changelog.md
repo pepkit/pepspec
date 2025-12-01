@@ -90,7 +90,7 @@ This is a transition release that is compatible with the 0.X series, and also pr
 ### Added
 - environment variables expansion in provided paths in `select_config` function
 ### Fixed
-- issues with locking nonexistant files; [#41](https://github.com/databio/yacman/issues/41)
+- issues with locking nonexistent files; [#41](https://github.com/databio/yacman/issues/41)
 
 ## [0.7.0] -- 2020-08-28
 ### Added
