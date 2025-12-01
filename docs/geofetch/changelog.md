@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.12.8] -- 2025-07-08
+- Updated docs
+- Fixed parsing nested items. [[143](https://github.com/pepkit/geofetch/issues/143)]
+- Added pypiper to requirements [[142](https://github.com/pepkit/geofetch/issues/142)]
+- Fixed white spaces in reference genome string [[141](https://github.com/pepkit/geofetch/issues/141)]
+- Added version in CLI help [[135](https://github.com/pepkit/geofetch/issues/135)]
+- Updated SRA convert to use looper > 2.0.0 and fully automate process
+
+## [0.12.7] -- 2024-09-11
+- Updated Python support 3.13
+- Cleaned code and Readme
+
+## [0.12.6] -- 2024-02-05
+- Updated support for Windows in Prefetch (Note: Some functionality may still be unavailable on Windows)
+
 ## [0.12.5] -- 2023-11-29
 - Fixed bug, where description was not populated in PEP
 

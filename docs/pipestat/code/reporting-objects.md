@@ -5,10 +5,6 @@ This tutorial will show you how pipestat can report not just primitive types, bu
 First create a `pipestat.PipestatManager` object with our example schema:
 
 
-```python
-
-```
-
 
 ```python
 import pipestat
@@ -93,9 +89,3 @@ psm.retrieve_one("sample1", "mydict")['toplevel']['value']
 
     456
 
-
-
-
-```python
-
-```

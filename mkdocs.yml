@@ -51,7 +51,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: "!!python/name:pymdownx.superfences.fence_code_format"
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra_css:
   - stylesheets/extra.css
@@ -123,6 +123,7 @@ nav:
       - Specifying samples to download: geofetch/file-specification.md
       - Set SRA data download location: geofetch/howto-location.md
       - Run SRA convert: geofetch/code/howto-sra-to-fastq.md
+      - Install prefetch: geofetch/howto-prefetch.md
     - Reference:
       - How to cite: citations.md
       - API: geofetch/code/python-api.md
@@ -163,7 +164,7 @@ nav:
     - Reference:
       - Reference:
         - CLI Usage: looper/usage.md
-        - API: looper/code/python-api.md
+        # - API: looper/code/python-api.md  # Temporarily disabled due to wildcard import issue
         - How to cite: citations.md
         - FAQ: looper/faq.md
         - Support: looper/support.md
@@ -180,12 +181,14 @@ nav:
       - How to use views: pephub/user/views.md
       - PEP of PEPs (POP): pephub/user/pops.md
       - Accessing GEO metadata: pephub/user/geo.md
+      - PEPhub organization: pephub/user/organization.md
       - PEPHubClient:
         - PEPhubClient: pephub/user/pephubclient/README.md
         - Quickstart: pephub/user/pephubclient/tutorial.md
         - Python API: pephub/user/pephubclient/phc_usage.md
         - Python API samples: pephub/user/pephubclient/phc_samples_usage.md
         - Python API views: pephub/user/pephubclient/phc_views_usage.md
+        - Python API schemas: pephub/user/pephubclient/phc_schemas.md
         - CLI usage: pephub/user/pephubclient/cli.md
         - Changelog: pephub/user/pephubclient/changelog.md
     - Developer guide:
@@ -201,6 +204,7 @@ nav:
         - PEPembed: pephub/developer/pepembed/README.md
       - pepdbagent:
         - pepdbagent: pephub/developer/pepdbagent/README.md
+        - Database version migration: pephub/developer/pepdbagent/database_version_migration.md
         - Database tutorial: pephub/developer/pepdbagent/db_tutorial.md
         - Changelog: pephub/developer/pepdbagent/changelog.md
       - geopephub: pephub/developer/geopephub.md
@@ -229,16 +233,22 @@ nav:
       - Changelog: peppy/changelog.md
   - Pipestat:
     - Pipestat: pipestat/README.md
+    - User guide:
+        - Quickstart: pipestat/code/api-quickstart.md
+        - Use Python API: pipestat/code/python-tutorial.md
+        - Use command line interface: pipestat/code/cli.md
     - How-to guides:
-      - Quickstart: pipestat/code/api-quickstart.md
+      - Install: pipestat/install.md
       - Write a pipestat schema: pipestat/pipestat-schema.md
-      - Use Python API: pipestat/code/python-tutorial.md
-      - Use command line interface: pipestat/code/cli.md
-      - Report objects as results: pipestat/code/reporting-objects.md
+      - Reporting pipeline status: pipestat/report_statuses.md
       - Configure pipestat: pipestat/configuration.md
-      - Multi pipelines and result files: pipestat/multi.md
+    - Advanced:
+        - Multi pipelines and result files: pipestat/multi.md
+        - Report objects as results: pipestat/code/reporting-objects.md
+        - Summarize reported results: pipestat/summarize.md
     - Reference:
-      - How to cite: citations.md
+      - Terminology - Results and Record Identifiers: pipestat/results_records.md
+      - Backends: pipestat/backends.md
       - CLI usage: pipestat/usage.md
       - Configuration format: pipestat/config.md
       - Testing configuration: pipestat/testing.md
@@ -247,6 +257,7 @@ nav:
       - Python API: pipestat/code/python-api.md
       - Support: https://github.com/pepkit/pipestat/issues
       - Contributing: pipestat/contributing.md
+      - How to cite: citations.md
       - Changelog: pipestat/changelog.md
   - Pypiper:
     - Pypiper: pypiper/README.md
@@ -274,56 +285,52 @@ nav:
       - Support: pypiper/support.md
       - Contributing: pypiper/contributing.md
       - Changelog: pypiper/changelog.md
+  - Yacman:
+    - Yacman: yacman/README.md
+    - Getting started:
+      - What is yacman?: yacman/README.md
+      - Tutorial: yacman/notebooks/tutorial.ipynb
+      - Upgrading to v1.0: yacman/upgrading.md
+    - Reference:
+      - How to cite: citations.md
+      - API: yacman/code/python-api.md
+      - Changelog: yacman/changelog.md
+      - Support: https://github.com/databio/yacman/issues
+  - Ubiquerg:
+    - Ubiquerg: ubiquerg/README.md
+    - Reference:
+      - How to cite: citations.md
+      - API: ubiquerg/code/python-api.md
+      - Changelog: ubiquerg/changelog.md
+      - Support: https://github.com/pepkit/ubiquerg/issues
   - How to cite: citations.md
   - Stats: statistics.md
 
-autodoc:
-  lucidoc:
-    - pkg: peppy
-      outfile: docs/peppy/code/python-api.md
-    - pkg: looper
-      outfile: docs/looper/code/python-api.md
-    - pkg: pipestat
-      outfile: docs/pipestat/code/python-api.md
-    - pkg: pypiper
-      outfile: docs/pypiper/code/python-api.md
-      whitelist:
-        - PipelineManager
-    - pkg: pypiper
-      outfile: docs/pypiper/code/ngstk-api.md
-      whitelist:
-        - NGSTk
-    - pkg: geofetch
-      outfile: docs/geofetch/code/python-api.md
-    - pkg: eido
-      outfile: docs/eido/code/python-api.md
-      blacklist: 
-        - basic_pep_filter
-        - yaml_pep_filter
-        - csv_pep_filter
-        - yaml_samples_pep_filter
-    - outfile: docs/eido/code/plugin-api-docs.md
-      pkg: eido
-      whitelist: 
-        - basic_pep_filter
-        - yaml_pep_filter
-        - csv_pep_filter
-        - yaml_samples_pep_filter
-  jupyter:
-    - in: eido/notebooks
-      out: eido/code
-    - in: geofetch/notebooks
-      out: geofetch/code
-    - in: looper/notebooks
-      out: looper/code
-    - in: peppy/notebooks
-      out: peppy/code
-    - in: pipestat/notebooks
-      out: pipestat/code
-    - in: pypiper/notebooks
-      out: pypiper/code
-  cli_usage:
-    - template: docs/geofetch/usage-template.md.tpl
-      outfile: docs/geofetch/code/usage.md
-      commands:
-        - geofetch --help
+plugins:
+- mkdocs-jupyter:
+    include:
+      - eido/notebooks/*.ipynb
+      - geofetch/notebooks/*.ipynb
+      - looper/notebooks/*.ipynb
+      - peppy/notebooks/*.ipynb
+      - pipestat/notebooks/*.ipynb
+      - pypiper/notebooks/*.ipynb
+      - yacman/notebooks/*.ipynb
+    ignore_h1_titles: True
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        options:
+          docstring_style: google
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
+          show_root_heading: true
+          show_root_full_path: false
+          show_source: true
+          show_signature: true
+          show_if_no_docstring: false
+          separate_signature: true
+          merge_init_into_class: true
+          allow_inspection: true
+          show_bases: false

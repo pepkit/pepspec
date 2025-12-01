@@ -38,7 +38,7 @@ sample_table: annotation.csv
 subsample_table: subsample_table.csv
 ```
 
-Make sure the `sample_name` column of this table matche the `sample_name` column in your sample_table, and then include any columns that require multiple values. `PEP` will automatically include all of these values as appropriate. 
+Make sure the `sample_name` column of this table match the `sample_name` column in your sample_table, and then include any columns that require multiple values. `PEP` will automatically include all of these values as appropriate. 
 
 Here's a simple example of a PEP that uses subsamples. If you define `annotation.csv` like this:
 

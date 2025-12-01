@@ -15,13 +15,16 @@ To make your Python pipeline pipestat-compatible, you first need to initialize p
 
 ## Back-end types
 
-Two types of back-ends are currently supported:
+Three types of back-ends are currently supported:
 
 1. a **file** (pass a file path to the constructor)  
 The changes reported using the `report` method of `PipestatManger` will be securely written to the file. Currently only [YAML](https://yaml.org/) format is supported. 
 
 2. a **PostgreSQL database** (pass a path to the pipestat config to the constructor)
 This option gives the user the possibility to use a fully fledged database to back `PipestatManager`. 
+
+3. a **PEP on PEPhub** (pass a pep path to the constructor, e.g. `psm = PipestatManager(pephub_path=pephubpath)`)
+This option gives the user the possibility to use PEPhub as a backend for results. 
 
 
 ## Initializing a pipestat session

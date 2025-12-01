@@ -2,7 +2,7 @@
 
 We already covered how you can specify sample metadata using either a [simple csv file](../user-tutorial/initialize.md) or a [PEP](../user-tutorial/metadata.md).
 But in that tutorial we covered only the basic features of PEPs.
-PEPs are actually a lot more powerful, and many of those featuers are useful for looper projects.
+PEPs are actually a lot more powerful, and many of those features are useful for looper projects.
 Here, we'll show you a few of the more advanced features of PEPs and explain how they can be useful with looper. 
 We still won't cover everything here, though.
 If you want to see *all* the features of PEP, you should consult the [detailed PEP documentation](../../spec/simple-example.md).

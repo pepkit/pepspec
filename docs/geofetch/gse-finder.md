@@ -11,7 +11,7 @@ is a geofetch class that provides functions to find and retrieve a list of GSE (
 ___
 ## Tutorial
 
-0) Initiale Finder object. 
+0) Initial Finder object. 
 ```python
 from geofetch import Finder
 gse_obj = Finder()

@@ -244,11 +244,10 @@ Keys in the `cli.<subcommand>` section *must* match the long argument parser opt
 
 Looper provides several ways to select (filter) samples, so you only submit certain ones.
 
-### Sample selection
+### Sample selection by inclusion
 
-You can use `--sel-incl` with `--sel-attr`. You choose the attribute you want you want to select using, with `--sel-attr`. Then, you choose which values you want to include, with ``--sel-incl`. 
-
-For example,
+To submit only certain samples, specify the sample attribute with `--sel-attr` and the values the attribute can take `--sel-incl`. 
+For example, to choose only samples where the `species` attribute is `human`, `mouse`, or `fly`:
 
 ```console
 looper run \
@@ -256,12 +255,18 @@ looper run \
   --sel-incl human mouse fly
 ```
 
-This command would only run jobs for samples that have `human`, `mouse`, or `fly` as the value of the `species` attribute.
+Similarly, to submit only one sample, with `sample_name` as `sample`, you could use:
 
-### Sample exclusion
+```console
+looper run \
+  --sel-attr sample_name
+  --sel-incl sample1
+```
+
+### Sample selection by exclusion
 
 If more convenient to *exclude* samples by filter, you can use the analogous arguments `--sel-attr` with `--sel-excl`.
-
+This will 
 
 ### Toggling sample jobs through the sample table
 

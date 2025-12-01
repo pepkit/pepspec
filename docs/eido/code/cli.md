@@ -42,7 +42,7 @@ eido inspect peppro_paper.yaml
     Sections: name, pep_version, sample_table, looper, sample_modifiers
 
 
- - To inspect a specific sample, one needs to provide the sample name (via `-n`/`--sample-name` oprional argument)
+ - To inspect a specific sample, one needs to provide the sample name (via `-n`/`--sample-name` optional argument)
 
 
 ```bash
@@ -213,6 +213,8 @@ eido convert peppro_paper.yaml --format csv
     H9_treated_PRO-seq_1,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_200nM_romidepsin_rep1_PE1.fastq.gz,PAIRED,H9 treated PRO-seq,H9_treated_PRO-seq_1,H9_200nM_romidepsin_rep1,200 nM romidepsin,8,/Users/mstolarczyk/H9_200nM_romidepsin_rep1_PE2.fastq.gz
     H9_treated_PRO-seq_2,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_200nM_romidepsin_rep2_PE1.fastq.gz,PAIRED,H9 treated PRO-seq,H9_treated_PRO-seq_2,H9_200nM_romidepsin_rep2,200 nM romidepsin,8,/Users/mstolarczyk/H9_200nM_romidepsin_rep2_PE2.fastq.gz
     H9_treated_PRO-seq_3,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_200nM_romidepsin_rep3_PE1.fastq.gz,PAIRED,H9 treated PRO-seq,H9_treated_PRO-seq_3,H9_200nM_romidepsin_rep3,200 nM romidepsin,8,/Users/mstolarczyk/H9_200nM_romidepsin_rep3_PE2.fastq.gz
+
+
     H9_PRO-seq_10,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_PRO-seq_10pct_PE1.fastq.gz,PAIRED,10% subset H9 PRO-seq 2,H9_PRO-seq_10,H9_PRO-seq_10pct,DMSO,8,/Users/mstolarczyk/H9_PRO-seq_10pct_PE2.fastq.gz
     H9_PRO-seq_20,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_PRO-seq_20pct_PE1.fastq.gz,PAIRED,20% subset H9 PRO-seq 2,H9_PRO-seq_20,H9_PRO-seq_20pct,DMSO,8,/Users/mstolarczyk/H9_PRO-seq_20pct_PE2.fastq.gz
     H9_PRO-seq_30,hg38,human,['$CODE/peppro/sample_pipeline_interface.yaml'],human_rDNA,PRO,/Users/mstolarczyk/H9_PRO-seq_30pct_PE1.fastq.gz,PAIRED,30% subset H9 PRO-seq 2,H9_PRO-seq_30,H9_PRO-seq_30pct,DMSO,8,/Users/mstolarczyk/H9_PRO-seq_30pct_PE2.fastq.gz

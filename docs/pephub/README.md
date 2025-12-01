@@ -11,6 +11,7 @@ PEPhub is an open-source database, web interface, and API for sharing, retrievin
 
 - **Public user interface**: <a href="https://pephub.databio.org/" target="_blank">https://pephub.databio.org/</a>
 - **API**: <a href="https://pephub-api.databio.org/api/v1/docs" target="_blank">https://pephub-api.databio.org/api/v1/docs</a>
+- **DEV API**: <a href="https://pephub-api-dev.databio.org/api/v1/docs" target="_blank">https://pephub-api-dev.databio.org/api/v1/docs</a>
 
 
 ## Features at-a-glance
@@ -35,10 +36,10 @@ Choose your adventure:
 
 <div class="grid cards" markdown>
 
-- :fontawesome-regular-user:  [**User guide**](user/getting-started.md)  
+-  [**User guide**](user/getting-started.md)  
   Teaches you how to use PEPhub to manage, share, and validate your sample metadata.
 
-- :fontawesome-solid-code: [**Developer guide**](developer/setup.md)  
+-  [**Developer guide**](developer/setup.md)  
   Teaches you how to contribute to PEPhub, build tools on the PEPhub API, or deploy your own instance.
 
 </div>
