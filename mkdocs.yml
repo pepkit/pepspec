@@ -296,6 +296,13 @@ nav:
       - API: yacman/code/python-api.md
       - Changelog: yacman/changelog.md
       - Support: https://github.com/databio/yacman/issues
+  - Ubiquerg:
+    - Ubiquerg: ubiquerg/README.md
+    - Reference:
+      - How to cite: citations.md
+      - API: ubiquerg/code/python-api.md
+      - Changelog: ubiquerg/changelog.md
+      - Support: https://github.com/pepkit/ubiquerg/issues
   - How to cite: citations.md
   - Stats: statistics.md
 
