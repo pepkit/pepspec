@@ -11,10 +11,16 @@ Documentation is written using [mkdocs](https://www.mkdocs.org/) and themed with
 
 Each tool gets a `nav` section in `mkdocs.yml`, which maps to its own section/tab in the rendered documentation. So to add a new page, change titles, or change structure, edit `mkdocs.yml`. To edit the documentation itself, edit the `.md` documentation files in the subfolders under `/docs`.
 
-### Prereqs
+### Prerequisites
 
+```bash
+pip install mkdocs-material mkdocstrings[python] mkdocs-jupyter
 ```
-pip install mkdocs-material
+
+You'll also need to install the packages being documented (peppy, looper, pipestat, pypiper, geofetch, eido, yacman) for the API documentation to build correctly:
+
+```bash
+pip install peppy looper pipestat pypiper geofetch eido yacman
 ```
 
 
@@ -22,11 +28,13 @@ pip install mkdocs-material
 
 I recommend previewing your changes locally before deploying. You can get a hot-reload server going by cloning this repository, and then just running:
 
-```
+```bash
 mkdocs serve
 ```
 
 You can also use `mkdocs build` to build a portable local version of the docs.
+
+The documentation now uses **mkdocstrings** for Python API documentation and **mkdocs-jupyter** for Jupyter notebooks. These plugins automatically generate documentation from the source code and render notebooks, so the build process is now a single step.
 
 
 ### Publishing updates
@@ -35,37 +43,42 @@ The documentation is published automatically upon commits to `master` using a Gi
 
 ## FAQ
 
+### Python API Documentation
 
-### Updating automatic documentation
+Python API documentation is now automatically generated using **mkdocstrings** during the build process. No separate script is needed. The API docs are defined in markdown files (e.g., `docs/peppy/code/python-api.md`) using the `:::` syntax:
 
-In the past, I had a plugin that would auto-document 2 things: 1. Python docs using lucidoc, and 2. Jupyter notebooks. This plugin was neat, but it caused me a lot of maintenance issues as well. So now, I've made it much simpler; now it's no longer a plugin, just a simple Python script. Update all the auto-generated docs (stored in `docs/autodoc_build`) by running the update script manually:
-
-```console
-python autodoc.py
+```markdown
+::: peppy.Project
+    options:
+      docstring_style: google
+      show_source: true
 ```
 
-#### Configuring lucidoc rendering
+This syntax tells mkdocstrings to extract and render the documentation for the specified class or function directly from the source code.
 
-Auto-generated Python documentation with `lucidoc` rendering is configured in the `lucidoc`  sections of `mkdocs.yml`.
+### Jupyter Notebooks
+
+Jupyter notebooks are now rendered automatically using the **mkdocs-jupyter** plugin. Configure which notebooks to include in the `plugins` section of `mkdocs.yml`:
 
 ```yaml
-lucidoc:
-  peppy: path/to/output.md
+plugins:
+- mkdocs-jupyter:
+    include:
+      - peppy/notebooks/*.ipynb
+      - looper/notebooks/*.ipynb
 ```
 
-#### Configuring jupyter rendering
+Notebooks are rendered directly from `.ipynb` files during the build - no conversion step is needed.
 
-Configure jupyter notebeeoks in the `jupyter` section, where you specify a list of `in` (for `.ipynb` files) and `out` (for `.md` files) locations.
+### CLI Usage Documentation
 
-```yaml
-jupyter:
-  - in: path/to/notebook_folder1
-    out: path/to/rendered_folder1
-  - in: path/to/notebook_folder2
-    out: path/to/rendered_folder2
-``` 
+CLI usage documentation for geofetch can be updated manually when needed using the helper script:
 
-There, you can specify which folders contain notebooks, and to where they should be rendered as markdown.
+```bash
+python scripts/generate_cli_usage_docs.py
+```
+
+This script reads the template at `docs/geofetch/usage-template.md.tpl` and runs `geofetch --help` to generate `docs/geofetch/code/usage.md`. This only needs to be run when the CLI interface changes.
 
 ### Can we version the docs?
 
