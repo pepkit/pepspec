@@ -24,13 +24,13 @@ Looper uses the external package [divvy](advanced-guide/advanced-computing.md) f
 
 When using the `run` subcommand, for each sample being processed `looper` first checks for *"flag" files* in the sample's designated output folder for flag files (which can be `_completed.flag`, or `_running.flag`, or `_failed.flag`). 	Typically, we don't want to resubmit a job that's already running or already finished, so by default, `looper` **will *not* submit a job when it finds a flag file**. This is what the message above is indicating.
 
-If you do in fact want to re-rerun a sample (maybe you've updated the pipeline, or you want to run restart a failed attempt), you can do so by just passing to `looper` at startup the `--ignore-flags` option; this will skip the flag check **for *all* samples**. If you only want to re-run or restart a few samples, it's best to just delete the flag files for the samples you want to restart, then use `looper run` as normal.
+If you do want to re-run a sample (maybe you've updated the pipeline, or you want to restart a failed attempt), pass the `--ignore-flags` option to `looper`; this will skip the flag check **for *all* samples**. If you only want to re-run a few specific samples, delete the flag files for those samples, then use `looper run` as normal.
 
 You may be interested in the [usage docs](usage.md) for the `looper rerun` command, which runs any failed samples.
 
 ## How can I resubmit a subset of jobs that failed?
 
-As of version `0.11`, you can use `looper rerun` to submit only jobs with a `failed` flag. By default, `looper` will *not* submit a job that has already run. If you want to restart a sample (maybe you've updated the pipeline, or you want to restart a failed attempt), you can either use `looper rerun` to restart only failed jobs, or you pass `--ignore-flags`, which will **resubmit *all* samples**. If you want more specificity, you can just manually delete the "flag" files for the samples you want to restart, then use `looper run` as normal.
+As of version `0.11`, you can use `looper rerun` to submit only jobs with a `failed` flag. By default, `looper` will *not* submit a job that has already run. If you want to restart a sample (maybe you've updated the pipeline, or you want to restart a failed attempt), you can either use `looper rerun` to restart only failed jobs, or pass `--ignore-flags`, which will **resubmit *all* samples**. For more specificity, delete the flag files for the samples you want to restart, then use `looper run` as normal.
 
 ## Why are computing resources defined in the pipeline interface file instead of in the `divvy` computing configuration file?
 

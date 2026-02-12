@@ -28,7 +28,11 @@ It's quite simple: if you want to run 100 samples in a single job submission scr
 
 But what if your samples are quite different in terms of input file size? For example, your project may include many small samples, which you'd like to lump together with 10 jobs to 1, but you also have a few control samples that are very large and should have their own dedicated job. If you just use `--lump-n` with 10 samples per job, you could end up lumping your control samples together, which would be terrible. To alleviate this problem, `looper` provides the `--lump` argument, which uses input file size to group samples together. By default, you specify an argument in number of gigabytes. Looper will go through your samples and accumulate them until the total input file size reaches your limit, at which point it finalizes and submits the job. This will keep larger files in independent runs and smaller files grouped together.
 
+<<<<<<< HEAD
+### Lumping samples into number of jobs: `--lumpj`
+=======
 ### Lumping jobs by job count: `--lump-j`
+>>>>>>> master
 
 If you want to split your samples across a specific number of jobs, use `--lump-j`. For example, `--lump-j 10` will distribute all your samples evenly across 10 jobs.
 

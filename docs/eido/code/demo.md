@@ -129,7 +129,7 @@ required:
   - samples
 ```
 
-PEPs to succesfully validate against this schema will need to fulfill all the generic PEP2.0.0 schema requirements _and_ fulfill the new `my_numeric_attribute` requirement.
+PEPs to successfully validate against this schema will need to fulfill all the generic PEP2.0.0 schema requirements _and_ fulfill the new `my_numeric_attribute` requirement.
 
 ### How importing works
 
@@ -306,7 +306,7 @@ validate_project(project=p, schema="../tests/data/schemas/test_schema_invalid.ya
 
 ## Config validation
 
-Similarily, the config part of the PEP can be validated; the function inputs remain the same
+Similarly, the config part of the PEP can be validated; the function inputs remain the same
 
 
 ```python
@@ -326,7 +326,7 @@ validate_sample(
 
 ## Output details
 
-As depicted above the error raised by the `jsonschema` package is very detailed. That's because the entire validated PEP is printed out for the user reference. Since it can get overwhelming in case of the multi sample PEPs each of the `eido` functions presented above privide a way to limit the output to just the general information indicating the unmet schema requirements
+As depicted above the error raised by the `jsonschema` package is very detailed. That's because the entire validated PEP is printed out for the user reference. Since it can get overwhelming in case of the multi sample PEPs each of the `eido` functions presented above provide a way to limit the output to just the general information indicating the unmet schema requirements
 
 
 ```python

@@ -42,6 +42,9 @@ sample_interface:
     pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file}
 ```
 
+!!! note "Pipestat config handoff"
+    The `{pipestat.config_file}` in the command template passes looper's merged pipestat configuration to the pipeline. Pipelines can also receive this config via the `PIPESTAT_CONFIG` environment variable using `inject_env_vars`. See the [developer pipestat tutorial](../developer-tutorial/developer-pipestat.md#pipestat-configuration-handoff) for details.
+
 A pipeline that satisfies these criteria is pipestat-compatible, and for these pipelines, looper can give you a nice, web browsable report of results.
 It can also help you manage job status of your runs.
 

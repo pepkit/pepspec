@@ -36,9 +36,9 @@ Let's first use `divvy list` to show us our available computing packages:
 divvy list
 ```
 
-```commandline title="CLI output"
+```console title="CLI output"
 Using default divvy config. You may specify in env var: ['DIVCFG']
-Using divvy config: /home/drc/GITHUB/looper/master/looper/venv/lib/python3.10/site-packages/looper/default_config/divvy_config.yaml
+Using divvy config: /path/to/site-packages/looper/default_config/divvy_config.yaml
 Available compute packages:
 
 local
@@ -53,9 +53,10 @@ docker
 
 Note that divvy will default to a `divvy_config.yaml` if none is provided via the environment variable DIVCFG. This default config is provided by looper.
 
-We can take at one of the above templates:
+We can look at one of the above templates. You can find where divvy stores its templates by running `divvy list` and checking the config path, then looking in the `divvy_templates` subdirectory:
+
 ```shell
- cat /home/drc/GITHUB/looper/master/looper/venv/lib/python3.10/site-packages/looper/default_config/divvy_templates/slurm_template.sub
+cat $(python -c "import looper; print(looper.__path__[0])")/default_config/divvy_templates/slurm_template.sub
 ```
 
 ```commandline title="CLI output"
@@ -170,10 +171,12 @@ divvy submit --package local  --settings my_job_settings.yaml --compute sample=s
 You can also call divvy from a python script. You'll need to provide a path to a divvy config file:
 
 ```python title="divvy_usage.py"
+import looper
 import looper.divvy as divvy
+import os
 
-
-config_path = "/home/drc/GITHUB/looper/master/looper/venv/lib/python3.10/site-packages/looper/default_config/divvy_config.yaml"
+# Get the path to looper's default divvy config
+config_path = os.path.join(os.path.dirname(looper.__file__), "default_config", "divvy_config.yaml")
 
 # Now create a ComputingConfiguration object
 dcc = divvy.ComputingConfiguration.from_yaml_file(filepath=config_path)
@@ -194,7 +197,7 @@ with open(dcc.compute['submission_template']) as f:
 ```
 
 ```console title="console output"
-submission_template: /home/drc/PythonProjects/testing_looper_docs_tutorial/looper_tutorial/.venv/lib/python3.10/site-packages/looper/default_config/divvy_templates/localhost_template.sub
+submission_template: /path/to/site-packages/looper/default_config/divvy_templates/localhost_template.sub
 submission_command: .
 
 #!/bin/bash
@@ -212,7 +215,7 @@ You can also populate the submission script via the API:
 ```python title="sub section of divvy_usage.py"
 
 # Populate and create a local submission script
-dcc.write_script("test_local.sub", {"code": "run-this-command", "logfile": "logfile.txt"})
+dcc.write_script("test_local.sub", [{"code": "run-this-command", "logfile": "logfile.txt"}])
 
 # Take a look at the newly populated submission template
 with open("test_local.sub") as f:
@@ -222,7 +225,7 @@ with open("test_local.sub") as f:
 
 ```console title="console output"
 
-Writing script to /home/drc/PythonProjects/testing_looper_docs_tutorial/looper_tutorial/test_local.sub
+Writing script to ./test_local.sub
 
 #!/bin/bash
 
@@ -259,9 +262,11 @@ Here is the final completed script used for this tutorial:
 
 
 ```python title="divvy_usage.py"
+import looper
 import looper.divvy as divvy
+import os
 
-config_path = "/home/drc/GITHUB/looper/master/looper/venv/lib/python3.10/site-packages/looper/default_config/divvy_config.yaml"
+config_path = os.path.join(os.path.dirname(looper.__file__), "default_config", "divvy_config.yaml")
 dcc = divvy.ComputingConfiguration.from_yaml_file(filepath=config_path)
 
 # Print default compute package to terminal
@@ -272,7 +277,7 @@ with open(dcc.compute['submission_template']) as f:
     print(f.read())
 
 # Populate and create a local submission script
-dcc.write_script("test_local.sub", {"code": "run-this-command", "logfile": "logfile.txt"})
+dcc.write_script("test_local.sub", [{"code": "run-this-command", "logfile": "logfile.txt"}])
 
 # Take a look at the newly populated submission template
 with open("test_local.sub") as f:

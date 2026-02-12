@@ -26,6 +26,8 @@ A pipeline interface may contain the following keys:
 - `compute` (RECOMMENDED) - Settings for computing resources
 - `var_templates` (OPTIONAL) - A mapping of [Jinja2](https://jinja.palletsprojects.com/) templates and corresponding names, typically used to parameterize plugins
 - `pre_submit` (OPTIONAL) - A mapping that defines the pre-submission tasks to be executed.
+- `inject_env_vars` (OPTIONAL) - Environment variables to inject into submission scripts.
+- `pipestat_config_required` (OPTIONAL) - Set to `false` to disable pipestat config handoff validation.
 
 ## Example pipeline interface
 
@@ -316,6 +318,42 @@ var_templates:
 #### pre_submit
 
 This section can consist of two subsections: `python_functions` and/or `command_templates`, which specify the pre-submission tasks to be run before the main pipeline command is submitted. Please refer to the [pre-submission hooks system](pre-submission-hooks.md) section for a detailed explanation of this feature and syntax.
+
+### inject_env_vars
+
+The `inject_env_vars` section allows you to inject environment variables into submission scripts. This is useful for passing configuration to pipelines without modifying the command template. Keys are environment variable names, values are Jinja2 templates that will be rendered with the available namespaces.
+
+```yaml
+pipeline_name: my_pipeline
+output_schema: output_schema.yaml
+inject_env_vars:
+  PIPESTAT_CONFIG: "{pipestat.config_file}"
+  MY_CUSTOM_VAR: "{looper.output_dir}/config.yaml"
+sample_interface:
+  command_template: >
+    python pipeline.py
+```
+
+These variables are exported at the top of each submission script before the pipeline command runs. This works for both direct execution and cluster submission.
+
+This is particularly useful for pipestat-compatible pipelines, where you can pass the pipestat config via the `PIPESTAT_CONFIG` environment variable instead of a CLI argument.
+
+### pipestat_config_required
+
+When a pipeline interface declares `output_schema` (indicating pipestat compatibility), looper validates that the pipestat configuration is actually passed to the pipeline. This validation ensures the pipeline will receive the merged config that looper creates.
+
+Looper accepts two handoff mechanisms:
+
+1. **CLI argument**: Use `{pipestat.config_file}` (or any `{pipestat.*}` variable) in your `command_template`
+2. **Environment variable**: Set `PIPESTAT_CONFIG` in the `inject_env_vars` section
+
+If neither mechanism is detected, looper raises an error with guidance on how to fix it.
+
+To disable this validation (if your pipeline handles pipestat configuration differently), set:
+
+```yaml
+pipestat_config_required: false
+```
 
 ## Validating a pipeline interface
 

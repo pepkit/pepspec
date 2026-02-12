@@ -1,13 +1,56 @@
 # Learn derived attributes in `peppy`
 
-This vignette will show you how and why to use the derived attributes functionality of the `peppy` package. 
+This vignette will show you how and why to use the derived attributes functionality of the `peppy` package.
 
  - basic information about the PEP concept on the [project website](https://pepkit.github.io/).
- 
+
  - broader theoretical description in the derived attributes [documentation section](http://pep.databio.org/en/2.0.0/specification/#sample_modifiersderive).
 
-## Problem/Goal
-The example below demonstrates how to use the derived attributes to **flexibly define the samples attributes the `file_path` column** of the `sample_table.csv` file to match the file names in  your project. Please consider the example below for reference:
+## What are derived attributes?
+
+Derived attributes allow you to construct sample attributes dynamically using patterns and variables from other columns in your sample table. This is especially useful for building file paths without having to repeat directory structures for every sample.
+
+## Quick Start - Simple Example
+
+Let's say you have samples with names like `sample1`, `sample2`, etc., and your data files follow a pattern like `/data/{sample_name}.fastq`. Instead of typing out the full path for each sample, you can use derived attributes.
+
+**Your sample table (sample_table.csv):**
+```csv
+sample_name
+sample1
+sample2
+sample3
+```
+
+**Your project config (project_config.yaml):**
+```yaml
+pep_version: "2.0.0"
+sample_table: sample_table.csv
+sample_modifiers:
+  derive:
+    attributes: [file_path]
+    sources:
+      my_source: /data/{sample_name}.fastq
+```
+
+**In your sample table, add the file_path column:**
+```csv
+sample_name,file_path
+sample1,my_source
+sample2,my_source
+sample3,my_source
+```
+
+When peppy loads this PEP, it will automatically expand `my_source` using the pattern from your config, replacing `{sample_name}` with the actual sample name. The result:
+- `sample1` → `/data/sample1.fastq`
+- `sample2` → `/data/sample2.fastq`
+- `sample3` → `/data/sample3.fastq`
+
+That's it! The `my_source` identifier gets replaced with the pattern defined in your config, and any variables in curly braces (like `{sample_name}`) get replaced with values from that sample's row.
+
+## Advanced Example - Multiple Sources
+
+The example below demonstrates how to use derived attributes in a more complex scenario with **multiple data sources and multiple variables**. Please consider the example below for reference:
 
 
 ```python
@@ -52,10 +95,10 @@ sample_table = examples_dir + "sample_table.csv"
 %cat $sample_table | column -t -s, | cat
 ```
 
-    sample_name  protocol  organism  time  file_path
-    pig_0h       RRBS      pig       0     source1
-    pig_1h       RRBS      pig       1     source1
-    frog_0h      RRBS      frog      0     source1
+    sample_name  protocol  organism  time  file_path
+    pig_0h       RRBS      pig       0     source1
+    pig_1h       RRBS      pig       1     source1
+    frog_0h      RRBS      frog      0     source1
     frog_1h      RRBS      frog      1     source1
 
 
