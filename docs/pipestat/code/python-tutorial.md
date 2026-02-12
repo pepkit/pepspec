@@ -81,7 +81,7 @@ psm.pipeline_name
 
 
 
-By default, `PipestatManager` instance is bound to the record it was initialized with. However, reporting or removing results for a different record can be enforced in the respective methods with `sameple_name` argument.
+By default, `PipestatManager` instance is bound to the record it was initialized with. However, reporting or removing results for a different record can be enforced in the respective methods with `sample_name` argument.
 
 
 ```python

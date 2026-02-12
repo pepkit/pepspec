@@ -1,5 +1,10 @@
 # Pre-submission hooks
 
+!!! success "Learning objectives"
+    - What are pre-submission hooks and when should I use them?
+    - How do I use looper's built-in pre-submission plugins?
+    - How do I write my own custom pre-submission hook?
+
 ## Purpose
 
 Sometimes we need to run a set-up task *before* submitting the main pipeline. For example, we may need to generate a particular representation of the sample metadata to be consumed by a pipeline run. Some pre-submission tasks may depend on information outside of the sample, such as compute settings. For this purpose, looper provides **pre-submission hooks**, which allow users to run arbitrary shell commands or Python functions before submitting the actual pipeline. These hooks have access to all of the job submission settings looper uses to populate the primary command template. They can be used in two ways: 1) to simply run required tasks, producing required output before the pipeline is run; and 2) to modify the job submission settings, which can then be used in the actual submission template.
@@ -22,9 +27,12 @@ pre_submit:
 
 Because the looper variables are the input to each task, and are also potentially modified by each task, the order of execution is critical. Execution order follows two rules: First, `python_functions` are *always* executed before `command_templates`; and second, the user-specified order in the pipeline interface is preserved within each subsection.
 
-## Built-in pre-submission functions
+## Built-in pre-submission plugins
 
-Looper ships with several included plugins that you can use as pre-submission functions without installing additional software. These plugins produce various representations of the sample metadata, which can be useful for different types of pipelines. The included plugins are described below:
+Looper ships with several included plugins that you can use as pre-submission functions without installing additional software. These plugins produce various representations of the sample metadata, which can be useful for different types of pipelines.
+
+!!! note "Reference"
+    The following section documents the built-in plugins. Skip to [Writing your own pre-submission hooks](#writing-your-own-pre-submission-hooks) if you want to create custom hooks.
 
 
 ### Included plugin: `looper.write_sample_yaml`

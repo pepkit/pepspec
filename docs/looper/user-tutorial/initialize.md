@@ -67,10 +67,11 @@ First, we'll need some data. Download these 3 files from [looper csv example](ht
 
 ```sh
 mkdir data
-wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/mexico.txt  
-wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/canada.txt
-wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/switzerland.txt
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/refs/heads/master/looper_csv_example/data/mexico.txt  
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/refs/heads/master/looper_csv_example/data/canada.txt
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/refs/heads/master/looper_csv_example/data/switzerland.txt
 ```
+
 
 Take a peak at the contents of the files. Each lists the states or provinces of the country, with one per line, like this:
 
@@ -86,36 +87,56 @@ Chiapas
 
 ## Step 3: Create a metadata table
 
-Looper needs a list of samples in the form of a sample metadata table, which names each sample and includes paths to the data files. Looper will accept a PEP, which we'll discuss more later, or just a simple CSV file, which is where we'll start. Create a new file called `metadata/sample_table.csv` and paste this content in it:
+Looper needs a list of samples in the form of a sample metadata table, which names each sample and includes paths to the data files. Looper will accept a PEP, which we'll discuss more later, or just a simple CSV file, which is where we'll start. Create a new file called `metadata/sample_table.csv` with this content:
 
-```csv  title="metadata/sample_table.csv"
-sample_name,area_type,file_path
-mexico,state,data/mexico.txt
-switzerland,canton,data/switzerland.txt
-canada,province,data/canada.txt
-```
+=== "View"
+
+    ```csv title="metadata/sample_table.csv"
+    sample_name,area_type,file_path
+    mexico,state,data/mexico.txt
+    switzerland,canton,data/switzerland.txt
+    canada,province,data/canada.txt
+    ```
+
+=== "Create"
+
+    ```sh
+    mkdir -p metadata && cat > metadata/sample_table.csv << 'EOF'
+    sample_name,area_type,file_path
+    mexico,state,data/mexico.txt
+    switzerland,canton,data/switzerland.txt
+    canada,province,data/canada.txt
+    EOF
+    ```
 
 Each row corresponds to a sample, with a unique identifier under `sample_name`, a pointer to its corresponding file in `file_path`, and any other information you want to include about the sample (in this case, `area_type`). These will be the different values available to pass to your pipeline.
 
 ## Step 4: Create the pipeline
 
-Our example pipeline is a shell script that counts the lines in an input file. Since our data has one line per province, this script will tell us how many provinces there are in each country. Create a file under `pipeline/count_lines.sh` with this content:
+Our example pipeline is a shell script that counts the lines in an input file. Since our data has one line per province, this script will tell us how many provinces there are in each country. Create a file at `pipeline/count_lines.sh` with this content:
 
-```sh title="pipeline/count_lines.sh"
-#!/bin/bash
-linecount=`wc -l $1 | sed -E 's/^[[:space:]]+//' | cut -f1 -d' '`
-echo "Number of lines: $linecount"
-```
+=== "View"
 
+    ```sh title="pipeline/count_lines.sh"
+    #!/bin/bash
+    linecount=`wc -l $1 | sed -E 's/^[[:space:]]+//' | cut -f1 -d' '`
+    echo "Number of lines: $linecount"
+    ```
+
+=== "Create"
+
+    ```sh
+    mkdir -p pipeline && cat > pipeline/count_lines.sh << 'EOF'
+    #!/bin/bash
+    linecount=`wc -l $1 | sed -E 's/^[[:space:]]+//' | cut -f1 -d' '`
+    echo "Number of lines: $linecount"
+    EOF
+    chmod 755 pipeline/count_lines.sh
+    ```
 
 All this script does is run the unix `wc` command, and then parse the output using `sed` and `cut`, and then print the result with `echo`.
 In a real workspace, your pipeline is more likely to be a powerful Python script or something else.
-The important thing for looper is just that there's a command you can run to execute the pipeline, and you can pass arguments on the command line. 
-Since looper will need to execute it, make sure your script has execute permission:
-
-```sh
-chmod 755 pipeline/count_lines.sh
-```
+The important thing for looper is just that there's a command you can run to execute the pipeline, and you can pass arguments on the command line.
 
 
 ## Step 5: Create a pipeline interface
@@ -124,14 +145,27 @@ In order to run a pipeline, looper needs to know how to construct the command, w
 A pipeline developer does this through the *pipeline interface*.
 Our `count_lines.sh` pipeline just takes a single argument, which is the file path, so the command would be `count_lines.sh path/to/file.txt`.
 Here's how to create the appropriate pipeline interface for this pipeline.
-Create a file in `pipeline/pipeline_interface.yaml` and paste this content into it:
+Create a file at `pipeline/pipeline_interface.yaml` with this content:
 
-```yaml  title="pipeline/pipeline_interface.yaml"
-pipeline_name: count_lines
-sample_interface:
-  command_template: >
-    pipeline/count_lines.sh {sample.file_path}
-```
+=== "View"
+
+    ```yaml title="pipeline/pipeline_interface.yaml"
+    pipeline_name: count_lines
+    sample_interface:
+      command_template: >
+        pipeline/count_lines.sh {sample.file_path}
+    ```
+
+=== "Create"
+
+    ```sh
+    cat > pipeline/pipeline_interface.yaml << 'EOF'
+    pipeline_name: count_lines
+    sample_interface:
+      command_template: >
+        pipeline/count_lines.sh {sample.file_path}
+    EOF
+    ```
 
 This is the pipeline interface file.
 It specifies the `pipeline_name`, which looper uses to keep track of pipelines in case it is running multiple of them.
@@ -143,8 +177,12 @@ For now, the important part is just that the `command_template` is telling loope
 
 Now you have all the components finished for your looper project.
 The last step is to create the looper configuration file.
-The easiest way to do this is to run `looper init` from within your workspace folder.
-This will walk you through a wizard that will build the file for you.
+The easiest way to do this is to run the *looper init* wizard from within your workspace folder.
+This wizard will walk you through building the file.
+
+```
+looper init  # Run looper initialization wizard
+```
 
 Here's how to answer the questions
 
@@ -158,12 +196,25 @@ Here's how to answer the questions
 
 This will create a file at `.looper.yaml`, with this content:
 
-```yaml  title=".looper.yaml"
-pep_config: metadata/sample_table.csv
-output_dir: results
-pipeline_interfaces:
-  - pipeline/pipeline_interface.yaml
-```
+=== "View"
+
+    ```yaml title=".looper.yaml"
+    pep_config: metadata/sample_table.csv
+    output_dir: results
+    pipeline_interfaces:
+      - pipeline/pipeline_interface.yaml
+    ```
+
+=== "Create"
+
+    ```sh
+    cat > .looper.yaml << 'EOF'
+    pep_config: metadata/sample_table.csv
+    output_dir: results
+    pipeline_interfaces:
+      - pipeline/pipeline_interface.yaml
+    EOF
+    ```
 
 Right now, this file is basically just 3 pointers.
 The first line points to the metadata table we just created.
@@ -195,7 +246,7 @@ For example, here are some looper arguments:
 In the upcoming tutorials, we'll cover these and other features in more detail.
 
 !!! tip "Summary"
-    - To use looper, you'll need to have data, metadata, a pipeline (with pipeline interface), and a looper configuration file. 
-    - Looper is best suited for data that is split into samples, where you're trying to run a pipeline independently on each sample.
-    - Once you've configured everything correctly, you run your samples with the command `looper run`.
+    - To use looper, you'll create a looper configuration file which points to: 1. data, 2. metadata, and 3. a pipeline with pipeline interface.
+    - Looper is best suited for data that is split into samples or jobs, where you're trying to run a pipeline independently on each sample.
+    - Once you've configured looper, you run jobs with the command `looper run`.
 

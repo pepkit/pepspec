@@ -2,6 +2,16 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.50.0a1] -- 2025-12-22
+### Added
+- Merged [`eido`](https://github.com/pepkit/eido) ([#492](https://github.com/pepkit/peppy/issues/492)) and [`pephubclient`](https://github.com/pepkit/pephubclient) into `peppy`.
+- Command line interface based on `typer` for `eido` and `pephubclient`.
+- Pytest for Windows.
+
+### Fixed
+- Fixed incorrect path expanding from config file URL in Windows.
+- Ambiguity ([#498](https://github.com/pepkit/peppy/issues/498)) and redundancy ([#499](https://github.com/pepkit/peppy/issues/499)) in error messages.
+
 ## [0.40.7] -- 2024-09-30
 ### Fixed
 - Fixed incorrect sample table index in subtables

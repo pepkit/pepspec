@@ -5,3 +5,5 @@ extend-exclude = ["*.ipynb", "*.svg"]
 opf = "opf"
 PN="PN"
 Sur="Sur"
+certifi = "certifi"
+Tru = "Tru"

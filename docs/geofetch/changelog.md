@@ -1,5 +1,11 @@
 # Changelog
 
+
+## [0.12.9] -- 2025-12-01
+- Improved error handling
+- Fixed incorrect return for processed series metadata
+
+
 ## [0.12.8] -- 2025-07-08
 - Updated docs
 - Fixed parsing nested items. [[143](https://github.com/pepkit/geofetch/issues/143)]

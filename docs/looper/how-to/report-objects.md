@@ -1,11 +1,18 @@
+# How to report images and complex objects
 
-## Reporting objects using pipestat
+!!! note "What you'll accomplish"
+    Configure your pipeline to report image files and other complex objects to pipestat, not just simple values like integers.
 
-This how-to guide assumes you have already completed the [pipestat tutorial](../user-tutorial/user-pipestat.md) as well as the how-to guide for [running project-level pipelines](project-level-pipelines.md).
+## Prerequisites
 
-So far, our examples have been reporting primitives such as integers. But what if our pipeline generates an image, and we wish to report this more complex object? We can leverage looper's integration with pipestat to accomplish this.
+- Completed the [pipestat tutorial](../user-tutorial/user-pipestat.md)
+- Familiar with [running project-level pipelines](../user-tutorial/project-level-pipelines.md)
 
-As an example, we will take the previous pipestat tutorial and modify it to run a project-level pipeline that will create and then report an image result. You can always download the completed tutorial files from the [hello looper repository](https://github.com/pepkit/hello_looper).
+## Overview
+
+When your pipeline generates an image or other complex object, you can report it to pipestat by defining the appropriate schema and using the pipestat API.
+
+This guide walks through modifying the pipestat tutorial to run a project-level pipeline that creates and reports an image result. You can download the completed files from the [hello looper repository](https://github.com/pepkit/hello_looper).
 
 
 Ensure you are in the `pipestat_example` folder from the previous tutorial or after downloading the folder from the hello looper repository.
@@ -184,4 +191,4 @@ count_lines:
 
 ```
 
-That is how you can run a project-level pipeline via looper and report an object result via pipestat!
+Your pipeline now reports complex objects to pipestat. The same pattern works for other object types defined in your output schema.

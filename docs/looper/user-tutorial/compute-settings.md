@@ -9,7 +9,7 @@
 ## Introduction
 
 So far, we’ve been running jobs with Looper in the simplest way -- sequentially on the local computer.
-While this approach is easy and straightforward, Looper truly shines when you need to scale up and submit jobs to a compute cluster.
+While this approach works, Looper truly shines when you need to scale up and submit jobs to a compute cluster.
 
 To facilitate this, Looper integrates a tool called `divvy`, which handles job submission configuration.
 `Divvy` is automatically installed alongside Looper but can also be used independently.

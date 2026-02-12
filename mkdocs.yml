@@ -29,10 +29,11 @@ theme:
     - navigation.sections
     # - navigation.expand
     - navigation.footer
-    - navigation.indexes 
+    - navigation.indexes
     - toc.follow
     - content.action.edit
     - content.action.view
+    - content.code.copy
     - navigation.tabs
     - navigation.top
 
@@ -42,6 +43,8 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.highlight:
       use_pygments: true
 #  - pymdownx.emoji:
@@ -141,6 +144,7 @@ nav:
         - Initiating a new looper project: looper/user-tutorial/initialize.md
         - Using PEP to simplify metadata: looper/user-tutorial/metadata.md
         - Configuring pipestat results: looper/user-tutorial/user-pipestat.md
+        - Running project-level pipelines: looper/user-tutorial/project-level-pipelines.md
         - Configuring cluster computing: looper/user-tutorial/compute-settings.md
         - Conclusion: looper/user-tutorial/conclusion.md
       - Advanced user guide:
@@ -151,9 +155,8 @@ nav:
         - Running jobs in containers: looper/how-to/containers.md
         - Configure pipestat back-ends: looper/how-to/configure-pipestat-backends.md
         - Using divvy: looper/using-divvy.md
-        - Running project-level pipelines: looper/how-to/project-level-pipelines.md
         - Link similar results: looper/how-to/link-objects.md
-        - Report objects:  looper/how-to/report-objects.md
+        - Report images and complex objects: looper/how-to/report-objects.md
         - Check status and rerun samples: looper/how-to/rerun.md
     - Pipeline Developer Docs:
       - Developer tutorial:
@@ -162,14 +165,15 @@ nav:
         - Using pre-submission hooks: looper/developer-tutorial/pre-submission-hooks.md
         - Pipeline interface specification: looper/developer-tutorial/pipeline-interface-specification.md
     - Reference:
-      - Reference:
-        - CLI Usage: looper/usage.md
-        # - API: looper/code/python-api.md  # Temporarily disabled due to wildcard import issue
-        - How to cite: citations.md
-        - FAQ: looper/faq.md
-        - Support: looper/support.md
-        - Contributing: looper/contributing.md
-        - Changelog: looper/changelog.md
+      - CLI Usage: looper/usage.md
+      - Looper config file: looper/looper-config.md
+      - Divvy CLI: looper/divvy-cli.md
+      - API: looper/code/python-api.md
+      - How to cite: citations.md
+      - FAQ: looper/faq.md
+      - Support: looper/support.md
+      - Contributing: looper/contributing.md
+      - Changelog: looper/changelog.md
   - PEPhub:
     - PEPhub: pephub/README.md
     - User guide:
@@ -307,30 +311,30 @@ nav:
   - Stats: statistics.md
 
 plugins:
-- mkdocs-jupyter:
-    include:
-      - eido/notebooks/*.ipynb
-      - geofetch/notebooks/*.ipynb
-      - looper/notebooks/*.ipynb
-      - peppy/notebooks/*.ipynb
-      - pipestat/notebooks/*.ipynb
-      - pypiper/notebooks/*.ipynb
-      - yacman/notebooks/*.ipynb
-    ignore_h1_titles: True
-- mkdocstrings:
-    default_handler: python
-    handlers:
-      python:
-        options:
-          docstring_style: google
-          show_symbol_type_heading: true
-          show_symbol_type_toc: true
-          show_root_heading: true
-          show_root_full_path: false
-          show_source: true
-          show_signature: true
-          show_if_no_docstring: false
-          separate_signature: true
-          merge_init_into_class: true
-          allow_inspection: true
-          show_bases: false
+  - mkdocs-jupyter:
+      include:
+        - eido/notebooks/*.ipynb
+        - geofetch/notebooks/*.ipynb
+        - looper/notebooks/*.ipynb
+        - peppy/notebooks/*.ipynb
+        - pipestat/notebooks/*.ipynb
+        - pypiper/notebooks/*.ipynb
+        - yacman/notebooks/*.ipynb
+      ignore_h1_titles: True
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_source: false
+            show_signature: true
+            show_if_no_docstring: false
+            docstring_section_style: table
+            separate_signature: true
+            merge_init_into_class: true
+            allow_inspection: true
