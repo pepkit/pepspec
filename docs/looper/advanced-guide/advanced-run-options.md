@@ -18,19 +18,19 @@ Let's introduce some of the more advanced capabilities of `looper run`.
 
 ## Grouping many jobs into one
 
-By default, `looper` will translate each row in your `sample_table` into a single job. But perhaps you are running a project with tens of thousands of rows, and each job only takes mere minutes to run; in this case, you'd rather just submit a single job to process many samples. `Looper` makes this easy with the `--lump` and `--lumpn` command line arguments.
+By default, `looper` will translate each row in your `sample_table` into a single job. But perhaps you are running a project with tens of thousands of rows, and each job only takes mere minutes to run; in this case, you'd rather just submit a single job to process many samples. `Looper` makes this easy with the `--lump` and `--lump-n` command line arguments.
 
-### Lumping jobs by job count: `--lumpn`
+### Lumping jobs by job count: `--lump-n`
 
-It's quite simple: if you want to run 100 samples in a single job submission script, just tell looper `--lumpn 100`.
+It's quite simple: if you want to run 100 samples in a single job submission script, just tell looper `--lump-n 100`.
 
 ### Lumping jobs by input file size: `--lump`
 
-But what if your samples are quite different in terms of input file size? For example, your project may include many small samples, which you'd like to lump together with 10 jobs to 1, but you also have a few control samples that are very large and should have their own dedicated job. If you just use `--lumpn` with 10 samples per job, you could end up lumping your control samples together, which would be terrible. To alleviate this problem, `looper` provides the `--lump` argument, which uses input file size to group samples together. By default, you specify an argument in number of gigabytes. Looper will go through your samples and accumulate them until the total input file size reaches your limit, at which point it finalizes and submits the job. This will keep larger files in independent runs and smaller files grouped together.
+But what if your samples are quite different in terms of input file size? For example, your project may include many small samples, which you'd like to lump together with 10 jobs to 1, but you also have a few control samples that are very large and should have their own dedicated job. If you just use `--lump-n` with 10 samples per job, you could end up lumping your control samples together, which would be terrible. To alleviate this problem, `looper` provides the `--lump` argument, which uses input file size to group samples together. By default, you specify an argument in number of gigabytes. Looper will go through your samples and accumulate them until the total input file size reaches your limit, at which point it finalizes and submits the job. This will keep larger files in independent runs and smaller files grouped together.
 
-### Lumping jobs by input file size: `--lumpj`
+### Lumping jobs by job count: `--lump-j`
 
-Or you can lump samples into number of jobs.
+If you want to split your samples across a specific number of jobs, use `--lump-j`. For example, `--lump-j 10` will distribute all your samples evenly across 10 jobs.
 
 
 ## Running project-level pipelines
@@ -251,7 +251,7 @@ For example, to choose only samples where the `species` attribute is `human`, `m
 
 ```console
 looper run \
-  --sel-attr species
+  --sel-attr species \
   --sel-incl human mouse fly
 ```
 
@@ -259,14 +259,20 @@ Similarly, to submit only one sample, with `sample_name` as `sample`, you could 
 
 ```console
 looper run \
-  --sel-attr sample_name
+  --sel-attr sample_name \
   --sel-incl sample1
 ```
 
 ### Sample selection by exclusion
 
-If more convenient to *exclude* samples by filter, you can use the analogous arguments `--sel-attr` with `--sel-excl`.
-This will 
+If it's more convenient to *exclude* samples by filter, you can use the analogous arguments `--sel-attr` with `--sel-excl`.
+This will exclude any samples matching the specified values. For example, to run all samples *except* those where `species` is `rat`:
+
+```console
+looper run \
+  --sel-attr species \
+  --sel-excl rat
+```
 
 ### Toggling sample jobs through the sample table
 

@@ -29,10 +29,11 @@ theme:
     - navigation.sections
     # - navigation.expand
     - navigation.footer
-    - navigation.indexes 
+    - navigation.indexes
     - toc.follow
     - content.action.edit
     - content.action.view
+    - content.code.copy
     - navigation.tabs
     - navigation.top
 
@@ -42,6 +43,8 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.highlight:
       use_pygments: true
 #  - pymdownx.emoji:
