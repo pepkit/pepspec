@@ -67,10 +67,11 @@ First, we'll need some data. Download these 3 files from [looper csv example](ht
 
 ```sh
 mkdir data
-wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/mexico.txt  
-wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/canada.txt
-wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/tutorial-restructure/looper_csv_example/data/switzerland.txt
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/refs/heads/master/looper_csv_example/data/mexico.txt  
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/refs/heads/master/looper_csv_example/data/canada.txt
+wget -P data https://raw.githubusercontent.com/pepkit/hello_looper/refs/heads/master/looper_csv_example/data/switzerland.txt
 ```
+
 
 Take a peak at the contents of the files. Each lists the states or provinces of the country, with one per line, like this:
 
