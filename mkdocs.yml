@@ -56,6 +56,24 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+plugins:
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_source: false
+            show_signature: true
+            show_if_no_docstring: false
+            docstring_section_style: table
+            separate_signature: true
+            merge_init_into_class: true
+
 extra_css:
   - stylesheets/extra.css
 
@@ -144,6 +162,7 @@ nav:
         - Initiating a new looper project: looper/user-tutorial/initialize.md
         - Using PEP to simplify metadata: looper/user-tutorial/metadata.md
         - Configuring pipestat results: looper/user-tutorial/user-pipestat.md
+        - Running project-level pipelines: looper/user-tutorial/project-level-pipelines.md
         - Configuring cluster computing: looper/user-tutorial/compute-settings.md
         - Conclusion: looper/user-tutorial/conclusion.md
       - Advanced user guide:
@@ -154,9 +173,8 @@ nav:
         - Running jobs in containers: looper/how-to/containers.md
         - Configure pipestat back-ends: looper/how-to/configure-pipestat-backends.md
         - Using divvy: looper/using-divvy.md
-        - Running project-level pipelines: looper/how-to/project-level-pipelines.md
         - Link similar results: looper/how-to/link-objects.md
-        - Report objects:  looper/how-to/report-objects.md
+        - Report images and complex objects: looper/how-to/report-objects.md
         - Check status and rerun samples: looper/how-to/rerun.md
     - Pipeline Developer Docs:
       - Developer tutorial:
@@ -165,14 +183,15 @@ nav:
         - Using pre-submission hooks: looper/developer-tutorial/pre-submission-hooks.md
         - Pipeline interface specification: looper/developer-tutorial/pipeline-interface-specification.md
     - Reference:
-      - Reference:
-        - CLI Usage: looper/usage.md
-        - API: looper/code/python-api.md
-        - How to cite: citations.md
-        - FAQ: looper/faq.md
-        - Support: looper/support.md
-        - Contributing: looper/contributing.md
-        - Changelog: looper/changelog.md
+      - CLI Usage: looper/usage.md
+      - Looper config file: looper/looper-config.md
+      - Divvy CLI: looper/divvy-cli.md
+      - API: looper/code/python-api.md
+      - How to cite: citations.md
+      - FAQ: looper/faq.md
+      - Support: looper/support.md
+      - Contributing: looper/contributing.md
+      - Changelog: looper/changelog.md
   - PEPhub:
     - PEPhub: pephub/README.md
     - User guide:
@@ -295,8 +314,7 @@ autodoc:
   lucidoc:
     - pkg: peppy
       outfile: docs/peppy/code/python-api.md
-    - pkg: looper
-      outfile: docs/looper/code/python-api.md
+    # looper uses mkdocstrings instead of lucidoc
     - pkg: pipestat
       outfile: docs/pipestat/code/python-api.md
     - pkg: pypiper
