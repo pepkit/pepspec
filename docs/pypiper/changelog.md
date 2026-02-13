@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.15.0] -- 2026-02-13
+
+### Changed
+- Migrated from setup.py to pyproject.toml with hatchling backend
+- Replaced Black/isort with Ruff for linting and formatting
+- Updated GitHub Actions to v4/v5 with Python 3.10-3.14 CI matrix
+- Removed Python 2 compatibility code and legacy packaging files
+- Version now sourced from importlib.metadata (removed _version.py)
+- Converted all docstrings to Google-style formatting
+- Consolidated documentation into pepspec; removed local docs/ and mkdocs.yml
+- Updated README badges and documentation links to pep.databio.org/pypiper
+
+### Added
+- `clean_add()` now accepts None values, enabling safe use with conditionally-assigned variables
+- Pipestat version displayed in pipeline version log output
+- `pipestat_lenient` parameter on PipelineManager (defaults to True)
+
+### Removed
+- Removed magic schema discovery (`default_pipestat_output_schema()`)
+- Removed `pipestat_lenient` parameter from lower-level API (now on PipelineManager)
+
+### Improved
+- Test quality: added missing assertions, removed permanently-skipped tests, added shared fixtures
+
 ## [0.14.5] -- 2025-09-22
 ### Changed
 - Remove veracitools dependency [#233](https://github.com/databio/pypiper/issues/233)
