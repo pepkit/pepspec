@@ -10,16 +10,14 @@
 - Version now sourced from importlib.metadata (removed _version.py)
 - Converted all docstrings to Google-style formatting
 - Consolidated documentation into pepspec; removed local docs/ and mkdocs.yml
-- Updated README badges and documentation links to pep.databio.org/pypiper
+- Updated README badges and documentation links
 
 ### Added
 - `clean_add()` now accepts None values, enabling safe use with conditionally-assigned variables
 - Pipestat version displayed in pipeline version log output
-- `pipestat_lenient` parameter on PipelineManager (defaults to True)
 
 ### Removed
 - Removed magic schema discovery (`default_pipestat_output_schema()`)
-- Removed `pipestat_lenient` parameter from lower-level API (now on PipelineManager)
 
 ### Improved
 - Test quality: added missing assertions, removed permanently-skipped tests, added shared fixtures
