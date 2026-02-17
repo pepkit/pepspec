@@ -19,4 +19,4 @@ A pipeline author defines all the outputs produced by a pipeline by writing a JS
 <!-- TODO: This needs a graphical representation here. -->
 
 ## Quick start
-Check out the [quickstart guide](./code/api-quickstar.md). See [API Usage](./code/python-tutorial.md) and [CLI Usage](./code/cli.md).
+Check out the [quickstart guide](./code/api-quickstart.md). See [API Usage](./code/python-tutorial.md) and [CLI Usage](./code/cli.md).

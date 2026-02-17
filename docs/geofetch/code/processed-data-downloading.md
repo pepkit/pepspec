@@ -19,12 +19,12 @@ Calling geofetch will do 4 tasks:
 2. produce a PEP-compatible sample table, `PROJECT_NAME_sample_processed.csv` and `PROJECT_NAME_series_processed.csv`, in your metadata folder.
 3. produce a PEP-compatible project configuration file, `PROJECT_NAME_sample_processed.yaml` and `PROJECT_NAME_series_processed.yaml`, in your metadata folder.
 
-Complete details about geofetch outputs is cataloged in the [metadata outputs reference](metadata_output.md).
+Complete details about geofetch outputs is cataloged in the [metadata outputs reference](../metadata-output.md).
 
 from IPython.core.display import SVG
 SVG(filename='logo.svg')
 
-![arguments_outputs.svg](arguments_outputs.svg)
+![arguments_outputs.svg](../img/arguments_outputs.svg)
 
 ## Download the data
 

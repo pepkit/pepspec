@@ -137,7 +137,7 @@ Calling geofetch will do 4 tasks:
 2. produce a PEP-compatible sample table, `PROJECT_NAME_annotation.csv`, in your metadata folder.
 3. produce a PEP-compatible project configuration file, `PROJECT_NAME_config.yaml`, in your metadata folder.
 
-Complete details about geofetch outputs is cataloged in the [metadata outputs reference](../metadata_output.md).
+Complete details about geofetch outputs is cataloged in the [metadata outputs reference](../metadata-output.md).
 
 ## Download the data
 
@@ -372,14 +372,14 @@ That's basically it! `geofetch` will have produced a general-purpose PEP for you
 
 ## Selecting samples to download.
 
-By default, `geofetch` downloads all the data for one accession of interest. If you need more fine-grained control, either because you have multiple accessions or you need a subset of samples within them, you can use the [file-based sample specification](file-specification.md).
+By default, `geofetch` downloads all the data for one accession of interest. If you need more fine-grained control, either because you have multiple accessions or you need a subset of samples within them, you can use the [file-based sample specification](../file-specification.md).
 
 
 ## Tips
 
 * Set an environment variable for `$SRABAM` (where `.bam` files will live), and `geofetch` will check to see if you have an already-converted bamfile there before issuing the command to download the `sra` file. In this way, you can delete old `sra` files after conversion and not have to worry about re-downloading them. 
 
-* The config template uses an environment variable `$SRARAW` for where `.sra` files will live. If you set this variable to the same place you instructed `sratoolkit` to download `sra` files, you won't have to tweak the config file. For more information refer to the [`sratools` page](howto-location.md).
+* The config template uses an environment variable `$SRARAW` for where `.sra` files will live. If you set this variable to the same place you instructed `sratoolkit` to download `sra` files, you won't have to tweak the config file. For more information refer to the [`sratools` page](../howto-location.md).
 
 You can find a complete example of [using `geofetch` for RNA-seq data](https://github.com/databio/example-projects/tree/master/rna-seq). 
 

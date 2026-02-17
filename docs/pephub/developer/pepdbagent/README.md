@@ -12,7 +12,7 @@
 
 ---
 
-**Documentation**: <a href="https://pep.databio.org/pephub/pepdbagent" target="_blank">https://pep.databio.org/pephub/pepdbagent</a>
+**Documentation**: <a href="https://pep.databio.org/pephub/developer/pepdbagent/" target="_blank">https://pep.databio.org/pephub/developer/pepdbagent/</a>
 
 **Source Code**: <a href="https://github.com/pepkit/pepdbagent" target="_blank">https://github.com/pepkit/pepdbagent</a>
 
