@@ -81,7 +81,7 @@ psm.pipeline_name
 
 
 
-By default, `PipestatManager` instance is bound to the record it was initialized with. However, reporting or removing results for a different record can be enforced in the respective methods with `sameple_name` argument.
+By default, `PipestatManager` instance is bound to the record it was initialized with. However, reporting or removing results for a different record can be enforced in the respective methods with `sample_name` argument.
 
 
 ```python
@@ -537,7 +537,7 @@ psm.backend._data
 
 
 
-## Highligting results
+## Highlighting results
 
 In order to highlight results we need to add an extra property in the pipestat results schema (`highlight: true`) under the result identifier that we wish to highlight. 
 
@@ -643,7 +643,7 @@ psm.cfg['_status_schema']
 
 
 
-`pipestat` Python package ships with a default status schema, so we did not have to provide the schema when constructing the `PipestatManager` object. Similarly, the flags containg directory is an optional configuration option. 
+`pipestat` Python package ships with a default status schema, so we did not have to provide the schema when constructing the `PipestatManager` object. Similarly, the flags containing directory is an optional configuration option. 
 
 Please refer to the Python API documentation (`__init__` method) to see how to use custom status schema and flags directory.
 

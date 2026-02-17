@@ -259,7 +259,7 @@ cat ./red_algae/GSE67303_PEP/GSE67303_PEP.yaml
     
 
 
-To run pipeline, you should set up few enviromental variables:
+To run pipeline, you should set up few environmental variables:
 1) SRARAW - folder where SRA files were downloaded
 2) SRAFQ -folder where fastq should be produced
 3) CODE - (first you should clone geofetch), and $CODE is where geofetch folder is located
@@ -680,4 +680,4 @@ ls
     SRR1930183_2.fastq  SRR1930184_2.fastq  SRR1930185_2.fastq  SRR1930186_2.fastq
 
 
-Everything was executed sucessfully and SRA files were converted into fastq files
+Everything was executed successfully and SRA files were converted into fastq files

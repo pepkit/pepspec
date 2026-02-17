@@ -86,22 +86,9 @@ We added one new line, which runs `pipestat` and provides it with this informati
 ## Connect pipestat to looper
 
 Next, we need to update our pipeline interface so looper passes all the necessary information to the pipeline.
-Since the sample name (`-r $2`) and the pipestat config file (`-c $3`) weren't previously passed to the pipeline, we need to adjust the pipeline interface, to make sure the command template specifies all the inputs our pipeline needs:
+Since the sample name (`-r $2`) and the pipestat config file (`-c $3`) weren't previously passed to the pipeline, we need to adjust the pipeline interface, to make sure the command template specifies all the inputs our pipeline needs.
 
-```yaml  title="pipeline/pipeline_interface.yaml" hl_lines="5"
-pipeline_name: count_lines
-sample_interface:
-  command_template: >
-    pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file}
-```
-
-Now, looper will pass the sample_name and the pipestat config file as additional arguments to `count_lines.sh`.
-The `{sample.sample_name}` will just take the appropriate value from the sample table, just like we did previously with `{sample.file_path}`
-The `{pipestat.config_file}` is automatically provided by looper.
-Looper generates this config file based on the looper configuration and the pipeline interface.
-To read more about pipestat config files, see here: [pipestat configuration](../../pipestat/config.md).
-
-Next, we need to tell looper we're dealing with a pipestat-compatible pipeline. Specify this by adding the `output_schema` in the pipeline interface to the pipestat output schema we created earlier:
+First, we need to tell looper we're dealing with a pipestat-compatible pipeline by adding the `output_schema` in the pipeline interface:
 
 ```yaml  title="pipeline/pipeline_interface.yaml" hl_lines="2"
 pipeline_name: count_lines
@@ -109,6 +96,55 @@ output_schema: pipestat_output_schema.yaml
 sample_interface:
   command_template: >
     pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file}
+```
+
+### Pipestat configuration handoff
+
+When looper runs a pipestat-enabled pipeline, it creates a merged configuration file containing:
+
+- **Pipeline-author settings**: `output_schema`, `pipeline_name` (from pipeline interface)
+- **Pipeline-runner settings**: `results_file_path`, `output_dir`, `flag_file_dir` (from looper config)
+
+This merged config must be passed to the pipeline. Looper supports two mechanisms:
+
+#### Option 1: CLI argument (explicit)
+
+Pass `{pipestat.config_file}` in your command template:
+
+```yaml  title="pipeline/pipeline_interface.yaml"
+pipeline_name: count_lines
+output_schema: pipestat_output_schema.yaml
+sample_interface:
+  command_template: >
+    pipeline/count_lines.sh {sample.file_path} {sample.sample_name} {pipestat.config_file}
+```
+
+The `{pipestat.config_file}` is automatically provided by looper. Looper generates this config file based on the looper configuration and the pipeline interface. To read more about pipestat config files, see here: [pipestat configuration](../../pipestat/config.md).
+
+#### Option 2: Environment variable injection (automatic)
+
+Use `inject_env_vars` to set `PIPESTAT_CONFIG`:
+
+```yaml  title="pipeline/pipeline_interface.yaml"
+pipeline_name: count_lines
+output_schema: pipestat_output_schema.yaml
+inject_env_vars:
+  PIPESTAT_CONFIG: "{pipestat.config_file}"
+sample_interface:
+  command_template: >
+    pipeline/count_lines.sh {sample.file_path} {sample.sample_name}
+```
+
+With this approach, your pipeline reads `PIPESTAT_CONFIG` from the environment. Pipestat checks this variable automatically, so no code changes are needed if your pipeline already uses `PipestatManager()` without explicit config.
+
+#### Validation
+
+Looper validates that pipestat-enabled interfaces (those with `output_schema`) use one of these mechanisms. If neither is found, looper raises an error with guidance on how to fix it.
+
+To disable this validation (if your pipeline handles config differently):
+
+```yaml
+pipestat_config_required: false
 ```
 
 Finally, we need to configure where the pipestat results will be stored.

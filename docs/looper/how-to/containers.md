@@ -3,9 +3,8 @@
 Because `looper` uses `divvy` for computing configuration, running jobs in containers is easy! `Divvy` can use the same template system to do either cluster computing or to run jobs in linux containers (for example, using `docker` or `singularity`). The way to do this is similar to how you would run jobs on a cluster, but you use templates that run jobs in containers. You can even run jobs in a container *on a cluster*.
 
 
-!!! success "Learning objectives"
-    - How does looper interact with linux containers?
-    - How do I use looper to run a job in a container?
+!!! note "What you'll accomplish"
+    Configure looper to run pipeline jobs inside Docker or Singularity containers.
 
 
 

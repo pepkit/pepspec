@@ -6,8 +6,8 @@ In the basic [pipestat tutorial](../user-tutorial/user-pipestat.md), we showed h
 One of the powerful features of pipestat is that you can configure it to store results in different locations.
 This document will cover more details about how to configure pipestat in looper:
 
-!!! success "Learning objectives"
-    - How do I configure pipestat to use different backends with looper?
+!!! note "What you'll accomplish"
+    Configure pipestat to store pipeline results in files, SQLite, PostgreSQL, or PEPhub.
 
 
 ## How looper configures pipestat

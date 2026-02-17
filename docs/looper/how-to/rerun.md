@@ -6,8 +6,8 @@ It is recommended that you have read and completed the basic [pipestat tutorial]
 
 This document will briefly cover details about how to configure pipestat in looper:
 
-!!! success "Learning objectives"
-    - How do I rerun samples?
+!!! note "What you'll accomplish"
+    Configure looper to rerun failed samples using pipestat status flags.
 
 There may be a time when you need to re-submit samples. Looper's `rerun` command can be used to achieve this. By default, the `rerun` command will gather any samples with a `failed` status and submit again.
 
