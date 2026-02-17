@@ -43,7 +43,6 @@ $defs:
         type: string
     required:
       - path
-      - thumbnail_path
       - title
   file:
     type: object

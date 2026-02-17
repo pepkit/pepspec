@@ -34,4 +34,4 @@ Pypiper closes pipelines gracefully on interrupt or termination signals, convert
 
 ![](img/recovery.svg) **Dynamic recovery**
 
-If a job is interrupted (with SIGINT or SIGTERM), either from a user or by a cluster resource manager, pypiper will set a `dynamic recovery` flag. The next time the run is started, it will automatically pick up where it left off. This makes pypiper pipelines `automatically pre-emption ready`, so they can be immediately deployed on servers where jobs may be pre-emptied.
+If a job is interrupted (with SIGINT or SIGTERM), either from a user or by a cluster resource manager, pypiper will set a `dynamic recovery` flag. The next time the run is started, it will automatically pick up where it left off. This makes pypiper pipelines `automatically pre-emption ready`, so they can be immediately deployed on servers where jobs may be pre-empted.
