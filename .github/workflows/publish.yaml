@@ -26,5 +26,5 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material mkdocs-jupyter mkdocstrings[python] eido
+      - run: pip install mkdocs-material mkdocs-jupyter mkdocstrings[python] eido geofetch looper peppy pipestat pypiper ubiquerg yacman
       - run: mkdocs gh-deploy --force
