@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.15.1] -- 2026-03-05
+### Changed
+- Updated for logmuse 0.3.0 compatibility
+
 ## [0.15.0] -- 2026-02-13
 
 ### Changed

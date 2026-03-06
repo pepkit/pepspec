@@ -2,6 +2,18 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [0.13.1] - 2026-03-05
+### Changed
+- Fixed import-time logging that overrode root logger configuration
+
+## [0.13.0] - 2026-02-25
+### Changed
+- Renamed `PipestatBoss` to `PipestatDualManager`
+- Added classmethod constructors for each backend type
+- Added `validate_results` and `additional_properties` options
+- Migrated to yacman v1 API
+- Modernized codebase: Google-style docstrings, type hints
+
 ## [0.12.2] - 2025-09-25
 ### Fixed
 - Fix setting with copy warning for pephub backend [#206](https://github.com/pepkit/pipestat/issues/206)

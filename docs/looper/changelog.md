@@ -2,12 +2,14 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
-## [Unreleased]
+## [2.1.0] -- 2026-03-05
 
 ### Added
-- Added `inject_env_vars` pipeline interface property for injecting environment variables into submission scripts
-- Added `pipestat_config_required` pipeline interface property to control pipestat handoff validation
-- Added validation that pipestat-enabled interfaces (with `output_schema`) pass config to the pipeline via CLI (`{pipestat.*}`) or environment variable (`PIPESTAT_CONFIG` in `inject_env_vars`)
+- `inject_env_vars` pipeline interface property for environment variables in submission scripts
+- `pipestat_config_required` pipeline interface property for pipestat handoff validation
+
+### Changed
+- Fixed import-time logging that overrode root logger configuration
 
 ## [2.0.3] -- 2025-09-23
 ### Fixed
