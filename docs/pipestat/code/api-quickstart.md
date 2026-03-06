@@ -38,7 +38,7 @@ print(psm.schema)
      - name_of_something : {'type': 'string', 'description': 'Name of something'}
      - switch_value : {'type': 'boolean', 'description': 'Is the switch on or off'}
      - output_file : {'description': 'This a path to the output file', 'type': 'object', 'object_type': 'file', 'properties': {'path': {'type': 'string'}, 'title': {'type': 'string'}}, 'required': ['path', 'title']}
-     - output_image : {'description': 'This a path to the output image', 'type': 'object', 'object_type': 'image', 'properties': {'path': {'type': 'string'}, 'thumbnail_path': {'type': 'string'}, 'title': {'type': 'string'}}, 'required': ['path', 'thumbnail_path', 'title']}
+     - output_image : {'description': 'This a path to the output image', 'type': 'object', 'object_type': 'image', 'properties': {'path': {'type': 'string'}, 'thumbnail_path': {'type': 'string'}, 'title': {'type': 'string'}}, 'required': ['path', 'title']}
      - md5sum : {'type': 'string', 'description': 'MD5SUM of an object', 'highlight': True}
      Status properties:
      - None

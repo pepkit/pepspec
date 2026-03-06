@@ -22,7 +22,7 @@ Pipestat also extends the json schema vocabulary by adding two _additional_ type
     - `title`: human readable description of the file
 - `image`:
     - `path`: path to the reported image, usually PDF
-    - `thumbnail`: path to the reported thumbnail, usually PNG or JPEG
+    - `thumbnail_path` (optional): path to the reported thumbnail, usually PNG or JPEG. If not provided, falls back to `path`.
     - `title`: human readable description of the image
 
 
@@ -147,7 +147,6 @@ $defs:
         type: string
     required:
       - path
-      - thumbnail_path
       - title
   file:
     type: object

@@ -154,7 +154,7 @@ psm.result_schemas
       'properties': {'path': {'type': 'string'},
        'thumbnail_path': {'type': 'string'},
        'title': {'type': 'string'}},
-      'required': ['path', 'thumbnail_path', 'title']},
+      'required': ['path', 'title']},
      'md5sum': {'type': 'string',
       'description': 'MD5SUM of an object',
       'highlight': True}}
