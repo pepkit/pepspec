@@ -2,14 +2,48 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
 
+## [2.1.1] -- 2026-03-25
+
+### Changed
+- Renamed `singularity`/`singularity_slurm` compute packages to `apptainer`/`apptainer_slurm`
+- Renamed `SINGULARITY_IMAGE`/`SINGULARITY_ARGS` adapters to `APPTAINER_IMAGE`/`APPTAINER_ARGS`
+- Updated apptainer templates to use `instance start`/`instance stop` (replacing deprecated dot syntax)
+- Replaced SGE placeholder template with a real SGE submission template
+- Updated pipeline interface schemas: `singularity_image` → `apptainer_image`
+
+### Added
+- `{PRE_COMMAND}` and `{POST_COMMAND}` hooks in all submission templates for pre/post execution steps
+- `PRE_COMMAND` and `POST_COMMAND` adapters in default divvy config
+- `BULKER_CRATE` adapter in default divvy config
+- `bulker_slurm` compute package for running bulker-activated pipelines on SLURM
+- `sge` compute package for Sun Grid Engine clusters
+
+### Removed
+- `singularity` and `singularity_slurm` compute package names (use `apptainer`/`apptainer_slurm`)
+- `SINGULARITY_IMAGE` and `SINGULARITY_ARGS` adapter names (use `APPTAINER_IMAGE`/`APPTAINER_ARGS`)
+
 ## [2.1.0] -- 2026-03-05
 
 ### Added
 - `inject_env_vars` pipeline interface property for environment variables in submission scripts
 - `pipestat_config_required` pipeline interface property for pipestat handoff validation
+- HTTP API server (experimental/alpha) with FastAPI: `looper serve`
+- Stricter looper-pipestat interface validation
 
 ### Changed
+- Migrated to new yacman API (`YAMLConfigManager.from_yaml_file()`, `write_lock`/`read_lock` context managers); requires yacman >=0.9.5
+- Migrated CLI configuration to pydantic-settings
+- Improved CLI startup time by deferring heavy imports to module level
+- Made signal handling thread-safe
+- Replaced wildcard imports with explicit imports
+- Converted docstrings to Google style
+- Better shell inference for submission commands (#282)
+- Updated pipestat constructor usage to classmethod format
+- Separated fast unit tests from slow CLI integration tests
 - Fixed import-time logging that overrode root logger configuration
+
+### Removed
+- Old documentation files (moved to separate docs site)
 
 ## [2.0.3] -- 2025-09-23
 ### Fixed
