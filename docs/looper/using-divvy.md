@@ -43,10 +43,12 @@ Available compute packages:
 
 local
 slurm
-singularity
+sge
+apptainer
+apptainer_slurm
 bulker_local
+bulker_slurm
 default
-singularity_slurm
 docker
 
 ```
@@ -73,8 +75,11 @@ cat $(python -c "import looper; print(looper.__path__[0])")/default_config/divvy
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+{PRE_COMMAND}
+
 {CODE}
 
+{POST_COMMAND}
 ```
 
 Remember that compute packages use nested templates to wrap the pipeline  `{CODE}` provided by looper's pipeline interface. More can be read here: [advanced computing](advanced-guide/advanced-computing.md)
@@ -122,7 +127,11 @@ cat submit_script.sub
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+{PRE_COMMAND}
+
 {CODE}
+
+{POST_COMMAND}
 ```
 
 We populated several variables, like `{LOGFILE}` and `{TIME}`, from the `settings.yaml` file. However, the `{CODE}` and `{JOBNAME}` variables are still unpopulated, so this submission script is incomplete. To remedy this, we'll use `divvy`'s command-line variable passing: any non-interpreted arguments passed to `divvy` are assumed to be variables to populate the template. These command-line variables are considered highest priority and so will override any values in the more distant locations. For example:
@@ -145,6 +154,8 @@ Now if we look at the file:
 
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+
 
 run-this-cmd
 

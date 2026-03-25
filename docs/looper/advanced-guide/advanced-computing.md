@@ -77,7 +77,11 @@ The `{CODE}` variable is populated by the populated result of the command templa
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+{PRE_COMMAND}
+
 srun {CODE}
+
+{POST_COMMAND}
 ```
 
 Now that you understand the difference between the command template and the submission template, let's move on to how you can configure looper for different computing environments.
@@ -124,12 +128,7 @@ The `submission_template` attribute is a path to a template file. The template f
 
 ### Creating a custom compute package
 
-To create a custom compute package and add it to divvy is easy:
-
-1. Create your own template, a text file with `{VARIABLE}` syntax for any job-specific variables. You can find examples in the [submit_templates](https://github.com/pepkit/divcfg/tree/master/templates) folder.
-2. Add a new compute package as an entry under `compute_packages` in your divvy config file.
-3. Point to your custom template in the `submission_template` attribute of your new compute package.
-4. Add the appropriate `submission_command` for this package.
+For step-by-step instructions, see [How to create custom submission templates](../how-to/custom-submission-templates.md). For bulker-specific setup, see [Using looper with bulker](../how-to/bulker.md).
 
 ### Using divvy to submit jobs from the command-line
 
@@ -172,7 +171,11 @@ Activating compute package 'slurm'
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+{PRE_COMMAND}
+
 {CODE}
+
+{POST_COMMAND}
 ```
 
 This gives us a way to view the SLURM template.
@@ -205,7 +208,11 @@ Activating compute package 'slurm'
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+{PRE_COMMAND}
+
 {CODE}
+
+{POST_COMMAND}
 ```
 
 Sometimes it's more convenient to provide settings in through a file, instead of on the command line.
@@ -344,8 +351,11 @@ adapters:
   MEM: compute.mem
   DOCKER_ARGS: compute.docker_args
   DOCKER_IMAGE: compute.docker_image
-  SINGULARITY_IMAGE: compute.singularity_image
-  SINGULARITY_ARGS: compute.singularity_args
+  APPTAINER_IMAGE: compute.apptainer_image
+  APPTAINER_ARGS: compute.apptainer_args
+  BULKER_CRATE: compute.bulker_crate
+  PRE_COMMAND: compute.pre_command
+  POST_COMMAND: compute.post_command
 ```
 
 The divvy adapters is a section in the divvy configuration file that links the divvy template variable (left side) to any other arbitrary variable names (right side).
@@ -438,14 +448,14 @@ Variables that describes settings of a **compute environment** should go in the 
 
 ### Pipeline interface
 
-Variables that are **specific to a pipeline** can be defined in the `pipeline interface` file,  `compute` section.As an example of a variable pulled from the `compute` section, we defined in our `pipeline_interface.yaml` a variable pointing to the singularity or docker image that can be used to run the pipeline, like this:
+Variables that are **specific to a pipeline** can be defined in the `pipeline interface` file,  `compute` section.As an example of a variable pulled from the `compute` section, we defined in our `pipeline_interface.yaml` a variable pointing to the apptainer or docker image that can be used to run the pipeline, like this:
 
 ```yaml
 compute:
-  singularity_image: /absolute/path/to/images/image
+  apptainer_image: /absolute/path/to/images/image
 ```
 
-Now, this variable will be available for use in a template as `{SINGULARITY_IMAGE}`. This makes sense to put in the pipeline interface because it is specific to this pipeline. This path should probably be absolute, because a relative path will be interpreted as relative to the working directory where your job is executed (*not* relative to the pipeline interface). This section is also useful for adjusting the amount of resources we need to request from a resource manager like SLURM. For example: `{MEM}`, `{CORES}`, and `{TIME}` are all defined frequently in this section, and they vary for different input file sizes.
+Now, this variable will be available for use in a template as `{APPTAINER_IMAGE}`. This makes sense to put in the pipeline interface because it is specific to this pipeline. This path should probably be absolute, because a relative path will be interpreted as relative to the working directory where your job is executed (*not* relative to the pipeline interface). This section is also useful for adjusting the amount of resources we need to request from a resource manager like SLURM. For example: `{MEM}`, `{CORES}`, and `{TIME}` are all defined frequently in this section, and they vary for different input file sizes.
 
 ### Project config
 

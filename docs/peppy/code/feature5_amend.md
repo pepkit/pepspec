@@ -110,20 +110,6 @@ p.sample_table
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -178,7 +164,6 @@ p.sample_table
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
@@ -215,20 +200,6 @@ p_new_lib.sample_table
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -283,7 +254,6 @@ p_new_lib.sample_table
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
@@ -300,20 +270,6 @@ p_new_lib2.sample_table
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -368,6 +324,5 @@ p_new_lib2.sample_table
     </tr>
   </tbody>
 </table>
-</div>
 
 

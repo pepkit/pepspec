@@ -90,19 +90,23 @@ Let's look more closely at the script looper created:
 cat results/submission/count_lines_mexico.sub 
 ```
 
-``` title="results/submission/count_lines_mexico.sub" hl_lines="7"
+``` title="results/submission/count_lines_mexico.sub" hl_lines="9"
 #!/bin/bash
 
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+
+
 {
-pipeline/count_lines.sh data/mexico.txt 
+pipeline/count_lines.sh data/mexico.txt
 } | tee /home/nsheff/code/hello_looper/pep_derived_attrs/results/submission/count_lines_mexico.log
+
+
 ```
 
 Let's see how looper is creating this file.
-You may recognize the highlighted line, because we've seen it before in the earlier tutoirials.
+You may recognize the highlighted line, because we've seen it before in the earlier tutorials.
 It's the command we specified for how to run the pipeline, and it's coming from the *pipeline interface* file.
 
 Recall in the first tutorial we created a `pipeline/pipeline_interface.yaml`, with this content:
@@ -127,12 +131,16 @@ Here's the default submission template provided by divvy:
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+{PRE_COMMAND}
+
 {
-{CODE} 
+{CODE}
 } | tee {LOGFILE}
+
+{POST_COMMAND}
 ```
 
-This template has 2 variables, which are populated by looper. The `{CODE}` slot is the one being populated from the pipeline interface's `command_template` variable. The `{LOGFILE}` variable is a special variable provided by looper, which we'll get into later, but you can ignore for now.
+This template has several variables, which are populated by looper. The `{CODE}` slot is the one being populated from the pipeline interface's `command_template` variable. The `{LOGFILE}` variable is a special variable provided by looper. `{PRE_COMMAND}` and `{POST_COMMAND}` are optional hooks for running commands before and after the pipeline (they default to empty). You can ignore the details for now.
 
 So, these are the steps looper takes to create the final job submission script:
 
@@ -181,10 +189,13 @@ Divvy config: divvy_config.yaml
 
 docker
 default
-singularity_slurm
-singularity
+apptainer_slurm
+apptainer
 local
 slurm
+sge
+bulker_local
+bulker_slurm
 ```
 
 
@@ -204,7 +215,11 @@ For example, there's a package called 'slurm'. The template for this package loo
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
+{PRE_COMMAND}
+
 {CODE}
+
+{POST_COMMAND}
 ```
 
 This template includes directives that are understood by the SLURM scheduler (that's what the `#SBATCH lines are`). So the resulting submission file is going to be a SLURM script, rather than simply a shell script.
@@ -232,7 +247,10 @@ Now when we view the resulting submission script, we get a very different result
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
-pipeline/count_lines.sh data/mexico.txt 
+
+
+pipeline/count_lines.sh data/mexico.txt
+
 ```
 
 
@@ -270,7 +288,10 @@ This command will populate the variables as you expect:
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
-pipeline/count_lines.sh data/mexico.txt 
+
+
+pipeline/count_lines.sh data/mexico.txt
+
 ```
 
 
@@ -291,7 +312,7 @@ pipeline_interfaces:
 cli:
   run:
     compute: 
-      partition: standards
+      partition: standard
       time: '01-00:00:00'
       cores: '32'
       mem: '32000'
@@ -309,7 +330,7 @@ cli:
     limit: 1
     package: slurm
     compute: 
-      partition: standards
+      partition: standard
       time: '01-00:00:00'
       cores: '32'
       mem: '32000'
@@ -379,7 +400,7 @@ For many use cases, the built-in packages will be sufficient.
 But a great thing about looper is that these compute packages are totally customizable.
 You can edit the templates, and even create your own custom compute packages.
 This allows you to tailor divvy/looper to any compute environment.
-You can find out more in the documentation on [custom compute packages](../advanced-guide/advanced-computing.md)
+See [How to create custom submission templates](../how-to/custom-submission-templates.md) for step-by-step instructions, or the [advanced computing guide](../advanced-guide/advanced-computing.md) for a deeper explanation of the nested template system.
 
 
 

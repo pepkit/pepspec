@@ -1,6 +1,7 @@
 site
 venv/
 .venv/
+.cache/
 
 .DS_Store
 /docs/looper/notebooks/hello_looper-master/
@@ -11,3 +12,4 @@ venv/
 /.idea/
 /docs/pipestat/notebooks/.ipynb_checkpoints/
 /docs/looper/notebooks/.ipynb_checkpoints/
+node_modules

@@ -152,7 +152,9 @@ nav:
         - Customizing compute settings: looper/advanced-guide/advanced-computing.md
         - Advanced metadata features: looper/advanced-guide/advanced-metadata.md
       - How-to recipes:
+        - Custom submission templates: looper/how-to/custom-submission-templates.md
         - Running jobs in containers: looper/how-to/containers.md
+        - Using looper with bulker: looper/how-to/bulker.md
         - Configure pipestat back-ends: looper/how-to/configure-pipestat-backends.md
         - Using divvy: looper/using-divvy.md
         - Link similar results: looper/how-to/link-objects.md
@@ -320,6 +322,8 @@ plugins:
         - pipestat/notebooks/*.ipynb
         - pypiper/notebooks/*.ipynb
         - yacman/notebooks/*.ipynb
+      ignore:
+        - "**/*.md"
       ignore_h1_titles: True
   - mkdocstrings:
       default_handler: python

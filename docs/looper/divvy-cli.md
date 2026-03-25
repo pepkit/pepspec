@@ -26,7 +26,12 @@ Available compute packages:
 
 local
 slurm
-singularity
+sge
+apptainer
+apptainer_slurm
+bulker_local
+bulker_slurm
+default
 docker
 ```
 
@@ -109,7 +114,18 @@ $ divvy inspect --package slurm
 #SBATCH --mem='{MEM}'
 #SBATCH --cpus-per-task='{CORES}'
 #SBATCH --time='{TIME}'
-...
+#SBATCH --partition='{PARTITION}'
+#SBATCH -m block
+#SBATCH --ntasks=1
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{PRE_COMMAND}
+
+{CODE}
+
+{POST_COMMAND}
 ```
 
 ## Variable sources
@@ -147,6 +163,11 @@ These variables are commonly used in compute package templates:
 | `{CORES}` | Number of CPU cores |
 | `{TIME}` | Wall time limit |
 | `{PARTITION}` | Cluster partition/queue |
+| `{PRE_COMMAND}` | Commands to run before the pipeline command (e.g., module loads, TMPDIR setup) |
+| `{POST_COMMAND}` | Commands to run after the pipeline command (e.g., cleanup) |
+| `{BULKER_CRATE}` | Bulker crate identifier for the bulker_slurm and bulker_local packages |
+| `{APPTAINER_IMAGE}` | Apptainer container image path |
+| `{APPTAINER_ARGS}` | Extra arguments passed to apptainer (e.g., bind mounts) |
 
 ## Environment variables
 

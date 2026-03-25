@@ -487,7 +487,10 @@ cat results/submission/count_lines_usa.sub
 echo 'Compute node:' `hostname`
 echo 'Start time:' `date +'%Y-%m-%d %T'`
 
-pipeline/count_lines.sh data/usa.txt  
+
+
+pipeline/count_lines.sh data/usa.txt
+
 ```
 
 We recommend pipeline authors configure their pipeline interfaces with appropriate `size_dependent_variables` file, which should be distributed alongside the pipeline interface.
@@ -525,7 +528,7 @@ Looper will run this command before running each job, allowing you to create lit
 ## Project-level pipeline interfaces
 
 Remember, looper distinguishes sample-level from project-level pipelines.
-This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md) and in [How to run a project-level pipeline](../how-to/project-level-pipelines.md).
+This is explained in detail in [Advanced run options](../advanced-guide/advanced-run-options.md) and in [How to run a project-level pipeline](../user-tutorial/project-level-pipelines.md).
 Basically, sample-level pipelines run *once per sample*, whereas project-level pipelines run *once per project*.
 If this interface were describing a project-level pipeline, we would change out `sample_interface` to `project_interface`.
 
