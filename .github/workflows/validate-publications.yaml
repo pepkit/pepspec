@@ -1,0 +1,27 @@
+name: Validate publications
+
+on:
+  pull_request:
+    paths:
+      - "docs/data/publications.yaml"
+      - "publication_sources.yaml"
+      - "validate_publications.py"
+      - "hooks/publications.py"
+  push:
+    branches: [master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml requests
+      - name: Validate structure
+        run: python validate_publications.py
+      - name: Verify new DOIs resolve
+        run: python validate_publications.py --check-dois --only-changed

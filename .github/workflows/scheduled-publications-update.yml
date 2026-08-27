@@ -1,0 +1,51 @@
+name: Scheduled publications update
+
+# Searches OpenAlex and Europe PMC for new papers citing or using PEPkit
+# tools and opens a PR adding them to docs/data/publications.yaml.
+#
+# Monthly, and it always opens a PR -- never auto-merges. Every entry lands
+# on a public page, so a human reads the list before it ships.
+#
+# All of the real instructions live in .claude/skills/update-publications.md.
+# Keep this workflow thin.
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"  # 06:00 UTC on the 1st of every month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+  actions: read
+
+concurrency:
+  group: publications-update
+  cancel-in-progress: false
+
+jobs:
+  update-publications:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml requests
+
+      - name: Run Claude Code to find new publications
+        uses: anthropics/claude-code-action@v1
+        with:
+          prompt: |
+            Use the update-publications skill to search for new papers that
+            cite or use PEPkit tools and open a PR adding them to
+            docs/data/publications.yaml.
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: '--allowedTools "Bash(*),Read(*),Write(*),Edit(*),Glob(*),Grep(*),WebFetch(*)"'
+          show_full_output: true

@@ -37,6 +37,9 @@ theme:
     - navigation.tabs
     - navigation.top
 
+hooks:
+  - hooks/publications.py
+
 markdown_extensions:
   - attr_list
   - md_in_html

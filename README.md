@@ -83,3 +83,29 @@ This script reads the template at `docs/geofetch/usage-template.md.tpl` and runs
 ### Can we version the docs?
 
 The individual tools are versioned independently, but the documentation is versioned with a suite version. Right now I'm only planning to publish a single version (the latest version), of all the docs. In the future, if the need arises, we can investigate pushing different versions to different branches, hosted under different URLs on github pages.
+
+### Automated publications list
+
+The "Publications that use PEPkit" section of `docs/statistics.md` is not
+hand-written HTML. It renders from `docs/data/publications.yaml` at build time,
+via the MkDocs hook at `hooks/publications.py` (registered under `hooks:` in
+`mkdocs.yml`). Because the YAML lives inside `docs/`, MkDocs also copies it into
+the built site, so it is published as machine-readable data at
+<https://pep.databio.org/data/publications.yaml>.
+
+`.github/workflows/scheduled-publications-update.yml` runs on the first of each
+month. It follows `.claude/skills/update-publications.md`, which searches
+OpenAlex for papers citing the PEP manuscripts and Europe PMC for full-text
+mentions of the tools, then **appends** the verified ones to the YAML and opens
+a pull request. The bot never modifies an existing entry, never edits
+`docs/statistics.md`, and never merges its own PR — a human reviews every one.
+Its search configuration (seed papers, queries, tool vocabulary) is in
+`publication_sources.yaml` at the repo root.
+
+`.github/workflows/validate-publications.yaml` runs `validate_publications.py`
+on every PR that touches this data: structural checks always, plus DOI
+resolution for entries that are new in that PR.
+
+To add a paper by hand, add an entry to `docs/data/publications.yaml` with
+`evidence: manual` and today's date in `added`, then run
+`python validate_publications.py --check-dois`.

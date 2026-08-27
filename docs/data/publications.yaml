@@ -1,0 +1,364 @@
+# Publications that cite or use PEPkit tools.
+#
+# Rendered into docs/statistics.md at build time by hooks/publications.py.
+# Machine-readable copy published at
+# https://pep.databio.org/data/publications.yaml
+#
+# Mostly maintained by .github/workflows/scheduled-publications-update.yml.
+# Hand edits are fine; keep entries sorted by year descending.
+publications:
+  - doi: 10.21203/rs.3.rs-2679520/v1
+    title: 'Evolution of promoter-proximal pausing enabled a new layer of transcription control'
+    authors: Danko et al.
+    year: 2023
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1016/j.celrep.2023.112021
+    title: >-
+      Epiblast-like stem cells established by Wnt/β-catenin signaling manifest
+      distinct features of formative pluripotency and germline competence
+    authors: Luo et al.
+    year: 2023
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1016/j.celrep.2023.112393
+    title: >-
+      Maternal diet alters long-term innate immune cell memory in fetal and
+      juvenile hematopoietic stem and progenitor cells in nonhuman primate
+      offspring
+    authors: Nash et al.
+    year: 2023
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1126/sciadv.ade3876
+    title: Cohesin regulates alternative splicing
+    authors: Singh et al.
+    year: 2023
+    journal: Science Advances
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1101/2022.12.31.521782
+    title: 'Flexible and scalable control of T cell memory by a reversible epigenetic switch'
+    authors: Abadie et al.
+    year: 2022
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.3389/fcell.2022.936168
+    title: >-
+      High enhancer activity is an epigenetic feature of HPV negative atypical
+      head and neck squamous cell carcinoma
+    authors: Callahan et al.
+    year: 2022
+    journal: Frontiers in Cell and Developmental Biology
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1073/pnas.2201267119
+    title: >-
+      Single-cell transcriptome and accessible chromatin dynamics during
+      endocrine pancreas development
+    authors: Duvall et al.
+    year: 2022
+    journal: Proceedings of the National Academy of Sciences
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41596-022-00692-9
+    title: Chromatin accessibility profiling by ATAC-seq
+    authors: Grandi et al.
+    year: 2022
+    journal: Nature Protocols
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1016/j.celrep.2022.110697
+    title: HNF4A modulates glucocorticoid action in the liver
+    authors: Hunter et al.
+    year: 2022
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.3389/fimmu.2022.856966
+    title: >-
+      BET Protein Inhibition Regulates Macrophage Chromatin Accessibility and
+      Microbiota-Dependent Colitis
+    authors: O'Connor et al.
+    year: 2022
+    journal: Frontiers in Immunology
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41588-022-01211-y
+    title: >-
+      Whole-genome sequencing of chronic lymphocytic leukemia identifies
+      subgroups with distinct biological and clinical features
+    authors: Robbe et al.
+    year: 2022
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1101/2022.10.07.511310
+    title: >-
+      The methyltransferases METTL7A and METTL7B confer resistance to
+      thiol-based histone deacetylase inhibitors
+    authors: Robey et al.
+    year: 2022
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41598-022-14675-z
+    title: >-
+      Integrating chromatin accessibility states in the design of targeted
+      sequencing panels for liquid biopsy
+    authors: Taklifi et al.
+    year: 2022
+    journal: Scientific Reports
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41588-022-01026-x
+    title: >-
+      Prediction of histone post-translational modification patterns based on
+      nascent transcription data
+    authors: Wang et al.
+    year: 2022
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1101/2022.12.08.519600
+    title: 'Correction of transposase sequence bias in ATAC-seq data with rule ensemble modeling'
+    authors: Wolpe et al.
+    year: 2022
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1186/s12864-021-08266-x
+    title: 'Extensive evaluation of ATAC-seq protocols for native or formaldehyde-fixed nuclei'
+    authors: Zhang et al.
+    year: 2022
+    journal: BMC Genomics
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41590-021-00928-y
+    title: >-
+      Repression of CTSG, ELANE and PRTN3-mediated histone H3 proteolytic
+      cleavage promotes monocyte-to-macrophage differentiation
+    authors: Cheung et al.
+    year: 2021
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1093/bioinformatics/btab439
+    title: 'Embeddings of genomic region sets capture rich biological associations in low dimensions'
+    authors: Gharavi et al.
+    year: 2021
+    journal: Bioinformatics
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1038/s41588-021-00790-6
+    title: >-
+      ArchR is a scalable software package for integrative single-cell chromatin
+      accessibility analysis
+    authors: Granja et al.
+    year: 2021
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1186/s13059-021-02440-w
+    title: 'Bedshift: perturbation of genomic interval sets'
+    authors: Gu et al.
+    year: 2021
+    journal: Genome Biology
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1101/2021.04.28.441728
+    title: 'Clonal inactivation of telomerase promotes accelerated stem cell differentiation'
+    authors: Hasegawa et al.
+    year: 2021
+    journal: bioRxiv
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.12688/f1000research.29032.2
+    title: Sustainable data analysis with Snakemake
+    authors: Mölder et al.
+    year: 2021
+    journal: F1000Research
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.26508/lsa.202000976
+    title: >-
+      Profiling chromatin accessibility responses in human neutrophils with
+      sensitive pathogen detection
+    authors: Ram-Mohan et al.
+    year: 2021
+    journal: Life Science Alliance
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1038/s41588-021-00880-5
+    title: >-
+      Fine-mapping, trans-ancestral and genomic analyses identify causal
+      variants, cells, genes and drug targets for type 1 diabetes
+    authors: Robertson et al.
+    year: 2021
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1126/sciimmunol.abe3981
+    title: >-
+      Germline biallelic mutation affecting the transcription factor Helios
+      causes pleiotropic defects of immunity
+    authors: Shahin et al.
+    year: 2021
+    journal: Science Immunology
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1186/s13059-021-02349-4
+    title: 'PEPPRO: quality control and processing of nascent RNA profiling data'
+    authors: Smith et al.
+    year: 2021
+    journal: Genome Biology
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1101/2021.01.29.428733
+    title: >-
+      Integrative phenotypic and genomic analyses reveal strain-dependent
+      responses to acute ozone exposure and their associations with airway
+      macrophage transcriptional activity
+    authors: Tovar et al.
+    year: 2021
+    journal: bioRxiv
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1126/science.aba1786
+    title: >-
+      Transient rest restores functionality in exhausted CAR-T cells through
+      epigenetic remodeling
+    authors: Weber et al.
+    year: 2021
+    journal: Science
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1186/s12920-020-0695-0
+    title: >-
+      Specific chromatin landscapes and transcription factors couple breast
+      cancer subtype with metastatic relapse to lung or brain
+    authors: Cai et al.
+    year: 2020
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1016/j.celrep.2020.108473
+    title: >-
+      Epigenomic Reprogramming toward Mesenchymal-Epithelial Transition in
+      Ovarian-Cancer-Associated Mesenchymal Stem Cells Drives Metastasis
+    authors: Fan et al.
+    year: 2020
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1038/s41419-020-2303-9
+    title: >-
+      Acetate supplementation restores chromatin accessibility and promotes
+      tumor cell differentiation under hypoxia
+    authors: Li et al.
+    year: 2020
+    journal: Cell Death & Disease
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.18632/oncotarget.27584
+    title: Clinical implications of chromatin accessibility in human cancers
+    authors: Liu
+    year: 2020
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.2337/db20-112-or
+    title: >-
+      112-OR: Integrative Analysis of Chromatin Accessibility and Genetic Risk
+      in T1D Patients and Controls
+    authors: ROBERTSON et al.
+    year: 2020
+    journal: Diabetes
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1002/cphg.101
+    title: Analytical Approaches for ATAC-seq Data Analysis
+    authors: Smith and Sheffield
+    year: 2020
+    journal: Current Protocols in Human Genetics
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1101/2020.04.08.032730
+    title: Interdependence between histone marks and steps in Pol II transcription
+    authors: Wang et al.
+    year: 2020
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1101/2020.05.16.099325
+    title: 'CATA: a comprehensive chromatin accessibility database for cancer'
+    authors: Zhou et al.
+    year: 2020
+    journal: bioRxiv
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1002/1873-3468.13549
+    title: >-
+      Global changes in chromatin accessibility and transcription following ATRX
+      inactivation in human cancer cells
+    authors: Liang et al.
+    year: 2019
+    tools: []
+    evidence: legacy
+    added: 2019-01-01
+  - doi: 10.1126/science.aav1898
+    title: The chromatin accessibility landscape of primary human cancers
+    authors: Corces et al.
+    year: 2018
+    journal: Science
+    tools: []
+    evidence: legacy
+    added: 2018-01-01
+  - doi: 10.1038/nmeth.4177
+    title: Pooled CRISPR screening with single-cell transcriptome readout
+    authors: Datlinger et al.
+    year: 2017
+    journal: Nat. Methods
+    tools: []
+    evidence: legacy
+    added: 2017-01-01
+  - doi: 10.1038/nm.4273
+    title: DNA methylation heterogeneity defines a disease spectrum in Ewing sarcoma
+    authors: Sheffield et al.
+    year: 2017
+    journal: Nature Medicine
+    tools: []
+    evidence: legacy
+    added: 2017-01-01

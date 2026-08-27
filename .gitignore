@@ -13,3 +13,4 @@ venv/
 /docs/pipestat/notebooks/.ipynb_checkpoints/
 /docs/looper/notebooks/.ipynb_checkpoints/
 node_modules
+__pycache__/

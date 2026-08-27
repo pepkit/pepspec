@@ -1,0 +1,85 @@
+# Configuration for the monthly publications search.
+# Consumed by .claude/skills/update-publications.md.
+
+# Fixed lookback window. Deliberately NOT a moving cursor -- see the skill.
+lookback_months: 18
+
+# Cap on how many new entries one PR may add.
+max_new_per_run: 40
+
+# Controlled vocabulary for the `tools` field in publications.yaml.
+tools:
+  - peppy
+  - looper
+  - eido
+  - geofetch
+  - pipestat
+  - pypiper
+  - pephub
+  - divvy
+  - pepatac
+  - peppro
+  - bulker
+  - biocproject
+
+# Seed manuscripts. A paper citing any of these qualifies for the list.
+# openalex ids verified against api.openalex.org.
+seeds:
+  - doi: 10.1093/gigascience/giab077
+    openalex: W4225686448
+    label: "PEP / peppy (Sheffield 2021)"
+  - doi: 10.1093/bioinformatics/btad069
+    openalex: W4322730823
+    label: "GEOfetch (2023)"
+  - doi: 10.1093/gigascience/giae033
+    openalex: W4400524452
+    label: "PEPhub (2024)"
+  - doi: 10.1101/2023.08.15.551388
+    openalex: W4385971335
+    label: "PEPhub preprint (2023)"
+  - doi: 10.1093/nargab/lqab101
+    openalex: W3214910288
+    label: "PEPATAC (2021)"
+  - doi: 10.1101/2020.10.21.347054
+    openalex: W3093522307
+    label: "PEPATAC preprint (2020)"
+  - doi: 10.1186/s13059-021-02349-4
+    openalex: W3161782483
+    label: "PEPPRO (2021)"
+
+# Europe PMC full-text queries. Each was tested against the live API.
+# Only distinctive strings appear here -- see `banned_queries` for why.
+fulltext_queries:
+  - '"Portable Encapsulated Project"'
+  - '"github.com/pepkit"'
+  - '"looper" AND "pypiper"'
+  - '"PEPATAC"'
+  - '"PEPPRO"'
+  - '"geofetch"'
+  - '"pephub"'
+  - '"pipestat"'
+
+# Never search for these bare. They are ordinary words and return garbage:
+# "peppy" returns autism and yoga psychology papers; "pepkit" returns
+# peptide chemistry; "looper" and "eido" collide with unrelated domains.
+banned_queries:
+  - '"peppy"'
+  - '"pepkit"'
+  - '"looper"'
+  - '"eido"'
+  - '"divvy"'
+
+# Never list these -- they are our own tool papers, already cited elsewhere
+# on the statistics page.
+#
+# refgenie is deliberately NOT part of PEPkit. A paper using refgenie is not
+# thereby using PEPkit, so refgenie is absent from `tools`, `seeds`, and
+# `fulltext_queries`, and its own paper is excluded here.
+exclude_dois:
+  - 10.1093/gigascience/giab077
+  - 10.1093/bioinformatics/btad069
+  - 10.1093/gigascience/giae033
+  - 10.1093/nargab/lqab101
+  - 10.1186/s13059-021-02349-4
+  - 10.1093/gigascience/giz149
+  - 10.1101/698704
