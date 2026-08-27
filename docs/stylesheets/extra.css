@@ -136,3 +136,41 @@ blockquote {
 .toc ul {
   line-height: 1.0;
 }
+
+/* Usage statistics charts (docs/statistics.md) */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.chart-card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: var(--md-default-bg-color);
+  overflow-x: auto;
+}
+
+.chart-container,
+.chart-container .vega-embed {
+  width: 100%;
+}
+
+/* Hide the vega-embed actions caret */
+.chart-container .vega-embed summary {
+  display: none;
+}
+
+.chart-error {
+  color: #999;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+@media (max-width: 600px) {
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -10,30 +10,40 @@ toc_depth: 1
 
 This page documents usage of PEPkit-related tools:
 
-1. [statistics of downloads of packages from PyPI](#pypi-download-history)
+1. [statistics of downloads of packages from PyPI and CRAN](#download-history)
 2. [other software packages that use PEPkit software](#software-using-pepkit)
 3. [datasets organized in PEP-compatible formats](#demo-data-using-pepkit)
 4. [publications that reference PEP manuscripts](#publications-that-use-pepkit)
 
 
 
-## PyPI download history
+## Download history
 
-<div id="peppy"></div>
+Monthly downloads of PEPkit packages. Data is harvested from PyPI and CRAN by
+[databio/stats](https://github.com/databio/stats) and refreshed on the first of
+each month.
 
-<div id="geofetch"></div>
+### PyPI
 
-<div id="looper"></div>
+<div class="chart-grid">
+  <div class="chart-card"><div class="chart-container" id="pypi-peppy"        data-chart-type="pypi" data-package="peppy"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-looper"       data-chart-type="pypi" data-package="looper"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-eido"         data-chart-type="pypi" data-package="eido"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-geofetch"     data-chart-type="pypi" data-package="geofetch"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-pipestat"     data-chart-type="pypi" data-package="pipestat"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-pypiper"      data-chart-type="pypi" data-package="piper" data-label="pypiper"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-yacman"       data-chart-type="pypi" data-package="yacman"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-ubiquerg"     data-chart-type="pypi" data-package="ubiquerg"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-pephubclient" data-chart-type="pypi" data-package="pephubclient"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-pepdbagent"   data-chart-type="pypi" data-package="pepdbagent"></div></div>
+  <div class="chart-card"><div class="chart-container" id="pypi-divvy"        data-chart-type="pypi" data-package="divvy"></div></div>
+</div>
 
-<div id="pipestat"></div>
+### CRAN
 
-<script>
-// Embed the visualization in the container with id `vis`
-vegaEmbed('#peppy', plotDownloads("peppy"), {"renderer": "svg", "scaleFactor": 0.6, "actions": false});
-vegaEmbed('#geofetch', plotDownloads("geofetch"), {"renderer": "svg", "scaleFactor": 0.6, "actions": false});
-vegaEmbed('#looper', plotDownloads("looper"), {"renderer": "svg", "scaleFactor": 0.6, "actions": false});
-vegaEmbed('#pipestat', plotDownloads("pipestat"), {"renderer": "svg", "scaleFactor": 0.6, "actions": false});
-</script>
+<div class="chart-grid">
+  <div class="chart-card"><div class="chart-container" id="cran-pepr" data-chart-type="cran" data-package="pepr"></div></div>
+</div>
 
 ## Software using PEPkit
 
