@@ -314,6 +314,14 @@ publications:
     tools: []
     evidence: legacy
     added: 2020-01-01
+  - doi: 10.1093/gigascience/giz149
+    title: 'Refgenie: a reference genome resource manager'
+    authors: Stolarczyk et al.
+    year: 2020
+    journal: GigaScience
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
   - doi: 10.1101/2020.04.08.032730
     title: Interdependence between histone marks and steps in Pol II transcription
     authors: Wang et al.

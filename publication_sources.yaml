@@ -72,14 +72,13 @@ banned_queries:
 # Never list these -- they are our own tool papers, already cited elsewhere
 # on the statistics page.
 #
-# refgenie is deliberately NOT part of PEPkit. A paper using refgenie is not
-# thereby using PEPkit, so refgenie is absent from `tools`, `seeds`, and
-# `fulltext_queries`, and its own paper is excluded here.
+# refgenie is deliberately NOT a seed and NOT a search keyword: citing or
+# using refgenie does not make a paper a PEPkit user, so refgenie is absent
+# from `seeds`, `fulltext_queries`, and the `tools` vocabulary. This says
+# nothing about refgenie itself, which IS a PEPkit user and stays on the list.
 exclude_dois:
   - 10.1093/gigascience/giab077
   - 10.1093/bioinformatics/btad069
   - 10.1093/gigascience/giae033
   - 10.1093/nargab/lqab101
   - 10.1186/s13059-021-02349-4
-  - 10.1093/gigascience/giz149
-  - 10.1101/698704
