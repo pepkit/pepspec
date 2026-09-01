@@ -7,6 +7,14 @@
 # Mostly maintained by .github/workflows/scheduled-publications-update.yml.
 # Hand edits are fine; keep entries sorted by year descending.
 publications:
+  - doi: 10.1093/bioadv/vbag199
+    title: 'EHItk: a toolkit for accessing Earth Hologenome Initiative data resources'
+    authors: Alberdi et al.
+    year: 2026
+    journal: Bioinformatics Advances
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-09-01
   - doi: 10.1038/s41467-026-75287-z
     title: ERG preserves endothelial identity to limit atherosclerosis
     authors: Botts et al.
