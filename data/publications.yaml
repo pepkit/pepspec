@@ -1,0 +1,729 @@
+# Publications that cite or use PEPkit tools.
+#
+# Rendered into docs/statistics.md at build time by hooks/publications.py.
+# Machine-readable copy published at
+# https://pep.databio.org/data/publications.yaml
+#
+# Mostly maintained by .github/workflows/scheduled-publications-update.yml.
+# Hand edits are fine; keep entries sorted by year descending.
+publications:
+  - doi: 10.1093/bioadv/vbag199
+    title: 'EHItk: a toolkit for accessing Earth Hologenome Initiative data resources'
+    authors: Alberdi et al.
+    year: 2026
+    journal: Bioinformatics Advances
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-09-01
+  - doi: 10.1038/s41467-026-75287-z
+    title: ERG preserves endothelial identity to limit atherosclerosis
+    authors: Botts et al.
+    year: 2026
+    journal: Nature Communications
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1093/bioinformatics/btag053
+    title: Using semantic search to find publicly available gene-expression datasets
+    authors: Brown et al.
+    year: 2026
+    journal: Bioinformatics
+    preprint_doi: 10.1101/2025.03.13.643153
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-08-27
+  - doi: 10.1093/gigascience/giag029
+    title: 'SCSEQ: A web tool for analyzing single-cell RNA-seq data'
+    authors: Du et al.
+    year: 2026
+    journal: GigaScience
+    tools: []
+    evidence: cites:10.1093/gigascience/giae033
+    added: 2026-08-27
+  - doi: 10.1186/s12859-026-06382-7
+    title: >-
+      ChromAcS: an automated and flexible GUI for end-to-end reproducible ATAC-seq
+      analysis across multiple species
+    authors: Hossain et al.
+    year: 2026
+    journal: BMC Bioinformatics
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.3389/fpls.2025.1687700
+    title: >-
+      Chromatin accessibility directly governs flavonoid biosynthesis and indirectly
+      orchestrates cannabinoid production in Cannabis
+    authors: Ma et al.
+    year: 2026
+    journal: Frontiers in Plant Science
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.5772/intechopen.1013230
+    title: >-
+      Perspectives Chapter: Data-Centric Strategies for Machine Learning-Driven
+      Therapeutic Peptide Design – Challenges and Perspectives
+    authors: Medina-Ortiz et al.
+    year: 2026
+    journal: Data Quality Matters - Best Practices for Integrity and Assurance
+    tools: []
+    evidence: cites:10.1093/gigascience/giae033
+    added: 2026-08-27
+  - doi: 10.64898/2026.05.13.724835
+    title: >-
+      ppGpp regulates transcription elongation via direct and indirect inputs to RNA
+      polymerase pausing and nucleotide addition
+    authors: Mueller et al.
+    year: 2026
+    tools: []
+    evidence: cites:10.1093/gigascience/giab077
+    added: 2026-08-27
+  - doi: 10.1093/nar/gkag128
+    title: >-
+      Genome-wide dynamic nascent transcript profiles reveal that most paused RNA
+      polymerases terminate
+    authors: Mukherjee and Guertin
+    year: 2026
+    journal: Nucleic Acids Research
+    tools: []
+    evidence: cites:10.1186/s13059-021-02349-4
+    added: 2026-08-27
+  - doi: 10.3390/cells15030221
+    title: >-
+      Manipulation of Alternative Splicing of IKZF1 Elicits Distinct Gene Regulatory
+      Responses in T Cells
+    authors: Pastor et al.
+    year: 2026
+    journal: Cells
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1016/j.omton.2026.201229
+    title: >-
+      Mevalonate pathway activation in Ewing sarcoma reveals a 3D-specific synergy
+      between statins and BCL-xL inhibition
+    authors: Radic-Sarikas et al.
+    year: 2026
+    journal: Molecular Therapy Oncology
+    preprint_doi: 10.1101/2025.11.20.689456
+    tools: []
+    evidence: cites:10.1093/gigascience/giab077
+    added: 2026-08-27
+  - doi: 10.1038/s42003-025-09457-y
+    title: >-
+      Hypoxia leads to reduced mito-nuclear gene expression and increased mtDNA
+      transcriptional pausing in human cells
+    authors: Shtolz et al.
+    year: 2026
+    journal: Communications Biology
+    tools: []
+    evidence: cites:10.1186/s13059-021-02349-4
+    added: 2026-08-27
+  - doi: 10.64898/2026.08.03.742578
+    title: >-
+      BCL11B targeting in tumor CD8+ T cells amplifies anti-tumor response by
+      blocking exhaustion while promoting stemness and cytotoxicity
+    authors: Silvane et al.
+    year: 2026
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1093/gigascience/giag039
+    title: >-
+      GEfetch2R: fetching single-cell/bulk RNA-seq data from public repositories to R
+      and benchmarking the subsequent format conversion tools
+    authors: Song et al.
+    year: 2026
+    journal: GigaScience
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-08-27
+  - doi: 10.1016/j.xgen.2025.101040
+    title: Predictive prioritization of enhancers associated with pancreatic disease risk
+    authors: Wang et al.
+    year: 2026
+    journal: Cell Genomics
+    tools: []
+    evidence: cites:10.1101/2020.10.21.347054
+    added: 2026-08-27
+  - doi: 10.1186/s40168-025-02223-6
+    title: >-
+      Cervicovaginal microbiome alters transcriptomic and chromatin accessibility
+      signatures across cervicovaginal epithelial barriers
+    authors: Anton et al.
+    year: 2025
+    journal: Microbiome
+    preprint_doi: 10.21203/rs.3.rs-6171614/v1
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1093/nar/gkaf952
+    title: 'OncoDB 2.0: a comprehensive platform for integrated pan-cancer omics analysis'
+    authors: Cho et al.
+    year: 2025
+    journal: Nucleic Acids Research
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1002/advs.202505214
+    title: >-
+      Targeting eRNA‐Producing Super‐Enhancers Regulates TNFα Expression and
+      Mitigates Chronic Inflammation in Mice and Patient‐Derived Immune Cells
+    authors: Cho et al.
+    year: 2025
+    journal: Advanced Science
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1016/j.molcel.2025.06.029
+    title: Enhancing transcriptome mapping with rapid PRO-seq profiling of nascent RNA
+    authors: Cingaram et al.
+    year: 2025
+    journal: Molecular Cell
+    tools: []
+    evidence: cites:10.1186/s13059-021-02349-4
+    added: 2026-08-27
+  - doi: 10.1016/j.synbio.2025.04.001
+    title: >-
+      MTD: A cloud-based omics database and interactive platform for Myceliophthora
+      thermophila
+    authors: Dong et al.
+    year: 2025
+    journal: Synthetic and Systems Biotechnology
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-08-27
+  - doi: 10.1093/bib/bbaf560
+    title: >-
+      How far are we from the era of big data in transcriptomics? Lessons from the
+      bacterial data in GEO
+    authors: Escobedo-Muñoz et al.
+    year: 2025
+    journal: Briefings in Bioinformatics
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-08-27
+  - doi: 10.1016/j.celrep.2025.115913
+    title: >-
+      Quantification of intrinsic regulatory factors refines human hematopoietic
+      progenitor definitions and reveals early erythroid lineage priming
+    authors: Favaro et al.
+    year: 2025
+    journal: Cell Reports
+    tools: []
+    evidence: cites:10.1101/2020.10.21.347054
+    added: 2026-08-27
+  - doi: 10.1126/sciadv.adu3346
+    title: >-
+      Spinal motor neuron development and metabolism are transcriptionally regulated
+      by nuclear factor IA
+    authors: Gauberg et al.
+    year: 2025
+    journal: Science Advances
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1093/bioadv/vbaf039
+    title: >-
+      Adaptive adjustment of profile HMM significance thresholds improves functional
+      and metabolic insights into microbial genomes
+    authors: Kananen et al.
+    year: 2025
+    journal: Bioinformatics Advances
+    tools: [peppy, eido, looper]
+    evidence: fulltext:PMC11964587
+    added: 2026-08-27
+  - doi: 10.1038/s41698-025-00932-7
+    title: >-
+      Epigenomic profiling of papillary thyroid carcinoma reveals distinct subtypes
+      with clinical implications
+    authors: Lee et al.
+    year: 2025
+    journal: npj Precision Oncology
+    tools: [pepatac]
+    evidence: fulltext:PMC12065858
+    added: 2026-08-27
+  - doi: 10.1101/2025.11.03.685753
+    title: >-
+      Atacformer: A transformer-based foundation model for analysis and
+      interpretation of ATAC-seq data
+    authors: LeRoy et al.
+    year: 2025
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-08-27
+  - doi: 10.1186/s13072-025-00579-5
+    title: >-
+      Integrative analysis of gene expression and chromatin dynamics multi-omics data
+      in mouse models of bleomycin-induced lung fibrosis
+    authors: Li et al.
+    year: 2025
+    journal: Epigenetics & Chromatin
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1016/j.critrevonc.2025.104677
+    title: >-
+      Heterogeneity of the tumor immune cell microenvironment revealed by single-cell
+      sequencing in head and neck cancer
+    authors: Li et al.
+    year: 2025
+    journal: Critical Reviews in Oncology/Hematology
+    tools: []
+    evidence: cites:10.1186/s13059-021-02349-4
+    added: 2026-08-27
+  - doi: 10.1101/2025.03.03.638093
+    title: >-
+      Zinc-finger proteins with a co-opted capsid domain anchor nucleosomes over
+      transposon sequences
+    authors: Matsushima et al.
+    year: 2025
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1101/2025.10.09.681187
+    title: >-
+      Evolution of chromatin accessibility associated with traits of cichlid
+      phenotypic diversity
+    authors: Mehta et al.
+    year: 2025
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1016/j.celrep.2025.115381
+    title: >-
+      YAP1 is a key regulator of EWS::FLI1-dependent malignant transformation upon
+      IGF-1-mediated reprogramming of bone mesenchymal stem cells
+    authors: Noorizadeh et al.
+    year: 2025
+    journal: Cell Reports
+    tools: []
+    evidence: cites:10.1101/2020.10.21.347054
+    added: 2026-08-27
+  - doi: 10.1016/j.celrep.2025.115767
+    title: Widespread impact of nucleosome remodelers on transcription at cis-regulatory elements
+    authors: Patty et al.
+    year: 2025
+    journal: Cell Reports
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1016/j.molcel.2025.03.001
+    title: >-
+      Amplified dosage of the NKX2-1 lineage transcription factor controls its
+      oncogenic role in lung adenocarcinoma
+    authors: Pulice and Meyerson
+    year: 2025
+    journal: Molecular Cell
+    tools: []
+    evidence: cites:10.1101/2020.10.21.347054
+    added: 2026-08-27
+  - doi: 10.1101/2025.07.03.663002
+    title: PRMT5 activity sustains histone production to maintain genome integrity
+    authors: Roth et al.
+    year: 2025
+    tools: []
+    evidence: cites:10.1186/s13059-021-02349-4
+    added: 2026-08-27
+  - doi: 10.1186/s12864-025-11568-z
+    title: Atlas of nascent RNA transcripts reveals tissue-specific enhancer to gene linkages
+    authors: Sigauke et al.
+    year: 2025
+    journal: BMC Genomics
+    tools: []
+    evidence: cites:10.1186/s13059-021-02349-4
+    added: 2026-08-27
+  - doi: 10.1093/nar/gkaf816
+    title: >-
+      A direct interaction between the Chd1 CHCT domain and Rtf1 controls Chd1
+      distribution and nucleosome positioning on active genes
+    authors: Tripplehorn et al.
+    year: 2025
+    journal: Nucleic Acids Research
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1038/s43018-025-01059-1
+    title: >-
+      MEF2D-expressing cancer precursors reprogram tissue-resident macrophages to
+      support liver tumorigenesis
+    authors: Xiang et al.
+    year: 2025
+    journal: Nature Cancer
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
+  - doi: 10.1016/j.csbj.2025.11.026
+    title: >-
+      EAP: A versatile cloud-based platform for efficient quantitative analysis of
+      large-scale ChIP/ATAC-seq datasets
+    authors: Zheng et al.
+    year: 2025
+    journal: Computational and Structural Biotechnology Journal
+    tools: []
+    evidence: fulltext:PMC12670574
+    added: 2026-08-27
+  - doi: 10.21203/rs.3.rs-2679520/v1
+    title: 'Evolution of promoter-proximal pausing enabled a new layer of transcription control'
+    authors: Danko et al.
+    year: 2023
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1016/j.celrep.2023.112021
+    title: >-
+      Epiblast-like stem cells established by Wnt/β-catenin signaling manifest
+      distinct features of formative pluripotency and germline competence
+    authors: Luo et al.
+    year: 2023
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1016/j.celrep.2023.112393
+    title: >-
+      Maternal diet alters long-term innate immune cell memory in fetal and
+      juvenile hematopoietic stem and progenitor cells in nonhuman primate
+      offspring
+    authors: Nash et al.
+    year: 2023
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1126/sciadv.ade3876
+    title: Cohesin regulates alternative splicing
+    authors: Singh et al.
+    year: 2023
+    journal: Science Advances
+    tools: []
+    evidence: legacy
+    added: 2023-01-01
+  - doi: 10.1101/2022.12.31.521782
+    title: 'Flexible and scalable control of T cell memory by a reversible epigenetic switch'
+    authors: Abadie et al.
+    year: 2022
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.3389/fcell.2022.936168
+    title: >-
+      High enhancer activity is an epigenetic feature of HPV negative atypical
+      head and neck squamous cell carcinoma
+    authors: Callahan et al.
+    year: 2022
+    journal: Frontiers in Cell and Developmental Biology
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1073/pnas.2201267119
+    title: >-
+      Single-cell transcriptome and accessible chromatin dynamics during
+      endocrine pancreas development
+    authors: Duvall et al.
+    year: 2022
+    journal: Proceedings of the National Academy of Sciences
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41596-022-00692-9
+    title: Chromatin accessibility profiling by ATAC-seq
+    authors: Grandi et al.
+    year: 2022
+    journal: Nature Protocols
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1016/j.celrep.2022.110697
+    title: HNF4A modulates glucocorticoid action in the liver
+    authors: Hunter et al.
+    year: 2022
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.3389/fimmu.2022.856966
+    title: >-
+      BET Protein Inhibition Regulates Macrophage Chromatin Accessibility and
+      Microbiota-Dependent Colitis
+    authors: O'Connor et al.
+    year: 2022
+    journal: Frontiers in Immunology
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41588-022-01211-y
+    title: >-
+      Whole-genome sequencing of chronic lymphocytic leukemia identifies
+      subgroups with distinct biological and clinical features
+    authors: Robbe et al.
+    year: 2022
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1101/2022.10.07.511310
+    title: >-
+      The methyltransferases METTL7A and METTL7B confer resistance to
+      thiol-based histone deacetylase inhibitors
+    authors: Robey et al.
+    year: 2022
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41598-022-14675-z
+    title: >-
+      Integrating chromatin accessibility states in the design of targeted
+      sequencing panels for liquid biopsy
+    authors: Taklifi et al.
+    year: 2022
+    journal: Scientific Reports
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41588-022-01026-x
+    title: >-
+      Prediction of histone post-translational modification patterns based on
+      nascent transcription data
+    authors: Wang et al.
+    year: 2022
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1101/2022.12.08.519600
+    title: 'Correction of transposase sequence bias in ATAC-seq data with rule ensemble modeling'
+    authors: Wolpe et al.
+    year: 2022
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1186/s12864-021-08266-x
+    title: 'Extensive evaluation of ATAC-seq protocols for native or formaldehyde-fixed nuclei'
+    authors: Zhang et al.
+    year: 2022
+    journal: BMC Genomics
+    tools: []
+    evidence: legacy
+    added: 2022-01-01
+  - doi: 10.1038/s41590-021-00928-y
+    title: >-
+      Repression of CTSG, ELANE and PRTN3-mediated histone H3 proteolytic
+      cleavage promotes monocyte-to-macrophage differentiation
+    authors: Cheung et al.
+    year: 2021
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1093/bioinformatics/btab439
+    title: 'Embeddings of genomic region sets capture rich biological associations in low dimensions'
+    authors: Gharavi et al.
+    year: 2021
+    journal: Bioinformatics
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1038/s41588-021-00790-6
+    title: >-
+      ArchR is a scalable software package for integrative single-cell chromatin
+      accessibility analysis
+    authors: Granja et al.
+    year: 2021
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1186/s13059-021-02440-w
+    title: 'Bedshift: perturbation of genomic interval sets'
+    authors: Gu et al.
+    year: 2021
+    journal: Genome Biology
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1101/2021.04.28.441728
+    title: 'Clonal inactivation of telomerase promotes accelerated stem cell differentiation'
+    authors: Hasegawa et al.
+    year: 2021
+    journal: bioRxiv
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.12688/f1000research.29032.2
+    title: Sustainable data analysis with Snakemake
+    authors: Mölder et al.
+    year: 2021
+    journal: F1000Research
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.26508/lsa.202000976
+    title: >-
+      Profiling chromatin accessibility responses in human neutrophils with
+      sensitive pathogen detection
+    authors: Ram-Mohan et al.
+    year: 2021
+    journal: Life Science Alliance
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1038/s41588-021-00880-5
+    title: >-
+      Fine-mapping, trans-ancestral and genomic analyses identify causal
+      variants, cells, genes and drug targets for type 1 diabetes
+    authors: Robertson et al.
+    year: 2021
+    journal: Nature Genetics
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1126/sciimmunol.abe3981
+    title: >-
+      Germline biallelic mutation affecting the transcription factor Helios
+      causes pleiotropic defects of immunity
+    authors: Shahin et al.
+    year: 2021
+    journal: Science Immunology
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1186/s13059-021-02349-4
+    title: 'PEPPRO: quality control and processing of nascent RNA profiling data'
+    authors: Smith et al.
+    year: 2021
+    journal: Genome Biology
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1101/2021.01.29.428733
+    title: >-
+      Integrative phenotypic and genomic analyses reveal strain-dependent
+      responses to acute ozone exposure and their associations with airway
+      macrophage transcriptional activity
+    authors: Tovar et al.
+    year: 2021
+    journal: bioRxiv
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1126/science.aba1786
+    title: >-
+      Transient rest restores functionality in exhausted CAR-T cells through
+      epigenetic remodeling
+    authors: Weber et al.
+    year: 2021
+    journal: Science
+    tools: []
+    evidence: legacy
+    added: 2021-01-01
+  - doi: 10.1186/s12920-020-0695-0
+    title: >-
+      Specific chromatin landscapes and transcription factors couple breast
+      cancer subtype with metastatic relapse to lung or brain
+    authors: Cai et al.
+    year: 2020
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1016/j.celrep.2020.108473
+    title: >-
+      Epigenomic Reprogramming toward Mesenchymal-Epithelial Transition in
+      Ovarian-Cancer-Associated Mesenchymal Stem Cells Drives Metastasis
+    authors: Fan et al.
+    year: 2020
+    journal: Cell Reports
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1038/s41419-020-2303-9
+    title: >-
+      Acetate supplementation restores chromatin accessibility and promotes
+      tumor cell differentiation under hypoxia
+    authors: Li et al.
+    year: 2020
+    journal: Cell Death & Disease
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.18632/oncotarget.27584
+    title: Clinical implications of chromatin accessibility in human cancers
+    authors: Liu
+    year: 2020
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.2337/db20-112-or
+    title: >-
+      112-OR: Integrative Analysis of Chromatin Accessibility and Genetic Risk
+      in T1D Patients and Controls
+    authors: ROBERTSON et al.
+    year: 2020
+    journal: Diabetes
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1002/cphg.101
+    title: Analytical Approaches for ATAC-seq Data Analysis
+    authors: Smith and Sheffield
+    year: 2020
+    journal: Current Protocols in Human Genetics
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1093/gigascience/giz149
+    title: 'Refgenie: a reference genome resource manager'
+    authors: Stolarczyk et al.
+    year: 2020
+    journal: GigaScience
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1101/2020.04.08.032730
+    title: Interdependence between histone marks and steps in Pol II transcription
+    authors: Wang et al.
+    year: 2020
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1101/2020.05.16.099325
+    title: 'CATA: a comprehensive chromatin accessibility database for cancer'
+    authors: Zhou et al.
+    year: 2020
+    journal: bioRxiv
+    tools: []
+    evidence: legacy
+    added: 2020-01-01
+  - doi: 10.1002/1873-3468.13549
+    title: >-
+      Global changes in chromatin accessibility and transcription following ATRX
+      inactivation in human cancer cells
+    authors: Liang et al.
+    year: 2019
+    tools: []
+    evidence: legacy
+    added: 2019-01-01
+  - doi: 10.1126/science.aav1898
+    title: The chromatin accessibility landscape of primary human cancers
+    authors: Corces et al.
+    year: 2018
+    journal: Science
+    tools: []
+    evidence: legacy
+    added: 2018-01-01
+  - doi: 10.1038/nmeth.4177
+    title: Pooled CRISPR screening with single-cell transcriptome readout
+    authors: Datlinger et al.
+    year: 2017
+    journal: Nat. Methods
+    tools: []
+    evidence: legacy
+    added: 2017-01-01
+  - doi: 10.1038/nm.4273
+    title: DNA methylation heterogeneity defines a disease spectrum in Ewing sarcoma
+    authors: Sheffield et al.
+    year: 2017
+    journal: Nature Medicine
+    tools: []
+    evidence: legacy
+    added: 2017-01-01
