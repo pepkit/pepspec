@@ -93,14 +93,18 @@ via the MkDocs hook at `hooks/publications.py` (registered under `hooks:` in
 the built site, so it is published as machine-readable data at
 <https://pep.databio.org/data/publications.yaml>.
 
-`.github/workflows/scheduled-publications-update.yml` runs on the first of each
-month. It follows `.claude/skills/update-publications.md`, which searches
-OpenAlex for papers citing the PEP manuscripts and Europe PMC for full-text
-mentions of the tools, then **appends** the verified ones to the YAML and opens
-a pull request. The bot never modifies an existing entry, never edits
-`docs/statistics.md`, and never merges its own PR — a human reviews every one.
-Its search configuration (seed papers, queries, tool vocabulary) is in
-`publication_sources.yaml` at the repo root.
+The recurring publications search is designed to run as a Jules scheduled task.
+Its canonical, agent-neutral procedure lives in `automation/update-publications.md`,
+with Jules-specific guidance in `AGENTS.md`. The search uses OpenAlex for papers
+citing the PEP manuscripts and Europe PMC for full-text mentions of the tools,
+then appends only verified new entries to the YAML. The bot never modifies an
+existing entry, never edits `docs/statistics.md`, and never merges its own PR —
+a human reviews every one. Its search configuration (seed papers, queries, tool
+vocabulary) is in `publication_sources.yaml` at the repo root.
+
+`.github/workflows/scheduled-publications-update.yml` is retained as a manual
+`workflow_dispatch` fallback for running the same procedure with Claude Code;
+it is no longer scheduled.
 
 `.github/workflows/validate-publications.yaml` runs `validate_publications.py`
 on every PR that touches this data: structural checks always, plus DOI
