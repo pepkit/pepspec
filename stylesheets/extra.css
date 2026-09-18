@@ -1,0 +1,176 @@
+/* Mkdocs-material color customization */
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #2c89a0; 
+  --md-primary-fg-color: #2c89a0;
+  --md-primary-fg-color--light: #2c89a0;
+  --md-primary-fg-color--dark:  #2c89a0;
+}
+
+:root {
+  --md-primary-fg-color:        #354a75;
+  --md-primary-fg-color--light: #2c89a0;
+  --md-primary-fg-color--dark:  #353362;
+  --md-typeset-a-color: #354aa5;
+}
+
+
+.md-nav__item--section > .md-nav__link {
+	font-size: 1.25em;
+}
+
+/* For jumbotron home page */
+.header-container {
+  background-color: black;
+  background: url("../img/bg.jpg") no-repeat 50% 0;
+  color: #fff;
+  background-size: cover;
+  background-position: center 36%;
+  margin-top: -17px; }
+
+.header-container h1 {
+    color: #fff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.img-header {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.img-bullet {
+  display: inline-block;
+  vertical-align: middle;
+  height: 0.5em;
+}
+
+.badges {
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 30px;
+  ;
+  background-color: #fafafa; }
+ .jumbotron h1,
+  .jumbotron .h1 {
+     }
+  .jumbotron p {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: 200; }
+  .jumbotron > hr {
+    border-top-color: #e1e1e1; }
+
+  @media screen and (min-width: 768px) {
+    .jumbotron {
+      padding-top: 48px;
+      padding-bottom: 48px; }
+      .container .jumbotron, .container-fluid .jumbotron {
+        padding-left: 60px;
+        padding-right: 60px; }
+      .jumbotron h1,
+      .jumbotron .h1 {
+        font-size: 72px; } }
+        
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+  color: inherit; }
+
+body {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+blockquote {
+  padding: 11px 22px;
+  margin: 0 0 22px;
+  font-size: 19px;
+  border-left: 1px solid #ddd;
+  color: #6f6f6f;
+}
+
+/* Reproduce a few minimal bootstrap classes */
+.row {
+  display:flex
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  padding: 20px;
+}
+
+.img-white-bg {
+  background:#fff;
+  padding: 4px;
+}
+
+/* For citations */
+.paper-title {
+	color:#224477;
+	font-size:1.05em;
+	font-weight:bold;
+}
+
+
+
+/* TOC by default theme has too much space between list items*/
+.toc ul {
+  line-height: 1.0;
+}
+
+/* Usage statistics charts (docs/statistics.md) */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.chart-card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: var(--md-default-bg-color);
+  overflow-x: auto;
+}
+
+.chart-container,
+.chart-container .vega-embed {
+  width: 100%;
+}
+
+/* Hide the vega-embed actions caret */
+.chart-container .vega-embed summary {
+  display: none;
+}
+
+.chart-error {
+  color: #999;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+@media (max-width: 600px) {
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
