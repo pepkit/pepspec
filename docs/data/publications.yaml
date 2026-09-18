@@ -32,6 +32,14 @@ publications:
     tools: []
     evidence: cites:10.1093/bioinformatics/btad069
     added: 2026-08-27
+  - doi: 10.1016/j.celrep.2026.117970
+    title: Toward a more precise immunophenotypic and molecular definition of human cMoPs
+    authors: Calzetti et al.
+    year: 2026
+    journal: Cell Reports
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-09-18
   - doi: 10.1093/gigascience/giag029
     title: 'SCSEQ: A web tool for analyzing single-cell RNA-seq data'
     authors: Du et al.
