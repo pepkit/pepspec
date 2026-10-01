@@ -1,0 +1,60 @@
+---
+title: "PEPkit: the bio data management toolkit"
+template: splash
+hero:
+  title: Portable Encapsulated Projects
+  tagline: An open structure and toolkit for organizing large-scale, sample-intensive biological research projects.
+  actions:
+    - text: Quick start
+      link: /spec/simple-example/
+      variant: primary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<div style="display:flex; flex-wrap:wrap; gap:2rem; align-items:center">
+<div style="flex:1 1 20rem">
+
+## What is a PEP?
+
+*PEP*, or *Portable Encapsulated Projects*, is a **community effort to make sample metadata reusable**. PEPs decouple metadata from analysis by providing:
+
+1. a standardized metadata structure;
+2. a metadata validation framework; and
+3. programmatic metadata modifiers.
+
+A PEP is written using a familiar **yaml + csv** format that can be read by our R and Python packages, and well as by workflow frameworks.
+PEP is your metadata solution for sample-intensive research projects.
+The PEPkit suite is a set of modular tools that work to help you use PEP in practical applications.
+
+</div>
+<div style="flex:1 1 20rem; text-align:center">
+<img src="/img/pepkit.png" alt="" class="img-white-bg" width="480" />
+</div>
+</div>
+
+<CardGrid>
+  <Card title="Validation framework" icon="approve-check">
+    A PEP can be validated using a generic JSON schema, or you can define your own custom schema for a more specific analysis.
+
+    <div style="display:flex; gap:2rem; align-items:center; justify-content:center; margin-top:1rem">
+      <a href="https://json-schema.org/"><img src="/img/json-schema-logo.svg" style="height:30px" alt="JSON-Schema" /> JSON-Schema</a>
+      <a href="https://eido.databio.org"><img src="/img/eido_vertical.svg" style="height:140px" alt="eido" /></a>
+    </div>
+  </Card>
+  <Card title="Workflow systems" icon="setting">
+    A PEP description can be a starting point for many workflow systems, with more on the way!
+
+    <div style="display:flex; gap:1.5rem; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:1rem">
+      <a href="http://commonwl.org"><img src="/img/CWL-Logo-nofonts.svg" style="height:130px" alt="CWL" /></a>
+      <a href="https://snakemake.readthedocs.io"><img src="/img/logo_snakemake.svg" style="height:60px" alt="Snakemake" /></a>
+      <a href="http://looper.databio.org"><img src="/img/logo_looper.svg" style="height:70px" alt="looper" /></a>
+    </div>
+  </Card>
+  <Card title="Data analysts" icon="bars">
+    Start by writing your metadata in PEP format, and immediately benefit from metadata organization tools written in R and Python.
+  </Card>
+  <Card title="Software developers" icon="puzzle">
+    Handle input sample metadata formatting, parsing, and validation with our R or Python APIs, making your tool able to process PEP-compliant projects.
+  </Card>
+</CardGrid>

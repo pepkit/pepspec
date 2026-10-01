@@ -1,0 +1,25 @@
+site_name: PEP specification
+nav:
+  - Getting started:
+    - A simple example: simple-example.md
+    - PEP specification: specification.md
+    - Rationale: rationale.md
+  - Detailed how-to guides:
+    - Specify multi-value attributes: howto-multi-value-attributes.md
+    - Eliminate paths from table: howto-eliminate-paths.md
+    - Remove genome from table: howto-genome-id.md
+    - Store many projects in one file: howto-amendments.md
+    - Create automatic groups: howto-automatic-groups.md
+    - Mix & match amendments: howto-mixmatch.md
+    - Import plus amendments: howto-integrate.md
+    - Create a PEP from GEO/SRA: howto-geofetch.md
+    - Validate a PEP: howto-validate.md
+  - Implementations:
+    - 'Python package: peppy': peppy.md
+    - 'R package: pepr': pepr.md
+  - Reference:
+    - How to cite: /citations/
+    - Changelog: changelog.md
+    - PEPkit usage statistics: /statistics/
+    - Support: https://github.com/pepkit/pepkit.github.io/issues
+    - Team and Contributing: team.md

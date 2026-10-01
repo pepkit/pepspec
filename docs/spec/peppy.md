@@ -1,10 +1,10 @@
 # Python package: peppy
 
-<!-- <img src="/img/logo_python.svg" alt="" style="float:left; margin:20px"> -->`peppy` is a Python package that loads PEPs. It instantiates an in-memory representation of metadata for your project and all of its samples, for any downstream purpose. `peppy` is useful for software developers or data analysts who use Python.
+`peppy` is a Python package that loads PEPs. It instantiates an in-memory representation of metadata for your project and all of its samples, for any downstream purpose. `peppy` is useful for software developers or data analysts who use Python.
 
 ### Code and documentation
 
-* [User documentation and vignettes](../peppy/README.md)
+* [User documentation and vignettes](/peppy/)
 * [Source code at GitHub](https://github.com/pepkit/peppy)
 
 ### Quick start 

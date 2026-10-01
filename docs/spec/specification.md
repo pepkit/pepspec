@@ -185,6 +185,7 @@ This example adds a `read_type` attribute to each sample, with the value `SINGLE
 <img src="../img/cartoon_duplicate.svg" width="180">
 <figcaption><i>Duplicate</i> copies an attribute to a new name.</figcaption>
 </figure>
+
 The `duplicate` modifier copies an existing sample attribute to a new attribute with a different name. This can be useful if you need to tweak a PEP to work under a different tool that specifies a different schema for the same data.
 
 Example:

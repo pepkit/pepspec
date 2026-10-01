@@ -225,8 +225,8 @@ pull request.
 - **Never search for a term in `banned_queries`.** They are ordinary English
   words. They return garbage.
 - **Never modify an existing entry.** This job only appends.
-- **Never touch `docs/statistics.md`.** The page renders from the YAML now;
-  editing the markdown is always a mistake.
+- **Only edit the YAML.** The statistics page (`docs/site/statistics.mdx`)
+  renders the list from it when the site is built; never edit that page.
 - **Never merge the PR.** A human reviews every one.
 - **When in doubt, exclude.** A missing paper is fixed next month. A wrong one
   is on a public page until someone notices.

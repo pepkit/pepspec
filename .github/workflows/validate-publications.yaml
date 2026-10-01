@@ -6,7 +6,6 @@ on:
       - "docs/data/publications.yaml"
       - "publication_sources.yaml"
       - "validate_publications.py"
-      - "hooks/publications.py"
   push:
     branches: [master]
 

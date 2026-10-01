@@ -1,0 +1,7 @@
+# Site-level pages of pep.databio.org. This spoke is mounted at the site root
+# (spoke "site", mount = "/" in doc-hubs hubs/pepkit/spokes.toml): index.mdx is
+# the home page, citations.mdx is /citations/, statistics.mdx is /statistics/.
+site_name: PEPkit
+nav:
+  - How to cite: citations.mdx
+  - Stats: statistics.mdx

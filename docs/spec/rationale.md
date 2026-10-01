@@ -23,7 +23,7 @@ PEP makes it easy to:
 5. analyze data in both R *and* Python
 
 
-This web page outlines the PEP specification. Once you have a PEP, you will be able to process that metadata using tools in *pepkit*. You can find tools to use at [PEP statistics](../statistics.md).
+This web page outlines the PEP specification. Once you have a PEP, you will be able to process that metadata using tools in *pepkit*. You can find tools to use at [PEP statistics](/statistics/).
 
 # User stories
 
