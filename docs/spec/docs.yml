@@ -20,6 +20,12 @@ nav:
   - Reference:
     - How to cite: /citations/
     - Changelog: changelog.md
+    # Frozen copies of each released spec. To release a new version, copy
+    # specification.md to versions/<old version>.md (fix ../img to ../../img,
+    # howto links to ../), then edit specification.md.
+    - Past spec versions:
+      - '2.1.0': versions/2.1.0.md
+      - '2.0.0': versions/2.0.0.md
     - PEPkit usage statistics: /statistics/
     - Support: https://github.com/pepkit/pepkit.github.io/issues
     - Team and Contributing: team.md
