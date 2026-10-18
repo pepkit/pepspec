@@ -48,6 +48,13 @@ publications:
     tools: []
     evidence: cites:10.1093/gigascience/giae033
     added: 2026-08-27
+  - doi: 10.64898/2026.09.10.750716
+    title: 'FetchPA: a guided, end-to-end solution for local ATAC-Seq data processing and analyses'
+    authors: Fetch and Soshnev
+    year: 2026
+    tools: [pepatac]
+    evidence: fulltext:PPR1320807
+    added: 2026-10-18
   - doi: 10.1186/s12859-026-06382-7
     title: >-
       ChromAcS: an automated and flexible GUI for end-to-end reproducible ATAC-seq
@@ -155,6 +162,14 @@ publications:
     tools: []
     evidence: cites:10.1101/2020.10.21.347054
     added: 2026-08-27
+  - doi: 10.3390/ijms27209143
+    title: 'Potential Molecular Links Between Triclosan Exposure and Prostate Cancer: An Integrative Computational Analysis'
+    authors: You et al.
+    year: 2026
+    journal: International Journal of Molecular Sciences
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-10-18
   - doi: 10.1186/s40168-025-02223-6
     title: >-
       Cervicovaginal microbiome alters transcriptomic and chromatin accessibility
