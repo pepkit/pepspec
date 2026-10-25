@@ -6,3 +6,7 @@ venv/
 /.idea/
 node_modules
 __pycache__/
+
+# Build output
+site/
+.cache/
