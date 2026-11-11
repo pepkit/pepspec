@@ -69,8 +69,10 @@ banned_queries:
   - '"eido"'
   - '"divvy"'
 
-# Never list these -- they are our own tool papers, already cited elsewhere
-# on the statistics page.
+# Never list these DOIs; the search skips them. The first ones are our own
+# tool papers, already cited elsewhere on the statistics page. The monthly
+# review adds the rest at the end, one per paper it rejects, with the reason,
+# so the search does not propose a rejected paper again.
 #
 # refgenie is deliberately NOT a seed and NOT a search keyword: citing or
 # using refgenie does not make a paper a PEPkit user, so refgenie is absent

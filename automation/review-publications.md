@@ -16,7 +16,7 @@ sits on a public page, while a missing one is found again next month.
    and the new one with PyYAML and compare them by DOI. Every old entry must
    still be there with exactly the same fields. Any entry whose DOI is not in
    the old file is an added entry. Restore any old entry that was changed or
-   removed.
+   removed. (Step 4 lets you change an old entry in one case.)
 3. Check each added entry. Save every API response under `/tmp/pubsearch/`
    before you read it, as the procedure does, and do not rely on search
    snippets or memory.
@@ -50,18 +50,27 @@ sits on a public page, while a missing one is found again next month.
      `tools` left `[]` unless the evidence shows which tool was used; the
      `evidence` value; and `added` set to the run date.
 4. Edit `docs/data/publications.yaml`:
-   - Delete every added entry that fails the DOI, evidence, filter, or
-     duplicate check.
+   - If an added entry and an old entry are the same work (one is the
+     preprint of the other), keep only the old entry and make it the
+     published version: take its `doi`, `title`, `year` and `journal` from
+     the published version's Crossref record, put the preprint's DOI in
+     `preprint_doi`, and keep its `tools`, `evidence` and `added`. Then delete
+     the added entry. Re-sort if the year changed. With both DOIs on the
+     list, the search will not propose the work again.
+   - Delete every other added entry that fails the DOI, evidence, filter, or
+     duplicate check, and add its DOI to the end of `exclude_dois` in
+     `publication_sources.yaml`, with a short comment giving the reason. The
+     search skips those DOIs, so it will not propose them again.
    - For an entry that qualifies but has a wrong field, fix the field from the
      Crossref record.
    - Do not add new entries. Keep the sort order and the YAML style.
 5. Write `/tmp/review.md`: one summary sentence, then a table with each added
    entry (DOI as a link and a short title), keep, fix, or remove, the reason,
-   and the sources you opened. Say whether every existing entry was left
-   unchanged.
+   and the sources you opened. Name any old entry you changed and any DOI
+   you added to `exclude_dois`.
 
 When you finish, a hook re-runs `python validate_publications.py --check-dois`,
 commits your changes, and posts your review on the pull request. A person then
-merges it. If nothing is left, the hook closes the pull request. If the check
-fails, it tells you what to fix. Never commit, push, comment on, merge, or
-close the pull request yourself.
+merges it. If the pull request no longer changes anything, the hook closes
+it. If the check fails, it tells you what to fix. Never commit, push, comment
+on, merge, or close the pull request yourself.
