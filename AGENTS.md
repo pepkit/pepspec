@@ -3,15 +3,12 @@
 ## Publications update
 
 For any task that discovers or updates the PEPkit publications list, read and
-follow `automation/update-publications.md` completely.
+follow `automation/update-publications.md` completely. To review a proposed
+update, follow `automation/review-publications.md`.
 
-For Jules runs:
-
-- Let Jules manage its own working branch and pull request publication.
-- Do not run `gh pr create`, `git push`, or other manual PR-publication steps.
-- Before making changes, check whether an open pull request labeled
-  `publications` already exists. If one exists, make no changes and stop; the
-  fixed lookback window in the canonical procedure will rediscover anything
-  still missing on a later run.
-- If no new verified publications qualify, make no repository changes.
-- Never merge the resulting pull request automatically.
+The update runs monthly as the GitHub Actions workflow
+`.github/workflows/scheduled-publications-update.yml`. Claude Haiku proposes
+new entries; when it finishes, a hook (`automation/publish-pr.sh`) checks them,
+commits them, and opens a pull request. Claude Opus then reviews that pull
+request, and a person merges it. Never create a branch, commit, push, open a
+pull request, or merge one yourself.

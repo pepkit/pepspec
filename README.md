@@ -32,18 +32,16 @@ The "Publications that use PEPkit" section of the statistics page renders from
 `docs/data/publications.yaml` when the site is built. The same file is published
 as machine-readable data at <https://pep.databio.org/data/publications.yaml>.
 
-The recurring publications search is designed to run as a Jules scheduled task.
-Its canonical, agent-neutral procedure lives in `automation/update-publications.md`,
-with Jules-specific guidance in `AGENTS.md`. The search uses OpenAlex for papers
-citing the PEP manuscripts and Europe PMC for full-text mentions of the tools,
-then appends only verified new entries to the YAML. The bot never modifies an
-existing entry and never merges its own PR — a human reviews every one. Its
-search configuration (seed papers, queries, tool vocabulary) is in
-`publication_sources.yaml` at the repo root.
-
-`.github/workflows/scheduled-publications-update.yml` is retained as a manual
-`workflow_dispatch` fallback for running the same procedure with Claude Code;
-it is no longer scheduled.
+The publications search runs monthly (on the 18th, or by hand) as the GitHub
+Actions workflow `.github/workflows/scheduled-publications-update.yml`. Claude
+Haiku follows the procedure in `automation/update-publications.md` and opens a
+pull request; Claude Opus then rechecks every new entry with
+`automation/review-publications.md` and posts its review on the pull request.
+The search uses OpenAlex for papers citing the PEP manuscripts and Europe PMC
+for full-text mentions of the tools, then appends only verified new entries to
+the YAML. The bot never modifies an existing entry and never merges its own PR;
+a human reviews every one. Its search configuration (seed papers, queries, tool
+vocabulary) is in `publication_sources.yaml` at the repo root.
 
 `.github/workflows/validate-publications.yaml` runs `validate_publications.py`
 on every PR that touches this data: structural checks always, plus DOI
