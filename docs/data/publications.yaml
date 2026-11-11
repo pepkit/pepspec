@@ -55,6 +55,23 @@ publications:
     tools: [pepatac]
     evidence: fulltext:PPR1320807
     added: 2026-10-18
+  - doi: 10.64898/2026.07.20.739619
+    title: Plasmodium blood-stage induces trained immunity in hepatocytes
+    authors: Glennon et al.
+    year: 2026
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-11-11
+  - doi: 10.1158/1541-7786.mcr-26-0065
+    title: >-
+      Integrative Transcriptional and Chromatin Analyses Reveal Enhancer-Mediated
+      Regulatory Programs Driving Breast Cancer Metastasis
+    authors: Heredia et al.
+    year: 2026
+    journal: Molecular Cancer Research
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-11-11
   - doi: 10.1186/s12859-026-06382-7
     title: >-
       ChromAcS: an automated and flexible GUI for end-to-end reproducible ATAC-seq
@@ -85,6 +102,16 @@ publications:
     tools: []
     evidence: cites:10.1093/gigascience/giae033
     added: 2026-08-27
+  - doi: 10.1093/gbe/evag247
+    title: >-
+      Genome-Wide Evolution of Lineage-Specific Chromatin Accessibility Links
+      Regulatory Changes to Cichlid Phenotypic Diversity
+    authors: Mehta et al.
+    year: 2026
+    journal: Genome Biology and Evolution
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-11-11
   - doi: 10.64898/2026.05.13.724835
     title: >-
       ppGpp regulates transcription elongation via direct and indirect inputs to RNA
@@ -94,6 +121,15 @@ publications:
     tools: []
     evidence: cites:10.1093/gigascience/giab077
     added: 2026-08-27
+  - doi: 10.64898/2026.09.26.754596
+    title: >-
+      LOL: a Python package for leakage-aware phenotype prediction and confounding
+      diagnostics in GEO transcriptomics datasets
+    authors: Muigano
+    year: 2026
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-11-11
   - doi: 10.1093/nar/gkag128
     title: >-
       Genome-wide dynamic nascent transcript profiles reveal that most paused RNA
@@ -162,6 +198,16 @@ publications:
     tools: []
     evidence: cites:10.1101/2020.10.21.347054
     added: 2026-08-27
+  - doi: 10.1016/j.mocell.2026.100391
+    title: >-
+      Epigenetic priming and locus-specific demethylation enhance cell-death
+      susceptibility in liver cancer
+    authors: Woo et al.
+    year: 2026
+    journal: Molecules and Cells
+    tools: []
+    evidence: fulltext:PMC13571314
+    added: 2026-11-11
   - doi: 10.3390/ijms27209143
     title: >-
       Potential Molecular Links Between Triclosan Exposure and Prostate Cancer: An
@@ -172,6 +218,15 @@ publications:
     tools: []
     evidence: cites:10.1093/bioinformatics/btad069
     added: 2026-10-18
+  - doi: 10.64898/2026.07.13.738089
+    title: >-
+      Hidden assumptions in nascent RNA sequencing pipelines define reproducibility
+      states
+    authors: Zhou et al.
+    year: 2026
+    tools: []
+    evidence: cites:10.1186/s13059-021-02349-4
+    added: 2026-11-11
   - doi: 10.1186/s40168-025-02223-6
     title: >-
       Cervicovaginal microbiome alters transcriptomic and chromatin accessibility
@@ -278,6 +333,13 @@ publications:
     tools: []
     evidence: cites:10.1093/bioinformatics/btad069
     added: 2026-08-27
+  - doi: 10.48550/arxiv.2511.01555
+    title: Fast, memory-efficient genomic interval tokenizers for modern machine learning
+    authors: LeRoy et al.
+    year: 2025
+    tools: []
+    evidence: cites:10.1093/bioinformatics/btad069
+    added: 2026-11-11
   - doi: 10.1186/s13072-025-00579-5
     title: >-
       Integrative analysis of gene expression and chromatin dynamics multi-omics data
