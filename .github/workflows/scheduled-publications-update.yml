@@ -1,18 +1,33 @@
-name: Manual publications update with Claude
+name: Monthly publications update
 
-# Manual fallback for the publications updater.
-# The recurring monthly schedule is handled by Jules.
+# On the 18th of each month at 10:00 UTC (or by hand), two Claude models update
+# the PEPkit publications list in docs/data/publications.yaml:
 #
-# All discovery, verification, filtering, and validation rules live in
-# automation/update-publications.md. The Claude skill is only a thin wrapper
-# that handles Claude-specific branch and pull-request publication behavior.
+# 1. propose: Claude Haiku follows automation/update-publications.md. It
+#    searches OpenAlex and Europe PMC for new papers that cite or use PEPkit
+#    tools and appends the verified ones. When it finishes, a Claude Code Stop
+#    hook runs automation/publish-pr.sh: it runs validate_publications.py
+#    (failures go back to Claude to fix), then commits, pushes and opens one
+#    pull request.
+# 2. review: Claude Opus follows automation/review-publications.md. It rechecks
+#    every new entry against its sources and removes any that fail. Its Stop
+#    hook runs automation/review-pr.sh: it re-runs the validator, commits the
+#    removals, and posts the review on the pull request. A person then merges
+#    it. If nothing is left, the hook closes the pull request.
+#
+# The hooks run inside the Claude steps, so they use Claude's GitHub login and
+# everything shows as claude[bot]. The workflow's own token is read-only and is
+# not kept in git. A run is skipped while an earlier publications-update pull
+# request is still open.
 
 on:
+  schedule:
+    - cron: "0 10 18 * *"
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: read
   id-token: write
   actions: read
 
@@ -20,13 +35,89 @@ concurrency:
   group: publications-update
   cancel-in-progress: false
 
+env:
+  PR_BRANCH: publications-update
+  PR_PATHS: docs/data/publications.yaml
+  PR_CHECK: python validate_publications.py --check-dois
+  PR_TITLE: Monthly PEPkit publications update
+  PR_BASE: ${{ github.event.repository.default_branch }}
+  ALLOWED_TOOLS: Bash(*),Read(*),Write(*),Edit(*),Glob(*),Grep(*),WebFetch
+
 jobs:
-  update-publications:
+  propose:
     runs-on: ubuntu-latest
+    outputs:
+      pr: ${{ steps.done.outputs.pr }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Skip if an earlier update is still open
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open=$(gh pr list --state open --json headRefName \
+            --jq "[.[] | select(.headRefName | startswith(\"$PR_BRANCH-\"))] | length")
+          if [ "$open" != 0 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::An earlier $PR_BRANCH pull request is still open; skipping this run"
+          fi
+          echo "START_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-python@v6
+        if: steps.gate.outputs.skip != 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.skip != 'true'
+        run: pip install pyyaml
+
+      - name: Claude Haiku proposes new publications
+        if: steps.gate.outputs.skip != 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          prompt: Follow automation/update-publications.md completely.
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: '--model haiku --allowedTools "${{ env.ALLOWED_TOOLS }},Edit(//tmp/pr-body.md),Edit(//tmp/pubsearch/**)"'
+          show_full_output: true
+          settings: |
+            {
+              "hooks": {
+                "Stop": [{
+                  "hooks": [{
+                    "type": "command",
+                    "command": "bash \"$CLAUDE_PROJECT_DIR\"/automation/publish-pr.sh",
+                    "timeout": 600
+                  }]
+                }]
+              }
+            }
+
+      - name: Confirm the proposal finished
+        id: done
+        if: steps.gate.outputs.skip != 'true'
+        run: |
+          if [ ! -f /tmp/publish.done ]; then
+            echo "::error::automation/publish-pr.sh did not finish, so no pull request was opened"
+            exit 1
+          fi
+          if [ -s /tmp/publish.pr ]; then echo "pr=$(cat /tmp/publish.pr)" >> "$GITHUB_OUTPUT"; fi
+
+  review:
+    needs: propose
+    if: needs.propose.outputs.pr != ''
+    runs-on: ubuntu-latest
+    env:
+      AUTO_MERGE: "false"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - uses: actions/setup-python@v6
         with:
@@ -35,14 +126,42 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
-      - name: Run Claude Code to find new publications
+      - name: Check out the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ needs.propose.outputs.pr }}
+        run: |
+          number=$(gh pr view "$PR_URL" --json number --jq .number)
+          head=$(gh pr view "$PR_URL" --json headRefName --jq .headRefName)
+          git fetch origin "$head"
+          git checkout -B "$head" "origin/$head"
+          echo "PR_NUMBER=$number" >> "$GITHUB_ENV"
+          echo "PR_HEAD=$head" >> "$GITHUB_ENV"
+          echo "START_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Claude Opus reviews the new publications
         uses: anthropics/claude-code-action@v1
         with:
-          prompt: |
-            Use the update-publications skill to run the recurring PEPkit
-            publications update. Follow the canonical instructions in
-            automation/update-publications.md and open or update the review PR
-            as directed by the Claude wrapper.
+          prompt: "Follow automation/review-publications.md completely. The pull request is number ${{ env.PR_NUMBER }}."
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: '--allowedTools "Bash(*),Read(*),Write(*),Edit(*),Glob(*),Grep(*),WebFetch(*)"'
+          claude_args: '--model opus --allowedTools "${{ env.ALLOWED_TOOLS }},Edit(//tmp/review.md),Edit(//tmp/pubsearch/**)"'
           show_full_output: true
+          settings: |
+            {
+              "hooks": {
+                "Stop": [{
+                  "hooks": [{
+                    "type": "command",
+                    "command": "bash \"$CLAUDE_PROJECT_DIR\"/automation/review-pr.sh",
+                    "timeout": 600
+                  }]
+                }]
+              }
+            }
+
+      - name: Confirm the review finished
+        run: |
+          if [ ! -f /tmp/review.done ]; then
+            echo "::error::automation/review-pr.sh did not finish, so the review was not applied"
+            exit 1
+          fi

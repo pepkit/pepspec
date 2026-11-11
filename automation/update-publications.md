@@ -199,7 +199,8 @@ validator fails.**
 
 ### 12. Prepare the review summary
 
-If changes are being published as a pull request, its description must contain:
+Write the review summary to `/tmp/pr-body.md`. It becomes the pull request
+description, and it must contain:
 
 1. **A table of every added entry** — authors, year, title, journal, the DOI as
    a link, and the `evidence` value.
@@ -217,6 +218,14 @@ publication update.
 
 Make no repository changes and stop. Do not create an empty branch, commit, or
 pull request.
+
+### 14. Finish
+
+In the monthly GitHub Actions workflow, a hook runs when you finish. It runs
+`python validate_publications.py --check-dois`, then commits only
+`docs/data/publications.yaml` and opens the pull request with your summary. If
+the validator fails, it tells you what to fix: fix the data and finish again.
+Never create a branch, commit, push, or open a pull request yourself.
 
 ## Important rules
 
