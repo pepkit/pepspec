@@ -102,16 +102,6 @@ publications:
     tools: []
     evidence: cites:10.1093/gigascience/giae033
     added: 2026-08-27
-  - doi: 10.1093/gbe/evag247
-    title: >-
-      Genome-Wide Evolution of Lineage-Specific Chromatin Accessibility Links
-      Regulatory Changes to Cichlid Phenotypic Diversity
-    authors: Mehta et al.
-    year: 2026
-    journal: Genome Biology and Evolution
-    tools: []
-    evidence: cites:10.1093/nargab/lqab101
-    added: 2026-11-11
   - doi: 10.64898/2026.05.13.724835
     title: >-
       ppGpp regulates transcription elongation via direct and indirect inputs to RNA
@@ -205,7 +195,7 @@ publications:
     authors: Woo et al.
     year: 2026
     journal: Molecules and Cells
-    tools: []
+    tools: [pepatac]
     evidence: fulltext:PMC13571314
     added: 2026-11-11
   - doi: 10.3390/ijms27209143
