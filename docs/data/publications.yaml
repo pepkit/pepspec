@@ -102,6 +102,17 @@ publications:
     tools: []
     evidence: cites:10.1093/gigascience/giae033
     added: 2026-08-27
+  - doi: 10.1093/gbe/evag247
+    title: >-
+      Genome-Wide Evolution of Lineage-Specific Chromatin Accessibility Links
+      Regulatory Changes to Cichlid Phenotypic Diversity
+    authors: Mehta et al.
+    year: 2026
+    journal: Genome Biology and Evolution
+    preprint_doi: 10.1101/2025.10.09.681187
+    tools: []
+    evidence: cites:10.1093/nargab/lqab101
+    added: 2026-08-27
   - doi: 10.64898/2026.05.13.724835
     title: >-
       ppGpp regulates transcription elongation via direct and indirect inputs to RNA
@@ -355,15 +366,6 @@ publications:
       Zinc-finger proteins with a co-opted capsid domain anchor nucleosomes over
       transposon sequences
     authors: Matsushima et al.
-    year: 2025
-    tools: []
-    evidence: cites:10.1093/nargab/lqab101
-    added: 2026-08-27
-  - doi: 10.1101/2025.10.09.681187
-    title: >-
-      Evolution of chromatin accessibility associated with traits of cichlid
-      phenotypic diversity
-    authors: Mehta et al.
     year: 2025
     tools: []
     evidence: cites:10.1093/nargab/lqab101

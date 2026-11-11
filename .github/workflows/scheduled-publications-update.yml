@@ -113,6 +113,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AUTO_MERGE: "false"
+      # The review may also add rejected DOIs to exclude_dois.
+      PR_PATHS: docs/data/publications.yaml publication_sources.yaml
     steps:
       - uses: actions/checkout@v7
         with:
